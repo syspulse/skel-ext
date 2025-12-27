@@ -18,7 +18,6 @@ import scala.concurrent.duration.FiniteDuration
 import java.util.Base64
 import akka.actor.typed.ActorSystem
 
-
 case class Config(
   host:String="0.0.0.0",
   port:Int=8080,
@@ -36,7 +35,7 @@ case class Config(
 object App extends skel.Server {
 
   def main(args:Array[String]):Unit = {
-    Console.err.println(s"args: '${args.mkString(",")}'")
+    Console.err.println(s"args: '${args.mkString(",")}'")    
 
     val d = Config()
     val c = Configuration.withPriority(Seq(

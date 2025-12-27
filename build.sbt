@@ -108,7 +108,7 @@ val sharedConfigDockerSpark = sharedConfigDocker ++ Seq(
 )
 
 val sharedConfig = Seq(
-    //retrieveManaged := true,  
+    //retrieveManaged := true,
     organization    := "io.syspulse",
     scalaVersion    := Dependencies.scala,
     name            := "skel-ext",
@@ -118,11 +118,11 @@ val sharedConfig = Seq(
     // javacOptions ++= Seq("-target", "1.8", "-source", "1.8"),
     javacOptions ++= Seq("-target", "11", "-source", "11"),
     scalacOptions += "-release:11",
-    
+
     crossVersion := CrossVersion.binary,
     resolvers ++= Seq(
       Resolver.mavenLocal,
-      Opts.resolver.sonatypeSnapshots, 
+      Opts.resolver.sonatypeSnapshots,
       Opts.resolver.sonatypeReleases,
       "spray repo"         at "https://repo.spray.io/",
       "sonatype releases"  at "https://oss.sonatype.org/content/repositories/releases/",
@@ -134,7 +134,23 @@ val sharedConfig = Seq(
     ),
 
     // needed to fix error with quill-jasync
-    libraryDependencySchemes += "org.scala-lang.modules" %% "scala-java8-compat" % VersionScheme.Always
+    libraryDependencySchemes += "org.scala-lang.modules" %% "scala-java8-compat" % VersionScheme.Always,
+
+    // ----------------------- Bloop specific settings -------------------------------------------
+    // Add conf/ directory to classpath for running (NOT packaged in JAR)
+    Compile / unmanagedClasspath += Attributed.blank(baseDirectory.value / "conf"),
+    Runtime / unmanagedClasspath += Attributed.blank(baseDirectory.value / "conf"),
+
+    // Set working directory to project directory (not workspace root) for Bloop
+    run / javaOptions := {
+      val base = baseDirectory.value
+      Seq(s"-Duser.dir=$base")
+    },
+    Compile / javaOptions := {
+      val base = baseDirectory.value
+      Seq(s"-Duser.dir=$base")
+    },
+    // --------------------------------------------------------------------------------------------
   )
 
 // assemblyMergeStrategy in assembly := {
@@ -312,6 +328,8 @@ lazy val root = (project in file("."))
     sentry_kuba,
     sentry_bubbles,
     sentry_news,
+    sentry_audit,
+    sentry_workflow,
   )
   .dependsOn(
     sentry_gov,
@@ -319,12 +337,37 @@ lazy val root = (project in file("."))
     sentry_kuba,
     sentry_bubbles,
     sentry_news,
+    sentry_audit,
+    sentry_workflow,
   )
   .disablePlugins(sbtassembly.AssemblyPlugin) // this is needed to prevent generating useless assembly and merge error
   .settings(    
     sharedConfig,
     sharedConfigDocker,
     dockerBuildxSettings
+  )
+  
+
+// Sentry Demo is a Bundle for all detectors
+lazy val sentry_demo = (project in file("sentry-demo"))
+  .dependsOn(
+    sentry_gov,
+    sentry_por,
+    sentry_bubbles,
+    sentry_news,
+    sentry_workflow,
+    sentry_audit,
+  )
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(DockerPlugin)
+  .enablePlugins(AshScriptPlugin)
+  .settings (
+    sharedConfig,
+    sharedConfigAssembly,
+    sharedConfigDocker,
+    dockerBuildxSettings,
+
+    appDockerConfig("sentry-demo","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),    
   )
 
 lazy val sentry_gov = (project in file("sentry-gov"))
@@ -442,6 +485,34 @@ lazy val sentry_news = (project in file("sentry-news"))
     dockerBuildxSettings,
 
     appDockerConfig("sentry-news","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
+    
+    libraryDependencies ++= Seq(
+      libExtCore,
+      libExtSentinel,
+      libSkelCore,
+      libSkelDsl,
+      libSkelScript,
+
+      libOsLib,
+      libRequests,
+      libScalaXml,
+
+      libSkelTest % "test",
+      libScalaTest % "test"
+    ),
+  )
+
+lazy val sentry_audit = (project in file("sentry-audit"))
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(DockerPlugin)
+  .enablePlugins(AshScriptPlugin)
+  .settings (
+    sharedConfig,
+    sharedConfigAssembly,
+    sharedConfigDocker,
+    dockerBuildxSettings,
+
+    appDockerConfig("sentry-audit","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
 
     libraryDependencies ++= Seq(
       libExtCore,
@@ -451,7 +522,30 @@ lazy val sentry_news = (project in file("sentry-news"))
 
       libOsLib,
       libRequests,
-      libScalaXml,
+      libUpickleLib,
+
+      libSkelTest % "test",
+      libScalaTest % "test"
+    ),
+  )
+
+lazy val sentry_workflow = (project in file("sentry-workflow"))
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(DockerPlugin)
+  .enablePlugins(AshScriptPlugin)
+  .settings (
+    sharedConfig,
+    sharedConfigAssembly,
+    sharedConfigDocker,
+    dockerBuildxSettings,
+
+    appDockerConfig("sentry-workflow","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
+
+    libraryDependencies ++= Seq(
+      libExtCore,
+      libExtSentinel,
+      libSkelCore,
+      libSkelDsl,
 
       libSkelTest % "test",
       libScalaTest % "test"

@@ -28,11 +28,11 @@ object Dependencies {
     lazy val janinoVersion = "3.0.16" //"3.1.6" //"3.0.16"
     lazy val elastic4sVersion = "7.17.3"
     
-    lazy val extVersion = "0.17.0"
-    lazy val trunkVersion = "0.17.0"
-    lazy val skelVersion = "0.15.0"
+    lazy val extVersion = "0.18.0"
+    lazy val trunkVersion = "0.18.0"
+    lazy val skelVersion = "0.18.0"
     
-    lazy val appVersion = "0.17.0"
+    lazy val appVersion = "0.18.0"
 
     lazy val jarPrefix = "server-"
     
@@ -259,6 +259,7 @@ object Dependencies {
     val libSkelTest =       "io.syspulse"                 %% "skel-test"            % skelVersion
     val libSkelEthProtocols="io.syspulse"                 %% "eth-protocols"        % skelVersion
     val libSkelRisk=        "io.syspulse"                 %% "skel-risk"            % skelVersion
+    val libSkelScript =     "io.syspulse"                 %% "skel-script"          % skelVersion
     
     val libSkel = Seq(libSkelCore,libSkelPlugin, libSkelAuth, libSkelIngest, libSkelIngestCore, libSkelCron, libSkelBlockchainCore, libSkelAiCore, libScalaTest)
     

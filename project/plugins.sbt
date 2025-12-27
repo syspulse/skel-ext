@@ -5,3 +5,5 @@ addSbtPlugin("io.spray" % "sbt-revolver" % "0.9.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.1")
 
 //addSbtPlugin("com.lightbend.sbt" % "sbt-multi-release-jar" % "0.1.2")
+
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "2.0.17")

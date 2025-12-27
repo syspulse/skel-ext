@@ -1,4 +1,5 @@
-#!/bin/bash                                                                                                                                                                                            
+#!/bin/bash
+SBT_ROOT=`echo $(dirname $(readlink -f $0))`
 #CWD=`echo $(dirname $(readlink -f $0))`
 #cd $CWD
 
@@ -24,21 +25,35 @@ else
    APP_HOME=${APP_HOME:-`pwd`}
 fi
 
-PLUGINS=${PLUGSIN-`pwd`/plugins}
+CONFIG="application${SITE}.conf"
+PLUGINS=${PLUGSIN:-${CWD}/plugins}
+
+if [ "$APP_EXEC" == "bloop" ]; then
+  APP_PROJECT=${APP//-/_}  
+  exec bloop run ${APP_PROJECT} -c $SBT_ROOT/.bloop -m ${MAIN} -- -J-Dconfig.resource=$CONFIG -J-Dcolor $ARGS
+fi
 
 # fat jar
 JAR_FAT=`ls ${APP_HOME}/target/scala-2.13/*assembly*.jar`
-# classes
+# SBT Classes
 CLASSES=${APP_HOME}/target/scala-2.13/classes
+
+# Bloop classes
+# APP_PROJECT=${APP//-/_}
+# BLOOP_PATH=${SBT_ROOT}/.bloop/${APP_PROJECT}/bloop-internal-classes
+# CLASSES_BLOOP_RANDOM=`ls -d ${BLOOP_PATH}/classes* 2>/dev/null | xargs -n1 basename | xargs echo`
+# CLASSES_BLOOP=${BLOOP_PATH}/${CLASSES_BLOOP_RANDOM}
+
 # additional libs
 JAR_UNFAT=`ls ${APP_HOME}/lib/*.jar`
+
 # list of jar. Generated with command:
 # sbt -error ";project module; export dependencyClasspath" >CLASSPATH
+#JAR_FILES=`cat ${CWD}/CLASSPATH`
 JAR_FILES=`cat ${APP_HOME}/CLASSPATH`
-PLUGIN_JARS="${PLUGINS}/*"
-CP="${APP_HOME}/conf/:$JAR_FAT:$JAR_UNFAT:$JAR_FILES:$CLASSES:$PLUGIN_JARS"
 
-CONFIG="application${SITE}.conf"
+PLUGIN_JARS="${PLUGINS}/*"
+CP="${APP_HOME}/conf/:${JAR_FAT}:${JAR_UNFAT}:${CLASSES}:${JAR_FILES}:${CLASSES_BLOOP}:${PLUGIN_JARS}"
 
 MEM=${MEM:-1G}
 STACK=${STACK:-512M}

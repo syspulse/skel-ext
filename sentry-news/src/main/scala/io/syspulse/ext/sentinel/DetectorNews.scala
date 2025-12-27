@@ -4,7 +4,6 @@ import scala.jdk.CollectionConverters._
 import scala.concurrent.duration.{Duration, FiniteDuration}
 import com.typesafe.scalalogging.Logger
 import scala.util.{Try, Success, Failure}
-import scala.util.matching.Regex
 
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
 
@@ -16,13 +15,15 @@ import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.core.Event
 
 import io.syspulse.ext.sentinel.feeds._
+import io.syspulse.skel.util.Util
+import io.syspulse.skel.script.{Script, ScriptFlow}
+import io.hacken.ext.sentinel.ScriptEngine
 
 object DetectorNews {
   val DEF_CRON = "10 minutes"
   val DEF_FEEDS = ""
   val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://), "rss" = all RSS, "reddit" = all Reddit
   val DEF_DESC = "New post: {title}{err}"
-  val DEF_FILTER = ""  // Empty = match everything (no filtering)
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
 
@@ -31,6 +32,8 @@ object DetectorNews {
 
   val DEF_SEV_NEW_POST = Severity.INFO
   val DEF_SEV_ERR = Severity.ERROR
+
+  val DEF_EID_HASH = true
 
   /**
    * Parse feed URI based on type configuration
@@ -69,6 +72,14 @@ object DetectorNews {
 class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
+
+  def eid(post: NewsPost) = {
+    if (DetectorNews.DEF_EID_HASH) {
+      Some(Util.sha256(post.id))
+    } else {
+      Some(post.id)
+    }
+  }
 
   override def getSettings(rx: SentryRun): Map[String, Any] = {
     rx.getConfig().env match {
@@ -132,30 +143,11 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     // Configuration
     rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorNews.DEF_DESC))
 
-    // Regexp filter: empty string = match everything (no filtering)
-    val filter = DetectorConfig.getString(conf, "filter", DetectorNews.DEF_FILTER)
-    if (filter.nonEmpty) {
-      try {
-        val regexp = filter.r
-        rx.set("regexp", Some(regexp))
-      } catch {
-        case e: Exception =>
-          log.warn(s"${rx.getExtId()}: Invalid regexp pattern: ${filter}: ${e.getMessage}")
-          error(s"Invalid regexp pattern: ${filter}", None)
-          return SentryRun.SENTRY_STOPPED
-      }
-    } else {
-      rx.set("regexp", None)
-    }
-
-    rx.set("max",
-           DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX))
-    rx.set("max_seen_posts",
-           DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS))
-    rx.set("track_err",
-           DetectorConfig.getBoolean(conf, "track_err", DetectorNews.DEF_TRACK_ERR))
-    rx.set("err_always",
-           DetectorConfig.getBoolean(conf, "err_always", DetectorNews.DEF_TRACK_ERR_ALWAYS))
+    // Load scripts and error tracking configuration using ScriptEngine
+    ScriptEngine.loadConfig(rx, conf, DetectorNews.DEF_TRACK_ERR, DetectorNews.DEF_TRACK_ERR_ALWAYS)
+    
+    rx.set("max",DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX))
+    rx.set("max_seen_posts", DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS))
 
     // Initialize seen posts with current feed state (don't alert on first run)
     //initializeSeenPosts(rx)
@@ -194,14 +186,17 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
     log.info(s"${rx.getExtId()}: Feed: ${feeds}")
 
-    // Fetch all posts from all feeds, applying max limit per feed
+    // Fetch all posts from all feeds, sorting and applying max limit per feed
     val ts0 = System.currentTimeMillis()
     val allPosts = feeds.flatMap { feed =>
       feed.fetchFeed() match {
         case Success(posts) =>
+          // Sort posts by publishedDate in descending order (newest first)
+          val sortedPosts = posts.sortBy(-_.publishedDate)
+          
           // Apply max limit to this feed (0 = no limit)
-          val limitedPosts = if (max > 0) posts.take(max) else posts
-          log.info(s"${rx.getExtId()}: Feed: ${feed.getSource()}: ${posts.size} (max=${limitedPosts.size})")
+          val limitedPosts = if (max > 0) sortedPosts.take(max) else sortedPosts
+          log.info(s"${rx.getExtId()}: Feed: ${feed.getSource()}: ${posts.size} (fetched), ${limitedPosts.size} (max)")
           limitedPosts
         case Failure(e) =>
           log.warn(s"${rx.getExtId()}: Failed to fetch from ${feed.getSource()}: ${e.getMessage}")
@@ -216,14 +211,14 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     // Filter for new posts
     val newPosts = allPosts.filterNot(p => seenPosts.contains(p.id))
 
-    // Apply regexp filter if configured
-    val filteredPosts = filterByRegexp(rx, newPosts)
+    // Apply script filters if configured
+    val filteredPosts = filterByScripts(rx, newPosts)
 
     log.info(s"${rx.getExtId()}: Posts: ${allPosts.size} (all), ${seenPosts.size} (seen), ${newPosts.size} (new), ${filteredPosts.size} (filtered)")
 
-    // Update seen posts with size limit
-    val allPostIds = allPosts.map(_.id).toSet
-    val updatedSeen = (seenPosts ++ allPostIds).takeRight(maxSeenPosts)
+    // Update seen posts with size limit (only track posts that were processed)
+    val processedPostIds = allPosts.map(_.id).toSet
+    val updatedSeen = (seenPosts ++ processedPostIds).takeRight(maxSeenPosts)
     rx.set("seen_posts", updatedSeen)
 
     // Generate alerts for new filtered posts
@@ -232,17 +227,27 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     errorEvents ++ postEvents
   }
 
-  private def filterByRegexp(rx: SentryRun, posts: Seq[NewsPost]): Seq[NewsPost] = {
-    val regexpOpt = rx.get("regexp").asInstanceOf[Option[Option[Regex]]].flatten
+  def filterByScripts(rx: SentryRun, posts: Seq[NewsPost]): Seq[NewsPost] = {
+    val scriptsOpt = rx.get("scripts").asInstanceOf[Option[ScriptFlow]]
 
-    // If no regexp configured (empty string), match everything
-    if (regexpOpt.isEmpty) return posts
+    // If no scripts configured, match everything
+    if (! scriptsOpt.isDefined) return posts
 
-    val regexp = regexpOpt.get
+    val scripts = scriptsOpt.get
 
     posts.filter { post =>
       val searchText = s"${post.title} ${post.summary}"
-      regexp.findFirstIn(searchText).isDefined
+      
+      scripts.run("", searchText, Map.empty) match {
+        case Success(null) => false
+        case Success("") => false
+        case Success("false") => false
+        case Success(_) => true          
+        case Failure(_) =>
+          // Failure means no match
+          false
+      }
+      
     }
   }
 
@@ -259,7 +264,8 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
       "summary" -> post.summary,
       "src" -> post.source,
       "latency" -> latency.toString,
-      "desc" -> desc.replace("{title}", post.title)
+      "desc" -> desc.replace("{title}", post.title),
+      "tx_hash" -> post.id
     ) ++ post.feedMetadata
 
     EventUtil.createEvent(
@@ -269,7 +275,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
       conf = Some(rx.getConf()),
       meta = metadata,
       detectorTs = post.publishedDate.toString,
-      eid0 = Some(post.id),
+      eid0 = eid(post),
       sev = Some(DetectorNews.DEF_SEV_NEW_POST)
     )
   }
