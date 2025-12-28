@@ -9,5 +9,6 @@ case class NewsPost(
   summary: String,
   source: String,
   typ: String,
-  feedMetadata: Map[String, String] // subreddit, categories, thumbnails, etc.
+  categories: List[String],        // List of category tags
+  feedMetadata: Map[String, String] // subreddit, thumbnails, etc.
 )

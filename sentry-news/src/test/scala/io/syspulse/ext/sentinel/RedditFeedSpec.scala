@@ -41,6 +41,24 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
     }
   }
 
+  it should "extract categories (subreddit) as List" in {
+    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val posts = feed.fetchFeed().get
+
+    posts should not be empty
+
+    // Check if posts have categories
+    val postsWithCategories = posts.filter(_.categories.nonEmpty)
+    postsWithCategories.size should be > 0
+
+    // Verify categories is a List with subreddit
+    postsWithCategories.foreach { post =>
+      post.categories shouldBe a[List[_]]
+      post.categories.size shouldBe 1 // Reddit has one category (the subreddit)
+      post.categories.head should not be empty
+    }
+  }
+
   it should "strip HTML from content" in {
     val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
     val posts = feed.fetchFeed().get

@@ -38,14 +38,13 @@ class RssFeed(source: String) extends NewsFeed {
       // Parse RFC-822 date format
       val publishedDate = DateParser.parseRfc822(pubDateStr)
 
-      // Extract categories
-      val categories = (item \ "category").map(_.text).mkString(", ")
+      // Extract categories as List
+      val categories = (item \ "category").map(_.text.trim).filter(_.nonEmpty).toList
 
       // Extract media URL if present
       val mediaUrl = (item \ "{http://search.yahoo.com/mrss/}content" \ "@url").text.trim
 
       val metadata = Map(
-        "categories" -> categories,
         "media_url" -> mediaUrl
       ).filter(_._2.nonEmpty)
 
@@ -58,6 +57,7 @@ class RssFeed(source: String) extends NewsFeed {
         summary = stripHtml(description).take(1000),  // Strip CDATA/HTML, limit length
         source = source,
         typ = "rss",
+        categories = categories,
         feedMetadata = metadata
       )
     }.toSeq

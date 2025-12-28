@@ -35,12 +35,13 @@ class RedditFeed(source: String) extends NewsFeed {
       val subreddit = (entry \ "category" \ "@term").text.trim
       val subredditLabel = (entry \ "category" \ "@label").text.trim
 
+      // Categories for Reddit is the subreddit
+      val categories = if (subredditLabel.nonEmpty) List(subredditLabel) else if (subreddit.nonEmpty) List(subreddit) else List.empty
+
       // Extract thumbnail if present
       val thumbnail = (entry \ "{http://search.yahoo.com/mrss/}thumbnail" \ "@url").text.trim
 
       val metadata = Map(
-        // "subreddit" -> subreddit,
-        // "subreddit_label" -> subredditLabel,
         "subreddit" -> subredditLabel,
         "thumbnail" -> thumbnail
       ).filter(_._2.nonEmpty)
@@ -54,6 +55,7 @@ class RedditFeed(source: String) extends NewsFeed {
         summary = stripHtml(content).take(1000),
         source = source,
         typ = "reddit",
+        categories = categories,
         feedMetadata = metadata
       )
     }.toSeq
