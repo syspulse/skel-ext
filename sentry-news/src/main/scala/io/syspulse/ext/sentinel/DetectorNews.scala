@@ -23,7 +23,7 @@ import io.hacken.ext.sentinel.ThresholdDouble
 object DetectorNews {
   val DEF_CRON = "10 minutes"
   val DEF_FEEDS = ""
-  val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://), "rss" = all RSS, "reddit" = all Reddit
+  val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://, twitter://), "rss" = all RSS, "reddit" = all Reddit, "twitter" = all Twitter
   val DEF_DESC = "Post: {title}{err}"
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
@@ -40,9 +40,9 @@ object DetectorNews {
 
   /**
    * Parse feed URI based on type configuration
-   * @param uri The feed URI (may have rss:// or reddit:// prefix)
-   * @param feedType The configured feed type ("", "rss", or "reddit")
-   * @return Tuple of (actualFeedType: "rss" or "reddit", cleanedUri: String)
+   * @param uri The feed URI (may have rss://, reddit://, or twitter:// prefix)
+   * @param feedType The configured feed type ("", "rss", "reddit", or "twitter")
+   * @return Tuple of (actualFeedType: "rss", "reddit", or "twitter", cleanedUri: String)
    */
   def parseFeedUri(uri: String, feedType: String): (String, String) = {
     feedType.toLowerCase match {
@@ -54,12 +54,18 @@ object DetectorNews {
         // All feeds are Reddit
         ("reddit", uri)
 
+      case "twitter" =>
+        // All feeds are Twitter
+        ("twitter", uri)
+
       case "" =>
-        // Parse URI prefix: rss://, reddit://, or assume RSS
+        // Parse URI prefix: rss://, reddit://, twitter://, or assume RSS
         if (uri.startsWith("rss://")) {
           ("rss", uri.substring(6)) // Strip "rss://"
         } else if (uri.startsWith("reddit://")) {
           ("reddit", uri.substring(9)) // Strip "reddit://"
+        } else if (uri.startsWith("twitter://")) {
+          ("twitter", uri) // Keep full URI for TwitterConnect
         } else {
           // No prefix, assume RSS
           ("rss", uri)
@@ -149,6 +155,12 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
       return SentryRun.SENTRY_STOPPED
     }
 
+    val max = DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX)
+    val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS)
+    rx.set("max",max)
+    rx.set("max_seen_posts", maxSeenPosts)
+    
+
     // Get feed type configuration
     val feedType = DetectorConfig.getString(conf, "type", DetectorNews.DEF_TYPE).toLowerCase
 
@@ -161,6 +173,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
         actualFeedType match {
           case "rss" => new RssFeed(cleanedUri)
           case "reddit" => new RedditFeed(cleanedUri)
+          case "twitter" => new TwitterFeed(cleanedUri,Some(max))
           case _ => new RssFeed(cleanedUri) // Fallback
         }
       }
@@ -178,10 +191,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorNews.DEF_THRESHOLD)
     val threshold = new ThresholdDouble(0.0, thresholdCondition)
     rx.set("threshold", threshold)
-
-    rx.set("max",DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX))
-    rx.set("max_seen_posts", DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS))
-
+    
     // Load categories filter configuration
     val categories = DetectorConfig.getString(conf, "categories")
       .orElse(DetectorNews.DEF_CATEGORY)

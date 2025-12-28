@@ -492,6 +492,7 @@ lazy val sentry_news = (project in file("sentry-news"))
       libSkelCore,
       libSkelDsl,
       libSkelScript,
+      libSkelIngestTwitter,
 
       libOsLib,
       libRequests,
