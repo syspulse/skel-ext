@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+    <link>https://www.coindesk.com/</link>
+    <atom:link rel="self" type="application/rss+xml" href="https://www.coindesk.com/arc/outboundfeeds/rss"/>
+    <atom:link rel="hub" href="true"/>
+    <description>Leader in cryptocurrency, Bitcoin, Ethereum, XRP, blockchain, DeFi, digital finance and Web 3.0 news with analysis, video and live price updates.</description>
+    <lastBuildDate>Sat, 13 Dec 2025 11:05:41 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2025 CoinDesk, Inc.</copyright>
+    <generator>CoinDesk</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://downloads.coindesk.com/arc/failsafe/feeds/coindesk-feed-logo.png</url>
+      <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+      <link>https://www.coindesk.com/</link>
+    </image>
+    <item>
+      <title><![CDATA[Citadel Securities and DeFi Waging War of Words Through SEC Correspondence ]]></title>
+      <link>https://www.coindesk.com/policy/2025/12/12/citadel-securities-and-defi-waging-war-of-words-through-sec-correspondence</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/92e55eb28f7499e7a2830668981d5027aff1a10c-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">9aef2b42-3854-4f38-8336-c157cc2d05a1</guid>
+      <pubDate>Fri, 12 Dec 2025 22:20:18 +0000</pubDate>
+      <description><![CDATA[The investing giant had asked the U.S. Securities and Exchange Commission to treat DeFi players like regulated entities, and the DeFi crowd pushed back.]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[SEC]]></category>
+      <category domain="tag"><![CDATA[Citadel Securities]]></category>
+      <category domain="tag"><![CDATA[DeFi Education Fund]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Crypto Firm Tether Says It Wants to Take Over Italian Football Club Juventus]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/crypto-firm-tether-moves-to-take-over-italian-football-club-juventus</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/b2e3ecb2dd0afc982a2fd15713b824b337e2c807-1919x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">85b43003-2e26-49fb-89b4-b7c9d06ee992</guid>
+      <pubDate>Fri, 12 Dec 2025 20:59:57 +0000</pubDate>
+      <description><![CDATA[The issuer behind the most popular stablecoin said that if the bid succeeds, it prepares to invest $1 billion in the football club.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="tag"><![CDATA[Juventus]]></category>
+      <category domain="tag"><![CDATA[USDT]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Interactive Brokers Now Accepts Stablecoins in a Bid to Remain Competitive]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/interactive-brokers-now-accepts-stablecoins-in-a-bid-to-remain-competitive</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/0b0733a4324899bc8b649ae655d072710126afe0-3840x2160.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">15cf3b8f-d7b4-48cf-8fc9-ef202f04eae1</guid>
+      <pubDate>Fri, 12 Dec 2025 18:30:11 +0000</pubDate>
+      <description><![CDATA[The firm has begun offering stablecoin account funding for U.S. retail clients, joining a growing list of brokerages racing to keep pace with crypto-native rivals.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Interactive Brokers]]></category>
+      <category domain="tag"><![CDATA[Robinhood Markets Inc.]]></category>
+      <category domain="tag"><![CDATA[Charles Schwab]]></category>
+      <category domain="tag"><![CDATA[Stablecoin]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[DOT Sinks 2% After Breaking Key Support]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/dot-sinks-2-after-breaking-key-support</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/05139ec11ce2fe5546fda0f1adf4e2e0eac2e52f-700x430.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">868a1532-0798-472f-89b5-0c31a99df209</guid>
+      <pubDate>Fri, 12 Dec 2025 17:16:06 +0000</pubDate>
+      <description><![CDATA[The Polkadot token erased earlier gains amid elevated volume, falling from a high of $2.09 to $1.97.]]></description>
+      <dc:creator>CD Analytics</dc:creator>
+      <dc:creator>Will Canny</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[AI Market Insights]]></category>
+      <category domain="tag"><![CDATA[Polkadot]]></category>
+      <category domain="tag"><![CDATA[Technical Analysis]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Hedera Tumbles 4% as Altcoins Continue to Suffer]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/hedera-tumbles-4-as-altcoins-continue-to-suffer</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/4b68d4c65910c36b35912ddfec9070719ca744c6-700x430.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">ccb8e557-cfb4-4b53-9b65-34db0a3a4d60</guid>
+      <pubDate>Fri, 12 Dec 2025 17:14:17 +0000</pubDate>
+      <description><![CDATA[Hedera's native token retreated from resistance levels as institutional volume surged during key reversal hour.]]></description>
+      <dc:creator>CD Analytics</dc:creator>
+      <dc:creator>Oliver Knight</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[AI Market Insights]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Five Crypto Firms Win Initial Approvals as Trust Banks, Including Ripple, Circle, BitGo]]></title>
+      <link>https://www.coindesk.com/policy/2025/12/12/five-crypto-firms-step-closer-to-become-a-bank-including-ripple-circle-fidelity</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/ddecb148bab351e7e10c41bbdab45a512977742a-2914x1637.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">dab608c4-617b-4157-9f1e-9c8ecfcabc4e</guid>
+      <pubDate>Fri, 12 Dec 2025 16:39:19 +0000</pubDate>
+      <description><![CDATA[The firms have obtained conditional approval from the Office of the Comptroller of the Currency to convert into national trust banks.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Banking]]></category>
+      <category domain="tag"><![CDATA[Ripple]]></category>
+      <category domain="tag"><![CDATA[Circle]]></category>
+      <category domain="tag"><![CDATA[Paxos]]></category>
+      <category domain="tag"><![CDATA[Fidelity]]></category>
+      <category domain="tag"><![CDATA[BitGo]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin Plunges Below $90K as AI Worries Drag Nasdaq, Crypto Stocks Down]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/bitcoin-plunges-below-usd90k-as-ai-worries-drag-nasdaq-crypto-stocks-down</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/226994d25489dbe0929e16c6954ff1638303b38e-2250x1194.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">06fc3a87-7075-4cff-be98-15d4b4cfe8ed</guid>
+      <pubDate>Fri, 12 Dec 2025 16:04:27 +0000</pubDate>
+      <description><![CDATA[Chipmaker Broadcom's 10% slide weighs on the market as Chicago Fed's Goolsbee signals more cuts than the median for 2026. ]]></description>
+      <dc:creator>Helene Braun</dc:creator>
+      <dc:creator>James Van Straten</dc:creator>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Market Wrap]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="tag"><![CDATA[Nasdaq]]></category>
+      <category domain="tag"><![CDATA[Bitcoin Mining]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Pakistan, Binance Sign MOU to Explore Tokenization of $2B in State Assets: Reuters]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/pakistan-binance-sign-mou-to-explore-tokenization-of-usd2b-in-state-assets-reuters</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/da5f82d32d72be554405c6d78677fe4fb61dfaf1-1440x810.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">e8e018a3-f011-454b-a3b3-0a11aadbecb6</guid>
+      <pubDate>Fri, 12 Dec 2025 16:02:10 +0000</pubDate>
+      <description><![CDATA[The agreement comes as Pakistan accelerates the rollout of a formal crypto regulatory framework and explores blockchain-based distribution of government-owned assets.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Pakistan]]></category>
+      <category domain="tag"><![CDATA[Binance]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Prediction Markets Are Coming to Phantom's 20M User Via Kalshi ]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/prediction-markets-are-coming-to-phantom-s-20m-user-via-kalshi</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/6d84d85eddfea0214122fb8436cd96c91a7a922e-2880x1620.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">370d2a3a-1b25-46eb-a443-2bdbd0700d8a</guid>
+      <pubDate>Fri, 12 Dec 2025 15:10:39 +0000</pubDate>
+      <description><![CDATA[Phantom users will be able to chat and trade Kalshi's prediction markets with any Solana-based tokens, CEO said.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Kalshi]]></category>
+      <category domain="tag"><![CDATA[Prediction Markets]]></category>
+      <category domain="tag"><![CDATA[Solana News]]></category>
+      <category domain="tag"><![CDATA[Phantom]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Most Influential: Changpeng “CZ” Zhao]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/most-influential-changpeng-cz-zhao</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/1d5dad964f5e4c0b49394a381d658d1200f6f991-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">1e1669e1-7272-4cb9-a01c-aa2e1ccc46e4</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[Zhao’s exit from Binance did little to dim his prominence.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Binance]]></category>
+      <category domain="tag"><![CDATA[CZ]]></category>
+      <category domain="tag"><![CDATA[Donald Trump]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Most Influential 2025]]></category>
+      <category domain="https://www.coindesk.com/">Feature</category>
+    </item>
+    <item>
+      <title><![CDATA[Most Influential: Tom Lee]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/most-influential-tom-lee</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/86f52fd7839d4e6369eec2343dcd2ef548ed1b2f-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">311f0d34-b101-4e98-98a4-8280442cf62b</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[A longtime fixture on Wall Street, Tom Lee’s pivot to crypto comes as the traditional finance industry is increasingly embracing digital assets.]]></description>
+      <dc:creator>Will Canny</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Ether]]></category>
+      <category domain="tag"><![CDATA[Digital Asset Treasury]]></category>
+      <category domain="tag"><![CDATA[Wall Street]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Most Influential 2025]]></category>
+      <category domain="https://www.coindesk.com/">Feature</category>
+    </item>
+    <item>
+      <title><![CDATA[Most Influential: Jesse Pollak]]></title>
+      <link>https://www.coindesk.com/tech/2025/12/12/most-influential-jesse-pollak</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/0794d85726a6da1423f778b566ef4e21b8184d49-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">765dbfb9-85e1-4118-8943-ec992bb7465c</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[Base, the layer-2 network incubated by Coinbase, exploded in popularity this year. ]]></description>
+      <dc:creator>Margaux Nijkerk</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="tag"><![CDATA[Coinbase]]></category>
+      <category domain="tag"><![CDATA[Base]]></category>
+      <category domain="tag"><![CDATA[Jesse pollak]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Most Influential 2025]]></category>
+      <category domain="https://www.coindesk.com/">Feature</category>
+    </item>
+    <item>
+      <title><![CDATA[Most Influential: David Bailey]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/most-influential-david-bailey</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/3e653e6039ba6c6faf851d6e0638d3b242e6345b-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c25f14c6-bb2a-4395-b90b-849989bb21b8</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[Bailey’s Strategy-inspired bitcoin treasury company, KindlyMD, exemplified the struggles of many of its peers this year. ]]></description>
+      <dc:creator>Stephen Alpher</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[MicroStrategy]]></category>
+      <category domain="tag"><![CDATA[Digital Asset Treasury]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Most Influential 2025]]></category>
+      <category domain="https://www.coindesk.com/">Feature</category>
+    </item>
+    <item>
+      <title><![CDATA[Most Influential: Michael Saylor ]]></title>
+      <link>https://www.coindesk.com/business/2025/12/12/most-influential-michael-saylor</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/8a5dba87ad94ba079e2f4c60317ed8bbef4fb85e-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">caa1336f-e9b6-4315-b7b8-5b3ed05a2452</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[Despite facing a year of tough conditions for bitcoin treasury companies, Michael Saylor’s Strategy developed new ways to make money — and acquire more bitcoin for its vast holdings — in 2025.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Michael Saylor]]></category>
+      <category domain="tag"><![CDATA[MicroStrategy]]></category>
+      <category domain="tag"><![CDATA[Strategy]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Most Influential 2025]]></category>
+      <category domain="https://www.coindesk.com/">Feature</category>
+    </item>
+    <item>
+      <title><![CDATA[Backed, Chainlink Unveil xBridge to Move Tokenized Stocks Between Solana and Ethereum]]></title>
+      <link>https://www.coindesk.com/web3/2025/12/12/backed-chainlink-launch-xbridge-to-move-tokenized-stocks-between-solana-and-ethereum</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/c397ec470875d547d7ecf10a967c19f1a197d7fc-1919x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">f523828f-b0bd-40a1-9941-92e1267f8f42</guid>
+      <pubDate>Fri, 12 Dec 2025 15:00:00 +0000</pubDate>
+      <description><![CDATA[The bridge uses Chainlink's CCIP to ensure consistent behavior across chains, mirroring the behavior of underlying assets.]]></description>
+      <dc:creator>Francisco Rodrigues</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/web3"><![CDATA[Web3]]></category>
+      <category domain="tag"><![CDATA[Chainlink]]></category>
+      <category domain="tag"><![CDATA[Tokenized Equity]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[UAE’s Largest Fuel Retailer Will Accept Stablecoin in 980 Stations in Three Countries]]></title>
+      <link>https://www.coindesk.com/web3/2025/12/12/uae-s-largest-fuel-retailer-will-accept-stablecoin-in-980-stations-in-three-countries</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/8120f19a9e4ab07a954184d8a19c7b3decd072de-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c999b051-42ad-4ab8-9267-f00560f6ecbf</guid>
+      <pubDate>Fri, 12 Dec 2025 14:44:16 +0000</pubDate>
+      <description><![CDATA[A new deal with Al Maryah Community Bank brings stablecoin payments to the pumps, shops and car washes at ADNOC retailers in UAE, Saudi Arabia and Ethiopia.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/web3"><![CDATA[Web3]]></category>
+      <category domain="tag"><![CDATA[Dubai]]></category>
+      <category domain="tag"><![CDATA[UAE]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[crypto payments]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Polish Government Urges President to Sign Crypto Bill He Already Rejected: Report]]></title>
+      <link>https://www.coindesk.com/policy/2025/12/12/polish-government-pressures-president-to-sign-crypto-bill-he-already-rejected-report</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/9f94d39119cd47c9d9c55cfa6c5cf74ac7bc1693-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3aafebf6-ecb9-4f54-ba9f-8cd91c443feb</guid>
+      <pubDate>Fri, 12 Dec 2025 14:23:55 +0000</pubDate>
+      <description><![CDATA[The Polish government reintroduced crypto legislation without changing a single period, after telling the president he needs to sign it to avoid Russian-linked security threats.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Poland]]></category>
+      <category domain="tag"><![CDATA[Prime minister]]></category>
+      <category domain="tag"><![CDATA[crypto legislation]]></category>
+      <category domain="tag"><![CDATA[Legislation]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Filecoin Trades Little Changed, Underperforms Wider Crypto Markets]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/filecoin-trades-little-changed-underperforms-wider-crypto-markets</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/fc238efebcef9ed00ab119a2245d0827e3d01000-700x430.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">09156560-f6f2-4e47-8e78-6c939016f69c</guid>
+      <pubDate>Fri, 12 Dec 2025 14:20:50 +0000</pubDate>
+      <description><![CDATA[The token has major support at the $1.36 level and resistance at $1.40.]]></description>
+      <dc:creator>Will Canny</dc:creator>
+      <dc:creator>CD Analytics</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[AI Market Insights]]></category>
+      <category domain="tag"><![CDATA[Filecoin]]></category>
+      <category domain="tag"><![CDATA[Technical Analysis]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[CoinDesk 20 Performance Update: SUI Gains 5.2%, Leading the Index Higher  ]]></title>
+      <link>https://www.coindesk.com/coindesk-indices/2025/12/12/coindesk-20-performance-update-sui-gains-5-2-leading-the-index-higher</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/4e411689637bfadcb8c81a6b5e0ba45c4452d21e-480x360.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">66531607-daee-4e0d-85b0-324aba1f6d31</guid>
+      <pubDate>Fri, 12 Dec 2025 14:17:59 +0000</pubDate>
+      <description><![CDATA[Aave (AAVE) was also among the top performers, rising 4.5% from Thursday. ]]></description>
+      <dc:creator>CoinDesk Indices</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/coindesk-indices"><![CDATA[CoinDesk Indices]]></category>
+      <category domain="tag"><![CDATA[CoinDesk Indices]]></category>
+      <category domain="tag"><![CDATA[CoinDesk 20]]></category>
+      <category domain="tag"><![CDATA[charts]]></category>
+      <category domain="tag"><![CDATA[Prices]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[MiCA Will Make or Break Euro-Pegged Stablecoins by 2026: DECTA]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/mica-will-make-or-break-euro-pegged-stablecoins-by-2026-decta</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/8917180f34ea9b0c2901371bca93bb3421ba3f36-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c2088570-37e1-4f71-aa35-248f3b0ef712</guid>
+      <pubDate>Fri, 12 Dec 2025 14:12:20 +0000</pubDate>
+      <description><![CDATA[German payments processor DECTA expects euro-pegged stablecoins to gain traction in payments and tokenized finance as MiCA takes full effect across the EU.]]></description>
+      <dc:creator>Will Canny</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[Europe]]></category>
+      <category domain="tag"><![CDATA[MiCA]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[U.S. SEC Gives Implicit Nod for Tokenized Stocks]]></title>
+      <link>https://www.coindesk.com/policy/2025/12/12/u-s-sec-gives-implicit-nod-for-tokenized-stocks</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/92e55eb28f7499e7a2830668981d5027aff1a10c-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3fd3be3f-e14f-46cc-b2a3-cdfe515fd14d</guid>
+      <pubDate>Fri, 12 Dec 2025 12:17:04 +0000</pubDate>
+      <description><![CDATA[Clearing and settlement company the Depository Trust & Clearing Corp. said a subsidiary had received a no-action letter to offer tokenized real-world assets.]]></description>
+      <dc:creator>Jamie Crawley</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[SEC]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="tag"><![CDATA[Real World Assets  ]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin's Volatility Meltdown: Crypto Daybook Americas]]></title>
+      <link>https://www.coindesk.com/daybook-us/2025/12/12/bitcoin-s-volatility-meltdown-crypto-daybook-americas</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/1ed8d899b667b66fa201881bae4e43b2c3a3f948-3840x2160.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">2f98a3e8-7f7e-4495-beb1-a56818208e97</guid>
+      <pubDate>Fri, 12 Dec 2025 12:15:00 +0000</pubDate>
+      <description><![CDATA[Your day-ahead look for Dec. 12, 2025]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/daybook-us"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="tag"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[YouTube Now Allows U.S. Content Creators to Get Paid in PayPal’s Stablecoin: Fortune]]></title>
+      <link>https://www.coindesk.com/web3/2025/12/12/youtube-now-allows-content-creators-to-get-paid-in-paypal-s-stablecon-fortune</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/05e3a7bdaa7b7c18a59f36dba64a4ba14e622ff0-1920x1280.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">814212ad-4442-4b5a-83d2-bc843ce88c73</guid>
+      <pubDate>Fri, 12 Dec 2025 12:05:33 +0000</pubDate>
+      <description><![CDATA[YouTube has added PayPal’s dollar-pegged stablecoin as a payout option for U.S. content creators, marking one of PYUSD’s most high-profile use cases yet.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/web3"><![CDATA[Web3]]></category>
+      <category domain="tag"><![CDATA[YouTube]]></category>
+      <category domain="tag"><![CDATA[Paypal usd]]></category>
+      <category domain="tag"><![CDATA[PayPal]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Ripple Payments Lands First European Bank Client in AMINA]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/ripple-payments-lands-first-european-bank-client-in-amina</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/6d4021267634f38c2e7aefef729ae5a70021fabf-3840x2160.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">e03e7d63-b497-496c-b2bb-b1481d155e89</guid>
+      <pubDate>Fri, 12 Dec 2025 11:53:12 +0000</pubDate>
+      <description><![CDATA[AMINA is said to be able to process cross-border flows involving fiat currencies and stablecoins, including Ripple’s own RLUSD.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Ripple]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[XRP Ledger Upgrade Lays Groundwork for Lending, Tokenization Expansion]]></title>
+      <link>https://www.coindesk.com/markets/2025/12/12/xrp-ledger-upgrade-lays-groundwork-for-lending-tokenization-expansion</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/f52e0d8bb4eb06978bb35c931f65519d55952c53-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">2bac9c08-de06-442d-8c11-301f159168ed</guid>
+      <pubDate>Fri, 12 Dec 2025 11:45:39 +0000</pubDate>
+      <description><![CDATA[One of the amendments in the new release corrects an accounting error affecting Multi-Purpose Tokens (MPTs) held in escrow.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[XRP Ledger]]></category>
+      <category domain="tag"><![CDATA[XRP News]]></category>
+      <category domain="tag"><![CDATA[Software]]></category>
+      <category domain="tag"><![CDATA[Upgrades]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+  </channel>
+</rss>

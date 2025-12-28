@@ -292,10 +292,16 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
     posts.filter { post =>
       val searchText = s"${post.title} ${post.summary}"      
-      val r = scripts.run("", searchText, Map.empty)      
+      // Pass author and images to script
+      val args = Map(
+        "author" -> post.author,
+        "images" -> post.images.mkString(",")
+      )
+
+      val r = scripts.run("", searchText, args)
       r match {
         case Success(result) =>
-          
+
           // Try to parse result as Double
           Try(result.toDouble) match {
             case Success(score) =>

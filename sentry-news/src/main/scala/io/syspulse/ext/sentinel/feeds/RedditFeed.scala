@@ -38,12 +38,15 @@ class RedditFeed(source: String) extends NewsFeed {
       // Categories for Reddit is the subreddit
       val categories = if (subredditLabel.nonEmpty) List(subredditLabel) else if (subreddit.nonEmpty) List(subreddit) else List.empty
 
-      // Extract thumbnail if present
-      val thumbnail = (entry \ "{http://search.yahoo.com/mrss/}thumbnail" \ "@url").text.trim
+      // Extract thumbnails if present (from media:thumbnail)
+      // Note: Scala XML strips namespace prefixes, so we use just "thumbnail"
+      val images = (entry \\ "thumbnail")
+        .map(thumb => (thumb \ "@url").text.trim)
+        .filter(_.nonEmpty)
+        .toList
 
       val metadata = Map(
-        "subreddit" -> subredditLabel,
-        "thumbnail" -> thumbnail
+        "subreddit" -> subredditLabel
       ).filter(_._2.nonEmpty)
 
       NewsPost(
@@ -56,6 +59,7 @@ class RedditFeed(source: String) extends NewsFeed {
         source = source,
         typ = "reddit",
         categories = categories,
+        images = images,
         feedMetadata = metadata
       )
     }.toSeq

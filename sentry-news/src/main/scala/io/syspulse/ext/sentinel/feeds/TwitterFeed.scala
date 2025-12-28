@@ -55,7 +55,7 @@ class TwitterFeed(source: String, max:Option[Long] = None, timeout0:Option[Long]
     val metadata = Map(
       "author_id" -> twit.author_id,
       "link" -> s"https://x.com/${twit.author_name}/status/${twit.id}"
-    ) ++ (if (twit.media.nonEmpty) Map("media" -> twit.media.mkString(",")) else Map.empty)
+    )
 
     NewsPost(
       id = twit.id,
@@ -67,6 +67,7 @@ class TwitterFeed(source: String, max:Option[Long] = None, timeout0:Option[Long]
       source = source,
       typ = "twitter",
       categories = categories,
+      images = twit.media.toList,
       feedMetadata = metadata
     )
   }

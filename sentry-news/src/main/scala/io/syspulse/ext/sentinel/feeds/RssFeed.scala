@@ -41,12 +41,28 @@ class RssFeed(source: String) extends NewsFeed {
       // Extract categories as List
       val categories = (item \ "category").map(_.text.trim).filter(_.nonEmpty).toList
 
-      // Extract media URL if present
-      val mediaUrl = (item \ "{http://search.yahoo.com/mrss/}content" \ "@url").text.trim
+      // Extract media URLs if present (from media:content with medium="image")
+      val mediaNamespace = "http://search.yahoo.com/mrss/"
+      val mediaUrls = (item \ s"{$mediaNamespace}content")
+        .filter(content => (content \ "@medium").text == "image")
+        .map(content => (content \ "@url").text.trim)
+        .filter(_.nonEmpty)
+        .toList
+      
+      // Fallback to enclosure if no media:content found
+      val enclosureUrls = if (mediaUrls.isEmpty) {
+        (item \ "enclosure")
+          .filter(enc => (enc \ "@type").text.startsWith("image/"))
+          .map(enc => (enc \ "@url").text.trim)
+          .filter(_.nonEmpty)
+          .toList
+      } else {
+        List.empty[String]
+      }
+      
+      val images = if (mediaUrls.nonEmpty) mediaUrls else enclosureUrls
 
-      val metadata = Map(
-        "media_url" -> mediaUrl
-      ).filter(_._2.nonEmpty)
+      val metadata = Map.empty[String, String]
 
       NewsPost(
         id = if (guid.nonEmpty) guid else link,  // Fallback to link if no GUID
@@ -58,6 +74,7 @@ class RssFeed(source: String) extends NewsFeed {
         source = source,
         typ = "rss",
         categories = categories,
+        images = images,
         feedMetadata = metadata
       )
     }.toSeq

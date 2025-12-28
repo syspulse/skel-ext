@@ -10,5 +10,6 @@ case class NewsPost(
   source: String,
   typ: String,
   categories: List[String],        // List of category tags
+  images: List[String],            // List of image URLs
   feedMetadata: Map[String, String] // subreddit, thumbnails, etc.
 )

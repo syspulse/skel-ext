@@ -14,6 +14,10 @@ import io.syspulse.skel.script.{Script, ScriptFlow}
 
 class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
+  private def getResourcePath(resource: String): String = {
+    getClass.getResource(resource).getPath
+  }
+
   "DetectorNews.parseFeedUri" should "parse RSS URI when type is 'rss'" in {
     val (feedType, cleanedUri) = DetectorNews.parseFeedUri("./rss/feed.xml", "rss")
     feedType shouldBe "rss"
@@ -107,7 +111,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
   }
 
   // Helper method to create a test SentryRun with script configuration
-  def createTestSentryRun(filter: String, feedUri: String = "sentry-news/rss/coindesk.rss"): SentryRun = {
+  def createTestSentryRun(filter: String, feedUri: String = getResourcePath("/rss/coindesk.rss")): SentryRun = {
     // Convert filter to script configuration for testing (score-based)
     val (isNegative, pattern) = if (filter.startsWith("!")) {
       (true, filter.substring(1))
@@ -192,12 +196,12 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     scriptFlowOpt shouldBe defined
     
     // Get posts from feed
-    val feed = new RssFeed("sentry-news/rss/coindesk.rss")
+    val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     allPosts.size should be > 0
     
-    // Filter posts using DetectorNews.filterByScripts
-    val filteredPosts = detector.filterByScripts(rx, allPosts)
+    // Filter posts using DetectorNews.filter
+    val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify that filtering was attempted (ScriptFlow is loaded and filterByScripts was called)
     // Note: The actual filtering behavior depends on ScriptFlow.run() implementation
@@ -223,11 +227,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     val scriptFlow = scriptFlowOpt.get
     
     // Get posts from feed
-    val feed = new RssFeed("sentry-news/rss/coindesk.rss")
+    val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filterByScripts
-    val filteredPosts = detector.filterByScripts(rx, allPosts)
+    // Filter posts using DetectorNews.filter
+    val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify filtering works (scripts are applied)
     // Note: Negative filtering would require a script that inverts the match result
@@ -244,11 +248,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     detector.onUpdate(rx, rx.getConf())
     
     // Get posts from feed
-    val feed = new RssFeed("sentry-news/rss/coindesk.rss")
+    val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filterByScripts
-    val filteredPosts = detector.filterByScripts(rx, allPosts)
+    // Filter posts using DetectorNews.filter
+    val filteredPosts = detector.filter(rx, allPosts)
     
     // Since the keyword doesn't exist and scripts don't match, all posts should pass
     // Note: This assumes the script returns non-empty (truthy) when pattern doesn't match
@@ -269,11 +273,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     scriptFlowOpt shouldBe defined
     
     // Get posts from feed
-    val feed = new RssFeed("sentry-news/rss/coindesk.rss")
+    val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filterByScripts
-    val filteredPosts = detector.filterByScripts(rx, allPosts)
+    // Filter posts using DetectorNews.filter
+    val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify filtering works (scripts are applied)
     // Note: Negative filtering would require special script handling
@@ -305,7 +309,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "work with multiple feeds and negative filter" in {
-    val rx = createTestSentryRun("!Ethereum", "sentry-news/rss/coindesk.rss,sentry-news/rss/decrypt.rss")
+    val rx = createTestSentryRun("!Ethereum", s"${getResourcePath("/rss/coindesk.rss")},${getResourcePath("/rss/decrypt.rss")}")
     val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
 
     // Initialize the detector
@@ -324,8 +328,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feed.fetchFeed().get
     }
 
-    // Filter posts using DetectorNews.filterByScripts
-    val filteredPosts = detector.filterByScripts(rx, allPosts)
+    // Filter posts using DetectorNews.filter
+    val filteredPosts = detector.filter(rx, allPosts)
 
     // Verify filtering works with multiple feeds
     // Note: Negative filtering would require special script handling
@@ -344,6 +348,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -361,6 +366,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -378,6 +384,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -396,6 +403,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -413,6 +421,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -432,6 +441,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -450,6 +460,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -467,6 +478,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List("Bitcoin", "Ethereum"),
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -491,6 +503,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       source = "test",
       typ = "rss",
       categories = List.empty,
+      images = List.empty,
       feedMetadata = Map.empty
     )
 
@@ -575,11 +588,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       name = "DetectorNews",
       source = "test",
       tags = Seq.empty,
-      config = Some("""{
+      config = Some(s"""{
         "cron": "5000",
         "desc": "New post: {title}",
         "type": "rss",
-        "feeds": "sentry-news/rss/coingtelegraph-all.rss",
+        "feeds": "${getResourcePath("/rss/coingtelegraph-all.rss")}",
         "max": 10,
         "max_seen_posts": 100,
         "threshold": ">= 0.5",
@@ -633,11 +646,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
     // Test lifecycle: onUpdate (change configuration)
     val updatedConf = conf.copy(
-      config = Some("""{
+      config = Some(s"""{
         "cron": "5000",
         "desc": "Updated: {title}",
         "type": "rss",
-        "feeds": "sentry-news/rss/coingtelegraph-all.rss",
+        "feeds": "${getResourcePath("/rss/coingtelegraph-all.rss")}",
         "max": 5,
         "max_seen_posts": 50,
         "threshold": ">= 0.8",
@@ -699,11 +712,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       name = "DetectorNews",
       source = "test",
       tags = Seq.empty,
-      config = Some("""{
+      config = Some(s"""{
         "cron": "5000",
         "desc": "Alert: {title}",
         "type": "rss",
-        "feeds": "sentry-news/rss/coingtelegraph-all.rss",
+        "feeds": "${getResourcePath("/rss/coingtelegraph-all.rss")}",
         "max": 10,
         "max_seen_posts": 100,
         "threshold": ">= 0.5",
@@ -783,11 +796,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       name = "DetectorNews",
       source = "test",
       tags = Seq.empty,
-      config = Some("""{
+      config = Some(s"""{
         "cron": "5000",
         "desc": "All posts: {title}",
         "type": "rss",
-        "feeds": "sentry-news/rss/coingtelegraph-all.rss",
+        "feeds": "${getResourcePath("/rss/coingtelegraph-all.rss")}",
         "max": 5,
         "track_err": true
       }""".parseJson.asJsObject),

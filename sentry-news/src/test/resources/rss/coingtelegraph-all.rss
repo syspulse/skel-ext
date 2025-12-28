@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>Cointelegraph.com News</title>
+    <link>https://cointelegraph.com</link>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    <generator>cointelegraph.com</generator>
+    <lastBuildDate>Fri, 12 Dec 2025 18:01:40 +0000</lastBuildDate>
+    <language>en</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <title>Cointelegraph.com News</title>
+      <link>https://cointelegraph.com</link>
+      <url>https://cointelegraph.com/assets/img/CT_Logo_YG_tag.png</url>
+      <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    </image>
+    <item>
+      <title>Figure Technology files ‘second IPO’ to bring native equity issuance to Solana</title>
+      <pubDate>Fri, 12 Dec 2025 16:57:28 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/figure-technology-solana-onchain-equity-second-ipo</guid>
+      <link><![CDATA[https://cointelegraph.com/news/figure-technology-solana-onchain-equity-second-ipo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" alt="Figure Technology files ‘second IPO’ to bring native equity issuance to Solana"></p><p>Figure is planning a second IPO to issue blockchain-native equity on Solana, enabling onchain trading and DeFi use cases beyond traditional stock markets.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Crypto industry, trade unions clash over multi-trillion dollar retirement funds</title>
+      <pubDate>Fri, 12 Dec 2025 16:39:59 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/trillions-dollars-risk-trade-unions-crypto-401ks</guid>
+      <link><![CDATA[https://cointelegraph.com/news/trillions-dollars-risk-trade-unions-crypto-401ks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmNDQtYzgzYi03YjRkLTkyMTYtMjk2OTNjM2M1Zjc0.jpg" alt="Crypto industry, trade unions clash over multi-trillion dollar retirement funds"></p><p>Relaxing the current rules for traditional retirement funds and pension plans could attract trillions of dollars of capital flows into crypto.</p>]]></description>
+      <dc:creator>Cointelegraph by Vince Quill</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmNDQtYzgzYi03YjRkLTkyMTYtMjk2OTNjM2M1Zjc0.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmNDQtYzgzYi03YjRkLTkyMTYtMjk2OTNjM2M1Zjc0.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Paxos, Fidelity, Ripple, BitGo, and Circle secure US trust bank approvals</title>
+      <pubDate>Fri, 12 Dec 2025 16:26:44 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/bitgo-circle-fidelity-bitgo-ripple-occ-approval-bank-conversion</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitgo-circle-fidelity-bitgo-ripple-occ-approval-bank-conversion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNWMtMWFiNC03OTNhLWEwMmMtOGNhMmY2MTBmNGNiLmpwZw==.jpg" alt="Paxos, Fidelity, Ripple, BitGo, and Circle secure US trust bank approvals"></p><p>The conditional approvals clear a path for major crypto companies to operate as national trust banks under the supervision of the US OCC.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNWMtMWFiNC03OTNhLWEwMmMtOGNhMmY2MTBmNGNiLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNWMtMWFiNC03OTNhLWEwMmMtOGNhMmY2MTBmNGNiLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Europe reconsiders crypto oversight as ESMA centralization gains momentum</title>
+      <pubDate>Fri, 12 Dec 2025 15:53:06 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/europe-crypto-oversight-esma-centralization-podcast</guid>
+      <link><![CDATA[https://cointelegraph.com/news/europe-crypto-oversight-esma-centralization-podcast?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyZjItNDM2Mi03ZjY0LWJjNmEtZWM0OTAwZjI4MTliLmpwZw==.jpg" alt="Europe reconsiders crypto oversight as ESMA centralization gains momentum"></p><p>As MiCA enters its implementation phase, uneven enforcement across the EU is reigniting debate over whether crypto supervision should move from national regulators to ESMA.</p>]]></description>
+      <dc:creator>Cointelegraph by Savannah Fortis</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyZjItNDM2Mi03ZjY0LWJjNmEtZWM0OTAwZjI4MTliLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyZjItNDM2Mi03ZjY0LWJjNmEtZWM0OTAwZjI4MTliLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin wobbles at $92K as trader eyes end to ‘manipulative’ BTC price dip</title>
+      <pubDate>Fri, 12 Dec 2025 15:41:38 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/bitcoin-wobbles-92k-trader-eyes-end-manipulative-btc-price-dip</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitcoin-wobbles-92k-trader-eyes-end-manipulative-btc-price-dip?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzMzAtOTk0ZC03NzhhLWJmZjUtMWU4YjhjYjA2MWE4LmpwZw==.jpg" alt="Bitcoin wobbles at $92K as trader eyes end to ‘manipulative’ BTC price dip"></p><p>Bitcoin faced troublesome resistance levels to end the Wall Street trading week as new bullish BTC price forecasts reappeared.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzMzAtOTk0ZC03NzhhLWJmZjUtMWU4YjhjYjA2MWE4LmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzMzAtOTk0ZC03NzhhLWJmZjUtMWU4YjhjYjA2MWE4LmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Ripple expands European footprint with AMINA stablecoin payment partnership</title>
+      <pubDate>Fri, 12 Dec 2025 14:31:37 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/ripple-amina-stablecoin-cross-border-payments-europe</guid>
+      <link><![CDATA[https://cointelegraph.com/news/ripple-amina-stablecoin-cross-border-payments-europe?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItZTg2MC03ZGRhLWIzNTItZWQ2NWYwYzIxM2QwLmpwZw==.jpg" alt="Ripple expands European footprint with AMINA stablecoin payment partnership"></p><p>Ripple Payments partnered with Swiss crypto bank Amina to plug its fiat-to-stablecoin payment infrastructure into the FINMA-regulated institution.</p>]]></description>
+      <dc:creator>Cointelegraph by Adrian Zmudzinski</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItZTg2MC03ZGRhLWIzNTItZWQ2NWYwYzIxM2QwLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItZTg2MC03ZGRhLWIzNTItZWQ2NWYwYzIxM2QwLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Here’s what happened in crypto today</title>
+      <pubDate>Fri, 12 Dec 2025 14:12:26 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/what-happened-in-crypto-today</guid>
+      <link><![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMDYvMDE5Nzk0MjMtZWY4ZS03YzYwLWI5MzctYjlkZGY3NWZlOGFk.jpg" alt="Here’s what happened in crypto today"></p><p>Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.</p>]]></description>
+      <dc:creator>Cointelegraph by Cointelegraph</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMDYvMDE5Nzk0MjMtZWY4ZS03YzYwLWI5MzctYjlkZGY3NWZlOGFk.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMDYvMDE5Nzk0MjMtZWY4ZS03YzYwLWI5MzctYjlkZGY3NWZlOGFk.jpg" length="528" type="image/jpg"/>
+      <category>Trump memecoin</category>
+      <category>Solana memecoin</category>
+      <category>TRUMP token</category>
+      <category>Solana</category>
+      <category>SOL</category>
+      <category>Nova Labs</category>
+      <category>SEC</category>
+      <category>Securities and Exchange Commission</category>
+      <category>Crypto regulation</category>
+      <category>TRUMP rally</category>
+      <category>Bitcoin</category>
+    </item>
+    <item>
+      <title>Crypto speculation at 2024 lows as TradFi leveraged ETFs hit record $239B</title>
+      <pubDate>Fri, 12 Dec 2025 14:02:54 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/crypto-speculation-2024-lows-leveraged-etfs-record-239b</guid>
+      <link><![CDATA[https://cointelegraph.com/news/crypto-speculation-2024-lows-leveraged-etfs-record-239b?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItYThhZS03N2FmLWIyYzEtMDMzODhiZGJhODBlLmpwZw==.jpg" alt="Crypto speculation at 2024 lows as TradFi leveraged ETFs hit record $239B"></p><p>Crypto investor demand for memecoins remains at lows not seen since 2024, despite a growing speculative appetite that has boosted TradFi leveraged ETFs to a record $239 billion.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItYThhZS03N2FmLWIyYzEtMDMzODhiZGJhODBlLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyODItYThhZS03N2FmLWIyYzEtMDMzODhiZGJhODBlLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Pakistan clears Binance and HTX to seek local crypto licenses</title>
+      <pubDate>Fri, 12 Dec 2025 13:41:18 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/pakistan-greenlight-binance-htx-seek-crypto-exchange-licenses</guid>
+      <link><![CDATA[https://cointelegraph.com/news/pakistan-greenlight-binance-htx-seek-crypto-exchange-licenses?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOGYtY2FhMy03YTE2LWJkZjQtMGNjMmRlNjE5MzA1LmpwZw==.jpg" alt="Pakistan clears Binance and HTX to seek local crypto licenses"></p><p>Pakistan gives a nod for crypto exchanges Binance and HTX to register local subsidiaries as regulators advance a phased crypto framework.</p>]]></description>
+      <dc:creator>Cointelegraph by Helen Partz</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOGYtY2FhMy03YTE2LWJkZjQtMGNjMmRlNjE5MzA1LmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOGYtY2FhMy03YTE2LWJkZjQtMGNjMmRlNjE5MzA1LmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Ether price rallied 260% last time this happened: Can ETH reach $5K?</title>
+      <pubDate>Fri, 12 Dec 2025 13:40:40 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/ethereum-price-rallied-260-percent-last-time-eth-5k</guid>
+      <link><![CDATA[https://cointelegraph.com/news/ethereum-price-rallied-260-percent-last-time-eth-5k?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTAvMDE5OWFmMjEtMjcyYS03ZDQzLTk5M2EtNjNiYzU4NjZjYTY5.jpg" alt="Ether price rallied 260% last time this happened: Can ETH reach $5K?"></p><p>A buying opportunity from Ether’s realized price projected a major rally, as analysts said a return to $5,000 in 2026 is plausible.</p>]]></description>
+      <dc:creator>Cointelegraph by Nancy Lubale</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTAvMDE5OWFmMjEtMjcyYS03ZDQzLTk5M2EtNjNiYzU4NjZjYTY5.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTAvMDE5OWFmMjEtMjcyYS03ZDQzLTk5M2EtNjNiYzU4NjZjYTY5.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Scaramucci predicts ‘exponential opportunity’ for crypto at LONGITUDE</title>
+      <pubDate>Fri, 12 Dec 2025 13:34:47 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/crypto-cruising-on-tailwinds-into-2026-longitude-recap</guid>
+      <link><![CDATA[https://cointelegraph.com/news/crypto-cruising-on-tailwinds-into-2026-longitude-recap?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" alt="Scaramucci predicts ‘exponential opportunity’ for crypto at LONGITUDE"></p><p>The cryptocurrency industry is riding on the tailwinds of regulatory clarity and newfound interest from institutional investors into the new year.</p>]]></description>
+      <dc:creator>Cointelegraph by Gareth Jenkinson</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>UK MPs warn Bank of England stablecoin plans could drive innovation offshore</title>
+      <pubDate>Fri, 12 Dec 2025 13:06:33 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/uk-lawmakers-bank-of-england-stablecoin-rules-offshore-risk</guid>
+      <link><![CDATA[https://cointelegraph.com/news/uk-lawmakers-bank-of-england-stablecoin-rules-offshore-risk?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNTctNWI5OC03ZTg1LWE3NzgtMjIzNWY4NDFiNjBl.jpg" alt="UK MPs warn Bank of England stablecoin plans could drive innovation offshore"></p><p>Cross‑party MPs and members of the House of Lords have urged UK Chancellor Rachel Reeves to rein in the Bank of England’s proposed regime for systemic stablecoins.</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNTctNWI5OC03ZTg1LWE3NzgtMjIzNWY4NDFiNjBl.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNTctNWI5OC03ZTg1LWE3NzgtMjIzNWY4NDFiNjBl.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin decouples from stocks in second half of 2025</title>
+      <pubDate>Fri, 12 Dec 2025 13:03:06 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/bitcoin-decouples-stocks-second-half-2025</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitcoin-decouples-stocks-second-half-2025?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWRmY2YtZDJmYS03MmQ4LWFiYzEtNWExYjlhOTM1ZjQ0.jpg" alt="Bitcoin decouples from stocks in second half of 2025"></p><p>The gap between equities and Bitcoin got wider after Bitcoin’s post-all-time-peak correction in October.</p>]]></description>
+      <dc:creator>Cointelegraph by Yohan Yun</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWRmY2YtZDJmYS03MmQ4LWFiYzEtNWExYjlhOTM1ZjQ0.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWRmY2YtZDJmYS03MmQ4LWFiYzEtNWExYjlhOTM1ZjQ0.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Phantom taps Kalshi to offer regulated prediction markets in wallet</title>
+      <pubDate>Fri, 12 Dec 2025 12:55:42 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/phantom-kalshi-prediction-markets-wallet-integration</guid>
+      <link><![CDATA[https://cointelegraph.com/news/phantom-kalshi-prediction-markets-wallet-integration?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNjktOTg4MS03N2JiLTlmZjQtYTNmNmU4NjM4OTYz.jpg" alt="Phantom taps Kalshi to offer regulated prediction markets in wallet"></p><p>The wallet-native feature lets users trade tokenized event contracts across politics, economics and culture without leaving Phantom.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNjktOTg4MS03N2JiLTlmZjQtYTNmNmU4NjM4OTYz.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyNjktOTg4MS03N2JiLTlmZjQtYTNmNmU4NjM4OTYz.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>US financial markets ‘poised to move on-chain’ amid DTCC tokenization greenlight</title>
+      <pubDate>Fri, 12 Dec 2025 11:13:28 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/sec-innovation-exemption-dtcc-tokenization-onchain-markets</guid>
+      <link><![CDATA[https://cointelegraph.com/news/sec-innovation-exemption-dtcc-tokenization-onchain-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyMDQtNzY1OS03YWQ3LWEyNGItZTk3ZDQ5MWE0MDQz.jpg" alt="US financial markets ‘poised to move on-chain’ amid DTCC tokenization greenlight"></p><p>In comments Thursday, SEC Chair Paul Atkins doubled down on his vision for tokenized US financial markets and onchain settlement.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyMDQtNzY1OS03YWQ3LWEyNGItZTk3ZDQ5MWE0MDQz.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyMDQtNzY1OS03YWQ3LWEyNGItZTk3ZDQ5MWE0MDQz.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Binance hints at stock perps in push to join global tokenized equities race</title>
+      <pubDate>Fri, 12 Dec 2025 11:06:16 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/binance-stock-perpetuals-tokenized-equities-api-update</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-stock-perpetuals-tokenized-equities-api-update?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExY2MtZTEzNS03YzFjLTg2ZWMtYTMwMjdhMTNhZDE4.jpg" alt="Binance hints at stock perps in push to join global tokenized equities race"></p><p>Binance quietly rolled out API endpoints pointing to stock perpetual futures, potentially signaling a renewed push into stock trading after a failed 2021 launch.</p>]]></description>
+      <dc:creator>Cointelegraph by Adrian Zmudzinski</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExY2MtZTEzNS03YzFjLTg2ZWMtYTMwMjdhMTNhZDE4.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExY2MtZTEzNS03YzFjLTg2ZWMtYTMwMjdhMTNhZDE4.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin first, crypto at scale: Inside the UAE’s layered digital asset strategy</title>
+      <pubDate>Fri, 12 Dec 2025 10:32:22 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/uae-bitcoin-first-crypto-at-scale-digital-asset-strategy</guid>
+      <link><![CDATA[https://cointelegraph.com/news/uae-bitcoin-first-crypto-at-scale-digital-asset-strategy?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYjYtY2U5Zi03M2Q5LWJmMjktZTI3NzFhM2IxZjE5.jpg" alt="Bitcoin first, crypto at scale: Inside the UAE’s layered digital asset strategy"></p><p>Abu Dhabi is anchoring Bitcoin for institutions, while Dubai builds payments, stablecoins and Web3 use cases into daily commerce.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYjYtY2U5Zi03M2Q5LWJmMjktZTI3NzFhM2IxZjE5.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYjYtY2U5Zi03M2Q5LWJmMjktZTI3NzFhM2IxZjE5.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Upbit hack puts Binance’s emergency freeze policy under scrutiny</title>
+      <pubDate>Fri, 12 Dec 2025 10:00:05 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/binance-upbit-hack-funds-freeze-kbs-report</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-upbit-hack-funds-freeze-kbs-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYWQtZWRhNy03OWRmLWFkYjQtOGNjZmUwY2I0Y2Q5.jpg" alt="Upbit hack puts Binance’s emergency freeze policy under scrutiny"></p><p>Binance reportedly froze only about 17% of the funds it received that were linked to the Upbit hack, raising questions over how major exchanges act on cross-border law enforcement.</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYWQtZWRhNy03OWRmLWFkYjQtOGNjZmUwY2I0Y2Q5.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYWQtZWRhNy03OWRmLWFkYjQtOGNjZmUwY2I0Y2Q5.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Coinbase may debut prediction markets, tokenized stocks on Wednesday: Report</title>
+      <pubDate>Fri, 12 Dec 2025 09:20:29 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/coinbase-prediction-markets-tokenized-stocks-december-17-report</guid>
+      <link><![CDATA[https://cointelegraph.com/news/coinbase-prediction-markets-tokenized-stocks-december-17-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExODYtMjIxYy03MmEzLWIyZDUtMTNjMGQ3MTQ1Mjhk.jpg" alt="Coinbase may debut prediction markets, tokenized stocks on Wednesday: Report"></p><p>Coinbase will showcase its new products on a livestream next week after joining a prediction market coalition with Kalshi and other US operators, Bloomberg reported.</p>]]></description>
+      <dc:creator>Cointelegraph by Helen Partz</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExODYtMjIxYy03MmEzLWIyZDUtMTNjMGQ3MTQ1Mjhk.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExODYtMjIxYy03MmEzLWIyZDUtMTNjMGQ3MTQ1Mjhk.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Standard Chartered, AirAsia parent to test ringgit stablecoin in Malaysia</title>
+      <pubDate>Fri, 12 Dec 2025 09:16:23 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/standard-chartered-capital-a-ringgit-stablecoin-malaysia</guid>
+      <link><![CDATA[https://cointelegraph.com/news/standard-chartered-capital-a-ringgit-stablecoin-malaysia?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYmUtMTc2OS03ODQ4LTk4ODUtNTg3ZTk2MDg0Mjlh.jpg" alt="Standard Chartered, AirAsia parent to test ringgit stablecoin in Malaysia"></p><p>Standard Chartered Malaysia and AirAsia parent Capital A plan to issue and test a ringgit-pegged stablecoin for wholesale applications.</p>]]></description>
+      <dc:creator>Cointelegraph by Adrian Zmudzinski</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYmUtMTc2OS03ODQ4LTk4ODUtNTg3ZTk2MDg0Mjlh.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjExYmUtMTc2OS03ODQ4LTk4ODUtNTg3ZTk2MDg0Mjlh.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin new year bear flag sparks $76K BTC price target next</title>
+      <pubDate>Fri, 12 Dec 2025 07:53:08 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/bitcoin-new-year-bear-flag-sparks-76k-btc-price-target-next</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitcoin-new-year-bear-flag-sparks-76k-btc-price-target-next?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWZkYjEtZmU5ZC03M2VkLWJjMDEtOWE0MjNiMGJhNWZk.jpg" alt="Bitcoin new year bear flag sparks $76K BTC price target next"></p><p>Bitcoin price targets included $76,000 and $50,000, thanks to growing bearish BTC price divergences and a lack of upward price momentum.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWZkYjEtZmU5ZC03M2VkLWJjMDEtOWE0MjNiMGJhNWZk.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YWZkYjEtZmU5ZC03M2VkLWJjMDEtOWE0MjNiMGJhNWZk.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>CFTC gives prediction markets leeway on data and record-keeping rules</title>
+      <pubDate>Fri, 12 Dec 2025 06:11:56 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/cftc-prediction-markets-event-contracts-relief</guid>
+      <link><![CDATA[https://cointelegraph.com/news/cftc-prediction-markets-event-contracts-relief?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZGQtYmVkYy03MjJhLTlmNGMtOTAzYTc2NTQ3YWNi.jpg" alt="CFTC gives prediction markets leeway on data and record-keeping rules"></p><p>The CFTC gave “no-action” letters to a group of prediction markets, including Polymarket US, exempting them from swap data reporting and record-keeping regulations.</p>]]></description>
+      <dc:creator>Cointelegraph by Stephen Katte</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZGQtYmVkYy03MjJhLTlmNGMtOTAzYTc2NTQ3YWNi.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZGQtYmVkYy03MjJhLTlmNGMtOTAzYTc2NTQ3YWNi.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Web3 gaming shifts to sustainability as confidence returns: BGA</title>
+      <pubDate>Fri, 12 Dec 2025 06:02:49 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/blockchain-gaming-sentiment-rebounds-after-painful-correction-phase-bga</guid>
+      <link><![CDATA[https://cointelegraph.com/news/blockchain-gaming-sentiment-rebounds-after-painful-correction-phase-bga?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZjQtN2MzYy03YzQ5LWFjNWYtNDUzNmNkZDIzMDA2.jpg" alt="Web3 gaming shifts to sustainability as confidence returns: BGA"></p><p>The Blockchain Game Alliance reports industry confidence rose to 66% as developers pivoted from speculation to sustainable models following a funding collapse since 2021.</p>]]></description>
+      <dc:creator>Cointelegraph by Martin Young</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZjQtN2MzYy03YzQ5LWFjNWYtNDUzNmNkZDIzMDA2.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZjQtN2MzYy03YzQ5LWFjNWYtNDUzNmNkZDIzMDA2.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>CFTC pulls ‘actual delivery’ crypto guidance, giving flexibility to exchanges</title>
+      <pubDate>Fri, 12 Dec 2025 05:20:26 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/cftc-withdraws-crypto-actual-delivery-guidance</guid>
+      <link><![CDATA[https://cointelegraph.com/news/cftc-withdraws-crypto-actual-delivery-guidance?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNGEtMjY4NS03NDk0LTg1NWItNGI4OTc3ZjE2MjUy.jpg" alt="CFTC pulls ‘actual delivery’ crypto guidance, giving flexibility to exchanges"></p><p>The CFTC has scrapped its guidance on how crypto is delivered in a transaction, giving “way more flexibility for exchanges,” says StarkWare's Katherine Kirkpatrick Bos.</p>]]></description>
+      <dc:creator>Cointelegraph by Stephen Katte</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNGEtMjY4NS03NDk0LTg1NWItNGI4OTc3ZjE2MjUy.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNGEtMjY4NS03NDk0LTg1NWItNGI4OTc3ZjE2MjUy.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>YouTube enables PYUSD stablecoin payouts for US creators: Report</title>
+      <pubDate>Fri, 12 Dec 2025 04:59:30 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/youtube-enables-pyusd-stablecoin-payouts-for-us-creators</guid>
+      <link><![CDATA[https://cointelegraph.com/news/youtube-enables-pyusd-stablecoin-payouts-for-us-creators?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZDctMjFkYS03ZjRkLTg1ZTgtNzcwZTNlNTM0Zjll.jpg" alt="YouTube enables PYUSD stablecoin payouts for US creators: Report"></p><p>Fortune reported that YouTube is allowing creators to be paid in PayPal's stablecoin, a potential boon for adoption due to the platform's size.</p>]]></description>
+      <dc:creator>Cointelegraph by Brian Quarmby</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZDctMjFkYS03ZjRkLTg1ZTgtNzcwZTNlNTM0Zjll.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwZDctMjFkYS03ZjRkLTg1ZTgtNzcwZTNlNTM0Zjll.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin bounces on Fed rate cut with bigger rally ahead predicted</title>
+      <pubDate>Fri, 12 Dec 2025 04:05:08 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/crypto-markets-bounce-fed-rate-cut-analysts-predict-bigger-rally-ahead</guid>
+      <link><![CDATA[https://cointelegraph.com/news/crypto-markets-bounce-fed-rate-cut-analysts-predict-bigger-rally-ahead?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwN2YtNmQ1Zi03NmUzLTlmNzktMTlmMmIxZjRlN2E4.jpg" alt="Bitcoin bounces on Fed rate cut with bigger rally ahead predicted"></p><p>Crypto markets rebounded after the Fed’s third rate cut this year, with analysts predicting a larger bounce following the typical post-cut pattern.</p>]]></description>
+      <dc:creator>Cointelegraph by Martin Young</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwN2YtNmQ1Zi03NmUzLTlmNzktMTlmMmIxZjRlN2E4.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwN2YtNmQ1Zi03NmUzLTlmNzktMTlmMmIxZjRlN2E4.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Binance cozies up to Trump’s crypto platform with USD1 stablecoin links</title>
+      <pubDate>Fri, 12 Dec 2025 03:08:07 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/binance-cozies-trumps-crypto-platform-adding-usd1-pairs</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-cozies-trumps-crypto-platform-adding-usd1-pairs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNDItMTljYi03MmZlLWIxNTItNTNkMzMxZTBmYmU2.jpg" alt="Binance cozies up to Trump’s crypto platform with USD1 stablecoin links"></p><p>Binance added a host of zero-fee trading pairs for the Trump family’s stablecoin and used it to back its own stablecoin collateral.</p>]]></description>
+      <dc:creator>Cointelegraph by Martin Young</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNDItMTljYi03MmZlLWIxNTItNTNkMzMxZTBmYmU2.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEwNDItMTljYi03MmZlLWIxNTItNTNkMzMxZTBmYmU2.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>SEC clears DTCC to offer securities market tokenization service</title>
+      <pubDate>Fri, 12 Dec 2025 02:46:38 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/sec-clears-dtcc-to-offer-tokenization-service</guid>
+      <link><![CDATA[https://cointelegraph.com/news/sec-clears-dtcc-to-offer-tokenization-service?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmZDItMzg0NS03NzkzLTlhNGItYmEwNjkzYzYwOTRh.jpg" alt="SEC clears DTCC to offer securities market tokenization service"></p><p>The Depository Trust and Clearing Corporation plans to tokenize stocks, ETFs and US Treasurys next year after receiving an SEC no-action letter.</p>]]></description>
+      <dc:creator>Cointelegraph by Brian Quarmby</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmZDItMzg0NS03NzkzLTlhNGItYmEwNjkzYzYwOTRh.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmZDItMzg0NS03NzkzLTlhNGItYmEwNjkzYzYwOTRh.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Bitcoin miners could boost corporate adoption as crypto treasury buys slow</title>
+      <pubDate>Fri, 12 Dec 2025 01:42:04 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/bitcoin-miners-corporate-adoption-treasury-buying-slowdown</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitcoin-miners-corporate-adoption-treasury-buying-slowdown?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmYjgtMzk5OS03MWVkLWI5ZjctNzQzNzljZDJmOWNj.jpg" alt="Bitcoin miners could boost corporate adoption as crypto treasury buys slow"></p><p>Bitcoin miners Marathon Digital Holdings, Riot Platforms and Hut 8 are already in the top ten largest public companies holding Bitcoin.</p>]]></description>
+      <dc:creator>Cointelegraph by Stephen Katte</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmYjgtMzk5OS03MWVkLWI5ZjctNzQzNzljZDJmOWNj.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBmYjgtMzk5OS03MWVkLWI5ZjctNzQzNzljZDJmOWNj.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Terraform co-founder sentenced to 15 years in prison after guilty plea</title>
+      <pubDate>Thu, 11 Dec 2025 22:00:04 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/do-kwon-sentenced-prison-guilty-plea</guid>
+      <link><![CDATA[https://cointelegraph.com/news/do-kwon-sentenced-prison-guilty-plea?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBkZmYtNmQyOC03ZGM4LWFmOGQtNjdhODhkOWM1ZmM5.jpg" alt="Terraform co-founder sentenced to 15 years in prison after guilty plea"></p><p>A federal judge heard statements from some of Terraform Labs’ and Do Kwon’s victims for hours before deciding on the co-founder’s sentence.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBkZmYtNmQyOC03ZGM4LWFmOGQtNjdhODhkOWM1ZmM5.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjBkZmYtNmQyOC03ZGM4LWFmOGQtNjdhODhkOWM1ZmM5.jpg" length="528" type="image/jpg"/>
+    </item>
+  </channel>
+</rss>

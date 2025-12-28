@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>Cointelegraph.com News</title>
+    <link>https://cointelegraph.com</link>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    <generator>cointelegraph.com</generator>
+    <lastBuildDate>Fri, 12 Dec 2025 18:01:40 +0000</lastBuildDate>
+    <language>en</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <title>Cointelegraph.com News</title>
+      <link>https://cointelegraph.com</link>
+      <url>https://cointelegraph.com/assets/img/CT_Logo_YG_tag.png</url>
+      <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    </image>    
+    <item>
+      <title>Figure Technology files ‘second IPO’ to bring native equity issuance to Solana</title>
+      <pubDate>Fri, 12 Dec 2025 16:57:28 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/figure-technology-solana-onchain-equity-second-ipo</guid>
+      <link><![CDATA[https://cointelegraph.com/news/figure-technology-solana-onchain-equity-second-ipo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" alt="Figure Technology files ‘second IPO’ to bring native equity issuance to Solana"></p><p>Figure is planning a second IPO to issue blockchain-native equity on Solana, enabling onchain trading and DeFi use cases beyond traditional stock markets.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEzNmYtOWYyNy03ODYxLTliMTQtMmQzNDg3YmY0NWQ2LmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>
+    <item>
+      <title>Scaramucci predicts ‘exponential opportunity’ for crypto at LONGITUDE</title>
+      <pubDate>Fri, 12 Dec 2025 13:34:47 +0000</pubDate>
+      <guid>https://cointelegraph.com/news/crypto-cruising-on-tailwinds-into-2026-longitude-recap</guid>
+      <link><![CDATA[https://cointelegraph.com/news/crypto-cruising-on-tailwinds-into-2026-longitude-recap?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" alt="Scaramucci predicts ‘exponential opportunity’ for crypto at LONGITUDE"></p><p>The cryptocurrency industry is riding on the tailwinds of regulatory clarity and newfound interest from institutional investors into the new year.</p>]]></description>
+      <dc:creator>Cointelegraph by Gareth Jenkinson</dc:creator>
+      <media:content url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" medium="image"/>
+      <enclosure url="https://images.cointelegraph.com/images/528_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjUtMTIvMDE5YjEyOTEtNmM2MC03YjI0LWEzNzUtYjFhMjMzYzRhNWEzLmpwZw==.jpg" length="528" type="image/jpg"/>
+    </item>    
+  </channel>
+</rss>

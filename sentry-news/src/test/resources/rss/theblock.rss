@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+
+<channel>
+    <title>The Block</title>
+
+    <atom:link href="https://www.theblock.co/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.theblock.co/rss.xml?paged=2" rel="next" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+
+    <link>https://www.theblock.co/rss.xml</link>
+    <description>The Block features breaking Crypto news about Bitcoin, Blockchain, Web3, and DeFi from the web&#039;s most reliable source.</description>
+    <category domain="https://www.theblock.co">News</category>
+    <copyright>© 2025 THE BLOCK</copyright>
+    <lastBuildDate >Sat, 13 Dec 2025 00:53:19 +0000</lastBuildDate>
+    <language>en-US</language>
+    <ttl>8</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <generator>TheBlock</generator>
+    <image>
+        <url>https://www.tbstat.com/wp/uploads/2024/03/the-block-logo-wordmark-black.png</url>
+        <title>The Block | Bitcoin, Ethereum, and Crypto News</title>
+        <link>https://www.theblock.co</link>
+    </image>
+
+        <item>
+        <title>Fogo cancels $20 million pre-sale, will airdrop tokens instead in upcoming mainnet launch</title>
+        <link>https://www.theblock.co/post/382435/fogo-solana-svm-airdrop-token-sale-mainnet-launch?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 17:33:11 -0500</pubDate>
+        <dc:creator><![CDATA[Daniel Kuhn]]></dc:creator>
+
+        		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Deals]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Layer 1s]]></category>
+		<category><![CDATA[Layer 2s and Scaling]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Private Investments]]></category>
+		<category><![CDATA[The Block]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Venture Capital]]></category>
+		<category><![CDATA[Airdrop]]></category>
+		<category><![CDATA[Protocols]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Strategic Investments]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382435</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/04/20250411_Tokens_News_2-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Fogo will airdrop the tokens set aside for a pre-sale next week, a change in strategy to better distribute tokens and reward early users.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Fogo will airdrop the tokens set aside for a pre-sale next week, a change in strategy to better distribute tokens and reward early users.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Crypto giant Tether offers to buy famous Italian football club Juventus</title>
+        <link>https://www.theblock.co/post/382433/crypto-giant-tether-offers-to-buy-famous-italian-football-club-juventus?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 16:25:59 -0500</pubDate>
+        <dc:creator><![CDATA[RT Watson]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382433</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/10/tether-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Tether, already a minority shareholder in Juventus, is "prepared to invest 1 billion Euros in the support and development of the club."</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Tether, already a minority shareholder in Juventus, is "prepared to invest 1 billion Euros in the support and development of the club."</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>DeFi groups fire back against Citadel Securities&#8217; call for &#8216;flawed&#8217; SEC tokenization rules</title>
+        <link>https://www.theblock.co/post/382421/defi-groups-fire-back-against-citadel-securities-call-for-flawed-sec-tokenization-rules?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 15:23:11 -0500</pubDate>
+        <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+
+        		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Policy]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[SEC]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382421</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/04/20250414_SEC_News_2-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>DeFi proponents are pushing back against Citadel Securities' stance that the SEC should impose stricter rules on DeFi. </p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>DeFi proponents are pushing back against Citadel Securities' stance that the SEC should impose stricter rules on DeFi. </p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Moody’s proposes stablecoin ratings framework focused on reserve quality</title>
+        <link>https://www.theblock.co/post/382422/moodys-proposes-stablecoin-ratings-framework-focused-on-reserve-quality?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 15:09:05 -0500</pubDate>
+        <dc:creator><![CDATA[RT Watson]]></dc:creator>
+
+        		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382422</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2022/11/20221122_Moodys-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The credit ratings agency has asked market participants to comment on its proposed framework by January 26.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The credit ratings agency has asked market participants to comment on its proposed framework by January 26.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>The Daily: Ripple, Circle and BitGo win conditional approval for US banking charters, Hex Trust to issue and custody wrapped XRP, and more</title>
+        <link>https://www.theblock.co/post/382409/the-daily-ripple-circle-and-bitgo-win-conditional-approval-for-us-banking-charters-hex-trust-to-issue-and-custody-wrapped-xrp-and-more?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 14:30:35 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Crypto Infrastructure]]></category>
+		<category><![CDATA[Deals]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Finance firms]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Policy]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[U.S. Policymaking]]></category>
+		<category><![CDATA[Web3]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Crypto]]></category>
+		<category><![CDATA[Crypto Banks and Lenders]]></category>
+		<category><![CDATA[DAOs]]></category>
+		<category><![CDATA[Mining Companies]]></category>
+		<category><![CDATA[OCC]]></category>
+		<category><![CDATA[Tokens]]></category>
+		<category><![CDATA[XRP]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382409</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2019/03/Ripple-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The following article is adapted from The Block’s newsletter, The Daily, which comes out on weekday afternoons.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The following article is adapted from The Block’s newsletter, The Daily, which comes out on weekday afternoons.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Jump Crypto&#8217;s Firedancer hits Solana mainnet as the network aims to unlock 1 million TPS</title>
+        <link>https://www.theblock.co/post/382411/jump-cryptos-firedancer-hits-solana-mainnet-as-the-network-aims-to-unlock-1-million-tps?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 14:01:24 -0500</pubDate>
+        <dc:creator><![CDATA[Daniel Kuhn]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+		<category><![CDATA[Layer 1s]]></category>
+		<category><![CDATA[Layer 2s and Scaling]]></category>
+		<category><![CDATA[Security]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[Developer tools]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Validators]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382411</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/05/20240502_Solana_News-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Firedancer could boost client diversity on Solana, which historically has been dominated by forks of Solana Labs' original codebase. </p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Firedancer could boost client diversity on Solana, which historically has been dominated by forks of Solana Labs' original codebase. </p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Ripple, Circle and BitGo secure conditional approval for US banking charters</title>
+        <link>https://www.theblock.co/post/382379/ripple-bitgo-and-paxos-secure-conditional-approval-for-us-banking-charters?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 11:37:46 -0500</pubDate>
+        <dc:creator><![CDATA[RT Watson]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Governance]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382379</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2022/02/20220207_Neo-Bank-DeFi-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Coinbase , Stripe-owned Bridge and Crypto.com have also applied to become federally chartered banks in the U.S.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Coinbase , Stripe-owned Bridge and Crypto.com have also applied to become federally chartered banks in the U.S.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Aave community probes CoW Swap integration and Aave Labs &#8216;stealth privatization&#8217; of protocol</title>
+        <link>https://www.theblock.co/post/382369/aave-community-probes-cow-swap-integration-and-aave-labs-stealth-privatization-of-protocol?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 10:32:02 -0500</pubDate>
+        <dc:creator><![CDATA[Naga Avan-Nomayo]]></dc:creator>
+
+        		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[People]]></category>
+		<category><![CDATA[Aave Chan]]></category>
+		<category><![CDATA[Aave DAO]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382369</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/08/20240819_Aave_News_3-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>An Aave governance dispute has erupted after a delegate claimed that swap fees from Aave Labs’ new CoWSwap integration no longer reach the DAO treasury. </p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>An Aave governance dispute has erupted after a delegate claimed that swap fees from Aave Labs’ new CoWSwap integration no longer reach the DAO treasury. </p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Pyth launches token buyback program, allocating 33% of DAO treasury to monthly PYTH purchases</title>
+        <link>https://www.theblock.co/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 09:32:53 -0500</pubDate>
+        <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Crypto Infrastructure]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Web3]]></category>
+		<category><![CDATA[Crypto]]></category>
+		<category><![CDATA[Data Providers]]></category>
+		<category><![CDATA[Decentralized Infrastructure]]></category>
+		<category><![CDATA[Developer tools]]></category>
+		<category><![CDATA[Tokens]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382357</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/02/pyth-1-800x450.png" width="800" height="450" />
+            <description><![CDATA[
+            <p>The buybacks are funded by network revenue as Pyth reports rising traction, with its Pyth Pro product surpassing $1M ARR in its first month.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The buybacks are funded by network revenue as Pyth reports rising traction, with its Pyth Pro product surpassing $1M ARR in its first month.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Lucky solo bitcoin miner beats 1-in-82-year odds to win $285,000 block reward</title>
+        <link>https://www.theblock.co/post/382346/lucky-solo-bitcoin-miner-beats-odds-wins-block-reward?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 08:26:51 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Infrastructure]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Mining Companies]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382346</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2023/12/20231204_BitcoinMining_News-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The bitcoin miner earned $284,633 for mining block 927,474 on Thursday using CKpool in a solo mining configuration.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The bitcoin miner earned $284,633 for mining block 927,474 on Thursday using CKpool in a solo mining configuration.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Tether mulls tokenizing its stock after seeking up to $20 billion in share sales at $500 billion valuation: Bloomberg</title>
+        <link>https://www.theblock.co/post/382344/tether-mulls-tokenizing-stock?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 08:18:34 -0500</pubDate>
+        <dc:creator><![CDATA[Naga Avan-Nomayo]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Deals]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Tether]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382344</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/04/20240429_Tether_News-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Tether is reportedly considering tokenizing its stock once it completes a share sale that could be finalized at a $500 billion valuation.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Tether is reportedly considering tokenizing its stock once it completes a share sale that could be finalized at a $500 billion valuation.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Phantom integrates with Kalshi to bring prediction markets to its web3 wallet</title>
+        <link>https://www.theblock.co/post/382340/phantom-integrates-kalshi-prediction-markets-web3-wallet?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 07:20:38 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Crypto Infrastructure]]></category>
+		<category><![CDATA[Deals]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Web3]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Wallet Makers]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382340</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/11/20241125_Phantom_News_2-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The integration adds real-time odds, settlement notifications, and live community chat alongside Phantom's existing trading tools.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The integration adds real-time odds, settlement notifications, and live community chat alongside Phantom's existing trading tools.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>DTCC subsidiary authorized to offer tokenization service for US securities beginning 2026</title>
+        <link>https://www.theblock.co/post/382331/dtcc-subsidiary-tokenization-service-us-securities?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 06:31:45 -0500</pubDate>
+        <dc:creator><![CDATA[Naga Avan-Nomayo]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Policy]]></category>
+		<category><![CDATA[dtcc]]></category>
+		<category><![CDATA[U.S. Securities and Exchange Commission]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382331</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/06/20240624_Tokenization_News_3-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>DTCC's depository subsidiary has received an SEC No-Action Letter clearing it to offer a tokenization service for U.S. securities.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>DTCC's depository subsidiary has received an SEC No-Action Letter clearing it to offer a tokenization service for U.S. securities.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Save the Children&#8217;s new Bitcoin Fund seeks to maximize donation value with up to four-year holding strategy</title>
+        <link>https://www.theblock.co/post/382329/save-the-children-bitcoin-fund?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 06:23:35 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382329</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2024/01/20240112_Inscriptions_News_2-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The initiative builds on the charity's early adoption of bitcoin donations to improve speed, transparency, and cost efficiency.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The initiative builds on the charity's early adoption of bitcoin donations to improve speed, transparency, and cost efficiency.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Cathie Wood&#8217;s Ark Invest picks up $15.4 million in Robinhood shares and more of its own Bitcoin ETF</title>
+        <link>https://www.theblock.co/post/382324/cathie-wood-ark-invest-buys-robinhood-shares-own-bitcoin-etf?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 05:29:01 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Finance firms]]></category>
+		<category><![CDATA[Funds]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Public Equities]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[Investment Firms]]></category>
+		<category><![CDATA[Robinhood]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382324</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2023/01/20230118_ArkInvest-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The investment firm continues to rebalance its fund weightings amid market volatility, with Robinhood stock closing down 9% on Thursday.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The investment firm continues to rebalance its fund weightings amid market volatility, with Robinhood stock closing down 9% on Thursday.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Coinbase to unveil prediction markets and tokenized equities next week: Bloomberg</title>
+        <link>https://www.theblock.co/post/382291/coinbase-prediction-markets-tokenized-equities?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 04:20:23 -0500</pubDate>
+        <dc:creator><![CDATA[Danny Park]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Coinbase]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382291</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/08/coinbase-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>Several major crypto players, including Gemini and Crypto.com, are also venturing into the growing prediction market sector.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>Several major crypto players, including Gemini and Crypto.com, are also venturing into the growing prediction market sector.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>YouTube now allows US creators to receive payouts in PayPal&#8217;s PYUSD stablecoin: report</title>
+        <link>https://www.theblock.co/post/382296/youtube-pyusd-stablecoin?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 04:04:20 -0500</pubDate>
+        <dc:creator><![CDATA[Danny Park]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Finance firms]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[paypal-usd]]></category>
+		<category><![CDATA[youtube]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382296</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2019/12/shutterstock_1009422034-e1765517794291-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>PayPal's PYUSD currently holds a market capitalization of $3.9 billion as the world's eighth largest stablecoin.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>PayPal's PYUSD currently holds a market capitalization of $3.9 billion as the world's eighth largest stablecoin.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>deBridge launches new execution model to simplify onchain experience</title>
+        <link>https://www.theblock.co/post/382298/debridge-bundles-execution-model?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Fri, 12 Dec 2025 03:35:00 -0500</pubDate>
+        <dc:creator><![CDATA[Danny Park]]></dc:creator>
+
+        		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+		<category><![CDATA[debridge]]></category>
+		<category><![CDATA[exclusive]]></category>
+		<category><![CDATA[Protocols]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382298</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/07/debridge-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>DeBridge launched a new execution model that allows users to interact with blockchains without having to manage various requirements.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>DeBridge launched a new execution model that allows users to interact with blockchains without having to manage various requirements.</p>
+        ]]></content:encoded>
+            </item>
+        <item>
+        <title>Hex Trust to issue and custody wrapped XRP to expand DeFi utility across multiple blockchains</title>
+        <link>https://www.theblock.co/post/382211/hex-trust-issue-custody-wrapped-xrp-defi-utility-multiple-blockchains?utm_source=rss&amp;utm_medium=rss</link>
+        <pubDate>Thu, 11 Dec 2025 20:00:00 -0500</pubDate>
+        <dc:creator><![CDATA[James Hunt]]></dc:creator>
+
+        		<category><![CDATA[Companies]]></category>
+		<category><![CDATA[Crypto Ecosystems]]></category>
+		<category><![CDATA[Finance firms]]></category>
+		<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Policy]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Token Projects]]></category>
+		<category><![CDATA[Tokens]]></category>
+		<category><![CDATA[XRP]]></category>
+
+        
+        <guid isPermaLink="false">https://www.theblock.co/post/382211</guid>
+
+        <media:thumbnail url="https://www.tbstat.com/wp/uploads/2025/03/20250303_XRP_News_2-800x450.jpg" width="800" height="450" />
+            <description><![CDATA[
+            <p>The asset aims to extend XRP's reach into DeFi and improve interoperability with Ripple's RLUSD stablecoin.</p>
+        ]]></description>
+        <content:encoded><![CDATA[
+            <p>The asset aims to extend XRP's reach into DeFi and improve interoperability with Ripple's RLUSD stablecoin.</p>
+        ]]></content:encoded>
+            </item>
+    </channel>
+</rss>

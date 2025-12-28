@@ -8,8 +8,12 @@ import io.syspulse.ext.sentinel.feeds.RedditFeed
 
 class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
+  private def getResourcePath(resource: String): String = {
+    getClass.getResource(resource).getPath
+  }
+
   "RedditFeed" should "parse Reddit Atom feed from file" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val result = feed.fetchFeed()
 
     result shouldBe a[Success[_]]
@@ -25,7 +29,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract subreddit from category" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     posts should not be empty
@@ -42,7 +46,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract categories (subreddit) as List" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     posts should not be empty
@@ -60,7 +64,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "strip HTML from content" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     posts.foreach { post =>
@@ -72,7 +76,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract author from entry/author/name" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     posts should not be empty
@@ -82,7 +86,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "limit summary to 1000 characters" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     posts.foreach { post =>
@@ -92,7 +96,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle single-line XML format" in {
     // Reddit feed is stored as single line without line terminators
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val result = feed.fetchFeed()
 
     result shouldBe a[Success[_]]
@@ -100,7 +104,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract thumbnail if present" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     val posts = feed.fetchFeed().get
 
     // Some posts might have thumbnails
@@ -109,19 +113,50 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
     postsWithThumbnails.size should be >= 0
   }
 
+  it should "extract images from media:thumbnail elements" in {
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
+    val posts = feed.fetchFeed().get
+
+    posts should not be empty
+
+    // Check if posts have images
+    val postsWithImages = posts.filter(_.images.nonEmpty)
+    postsWithImages.size should be > 0
+
+    // Verify images is a List with valid URLs
+    postsWithImages.foreach { post =>
+      post.images shouldBe a[List[_]]
+      post.images.size should be > 0
+
+      // All image URLs should start with https://
+      post.images.foreach { imageUrl =>
+        imageUrl should not be empty
+        imageUrl should startWith("https://")
+      }
+    }
+
+    // Verify we can find specific known thumbnail from the XML
+    val firstPostWithImage = postsWithImages.head
+    firstPostWithImage.images should not be empty
+
+    // Verify that most posts (but not necessarily all) have images
+    // Reddit posts always have a thumbnail element, even if some might be placeholders
+    postsWithImages.size should be > (posts.size / 2)
+  }
+
   it should "return correct source type" in {
-    val feed = new RedditFeed("sentry-news/reddit/reddit-1.xml")
+    val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
     feed.getSourceType() shouldBe "reddit"
   }
 
   it should "return correct source" in {
-    val sourcePath = "sentry-news/reddit/reddit-1.xml"
+    val sourcePath = getResourcePath("/reddit/reddit-1.xml")
     val feed = new RedditFeed(sourcePath)
     feed.getSource() shouldBe sourcePath
   }
 
   it should "handle malformed XML gracefully" in {
-    val feed = new RedditFeed("sentry-news/nonexistent.xml")
+    val feed = new RedditFeed("/nonexistent.xml")
     val result = feed.fetchFeed()
 
     result shouldBe a[Failure[_]]

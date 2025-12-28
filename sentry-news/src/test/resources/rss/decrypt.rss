@@ -1,0 +1,2562 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<rss
+  version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:snf="http://www.smartnews.be/snf"
+>
+  <channel>
+    <title>Decrypt</title>
+    <description>What&amp;#039;s new in crypto and the advent of the decentralized web.</description>
+    <language>en</language>
+    
+    <atom:link
+      href="https://decrypt.co/feed"
+      rel="self"
+      type="application/rss+xml"
+    />
+    
+    
+      
+        <link>https://decrypt.co/feed</link>
+      
+    
+    
+      <copyright>Decrypt Media</copyright>
+    
+    
+    
+    
+      <lastBuildDate>Fri, 12 Dec 2025 22:02:50 +0000</lastBuildDate>
+    
+    
+      <sy:updatePeriod>hourly</sy:updatePeriod>
+    
+    
+      <sy:updateFrequency>1</sy:updateFrequency>
+    
+    
+    
+    
+    
+      <item>
+  <title>Vanguard Exec Calls Bitcoin a &#39;Digital Labubu&#39;, Even as Firm Offers Crypto ETF Trading</title>
+  <link>https://decrypt.co/352201/vanguard-exec-calls-bitcoin-digital-labubu-firm-offers-crypto-etf-trading</link>
+  <pubDate>Fri, 12 Dec 2025 21:59:32 +0000</pubDate>
+  
+    <description>The Vanguard equity head dismissed Bitcoin as speculative, though the firm still expanded client access to crypto ETFs.</description>
+  
+  <dc:creator>Jason Nelson</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352201</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/labubu-up-decrypt-style-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/labubu-up-decrypt-style-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>These Bleak Victim Letters Helped Seal Terra Founder Do Kwon&#39;s Fate</title>
+  <link>https://decrypt.co/352207/bleak-victim-letters-helped-seal-terra-founder-do-kwon-fate</link>
+  <pubDate>Fri, 12 Dec 2025 21:35:27 +0000</pubDate>
+  
+    <description>The judge said the victim letters, which detailed the personal impact of the Terra collapse, were “impactful”—before sentencing Do Kwon to 15 years in prison.</description>
+  
+  <dc:creator>Ryan Gladwin</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352207</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/DoKwon-Decrypt-2-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>terra-luna-2</category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/DoKwon-Decrypt-2-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Crypto Giant Tether Makes Offer to Acquire Juventus Soccer Club</title>
+  <link>https://decrypt.co/352226/crypto-giant-tether-offer-acquire-juventus-soccer-club</link>
+  <pubDate>Fri, 12 Dec 2025 20:57:55 +0000</pubDate>
+  
+    <description>Stablecoin firm Tether is making a bid to acquire the famed Serie A Italian soccer club, Juventus, after previously taking a minority share.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352226</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/10/soccer-football-decrypt-style-01-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/10/soccer-football-decrypt-style-01-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Coinbase Preps Prediction Market, Tokenized Equities Launch for December 17: Report</title>
+  <link>https://decrypt.co/352224/coinbase-prediction-market-tokenized-equities-launch-december-17</link>
+  <pubDate>Fri, 12 Dec 2025 20:33:59 +0000</pubDate>
+  
+    <description>Crypto exchange Coinbase is set to launch its own prediction market as they surge in both popularity and scrutiny.</description>
+  
+  <dc:creator>Callan Quinn</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352224</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/Coinbase_logo-nft-nyc-decrypt-style-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/Coinbase_logo-nft-nyc-decrypt-style-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>XRP Is Launching on Ethereum and Solana—Here&#39;s Why (and How)</title>
+  <link>https://decrypt.co/352200/xrp-launching-ethereum-solana-why-how</link>
+  <pubDate>Fri, 12 Dec 2025 20:17:21 +0000</pubDate>
+  
+    <description>The Ripple-linked XRP will soon be usable in DeFi on other major layer-1 networks like Solana and Ethereum. Here&#39;s how.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352200</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/07/xrp-decrypt-style-whatever-number-it-is-1-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/07/xrp-decrypt-style-whatever-number-it-is-1-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Phantom Crypto Wallet Adds Kalshi Prediction Markets for Over 20 Million Users</title>
+  <link>https://decrypt.co/352208/phantom-crypto-wallet-kalshi-prediction-markets-20-million-users</link>
+  <pubDate>Fri, 12 Dec 2025 19:37:37 +0000</pubDate>
+  
+    <description>Prediction markets are increasingly being integrated directly within crypto wallets, with Phantom and Kalshi revealing the latest team-up.</description>
+  
+  <dc:creator>Andrew Hayward</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352208</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/10/prediction-market-decrypt-style-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Technology</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/10/prediction-market-decrypt-style-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>New AI Tool Promises to Decode—And Replicate—Social Video Virality</title>
+  <link>https://decrypt.co/352167/new-ai-tool-promises-decode-replicate-social-media-virality</link>
+  <pubDate>Fri, 12 Dec 2025 18:48:11 +0000</pubDate>
+  
+    <description>The startup says its AI can analyze viral videos and generate optimized remixes, though evidence beyond early demos remains limited.</description>
+  
+  <dc:creator>Josh Quittner</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352167</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2024/02/social-shutterstock-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2024/02/social-shutterstock-gID_7.png" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Solo Bitcoin Miner Beats the Odds, Winning $282K Reward</title>
+  <link>https://decrypt.co/352193/solo-bitcoin-miner-beats-odds-winning-282k-reward</link>
+  <pubDate>Fri, 12 Dec 2025 18:13:47 +0000</pubDate>
+  
+    <description>A solo Bitcoin miner defied the odds and won a block reward worth around $282,000 with the help of mining service, Solo CKPool.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352193</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/09/bitcoin-miners-decrypt-style-01-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/09/bitcoin-miners-decrypt-style-01-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Sorry Gooners: OpenAI&#39;s Erotic ChatGPT Delayed Into 2026</title>
+  <link>https://decrypt.co/352189/sorry-gooners-openai-erotic-chatgpt-delayed-2026</link>
+  <pubDate>Fri, 12 Dec 2025 17:39:43 +0000</pubDate>
+  
+    <description>Sam Altman breaks his December promise as OpenAI delays ChatGPT&#39;s adult content feature into at least Q1 next year.</description>
+  
+  <dc:creator>Jose Antonio Lanz</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352189</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/08/Open-AI-decrypt-style-01-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/08/Open-AI-decrypt-style-01-gID_7.png" height="2000" width="3556"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Tether Considers Tokenizing Stock Amid $20 Billion Fundraise: Bloomberg</title>
+  <link>https://decrypt.co/352183/tether-considers-tokenizing-stock-20-billion-fundraise-bloomberg</link>
+  <pubDate>Fri, 12 Dec 2025 16:58:53 +0000</pubDate>
+  
+    <description>Stablecoin issuer Tether moved to prevent equity sales as Bloomberg reports plans to raise funds at a $500 billion valuation.</description>
+  
+  <dc:creator>André Beganski</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352183</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/tether-usdt-decrypt-style-01-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/tether-usdt-decrypt-style-01-gID_7.png" height="1501" width="2668"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Circle, Ripple, Paxos, Fidelity and BitGo Get Banking Charters Approved by OCC</title>
+  <link>https://decrypt.co/352184/circle-ripple-paxos-fidelity-bitgo-banking-charters-occ</link>
+  <pubDate>Fri, 12 Dec 2025 16:43:13 +0000</pubDate>
+  
+    <description>Circle, Ripple among five stablecoin issuers conditionally approved for national trust banking charters as market hits $313 billion.</description>
+  
+  <dc:creator>Stacy Elliott</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352184</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/stablecoins-decrypt-style-01-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/stablecoins-decrypt-style-01-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Lawmakers Say Bank of England Stablecoin Proposals Will ‘Limit Adoption, Push Activity Overseas’</title>
+  <link>https://decrypt.co/352175/lawmakers-bank-england-stablecoin-proposals-limit-adoption</link>
+  <pubDate>Fri, 12 Dec 2025 15:48:25 +0000</pubDate>
+  
+    <description>A CryptoUK spokesperson told Decrypt the proposed restrictions “risk undermining the UK’s ambition to lead in digital finance.”</description>
+  
+  <dc:creator>Will McCurdy</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352175</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/09/bank-of-england-decrypt-style-02-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/09/bank-of-england-decrypt-style-02-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Jennifer Garner to Star in Netflix Crypto Comedy &#39;One Attempt Remaining&#39;</title>
+  <link>https://decrypt.co/352165/jennifer-garner-to-star-in-netflix-crypto-comedy-one-attempt-remaining</link>
+  <pubDate>Fri, 12 Dec 2025 15:33:53 +0000</pubDate>
+  
+    <description>The film focuses on a divorced couple racing to recover access to their now-valuable crypto before time runs out.</description>
+  
+  <dc:creator>Vismaya V</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352165</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/jennifer-garner-decrypt-style-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/jennifer-garner-decrypt-style-gID_7.jpg" height="719" width="1278"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Bitcoin Giant Strategy&#39;s Cash Reserve Was a &#39;Smart&#39; Move, Says BitMine&#39;s Tom Lee</title>
+  <link>https://decrypt.co/352014/bitcoin-giant-strategy-cash-reserve-smart-move-bitmine-tom-lee</link>
+  <pubDate>Fri, 12 Dec 2025 15:23:57 +0000</pubDate>
+  
+    <description>BitMine Immersion Technologies Chairman Tom Lee praised Bitcoin treasury firm Strategy&#39;s massive new cash reserve. Here&#39;s why.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352014</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/08/tom-lee-decrypt-style-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Markets</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/08/tom-lee-decrypt-style-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Morning Minute: Do Kwon Gets 15 Years for $40B Terra Luna Fraud</title>
+  <link>https://decrypt.co/352135/morning-minute-do-kwon-gets-15-years-for-40b-terra-luna-fraud</link>
+  <pubDate>Fri, 12 Dec 2025 13:51:41 +0000</pubDate>
+  
+    <description>The sentencing brings a measure of justice, finally, for all of those impacted by the collapse of Terra and its UST stablecoin in 2022.</description>
+  
+  <dc:creator>Tyler Warner</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352135</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/do-kwon-decrypt-style-02-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>terra-luna-2</category>
+    
+      <category>luna-wormhole</category>
+    
+      <category>Opinion</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/do-kwon-decrypt-style-02-gID_7.jpg" height="719" width="1278"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Florida Seizes $1.5M in Dogecoin, Pepe and Solana Over Case Tied to Chinese National</title>
+  <link>https://decrypt.co/352136/florida-seizes-1-5m-in-dogecoin-pepe-and-solana-over-case-tied-to-chinese-national</link>
+  <pubDate>Fri, 12 Dec 2025 13:12:02 +0000</pubDate>
+  
+    <description>Prosecutors used a fugitive disentitlement statute to seize Dogecoin, Solana, and other tokens tied to a Citrus County fraud case.</description>
+  
+  <dc:creator>Vince Dioquino</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352136</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/Judge-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>dogecoin</category>
+    
+      <category>pepe</category>
+    
+      <category></category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/Judge-gID_7.png" height="2000" width="3556"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>New York Mandates AI Advertising Disclosures, Faces Showdown Over Trump Executive Order</title>
+  <link>https://decrypt.co/352132/new-york-mandates-ai-advertising-disclosures-faces-showdown-over-trump-executive-order</link>
+  <pubDate>Fri, 12 Dec 2025 12:16:50 +0000</pubDate>
+  
+    <description>New York state legislation now mandates AI disclosure in advertising, while SAG-AFTRA lobbies for nationwide No Fakes Act protections.</description>
+  
+  <dc:creator>Vismaya V</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352132</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/ai-artificial-intelligence-decrypt-style-1-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/ai-artificial-intelligence-decrypt-style-1-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Hollywood Director Guilty of Scamming Netflix out of $11M, Spending It on Crypto</title>
+  <link>https://decrypt.co/352128/hollywood-director-guilty-of-scamming-netflix-out-of-11m-spending-it-on-crypto</link>
+  <pubDate>Fri, 12 Dec 2025 10:59:46 +0000</pubDate>
+  
+    <description>“47 Ronin” director Carl Rinsch faces a maximum prison sentence of up to 90 years, having been found guilty on seven separate charges.</description>
+  
+  <dc:creator>Simon Chandler</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352128</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/netflix-decrypt-style-02-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>dogecoin</category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/netflix-decrypt-style-02-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>YouTube Now Lets US Creators Take Earnings in PayPal&#39;s Stablecoin: Report</title>
+  <link>https://decrypt.co/352125/youtube-us-creators-take-earnings-paypals-stablecoin</link>
+  <pubDate>Fri, 12 Dec 2025 05:37:31 +0000</pubDate>
+  
+    <description>YouTube has reportedly adopted the feature shortly after PayPal enabled PYUSD as a payout method for recipients in the third quarter.</description>
+  
+  <dc:creator>Vismaya V</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352125</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/11/YouTube-DecryptStyle-1-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/11/YouTube-DecryptStyle-1-gID_7.jpg" height="1050" width="1867"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Elliptic Flags Global Crypto Pivot as Banks, Stablecoins and Asian Hubs Take the Lead</title>
+  <link>https://decrypt.co/352121/elliptic-global-crypto-pivot-banks-stablecoins-asian-hubs</link>
+  <pubDate>Fri, 12 Dec 2025 04:58:52 +0000</pubDate>
+  
+    <description>Elliptic noted a worldwide pivot toward innovation, highlighting U.S. shifts, stablecoin adoption, and APAC–Middle East regulatory momentum.</description>
+  
+  <dc:creator>Vismaya V</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352121</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/stablecoins-decrypt-style-01-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/stablecoins-decrypt-style-01-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Bitcoin&#39;s Persistent Long-Term Buyers Step In as Market Struggles For Liquidity</title>
+  <link>https://decrypt.co/352113/bitcoins-persistent-long-term-buyers-market-struggles-liquidity</link>
+  <pubDate>Fri, 12 Dec 2025 04:39:16 +0000</pubDate>
+  
+    <description>Experts remain cautiously optimistic as macro hurdles clear amid Bitcoin whale accumulation and liquidity drying up ahead of the holidays.</description>
+  
+  <dc:creator>Akash Girimath</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352113</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/Bitcoin_chart-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Markets</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/Bitcoin_chart-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Trump’s New AI Order Sets Up Federal Fight With US States Over Industry Regulation</title>
+  <link>https://decrypt.co/352093/trumps-new-ai-order-sets-up-federal-fight-states-over-regulations</link>
+  <pubDate>Fri, 12 Dec 2025 02:49:05 +0000</pubDate>
+  
+    <description>The White House has directed the DOJ to challenge state AI laws and highlighted Colorado’s algorithmic discrimination statute.</description>
+  
+  <dc:creator>Jason Nelson</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352093</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/Trump-decrypt-style-08-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/Trump-decrypt-style-08-gID_7.png" height="2000" width="3556"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Stablecoins Gain Ground in Blockchain Gaming as Studios Tighten Spending, Study Finds</title>
+  <link>https://decrypt.co/352092/stablecoins-gain-ground-blockchain-gaming-studios-tighten-spending</link>
+  <pubDate>Fri, 12 Dec 2025 02:39:01 +0000</pubDate>
+  
+    <description>New industry data shows developers leaning on stablecoins and disciplined business models as blockchain studios adjust to cooling markets.</description>
+  
+  <dc:creator>Vince Dioquino</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352092</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/ai-decrypt-style-13-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Gaming</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/ai-decrypt-style-13-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>OpenAI Launches GPT-5.2 Amid Expanded Major Contracts</title>
+  <link>https://decrypt.co/352081/gpt-5-2-launched-as-openai-expanded-major-contracts</link>
+  <pubDate>Fri, 12 Dec 2025 01:20:57 +0000</pubDate>
+  
+    <description>OpenAI unveiled GPT-5.2, featuring upgrades for scientific, mathematical, and software tasks, as employers mull AI for technical work.</description>
+  
+  <dc:creator>Jason Nelson</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352081</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/openai-sam-altman-decrypt-style-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/openai-sam-altman-decrypt-style-gID_7.png" height="1501" width="2668"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>SEC Approves DTCC Pilot to Record US Securities on Select Blockchains Via &#39;Registered&#39; Wallets</title>
+  <link>https://decrypt.co/352080/sec-approves-dtcc-pilot-record-us-securities-select-blockchains</link>
+  <pubDate>Fri, 12 Dec 2025 00:57:16 +0000</pubDate>
+  
+    <description>The three-year program will allow the market’s central clearinghouse to create tokenized entitlements under modified regulatory oversight.</description>
+  
+  <dc:creator>Sebastian Sinclair</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352080</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/SEC2-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/SEC2-gID_7.jpg" height="900" width="1600"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Google&#39;s New Browser Promises to End the Tyranny of the Tab</title>
+  <link>https://decrypt.co/352068/googles-new-browser-promises-to-end-the-tyranny-of-the-tab</link>
+  <pubDate>Thu, 11 Dec 2025 22:34:38 +0000</pubDate>
+  
+    <description>Google&#39;s Disco builds custom apps from your open tabs, hinting at a post-search future. </description>
+  
+  <dc:creator>Josh Quittner</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352068</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/google-decrypt-style-1-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/google-decrypt-style-1-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Do Kwon Sentenced to 15 Years in Prison Over $40 Billion Terra Crypto Collapse</title>
+  <link>https://decrypt.co/352066/do-kwon-sentenced-15-years-prison-40-billion-terra-crypto-collapse</link>
+  <pubDate>Thu, 11 Dec 2025 22:02:57 +0000</pubDate>
+  
+    <description>Terraform Labs founder Do Kwon was sentenced to 15 years in prison, following the $40 billion collapse of UST and Luna in May 2022.</description>
+  
+  <dc:creator>André Beganski</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352066</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/08/do-kwon-terra-decrypt-style-02-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>luna-wormhole</category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/08/do-kwon-terra-decrypt-style-02-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Save the Children Launches Bitcoin Fund as Aid Groups Look for Faster Crisis Payments</title>
+  <link>https://decrypt.co/352064/save-children-launches-bitcoin-fund-aid-groups-faster-crisis-payments</link>
+  <pubDate>Thu, 11 Dec 2025 21:40:36 +0000</pubDate>
+  
+    <description>Save the Children introduced a Bitcoin fund aimed at speeding cash assistance during emergencies and expanding its use of crypto tools.</description>
+  
+  <dc:creator>Jason Nelson</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352064</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/09/Bitcoin-decrypt-style-24-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/09/Bitcoin-decrypt-style-24-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Myriad Moves: Will Santa Bring a Pump or Dump for Bitcoin, Ethereum and Solana?</title>
+  <link>https://decrypt.co/352057/myriad-moves-santa-bring-pump-dump-bitcoin-ethereum-solana</link>
+  <pubDate>Thu, 11 Dec 2025 20:45:08 +0000</pubDate>
+  
+    <description>Top markets on Myriad this week include predictions on Ethereum&#39;s next move, if Bitcoin is headed back to $100K, and Solana’s next milestone.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352057</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/Chart4_green-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Markets</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/Chart4_green-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Binance Deepens Ties to Trump-Backed Stablecoin Following Founder’s Pardon</title>
+  <link>https://decrypt.co/352035/binance-deepens-ties-trump-backed-stablecoin-following-founders-pardon</link>
+  <pubDate>Thu, 11 Dec 2025 18:24:28 +0000</pubDate>
+  
+    <description>World Liberty Financial’s USD1 stablecoin is now a part of Binance’s core infrastructure, the President Trump-backed crypto project said.</description>
+  
+  <dc:creator>André Beganski</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352035</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/Trump-decrypt-style-08-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/Trump-decrypt-style-08-gID_7.png" height="2000" width="3556"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Bitcoin Isn’t Buying What the Fed Is Selling: Here’s What the Charts Suggest Happens Next</title>
+  <link>https://decrypt.co/352016/bitcoin-ethereum-price-fed-cut-charts-analysis</link>
+  <pubDate>Thu, 11 Dec 2025 18:24:26 +0000</pubDate>
+  
+    <description>So much for that post-Fed relief rally. Bitcoin and Ethereum are again trending downwards, and the charts suggest bears are in control.</description>
+  
+  <dc:creator>Jose Antonio Lanz</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352016</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/07/Bitcoin-B1-decrypt-style-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Markets</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/07/Bitcoin-B1-decrypt-style-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Klarna Teams With Stripe’s Privy to Build Crypto Wallet ‘For the Masses’</title>
+  <link>https://decrypt.co/352015/klarna-teams-stripe-privy-build-crypto-wallet-masses</link>
+  <pubDate>Thu, 11 Dec 2025 17:54:21 +0000</pubDate>
+  
+    <description>Swedish fintech firm Klarna is working towards the launch of its own crypto wallet with Stripe-owned wallet infrastructure firm, Privy.</description>
+  
+  <dc:creator>Logan Hitchcock</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352015</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/Klarna-Decrypt2-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/Klarna-Decrypt2-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Disney Targets Google Over AI Copyright Violations—Alongside $1 Billion OpenAI Deal</title>
+  <link>https://decrypt.co/352005/disney-targets-google-over-ai-copyright-violations-1-billion-openai-deal</link>
+  <pubDate>Thu, 11 Dec 2025 17:05:04 +0000</pubDate>
+  
+    <description>Disney says Google’s AI used its characters without permission, as it signed a new deal with OpenAI to allow character generation with Sora.</description>
+  
+  <dc:creator>Jason Nelson</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352005</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/Disney-Decrypt4-scaled-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Artificial Intelligence</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/Disney-Decrypt4-scaled-gID_7.jpg" height="1440" width="2560"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Some Bitcoin Buying Firms Are Selling as Losses Pile Up on Paper: Report</title>
+  <link>https://decrypt.co/352002/some-bitcoin-buying-firms-selling-losses-pile-up</link>
+  <pubDate>Thu, 11 Dec 2025 15:57:34 +0000</pubDate>
+  
+    <description>A report found that most Bitcoin-stacking firms sit on unrealized losses, with a handful selling the asset as its price fell last month.</description>
+  
+  <dc:creator>André Beganski</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=352002</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/bitcoin-decrypt-style-wallet-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category>Business</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/bitcoin-decrypt-style-wallet-gID_7.jpg" height="720" width="1280"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Spanish Police Dismantle Network Linked to Crypto ‘Wrench Attack’ Murder</title>
+  <link>https://decrypt.co/351996/spanish-police-dismantle-network-linked-to-crypto-wrench-attack-murder</link>
+  <pubDate>Thu, 11 Dec 2025 15:14:12 +0000</pubDate>
+  
+    <description>Five people have been arrested following a murder and kidnapping in April, with another four charged in Denmark.</description>
+  
+  <dc:creator>Callan Quinn</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=351996</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/06/crime_jail-handcuffs-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/06/crime_jail-handcuffs-gID_7.png" height="1000" width="1778"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Coinbase Ending USDC Rewards for Free Users, Will Only Be for Paid Members</title>
+  <link>https://decrypt.co/351946/coinbase-ending-usdc-rewards-free-users-only-paid-members</link>
+  <pubDate>Thu, 11 Dec 2025 14:50:25 +0000</pubDate>
+  
+    <description>Not all Coinbase users will be able to earn rewards on USDC holdings, as the exchange moves to make it a feature for Coinbase One members.</description>
+  
+  <dc:creator>Stacy Elliott</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=351946</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/05/Coinbase_flag-gID_7.png@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category>Coins</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/05/Coinbase_flag-gID_7.png" height="2000" width="3556"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Crypto Is Now Central to Venezuela’s Economy—And Poses Sanctions Risks: TRM</title>
+  <link>https://decrypt.co/351903/crypto-now-central-venezuelas-economy-poses-sanctions-risks-trm</link>
+  <pubDate>Thu, 11 Dec 2025 14:01:02 +0000</pubDate>
+  
+    <description>An informal peer-to-peer crypto economy is now central to Venezuela’s economy, and should be considered as President Trump ratchets up tensions with the country, a new TRM report says.</description>
+  
+  <dc:creator>Sander Lutz</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=351903</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2023/02/Venezuela-Bitcoin-shutterstock_1313296286-16x9-1-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2023/02/Venezuela-Bitcoin-shutterstock_1313296286-16x9-1-gID_7.jpg" height="1350" width="2400"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>US DoJ Indicts Ukrainian Over Russia-Linked Cyberattack Groups That Paid in Crypto</title>
+  <link>https://decrypt.co/351967/us-doj-indicts-ukrainian-over-russia-linked-cyberattack-groups-that-paid-in-crypto</link>
+  <pubDate>Thu, 11 Dec 2025 13:46:02 +0000</pubDate>
+  
+    <description>The individual was allegedly involved in two groups that used Telegram to claim credit for attacks against infrastructure targets in the U.S.</description>
+  
+  <dc:creator>Simon Chandler</dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/?p=351967</guid>
+  
+  
+    <enclosure url="https://img.decrypt.co/insecure/rs:fill:1024:512:1:0/plain/https://cdn.decrypt.co/wp-content/uploads/2025/12/DOJ-gID_7.jpg@png" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+      <category></category>
+    
+      <category>Law and Order</category>
+    
+  
+  
+  
+  
+  
+  
+    
+      <media:thumbnail url="https://cdn.decrypt.co/wp-content/uploads/2025/12/DOJ-gID_7.jpg" height="900" width="1600"/>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>From Paper to Code: The Future of Tokenization with Carlos Domingo</title>
+  <link>https://decrypt.co/videos/interviews/OClBa8uC/from-paper-to-code-the-future-of-tokenization-with-carlos-domingo</link>
+  <pubDate>Sun, 07 Dec 2025 16:00:00 +0000</pubDate>
+  
+    <description>Securitize co-founder and CEO Carlos Domingo delves into the nuances of tokenization, from its potential benefits to the industry&#39;s failed experiments.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/OClBa8uC/from-paper-to-code-the-future-of-tokenization-with-carlos-domingo</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/OClBa8uC/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/OClBa8uC/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>2-4% Crypto Dip! Sovereign Wealth Funds Buying BTC! CTFC approves U.S. Spot Crypto!</title>
+  <link>https://decrypt.co/videos/interviews/tUN6hCk7/2-4-crypto-dip-sovereign-wealth-funds-buying-btc-ctfc-approves-us-spot-crypto</link>
+  <pubDate>Fri, 05 Dec 2025 15:55:25 +0000</pubDate>
+  
+    <description>Crypto majors were broadly lower, falling 2–4% with BTC down 2% at $91,400, ETH down 2% at $3,130, BNB down 2% at $893, and SOL down 4% at $136, while ZEC (+4%) and TRX (+2%) led the day’s top movers. BlackRock CEO Larry Fink said sovereign wealth funds have been steadily accumulating Bitcoin, adding that they “bought more” as BTC declined from $126K into the $80K range to build long-term positions. The IMF warned that rising stablecoin adoption could weaken central bank control in a new report examining currency substitution and monetary sovereignty risks. Solana and Coinbase’s Base network were linked through a new bridge secured by Chainlink and Coinbase infrastructure. The CFTC also approved spot crypto trading on CFTC-registered exchanges, with Bitnomial set to debut first. In the U.K., Reform UK received the country’s largest-ever political donation from a living donor—an $11.4M contribution from a Tether-linked investor. Meanwhile, recent research indicated that the ~$4B in Bitcoin ETF outflows seen in October–November stemmed primarily from leveraged basis-trade unwinds across major funds rather than investor panic.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/tUN6hCk7/2-4-crypto-dip-sovereign-wealth-funds-buying-btc-ctfc-approves-us-spot-crypto</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/tUN6hCk7/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/tUN6hCk7/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>XRP ETFs near $1 Billion, Sovereign wealth funds buying Bitcoin, CFTC approves U.S spot crypto trading - Daily Crypto Recap</title>
+  <link>https://decrypt.co/videos/interviews/a9gidnnr/xrp-etfs-near-1-billion-sovereign-wealth-funds-buying-bitcoin-cftc-approves-us-spot-crypto-trading-daily-crypto-recap</link>
+  <pubDate>Fri, 05 Dec 2025 14:14:10 +0000</pubDate>
+  
+    <description></description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/a9gidnnr/xrp-etfs-near-1-billion-sovereign-wealth-funds-buying-bitcoin-cftc-approves-us-spot-crypto-trading-daily-crypto-recap</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/a9gidnnr/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/a9gidnnr/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>BlackRock is RISK On! Polymarket launches US App! Crypto still Green!</title>
+  <link>https://decrypt.co/videos/interviews/rPR1y1Fb/blackrock-is-risk-on-polymarket-launches-us-app-crypto-still-green</link>
+  <pubDate>Thu, 04 Dec 2025 16:06:55 +0000</pubDate>
+  
+    <description>Crypto majors traded slightly higher, with ETH leading gains post-Fusaka as BTC rose 1% to $93,000, ETH jumped 4% to $3,190, and BNB and SOL each added 1% to reach $909 and $143, respectively. Among top movers, ZEC (+10%), TAO (+8%), and DASH (+6%) outperformed. Large ETH holders resumed sizeable spot purchases following Monday’s liquidations, suggesting renewed institutional dip-buying. At the Dealbook Summit, Brian Armstrong noted that “top banks” are partnering with Coinbase on pilots for stablecoins, custody, and trading. BlackRock released its 2026 outlook with a risk-on tilt, maintaining an overweight position in U.S. equities and highlighting AI and rising stablecoin adoption as “megaforces” reshaping markets. Meanwhile, Binance introduced “Binance Junior,” a crypto savings account for minors with extensive parental oversight, and Startale—Sony’s Soneium blockchain partner—launched USDSC, a stablecoin set to serve as the default settlement asset on the Soneium L2.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/rPR1y1Fb/blackrock-is-risk-on-polymarket-launches-us-app-crypto-still-green</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/rPR1y1Fb/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/rPR1y1Fb/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>BlackRock stays risk-on into 2026, Binance Launches ‘Binance Junior’ for Kids, Kalshi Partners with CNN - Daily Crypto Recap</title>
+  <link>https://decrypt.co/videos/interviews/eX3XwJr8/blackrock-stays-risk-on-into-2026-binance-launches-binance-junior-for-kids-kalshi-partners-with-cnn-daily-crypto-recap</link>
+  <pubDate>Thu, 04 Dec 2025 14:43:57 +0000</pubDate>
+  
+    <description>Decrypt&#39;s daily crypto news recap with @tyler_did_it. Your crypto round-up for December 4th 2025</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/eX3XwJr8/blackrock-stays-risk-on-into-2026-binance-launches-binance-junior-for-kids-kalshi-partners-with-cnn-daily-crypto-recap</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/eX3XwJr8/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/eX3XwJr8/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Crypto UP 7-10%, Bank of America recommends crypto, Kalshi raise $11B</title>
+  <link>https://decrypt.co/videos/interviews/kLKB13oZ/crypto-up-7-10-bank-of-america-recommends-crypto-kalshi-raise-11b</link>
+  <pubDate>Wed, 03 Dec 2025 18:32:48 +0000</pubDate>
+  
+    <description>Crypto majors are sharply higher, climbing 6–10% following Vanguard’s crypto debut and supportive commentary from Bank of America, with BTC up 6% to $92,900, ETH up 9% to $3,070, BNB up 7% to $899, and SOL up 10% to $142. Among top movers, SUI gained 24%, PENGU 19%, and LINK 18%. Ethereum’s Fusaka upgrade is scheduled to launch today, aiming to improve mainnet ingestion of L2 data and reduce rollup costs to enhance scalability. Bank of America is now recommending a 1–4% crypto allocation for clients across Merrill Lynch and the Private Bank. On the corporate front, Kraken has agreed to acquire tokenization platform Backed Finance to accelerate the adoption of tokenized stocks, while Chainlink introduced its “LINK Everything” initiative, a comprehensive tokenization stack featuring CCIP, compliance tools, and expanded data and compute services. In the regulatory and leadership landscape, crypto-friendly Kevin Hassett is now an 85% favorite to become the next Federal Reserve Chair after Jerome Powell, Binance has appointed cofounder He Yi as Co-CEO, and the UK has formally created a new property category for crypto and NFTs through its newly passed Property Act.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/kLKB13oZ/crypto-up-7-10-bank-of-america-recommends-crypto-kalshi-raise-11b</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/kLKB13oZ/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/kLKB13oZ/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Bitcoin back above $92K, BlackRock bullish on a tokenized future, Kalshi raise $11B - Daily Crypto Recap</title>
+  <link>https://decrypt.co/videos/interviews/ImN1EVr6/bitcoin-back-above-92k-blackrock-bullish-on-a-tokenized-future-kalshi-raise-11b-daily-crypto-recap</link>
+  <pubDate>Wed, 03 Dec 2025 14:32:33 +0000</pubDate>
+  
+    <description>Your Decrypt daily recap with @tyler_did_it for December 3rd 2025
+
+Today’s headlines: BTC jumps back above $92K, BlackRock bullish on tokenized assets, Kalshi raise $11B, &amp; more</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/ImN1EVr6/bitcoin-back-above-92k-blackrock-bullish-on-a-tokenized-future-kalshi-raise-11b-daily-crypto-recap</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/ImN1EVr6/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/ImN1EVr6/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Vanguard Crypto ETFs, Coinbase Lawsuit &amp; Strategy&#39;s $1.44B Reserve - Daily Crypto Recap</title>
+  <link>https://decrypt.co/videos/interviews/DBFV5WgA/vanguard-crypto-etfs-coinbase-lawsuit-strategys-144b-reserve-daily-crypto-recap</link>
+  <pubDate>Tue, 02 Dec 2025 19:48:34 +0000</pubDate>
+  
+    <description>Today’s headlines: The latest on Vanguard ETFs, Coinbase lawsuit, Strategy $1.44B reserve, &amp; more. This is Decrypt&#39;s Daily Recap with host @Tyler_Did_It. Your crypto round-up for December 2nd 2025</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/DBFV5WgA/vanguard-crypto-etfs-coinbase-lawsuit-strategys-144b-reserve-daily-crypto-recap</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/DBFV5WgA/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/DBFV5WgA/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>The BIG Crypto Fake-Out! Saylor &amp; Tether FUD! Vanguard Crypto ETFs!</title>
+  <link>https://decrypt.co/videos/interviews/KenRTGb5/the-big-crypto-fake-out-saylor-tether-fud-vanguard-crypto-etfs</link>
+  <pubDate>Tue, 02 Dec 2025 18:07:27 +0000</pubDate>
+  
+    <description>Crypto majors are green and reversing yesterday’s selloff, with BTC up 2% at $87,400, ETH flat at $2,820, BNB up 2% at $842, and SOL up 2% at $129. Among top movers, Fartcoin (+14%), SPX (+12%), and PUMP (+9%) led gains. Vanguard announced it will begin allowing trading of crypto ETFs and mutual funds on its brokerage platform, ending its long-standing opposition. Coinbase leadership and Marc Andreessen were sued over an alleged years-long insider-trading scheme. Ripple secured a payments license in Singapore and expanded XRP and RLUSD payment services there. Vitalik Buterin warned that shifting Zcash governance toward token-based voting could erode privacy protections. Federal Reserve Vice Chair Michelle Bowman stated that bank regulators are working on stablecoin rules. Anthropic released a report showing that AI agents discovered zero-day exploits in crypto protocols during testing and pose a threat to vulnerable smart contracts. Meanwhile, House Republicans issued a 50-page report on “Operation Chokepoint 2.0,” alleging that the Fed, FDIC, OCC, and SEC covertly pressured banks to avoid crypto through pause letters, informal guidance, and SAB 121, ultimately debanking more than 30 firms.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/KenRTGb5/the-big-crypto-fake-out-saylor-tether-fud-vanguard-crypto-etfs</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/KenRTGb5/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/KenRTGb5/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Strategy announces $1.44B reserve to cover debt! Vanguard Crypto ETFs! Myriad partners with Trust Wallet!</title>
+  <link>https://decrypt.co/videos/interviews/LTeJZrra/strategy-announces-144b-reserve-to-cover-debt-vanguard-crypto-etfs-myriad-partners-with-trust-wallet</link>
+  <pubDate>Tue, 02 Dec 2025 16:15:23 +0000</pubDate>
+  
+    <description>Crypto majors are green and reversing yesterday’s selloff, with BTC up 2% at $87,400, ETH flat at $2,820, BNB up 2% at $842, and SOL up 2% at $129. Among top movers, Fartcoin (+14%), SPX (+12%), and PUMP (+9%) led gains. Vanguard announced it will begin allowing trading of crypto ETFs and mutual funds on its brokerage platform, ending its long-standing opposition. Coinbase leadership and Marc Andreessen were sued over an alleged years-long insider-trading scheme. Ripple secured a payments license in Singapore and expanded XRP and RLUSD payment services there. Vitalik Buterin warned that shifting Zcash governance toward token-based voting could erode privacy protections. Federal Reserve Vice Chair Michelle Bowman stated that bank regulators are working on stablecoin rules. Anthropic released a report showing that AI agents discovered zero-day exploits in crypto protocols during testing and pose a threat to vulnerable smart contracts. Meanwhile, House Republicans issued a 50-page report on “Operation Chokepoint 2.0,” alleging that the Fed, FDIC, OCC, and SEC covertly pressured banks to avoid crypto through pause letters, informal guidance, and SAB 121, ultimately debanking more than 30 firms.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/LTeJZrra/strategy-announces-144b-reserve-to-cover-debt-vanguard-crypto-etfs-myriad-partners-with-trust-wallet</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/LTeJZrra/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/LTeJZrra/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Trust Wallet Launches First In-Wallet Prediction Markets With Myriad</title>
+  <link>https://decrypt.co/videos/interviews/0bzRT1D1/trust-wallet-launches-first-in-wallet-prediction-markets-with-myriad</link>
+  <pubDate>Mon, 01 Dec 2025 16:55:55 +0000</pubDate>
+  
+    <description>Prediction markets represent a &#34;new way of combining social expression with digital footprint and value,&#34; Trust Wallet CEO Eowyn Chen tells Decrypt, as they launch the first natively integrated in-wallet prediction markets with Myriad.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/0bzRT1D1/trust-wallet-launches-first-in-wallet-prediction-markets-with-myriad</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/0bzRT1D1/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/0bzRT1D1/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Over $650M Liquidated! China confirms Crypto Illegal! Infinex Interview! </title>
+  <link>https://decrypt.co/videos/interviews/BcHTc0O2/over-650m-liquidated-china-confirms-crypto-illegal-infinex-interview</link>
+  <pubDate>Mon, 01 Dec 2025 16:31:57 +0000</pubDate>
+  
+    <description>Crypto majors slid sharply, reversing all of last week’s gains, with BTC down 6% to $85,800, ETH down 6% to $2,820, BNB falling 7% to $822, and SOL dropping 7% to $127. Among top movers, MYX (+15%) and JST (+4%) led the market. More than $650 million in positions were liquidated over the past day, including $580 million in longs after BTC dipped below $86,000. ZEC suffered the steepest decline among major tokens, falling 20% to $355 and 35% on the week. Meanwhile, Tether founder Paolo Ardoino again addressed the latest wave of Tether FUD, reiterating that the company is not at risk of insolvency. In regulatory developments, China’s central bank reaffirmed that crypto remains illegal and signaled a coming crackdown. Robinhood announced a partnership with Susquehanna to launch a new CFTC-licensed exchange, paving the way for a major expansion into prediction markets. Pavel Durov revealed Cocoon, a new decentralized confidential compute network where GPU operators earn TON rewards. JPMorgan also entered the spotlight with a new structured BTC-linked product that offers investors a minimum 16% yield—up to 50% depending on BTC’s performance—with downside protection of up to 30%.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/BcHTc0O2/over-650m-liquidated-china-confirms-crypto-illegal-infinex-interview</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/BcHTc0O2/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/BcHTc0O2/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Polymarket can now operate in US! Texas buys $5M BTC! MON up another 24%! </title>
+  <link>https://decrypt.co/videos/interviews/TYv5hOIq/polymarket-can-now-operate-in-us-texas-buys-5m-btc-mon-up-another-24</link>
+  <pubDate>Wed, 26 Nov 2025 16:15:37 +0000</pubDate>
+  
+    <description>Crypto majors were slightly red, with BTC down 1% at $86,600 and ETH down 1% at $2,910, while BNB gained 1% to $856 and SOL held steady at $136. Among top movers, MON (+24%), SPX (+13%), and IP (+7%) led the market. In policy and institutional developments, Texas launched its Bitcoin reserve with a $5 million purchase of BlackRock’s IBIT ETF, marking the first deployment of its approved $10 million BTC budget. U.S. Bank completed a test of issuing a proprietary stablecoin on the Stellar network, and MoonPay secured a New York trust charter, joining firms like Coinbase and Ripple to expand institutional custody and service capabilities. Polymarket received CFTC approval to reenter the U.S., enabling it to onboard domestic users, brokers, and intermediaries, while Kalshi was blocked in Nevada from offering sports and election markets after a judge reversed an earlier ruling. Klarna introduced its own stablecoin, KlarnaUSD, on Tempo. Meanwhile, the Department of Homeland Security has reportedly been investigating Bitmain as a national security risk, examining whether the company can remotely access its equipment.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/TYv5hOIq/polymarket-can-now-operate-in-us-texas-buys-5m-btc-mon-up-another-24</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/TYv5hOIq/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/TYv5hOIq/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Is the Bull Market over? The AI Manhattan Project! Monad Launch Reaction!</title>
+  <link>https://decrypt.co/videos/interviews/fw2vHNRd/is-the-bull-market-over-the-ai-manhattan-project-monad-launch-reaction</link>
+  <pubDate>Tue, 25 Nov 2025 18:17:10 +0000</pubDate>
+  
+    <description>Crypto majors rallied alongside a broad market surge, with BTC up 2% to $87,400, ETH up 4% to $2,920, BNB up 1% to $850, and SOL up 5% to $136, while KAS (+22%), ENA (+13%), and SUI (+11%) led the day’s top movers. The NASDAQ jumped 2.7% as stocks such as GOOG (+6%) and TSLA (+7%) posted strong gains. In policy and industry developments, the White House launched the “Genesis Mission,” described as a Manhattan Project–style initiative for AI, and Binance along with CZ faced new accusations of enabling crypto transactions for Hamas. Kraken hinted at a debit card debut expected today, and Tether purchased another 1 million Rumble shares, pushing the YouTube rival’s stock sharply higher. Meanwhile, the European Central Bank reiterated its warnings that the rapid growth of stablecoins could introduce stability risks to the wider financial system.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/fw2vHNRd/is-the-bull-market-over-the-ai-manhattan-project-monad-launch-reaction</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/fw2vHNRd/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/fw2vHNRd/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Crypto is GREEN! MON launches at $3.9Billion FDV! </title>
+  <link>https://decrypt.co/videos/interviews/FL6CGV2a/crypto-is-green-mon-launches-at-39billion-fdv</link>
+  <pubDate>Tue, 25 Nov 2025 16:28:19 +0000</pubDate>
+  
+    <description>Crypto majors rallied alongside a broad market surge, with BTC up 2% to $87,400, ETH up 4% to $2,920, BNB up 1% to $850, and SOL up 5% to $136, while KAS (+22%), ENA (+13%), and SUI (+11%) led the day’s top movers. The NASDAQ jumped 2.7% as stocks such as GOOG (+6%) and TSLA (+7%) posted strong gains. In policy and industry developments, the White House launched the “Genesis Mission,” described as a Manhattan Project–style initiative for AI, and Binance along with CZ faced new accusations of enabling crypto transactions for Hamas. Kraken hinted at a debit card debut expected today, and Tether purchased another 1 million Rumble shares, pushing the YouTube rival’s stock sharply higher. Meanwhile, the European Central Bank reiterated its warnings that the rapid growth of stablecoins could introduce stability risks to the wider financial system.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/FL6CGV2a/crypto-is-green-mon-launches-at-39billion-fdv</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/FL6CGV2a/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/FL6CGV2a/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>BTC @ $86K! Monad presale Oversubscribed! Coinbase acquires Vector Dot Fun</title>
+  <link>https://decrypt.co/videos/interviews/p0hnnDle/btc-86k-monad-presale-oversubscribed-coinbase-acquires-vector-dot-fun</link>
+  <pubDate>Mon, 24 Nov 2025 16:15:30 +0000</pubDate>
+  
+    <description>Crypto majors slipped slightly after the weekend rally cooled, with BTC down 1% at $86,000, ETH down 1% at $2,800, BNB down 1% at $840, and SOL down 1% at $129. Among top movers, CC (+12%), XDC (+3%), and AAVE (+3%) led gains. The Crypto Fear &amp; Greed Index has remained in Extreme Fear for 12 consecutive days. Coinbase acquired Tensor’s Vector dot Fun team, transferring the TNSR token to the foundation. Satoshi Nakamoto’s estimated BTC fortune fell by roughly $41 billion during Friday’s selloff. Zcash developers outlined preparations for future quantum threats, claiming ZEC’s protocol design and upgrade paths leave it better positioned than Bitcoin for a cryptographic transition. Cardano’s network experienced a “poisoned” transaction attack that caused a chain split. Meanwhile, crypto industry lobbyists held a private tax-policy dinner with lawmakers to advocate for friendlier digital-asset tax treatment amid broader market-structure debates. Additionally, Strike CEO Jack Mallers said JPMorgan closed his bank accounts without providing an explanation.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/p0hnnDle/btc-86k-monad-presale-oversubscribed-coinbase-acquires-vector-dot-fun</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/p0hnnDle/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/p0hnnDle/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Bitcoin Plummets 11%! Crypto in Free-Fall! Guests: OSF &amp; Wizard Of SoHo </title>
+  <link>https://decrypt.co/videos/interviews/feVCIfte/bitcoin-plummets-11-crypto-in-free-fall-guests-osf-wizard-of-soho</link>
+  <pubDate>Fri, 21 Nov 2025 16:23:07 +0000</pubDate>
+  
+    <description>Btc: 81.6k (-11%) | btc.D: 58.8% (-0.5%). Eth: 2665 (-12%) | bnb: 800 (-11%) | sol: 123 (-13%). Bitcoin and Ethereum ETFs saw significant outflows, with broader crypto markets falling sharply as strong jobs data reduced expectations for interest-rate cuts. Bitcoin’s technicals weakened, with RSI hitting a three-year low and the price hovering only slightly above a major strategy’s average entry level. Major holders were reported to be selling, including a long-term wallet unloading $1.4 billion in BTC and another entity selling 10,000 ETH to support a share buyback. Institutions faced pressure as well, with concerns that certain digital-asset-related companies could be removed from major indexes, while one prominent mining-related firm carried billions in unrealized losses. Some attributed part of the sell-off to a software glitch. Meanwhile, policy and corporate developments continued: a U.S. representative introduced new crypto legislation, Metaplanet announced plans to purchase $95 million in BTC, Coinbase launched ETH-backed loans through Morpho, and Securitize partnered with Plume to expand real-world-asset offerings. India also signaled plans to launch an ARC stablecoin.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/feVCIfte/bitcoin-plummets-11-crypto-in-free-fall-guests-osf-wizard-of-soho</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/feVCIfte/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/feVCIfte/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>How Lynq Connects Crypto With Traditional Finance</title>
+  <link>https://decrypt.co/videos/interviews/QRXa6eou/how-lynq-connects-crypto-with-traditional-finance</link>
+  <pubDate>Fri, 21 Nov 2025 11:46:36 +0000</pubDate>
+  
+    <description>Lynq CEO Jerald David unpacks the convergence of traditional finance and digital assets, while highlighting how Lynq is building trusted infrastructure for institutions moving into the crypto space that seeks to mitigate risk.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/QRXa6eou/how-lynq-connects-crypto-with-traditional-finance</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/QRXa6eou/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/QRXa6eou/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>Borrowing Against Your Tesla Stock to Buy a Car Is the Future of DeFi: Superstate CEO Robert Leshner</title>
+  <link>https://decrypt.co/videos/interviews/t3mo8oyn/borrowing-against-your-tesla-stock-to-buy-a-car-is-the-future-of-defi-superstate-ceo-robert-leshner</link>
+  <pubDate>Fri, 21 Nov 2025 10:56:37 +0000</pubDate>
+  
+    <description>Superstate founder and CEO Robert Leshner (@rleshner) said tokenization will hit velocity when end users start to get excited about applications, like borrowing cash against stock to help fund a vehicle purchase. But we&#39;re not there yet, he said
+
+00:00 - An Intro to Robert &amp; his story in DeFi
+02:05 - Tokenisation now vs it’s ideal state
+07:40 - Has the stablecoin explosion impacted other RWA’s moving on-chain?
+11:25 - Robert’s Tokenisation “Wish List”
+15:35 - What problems were you hearing from issuers?
+22:46 - Where do you expect you toughest competition to come from?
+24:22 - Predictions for the end of the year?</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/t3mo8oyn/borrowing-against-your-tesla-stock-to-buy-a-car-is-the-future-of-defi-superstate-ceo-robert-leshner</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/t3mo8oyn/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/t3mo8oyn/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+      <item>
+  <title>#1 Mentions Market Trader @0xTyrael shares his Prediction Market strategies!</title>
+  <link>https://decrypt.co/videos/interviews/S03jFnRg/1-mentions-market-trader-0xtyrael-shares-his-prediction-market-strategies</link>
+  <pubDate>Thu, 20 Nov 2025 18:17:31 +0000</pubDate>
+  
+    <description>Against The Odds: Your Weekly insight into Prediction Markets &amp; Sports Betting! - Hosted by @Tyler_Did_It &amp; @Geebz - Today&#39;s Guest: @0xTyrael, the #1 Mentions Market Trader will be sharing their strategies and thoughts on prediction/mention market trading with us.</description>
+  
+  <dc:creator></dc:creator>
+  
+  
+    <guid isPermaLink="false">https://decrypt.co/videos/interviews/S03jFnRg/1-mentions-market-trader-0xtyrael-shares-his-prediction-market-strategies</guid>
+  
+  
+    <enclosure url="https://cdn.jwplayer.com/v2/media/S03jFnRg/poster.jpg" length="1000000" type="image/png" />
+  
+  
+    
+      <category></category>
+    
+  
+  
+  
+  
+  
+  
+    
+    
+      <media:thumbnail url="https://cdn.jwplayer.com/v2/media/S03jFnRg/poster.jpg"/>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+</item>
+    
+  </channel>
+</rss>
