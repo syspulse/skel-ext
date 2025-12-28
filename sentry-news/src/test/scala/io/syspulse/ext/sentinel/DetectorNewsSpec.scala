@@ -333,6 +333,174 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     allPosts.size should be > 0
   }
 
+  "DetectorNews.isCategory" should "include all posts when categories is None" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, None) shouldBe true
+  }
+
+  it should "include all posts when categories is empty" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, Some(Seq.empty)) shouldBe true
+  }
+
+  it should "include posts matching positive category" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, Some(Seq("Bitcoin"))) shouldBe true
+    DetectorNews.isCategory(post, Some(Seq("Ethereum"))) shouldBe true
+  }
+
+  it should "exclude posts not matching positive category" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, Some(Seq("Solana"))) shouldBe false
+  }
+
+  it should "include posts matching at least one positive category (OR logic)" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    // At least one category matches (Bitcoin or Solana)
+    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "Solana"))) shouldBe true
+    DetectorNews.isCategory(post, Some(Seq("Solana", "Ethereum"))) shouldBe true
+  }
+
+  it should "exclude posts matching negative category" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe false
+    DetectorNews.isCategory(post, Some(Seq("!Ethereum"))) shouldBe false
+  }
+
+  it should "include posts not matching negative category" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    DetectorNews.isCategory(post, Some(Seq("!Solana"))) shouldBe true
+  }
+
+  it should "handle combination of positive and negative categories" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List("Bitcoin", "Ethereum"),
+      feedMetadata = Map.empty
+    )
+
+    // Include Bitcoin but exclude Ethereum: should fail (has Ethereum)
+    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "!Ethereum"))) shouldBe false
+
+    // Include Bitcoin but exclude Solana: should pass (has Bitcoin, no Solana)
+    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "!Solana"))) shouldBe true
+
+    // Include Solana but exclude Bitcoin: should fail (has Bitcoin)
+    DetectorNews.isCategory(post, Some(Seq("Solana", "!Bitcoin"))) shouldBe false
+  }
+
+  it should "handle posts with empty categories list" in {
+    val post = NewsPost(
+      id = "1",
+      title = "Test",
+      link = "https://test.com",
+      author = "Test",
+      publishedDate = System.currentTimeMillis(),
+      summary = "Test",
+      source = "test",
+      typ = "rss",
+      categories = List.empty,
+      feedMetadata = Map.empty
+    )
+
+    // No categories, so positive filters should fail
+    DetectorNews.isCategory(post, Some(Seq("Bitcoin"))) shouldBe false
+
+    // Negative filters should pass (no categories to match)
+    DetectorNews.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe true
+  }
+
   // Helper method to create a test SentryRun with script-based filtering
   def createTestSentryRunWithScripts(feedUri: String, scripts: String): SentryRun = {
     val conf = DetectorConfig(

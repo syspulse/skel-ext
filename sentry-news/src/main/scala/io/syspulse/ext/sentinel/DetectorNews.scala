@@ -24,10 +24,11 @@ object DetectorNews {
   val DEF_CRON = "10 minutes"
   val DEF_FEEDS = ""
   val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://), "rss" = all RSS, "reddit" = all Reddit
-  val DEF_DESC = "New post: {title}{err}"
+  val DEF_DESC = "Post: {title}{err}"
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
   val DEF_THRESHOLD = ">= 0.5"  // Default threshold for score-based filtering
+  val DEF_CATEGORY = None  // Empty = all categories
 
   val DEF_TRACK_ERR = true
   val DEF_TRACK_ERR_ALWAYS = true
@@ -68,6 +69,31 @@ object DetectorNews {
         // Unknown type, assume RSS
         ("rss", uri)
     }
+  }
+
+  /**
+   * Check if a news post matches the configured category filter
+   * @param post The news post to check
+   * @param categories Optional sequence of category filters (empty = all categories)
+   * @return true if post matches the category filter
+   */
+  def isCategory(post: NewsPost, categories: Option[Seq[String]]): Boolean = {
+    if (!categories.isDefined || categories.get.isEmpty)
+      return true
+
+    val categories1 = categories.get.map(_.trim).filter(_.nonEmpty)
+    val positiveCategories = categories1.filter(!_.startsWith("!"))
+    val negativeCategories = categories1.filter(_.startsWith("!"))
+
+    // Positive match: at least one positive category must match (OR logic)
+    val positiveMatch = if (positiveCategories.isEmpty) true
+                        else positiveCategories.exists(c => post.categories.contains(c))
+
+    // Negative match: no negative categories should match (AND logic)
+    val negativeMatch = if (negativeCategories.isEmpty) true
+                        else negativeCategories.forall(c => !post.categories.contains(c.substring(1).trim))
+
+    positiveMatch && negativeMatch
   }
 }
 
@@ -156,6 +182,13 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     rx.set("max",DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX))
     rx.set("max_seen_posts", DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS))
 
+    // Load categories filter configuration
+    val categories = DetectorConfig.getString(conf, "categories")
+      .orElse(DetectorNews.DEF_CATEGORY)
+      .map(_.split(",").map(_.trim).filter(_.nonEmpty).toSeq)
+    rx.set("category", categories)
+    log.info(s"${rx.getExtId()}: Categories filter: ${categories.getOrElse(Seq.empty)}")
+
     // Initialize seen posts with current feed state (don't alert on first run)
     //initializeSeenPosts(rx)
 
@@ -219,9 +252,13 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     val newPosts = allPosts.filterNot(p => seenPosts.contains(p.id))
 
     // Apply script filters if configured
-    val filteredPosts = filterByScripts(rx, newPosts)
+    val scriptFilteredPosts = filterByScripts(rx, newPosts)
 
-    log.info(s"${rx.getExtId()}: Posts: ${allPosts.size} (all), ${seenPosts.size} (seen), ${newPosts.size} (new), ${filteredPosts.size} (filtered)")
+    // Apply category filters if configured
+    val categories = rx.get("category").asInstanceOf[Option[Option[Seq[String]]]].flatten
+    val filteredPosts = scriptFilteredPosts.filter(post => DetectorNews.isCategory(post, categories))
+
+    log.info(s"${rx.getExtId()}: Posts: ${allPosts.size} (all), ${seenPosts.size} (seen), ${newPosts.size} (new), ${scriptFilteredPosts.size} (script-filtered), ${filteredPosts.size} (filtered)")
 
     // Update seen posts with size limit (only track posts that were processed)
     val processedPostIds = allPosts.map(_.id).toSet
