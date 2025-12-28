@@ -245,7 +245,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
     posts.filter { post =>
       val searchText = s"${post.title} ${post.summary}"
-
+     
       scripts.run("", searchText, Map.empty) match {
         case Success(result) =>
           // Try to parse result as Double
