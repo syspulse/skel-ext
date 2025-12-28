@@ -18,6 +18,7 @@ import io.syspulse.ext.sentinel.feeds._
 import io.syspulse.skel.util.Util
 import io.syspulse.skel.script.{Script, ScriptFlow}
 import io.hacken.ext.sentinel.ScriptEngine
+import io.hacken.ext.sentinel.ThresholdDouble
 
 object DetectorNews {
   val DEF_CRON = "10 minutes"
@@ -26,6 +27,7 @@ object DetectorNews {
   val DEF_DESC = "New post: {title}{err}"
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
+  val DEF_THRESHOLD = ">= 0.5"  // Default threshold for score-based filtering
 
   val DEF_TRACK_ERR = true
   val DEF_TRACK_ERR_ALWAYS = true
@@ -145,7 +147,12 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
     // Load scripts and error tracking configuration using ScriptEngine
     ScriptEngine.loadConfig(rx, conf, DetectorNews.DEF_TRACK_ERR, DetectorNews.DEF_TRACK_ERR_ALWAYS)
-    
+
+    // Set threshold for score-based filtering
+    val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorNews.DEF_THRESHOLD)
+    val threshold = new ThresholdDouble(0.0, thresholdCondition)
+    rx.set("threshold", threshold)
+
     rx.set("max",DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX))
     rx.set("max_seen_posts", DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS))
 
@@ -234,20 +241,28 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     if (! scriptsOpt.isDefined) return posts
 
     val scripts = scriptsOpt.get
+    val threshold = rx.get("threshold").get.asInstanceOf[ThresholdDouble]
 
     posts.filter { post =>
       val searchText = s"${post.title} ${post.summary}"
-      
+
       scripts.run("", searchText, Map.empty) match {
-        case Success(null) => false
-        case Success("") => false
-        case Success("false") => false
-        case Success(_) => true          
-        case Failure(_) =>
-          // Failure means no match
+        case Success(result) =>
+          // Try to parse result as Double
+          Try(result.toDouble) match {
+            case Success(score) =>
+              // Check if score meets threshold condition
+              threshold.set(score)
+            case Failure(_) =>
+              // Could not parse as Double, skip this element
+              log.warn(s"${rx.getExtId()}: Could not parse script result as Double: '${result}': post=${post.id}")
+              false
+          }
+        case Failure(e) =>
+          // Script execution failed
+          log.warn(s"${rx.getExtId()}: Script execution failed: post=${post.id}: ${e.getMessage}")
           false
       }
-      
     }
   }
 

@@ -108,25 +108,28 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
   // Helper method to create a test SentryRun with script configuration
   def createTestSentryRun(filter: String, feedUri: String = "sentry-news/rss/coindesk.rss"): SentryRun = {
-    // Convert filter to script configuration for testing
+    // Convert filter to script configuration for testing (score-based)
     val (isNegative, pattern) = if (filter.startsWith("!")) {
       (true, filter.substring(1))
     } else {
       (false, filter)
     }
-    
+
     // Make pattern case-insensitive if it doesn't already have (?i) flag
     val regexPattern = if (pattern.startsWith("(?i)")) {
       pattern
     } else {
       s"(?i)${pattern}"
     }
-    
+
+    // Create script that returns score using regexp_score type
+    val scriptSrc = regexPattern
+
     // Create script array from filter pattern
     val scriptConfig = JsArray(
       JsObject(
-        "type" -> JsString("regexp"),
-        "src" -> JsString(regexPattern)
+        "type" -> JsString("regexp_score"),
+        "src" -> JsString(scriptSrc)
       )
     )
     
@@ -154,6 +157,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       config = Some(JsObject(
         "feeds" -> JsString(feedUri),
         "script" -> scriptConfig,
+        "threshold" -> JsString(">= 0.5"),
         "type" -> JsString("rss")
       )),
       destinations = Seq.empty
@@ -410,14 +414,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         "feeds": "sentry-news/rss/coingtelegraph-all.rss",
         "max": 10,
         "max_seen_posts": 100,
+        "threshold": ">= 0.5",
         "script": [
             {
-                "type": "str",
-                "src": ""
-            },
-            {
-                "type": "regexp",
-                "src": "(?i)(pension|Solana|Bitcoin)"
+                "type": "regexp_score",
+                "src": "(?i).*(pension|Solana|Bitcoin).*"
             }
         ],
         "track_err": true,
@@ -471,10 +472,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         "feeds": "sentry-news/rss/coingtelegraph-all.rss",
         "max": 5,
         "max_seen_posts": 50,
+        "threshold": ">= 0.8",
         "script": [
             {
-                "type": "regexp",
-                "src": "(?i)Bitcoin"
+                "type": "regexp_score",
+                "src": "(?i).*Bitcoin.*"
             }
         ],
         "track_err": false,
@@ -536,10 +538,11 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         "feeds": "sentry-news/rss/coingtelegraph-all.rss",
         "max": 10,
         "max_seen_posts": 100,
+        "threshold": ">= 0.5",
         "script": [
             {
-                "type": "regexp",
-                "src": "(?i)(Solana|Bitcoin)"
+                "type": "regexp_score",
+                "src": "(?i).*(Solana|Bitcoin).*"
             }
         ],
         "track_err": true,
