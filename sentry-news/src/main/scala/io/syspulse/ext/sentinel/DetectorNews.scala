@@ -262,7 +262,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     val newPosts = allPosts.filterNot(p => seenPosts.contains(p.id))
 
     // Apply script filters if configured
-    val scriptFilteredPosts = filterByScripts(rx, newPosts)
+    val scriptFilteredPosts = filter(rx, newPosts)
 
     // Apply category filters if configured
     val categories = rx.get("category").asInstanceOf[Option[Option[Seq[String]]]].flatten
@@ -281,7 +281,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     errorEvents ++ postEvents
   }
 
-  def filterByScripts(rx: SentryRun, posts: Seq[NewsPost]): Seq[NewsPost] = {
+  def filter(rx: SentryRun, posts: Seq[NewsPost]): Seq[NewsPost] = {
     val scriptsOpt = rx.get("scripts").asInstanceOf[Option[ScriptFlow]]
 
     // If no scripts configured, match everything
@@ -291,10 +291,11 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     val threshold = rx.get("threshold").get.asInstanceOf[ThresholdDouble]
 
     posts.filter { post =>
-      val searchText = s"${post.title} ${post.summary}"
-     
-      scripts.run("", searchText, Map.empty) match {
+      val searchText = s"${post.title} ${post.summary}"      
+      val r = scripts.run("", searchText, Map.empty)      
+      r match {
         case Success(result) =>
+          
           // Try to parse result as Double
           Try(result.toDouble) match {
             case Success(score) =>
