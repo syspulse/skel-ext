@@ -1,0 +1,52 @@
+{
+  "date_range": "24.02.22 — 29.12.2025",
+  "losses": {
+    "personnel": {
+      "count": 120569,
+      "change": 1180
+    },
+    "aircraft": {
+      "count": 434
+    },
+    "helicopters": {
+      "count": 347
+    },
+    "operational_tactical_UAVs": {
+      "count": 96532,
+      "change": 305
+    },
+    "cruise_missiles": {
+      "count": 4136
+    },
+    "armored_combat_vehicles": {
+      "count": 23877,
+      "change": 6
+    },
+    "artillery_systems": {
+      "count": 35570,
+      "change": 13
+    },
+    "MLRS": {
+      "count": 1581
+    },
+    "air_defense_systems": {
+      "count": 1264
+    },
+    "ships_boats": {
+      "count": 28
+    },
+    "submarines": {
+      "count": 2
+    },
+    "automotive_and_fuel_tanks": {
+      "count": 71891,
+      "change": 113
+    },
+    "special_equipment": {
+      "count": 4030,
+      "change": 1
+    }
+  },
+  "source": "GSUAs"
+}
+

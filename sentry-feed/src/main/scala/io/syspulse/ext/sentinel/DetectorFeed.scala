@@ -334,7 +334,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  private def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
+  protected def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
     val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorFeed.DEF_DESC)
 
     val metadata = Map(
