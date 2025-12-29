@@ -290,32 +290,46 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     val scripts = scriptsOpt.get
     val threshold = rx.get("threshold").get.asInstanceOf[ThresholdDouble]
 
-    posts.filter { post =>
+    posts.flatMap { post =>
       val searchText = s"${post.title} ${post.summary}"      
       // Pass author and images to script
-      val args = Map(
+      val args = Map( 
         "author" -> post.author,
         "images" -> post.images.mkString(",")
       )
 
       val r = scripts.run("", searchText, args)
+
       r match {
-        case Success(result) =>
+        case Success(result) if(! threshold.getCondition.isBlank) =>
 
           // Try to parse result as Double
           Try(result.toDouble) match {
             case Success(score) =>
               // Check if score meets threshold condition
-              threshold.set(score)
+              if(threshold.set(score)) 
+                Some(post.copy(result = Map("score" -> score.toString)))
+              else
+                None
+
             case Failure(_) =>
               // Could not parse as Double, skip this element
               log.warn(s"${rx.getExtId()}: Could not parse script result as Double: '${result}': post=${post.id}")
-              false
+              None
           }
+
+        // emptry condition means with result -> return Post with extended infor
+        case Success(result) if(! result.isBlank) =>
+          Some(post.copy(result = Map("result" ->result)))          
+
+        // empty retuls and not condition
+        case Success(result) =>
+          None
+
         case Failure(e) =>
           // Script execution failed
           log.warn(s"${rx.getExtId()}: Script execution failed: post=${post.id}: ${e.getMessage}")
-          false
+          None
       }
     }
   }
@@ -335,7 +349,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
       "latency" -> latency.toString,
       "desc" -> desc.replace("{title}", post.title),
       "tx_hash" -> post.id
-    ) ++ post.feedMetadata
+    ) ++ post.feedMetadata ++ post.result
 
     EventUtil.createEvent(
       did,

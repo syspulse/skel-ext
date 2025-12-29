@@ -11,5 +11,7 @@ case class NewsPost(
   typ: String,
   categories: List[String],        // List of category tags
   images: List[String],            // List of image URLs
-  feedMetadata: Map[String, String] // subreddit, thumbnails, etc.
+  feedMetadata: Map[String, String], // subreddit, thumbnails, etc.
+
+  result: Map[String, String] = Map.empty[String, String]  // Additional data from script
 )
