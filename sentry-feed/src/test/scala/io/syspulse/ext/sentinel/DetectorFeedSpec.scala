@@ -12,100 +12,100 @@ import io.syspulse.skel.plugin.PluginDescriptor
 import io.syspulse.ext.sentinel.feeds.{NewsPost, RssFeed}
 import io.syspulse.skel.script.{Script, ScriptFlow}
 
-class DetectorNewsSpec extends AnyFlatSpec with Matchers {
+class DetectorFeedSpec extends AnyFlatSpec with Matchers {
 
   private def getResourcePath(resource: String): String = {
     getClass.getResource(resource).getPath
   }
 
-  "DetectorNews.parseFeedUri" should "parse RSS URI when type is 'rss'" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("./rss/feed.xml", "rss")
+  "DetectorFeed.parseFeedUri" should "parse RSS URI when type is 'rss'" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("./rss/feed.xml", "rss")
     feedType shouldBe "rss"
     cleanedUri shouldBe "./rss/feed.xml"
   }
 
   it should "parse Reddit URI when type is 'reddit'" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("./reddit/feed.xml", "reddit")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("./reddit/feed.xml", "reddit")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "./reddit/feed.xml"
   }
 
   it should "handle case-insensitive type" in {
-    val (feedType1, _) = DetectorNews.parseFeedUri("./feed.xml", "RSS")
+    val (feedType1, _) = DetectorFeed.parseFeedUri("./feed.xml", "RSS")
     feedType1 shouldBe "rss"
 
-    val (feedType2, _) = DetectorNews.parseFeedUri("./feed.xml", "Reddit")
+    val (feedType2, _) = DetectorFeed.parseFeedUri("./feed.xml", "Reddit")
     feedType2 shouldBe "reddit"
   }
 
   it should "strip rss:// prefix when type is empty" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("rss://./rss/feed.xml", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://./rss/feed.xml", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe "./rss/feed.xml"
   }
 
   it should "strip reddit:// prefix when type is empty" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("reddit://./reddit/feed.xml", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://./reddit/feed.xml", "")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "./reddit/feed.xml"
   }
 
   it should "assume RSS for no prefix when type is empty" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("./feed.xml", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("./feed.xml", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe "./feed.xml"
   }
 
   it should "strip rss:// prefix with http:// URI" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("rss://https://example.com/feed.rss", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://https://example.com/feed.rss", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe "https://example.com/feed.rss"
   }
 
   it should "strip reddit:// prefix with http:// URI" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("reddit://https://reddit.com/domain/example.com.rss", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://https://reddit.com/domain/example.com.rss", "")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "https://reddit.com/domain/example.com.rss"
   }
 
   it should "strip rss:// prefix with file:// URI" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("rss://file://./rss/feed.xml", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://file://./rss/feed.xml", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe "file://./rss/feed.xml"
   }
 
   it should "strip reddit:// prefix with file:// URI" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("reddit://file://./reddit/feed.xml", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://file://./reddit/feed.xml", "")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "file://./reddit/feed.xml"
   }
 
   it should "assume RSS for unknown type" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("./feed.xml", "unknown")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("./feed.xml", "unknown")
     feedType shouldBe "rss"
     cleanedUri shouldBe "./feed.xml"
   }
 
   it should "ignore prefix when type is explicitly set to rss" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("reddit://./feed.xml", "rss")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://./feed.xml", "rss")
     feedType shouldBe "rss"
     cleanedUri shouldBe "reddit://./feed.xml" // URI not cleaned, type forces RSS
   }
 
   it should "ignore prefix when type is explicitly set to reddit" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("rss://./feed.xml", "reddit")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://./feed.xml", "reddit")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "rss://./feed.xml" // URI not cleaned, type forces Reddit
   }
 
   it should "handle multiple slashes after prefix" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("rss://https://example.com/feed.rss", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://https://example.com/feed.rss", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe "https://example.com/feed.rss"
   }
 
   it should "handle empty URI with empty type" in {
-    val (feedType, cleanedUri) = DetectorNews.parseFeedUri("", "")
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("", "")
     feedType shouldBe "rss"
     cleanedUri shouldBe ""
   }
@@ -174,18 +174,18 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     }
     
     val pd = PluginDescriptor("test-detector-news", "1.0.0", "Test Detector")
-    val detector = new DetectorNews(pd)
+    val detector = new DetectorFeed(pd)
     
     val sentryRun = new SentryRun(detector, conf, config, None)
     sentryRun.set("seen_posts", Set.empty[String])
     sentryRun
   }
 
-  "DetectorNews filter" should "include posts matching positive filter" in {
+  "DetectorFeed filter" should "include posts matching positive filter" in {
     // Use "Bitcoin" which appears in the feed title and some posts
     // Based on RSS file: "Bitcoin Plunges Below $90K..." and "Bitcoin's Volatility Meltdown..." contain "Bitcoin"
     val rx = createTestSentryRun("Bitcoin")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
     
     // Initialize the detector
     detector.onInit(rx, rx.getConf())
@@ -200,7 +200,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     val allPosts = feed.fetchFeed().get
     allPosts.size should be > 0
     
-    // Filter posts using DetectorNews.filter
+    // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify that filtering was attempted (ScriptFlow is loaded and filterByScripts was called)
@@ -215,7 +215,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     // The current script system doesn't directly support negative filters
     // This test verifies that scripts are loaded and can filter posts
     val rx = createTestSentryRun("!(?i)bitcoin")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
     
     // Initialize the detector
     detector.onInit(rx, rx.getConf())
@@ -230,7 +230,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filter
+    // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify filtering works (scripts are applied)
@@ -241,7 +241,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
   it should "include all posts when negative filter doesn't match" in {
     val rx = createTestSentryRun("!NonExistentKeyword12345")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
     
     // Initialize the detector
     detector.onInit(rx, rx.getConf())
@@ -251,7 +251,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filter
+    // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
     
     // Since the keyword doesn't exist and scripts don't match, all posts should pass
@@ -262,7 +262,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
   it should "handle case-insensitive negative filter" in {
     // Use case-insensitive regex pattern
     val rx = createTestSentryRun("!(?i)bitcoin")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
     
     // Initialize the detector
     detector.onInit(rx, rx.getConf())
@@ -276,7 +276,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
     val allPosts = feed.fetchFeed().get
     
-    // Filter posts using DetectorNews.filter
+    // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
     
     // Verify filtering works (scripts are applied)
@@ -287,7 +287,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
   it should "parse negative filter prefix correctly" in {
     val rx1 = createTestSentryRun("!Bitcoin")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
     
     detector.onInit(rx1, rx1.getConf())
     detector.onUpdate(rx1, rx1.getConf())
@@ -310,7 +310,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
   it should "work with multiple feeds and negative filter" in {
     val rx = createTestSentryRun("!Ethereum", s"${getResourcePath("/rss/coindesk.rss")},${getResourcePath("/rss/decrypt.rss")}")
-    val detector = new DetectorNews(PluginDescriptor("test", "1.0.0", "Test"))
+    val detector = new DetectorFeed(PluginDescriptor("test", "1.0.0", "Test"))
 
     // Initialize the detector
     detector.onInit(rx, rx.getConf())
@@ -328,7 +328,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feed.fetchFeed().get
     }
 
-    // Filter posts using DetectorNews.filter
+    // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
 
     // Verify filtering works with multiple feeds
@@ -337,7 +337,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     allPosts.size should be > 0
   }
 
-  "DetectorNews.isCategory" should "include all posts when categories is None" in {
+  "DetectorFeed.isCategory" should "include all posts when categories is None" in {
     val post = NewsPost(
       id = "1",
       title = "Test",
@@ -352,7 +352,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, None) shouldBe true
+    DetectorFeed.isCategory(post, None) shouldBe true
   }
 
   it should "include all posts when categories is empty" in {
@@ -370,7 +370,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, Some(Seq.empty)) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq.empty)) shouldBe true
   }
 
   it should "include posts matching positive category" in {
@@ -388,8 +388,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, Some(Seq("Bitcoin"))) shouldBe true
-    DetectorNews.isCategory(post, Some(Seq("Ethereum"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("Bitcoin"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("Ethereum"))) shouldBe true
   }
 
   it should "exclude posts not matching positive category" in {
@@ -407,7 +407,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, Some(Seq("Solana"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("Solana"))) shouldBe false
   }
 
   it should "include posts matching at least one positive category (OR logic)" in {
@@ -426,8 +426,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     )
 
     // At least one category matches (Bitcoin or Solana)
-    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "Solana"))) shouldBe true
-    DetectorNews.isCategory(post, Some(Seq("Solana", "Ethereum"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("Bitcoin", "Solana"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("Solana", "Ethereum"))) shouldBe true
   }
 
   it should "exclude posts matching negative category" in {
@@ -445,8 +445,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe false
-    DetectorNews.isCategory(post, Some(Seq("!Ethereum"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("!Ethereum"))) shouldBe false
   }
 
   it should "include posts not matching negative category" in {
@@ -464,7 +464,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
       feedMetadata = Map.empty
     )
 
-    DetectorNews.isCategory(post, Some(Seq("!Solana"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("!Solana"))) shouldBe true
   }
 
   it should "handle combination of positive and negative categories" in {
@@ -483,13 +483,13 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     )
 
     // Include Bitcoin but exclude Ethereum: should fail (has Ethereum)
-    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "!Ethereum"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("Bitcoin", "!Ethereum"))) shouldBe false
 
     // Include Bitcoin but exclude Solana: should pass (has Bitcoin, no Solana)
-    DetectorNews.isCategory(post, Some(Seq("Bitcoin", "!Solana"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("Bitcoin", "!Solana"))) shouldBe true
 
     // Include Solana but exclude Bitcoin: should fail (has Bitcoin)
-    DetectorNews.isCategory(post, Some(Seq("Solana", "!Bitcoin"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("Solana", "!Bitcoin"))) shouldBe false
   }
 
   it should "handle posts with empty categories list" in {
@@ -508,10 +508,10 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     )
 
     // No categories, so positive filters should fail
-    DetectorNews.isCategory(post, Some(Seq("Bitcoin"))) shouldBe false
+    DetectorFeed.isCategory(post, Some(Seq("Bitcoin"))) shouldBe false
 
     // Negative filters should pass (no categories to match)
-    DetectorNews.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe true
+    DetectorFeed.isCategory(post, Some(Seq("!Bitcoin"))) shouldBe true
   }
 
   // Helper method to create a test SentryRun with script-based filtering
@@ -554,17 +554,17 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     }
 
     val pd = PluginDescriptor("test-detector-news", "1.0.0", "Test Detector")
-    val detector = new DetectorNews(pd)
+    val detector = new DetectorFeed(pd)
 
     val sentryRun = new SentryRun(detector, conf, config, None)
     sentryRun.set("seen_posts", Set.empty[String])
     sentryRun
   }
 
-  "DetectorNews full integration" should "complete full lifecycle with script-based filtering" in {
+  "DetectorFeed full integration" should "complete full lifecycle with script-based filtering" in {
     // Create detector instance
-    val pd = PluginDescriptor("DetectorNews", "1.0.0", "News Detector Test")
-    val detector = new DetectorNews(pd)
+    val pd = PluginDescriptor("DetectorFeed", "1.0.0", "News Detector Test")
+    val detector = new DetectorFeed(pd)
 
     // Create configuration based on detector-test-rss-file.conf
     val conf = DetectorConfig(
@@ -585,7 +585,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         name = "News-RSS"
       ),
       schema = None,
-      name = "DetectorNews",
+      name = "DetectorFeed",
       source = "test",
       tags = Seq.empty,
       config = Some(s"""{
@@ -687,8 +687,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
 
   it should "execute onCron and generate alerts with script filtering" in {
     // Create detector instance
-    val pd = PluginDescriptor("DetectorNews", "1.0.0", "News Detector Test")
-    val detector = new DetectorNews(pd)
+    val pd = PluginDescriptor("DetectorFeed", "1.0.0", "News Detector Test")
+    val detector = new DetectorFeed(pd)
 
     // Create configuration with script-based filtering
     val conf = DetectorConfig(
@@ -709,7 +709,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         name = "News-RSS"
       ),
       schema = None,
-      name = "DetectorNews",
+      name = "DetectorFeed",
       source = "test",
       tags = Seq.empty,
       config = Some(s"""{
@@ -752,7 +752,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
     if (events1.nonEmpty) {
       // Verify alert structure
       events1.foreach { event =>
-        event.did shouldBe "DetectorNews"
+        event.did shouldBe "DetectorFeed"
         event.metadata should contain key "title"
         event.metadata should contain key "link"
         event.metadata should contain key "type"
@@ -772,8 +772,8 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "handle empty script configuration (no filtering)" in {
-    val pd = PluginDescriptor("DetectorNews", "1.0.0", "News Detector Test")
-    val detector = new DetectorNews(pd)
+    val pd = PluginDescriptor("DetectorFeed", "1.0.0", "News Detector Test")
+    val detector = new DetectorFeed(pd)
 
     val conf = DetectorConfig(
       id = 1,
@@ -793,7 +793,7 @@ class DetectorNewsSpec extends AnyFlatSpec with Matchers {
         name = "News-RSS"
       ),
       schema = None,
-      name = "DetectorNews",
+      name = "DetectorFeed",
       source = "test",
       tags = Seq.empty,
       config = Some(s"""{

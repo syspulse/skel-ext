@@ -327,7 +327,7 @@ lazy val root = (project in file("."))
     sentry_por,
     sentry_kuba,
     sentry_bubbles,
-    sentry_news,
+    sentry_feed,
     sentry_audit,
     sentry_workflow,
   )
@@ -336,7 +336,7 @@ lazy val root = (project in file("."))
     sentry_por,
     sentry_kuba,
     sentry_bubbles,
-    sentry_news,
+    sentry_feed,
     sentry_audit,
     sentry_workflow,
   )
@@ -354,7 +354,7 @@ lazy val sentry_demo = (project in file("sentry-demo"))
     sentry_gov,
     sentry_por,
     sentry_bubbles,
-    sentry_news,
+    sentry_feed,
     sentry_workflow,
     sentry_audit,
   )
@@ -474,7 +474,7 @@ lazy val sentry_bubbles = (project in file("sentry-bubbles"))
     ),
   )
 
-lazy val sentry_news = (project in file("sentry-news"))
+lazy val sentry_feed = (project in file("sentry-feed"))
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(DockerPlugin)
   .enablePlugins(AshScriptPlugin)
@@ -484,7 +484,7 @@ lazy val sentry_news = (project in file("sentry-news"))
     sharedConfigDocker,
     dockerBuildxSettings,
 
-    appDockerConfig("sentry-news","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
+    appDockerConfig("sentry-feed","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
     
     libraryDependencies ++= Seq(
       libExtCore,

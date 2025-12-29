@@ -20,7 +20,7 @@ import io.syspulse.skel.script.{Script, ScriptFlow}
 import io.hacken.ext.sentinel.ScriptEngine
 import io.hacken.ext.sentinel.ThresholdDouble
 
-object DetectorNews {
+object DetectorFeed {
   val DEF_CRON = "10 minutes"
   val DEF_FEEDS = ""
   val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://, twitter://), "rss" = all RSS, "reddit" = all Reddit, "twitter" = all Twitter
@@ -103,12 +103,12 @@ object DetectorNews {
   }
 }
 
-class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
+class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 
   def eid(post: NewsPost) = {
-    if (DetectorNews.DEF_EID_HASH) {
+    if (DetectorFeed.DEF_EID_HASH) {
       Some(Util.sha256(post.id))
     } else {
       Some(post.id)
@@ -148,28 +148,28 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
   override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
     // Parse feeds configuration
-    val feedsStr = DetectorConfig.getString(conf, "feeds", DetectorNews.DEF_FEEDS)
+    val feedsStr = DetectorConfig.getString(conf, "feeds", DetectorFeed.DEF_FEEDS)
     if (feedsStr.isEmpty) {
       log.warn(s"${rx.getExtId()}: feeds configuration required")
       error("Feeds configuration required", None)
       return SentryRun.SENTRY_STOPPED
     }
 
-    val max = DetectorConfig.getInt(conf, "max", DetectorNews.DEF_MAX)
-    val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorNews.DEF_MAX_SEEN_POSTS)
+    val max = DetectorConfig.getInt(conf, "max", DetectorFeed.DEF_MAX)
+    val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorFeed.DEF_MAX_SEEN_POSTS)
     rx.set("max",max)
     rx.set("max_seen_posts", maxSeenPosts)
     
 
     // Get feed type configuration
-    val feedType = DetectorConfig.getString(conf, "type", DetectorNews.DEF_TYPE).toLowerCase
+    val feedType = DetectorConfig.getString(conf, "type", DetectorFeed.DEF_TYPE).toLowerCase
 
     // Create feed instances based on type configuration
     val feeds: Seq[NewsFeed] = feedsStr.split(",")
       .map(_.trim)
       .filter(_.nonEmpty)
       .map { uri =>
-        val (actualFeedType, cleanedUri) = DetectorNews.parseFeedUri(uri, feedType)
+        val (actualFeedType, cleanedUri) = DetectorFeed.parseFeedUri(uri, feedType)
         actualFeedType match {
           case "rss" => new RssFeed(cleanedUri)
           case "reddit" => new RedditFeed(cleanedUri)
@@ -182,19 +182,19 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
     rx.set("feeds", feeds)
 
     // Configuration
-    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorNews.DEF_DESC))
+    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorFeed.DEF_DESC))
 
     // Load scripts and error tracking configuration using ScriptEngine
-    ScriptEngine.loadConfig(rx, conf, DetectorNews.DEF_TRACK_ERR, DetectorNews.DEF_TRACK_ERR_ALWAYS)
+    ScriptEngine.loadConfig(rx, conf, DetectorFeed.DEF_TRACK_ERR, DetectorFeed.DEF_TRACK_ERR_ALWAYS)
 
     // Set threshold for score-based filtering
-    val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorNews.DEF_THRESHOLD)
+    val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorFeed.DEF_THRESHOLD)
     val threshold = new ThresholdDouble(0.0, thresholdCondition)
     rx.set("threshold", threshold)
     
     // Load categories filter configuration
     val categories = DetectorConfig.getString(conf, "categories")
-      .orElse(DetectorNews.DEF_CATEGORY)
+      .orElse(DetectorFeed.DEF_CATEGORY)
       .map(_.split(",").map(_.trim).filter(_.nonEmpty).toSeq)
     rx.set("category", categories)
     log.info(s"${rx.getExtId()}: Categories filter: ${categories.getOrElse(Seq.empty)}")
@@ -229,8 +229,8 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
   def checkFeeds(rx: SentryRun): Seq[Event] = {
     val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
     val seenPosts = rx.get("seen_posts").get.asInstanceOf[Set[String]]
-    val max = rx.get("max").asInstanceOf[Option[Int]].getOrElse(DetectorNews.DEF_MAX)
-    val maxSeenPosts = rx.get("max_seen_posts").asInstanceOf[Option[Int]].getOrElse(DetectorNews.DEF_MAX_SEEN_POSTS)
+    val max = rx.get("max").asInstanceOf[Option[Int]].getOrElse(DetectorFeed.DEF_MAX)
+    val maxSeenPosts = rx.get("max_seen_posts").asInstanceOf[Option[Int]].getOrElse(DetectorFeed.DEF_MAX_SEEN_POSTS)
 
     var errorEvents = Seq.empty[Event]
 
@@ -266,7 +266,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
 
     // Apply category filters if configured
     val categories = rx.get("category").asInstanceOf[Option[Option[Seq[String]]]].flatten
-    val filteredPosts = scriptFilteredPosts.filter(post => DetectorNews.isCategory(post, categories))
+    val filteredPosts = scriptFilteredPosts.filter(post => DetectorFeed.isCategory(post, categories))
 
     log.info(s"${rx.getExtId()}: Posts: ${allPosts.size} (all), ${seenPosts.size} (seen), ${newPosts.size} (new), ${scriptFilteredPosts.size} (script-filtered), ${filteredPosts.size} (filtered)")
 
@@ -335,7 +335,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
   }
 
   private def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
-    val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorNews.DEF_DESC)
+    val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorFeed.DEF_DESC)
 
     val metadata = Map(
       "type" -> post.typ,
@@ -359,23 +359,23 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
       meta = metadata,
       detectorTs = post.publishedDate.toString,
       eid0 = eid(post),
-      sev = Some(DetectorNews.DEF_SEV_NEW_POST)
+      sev = Some(DetectorFeed.DEF_SEV_NEW_POST)
     )
   }
 
   private def handleFeedError(rx: SentryRun, feed: NewsFeed, error: Throwable,latency: Long): Seq[Event] = {
-    val trackErr = rx.get("track_err").asInstanceOf[Option[Boolean]].getOrElse(DetectorNews.DEF_TRACK_ERR)
+    val trackErr = rx.get("track_err").asInstanceOf[Option[Boolean]].getOrElse(DetectorFeed.DEF_TRACK_ERR)
 
     if (!trackErr) return Seq.empty
 
-    val always = rx.get("err_always").asInstanceOf[Option[Boolean]].getOrElse(DetectorNews.DEF_TRACK_ERR_ALWAYS)
+    val always = rx.get("err_always").asInstanceOf[Option[Boolean]].getOrElse(DetectorFeed.DEF_TRACK_ERR_ALWAYS)
     val errorKey = s"err_last_${feed.getSourceType()}_${feed.getSource().hashCode}"
     val lastErr = rx.get(errorKey).asInstanceOf[Option[String]]
     val errMsg = error.getMessage()
 
     if (always || lastErr.isEmpty || lastErr.get != errMsg) {
       rx.set(errorKey, errMsg)
-      val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorNews.DEF_DESC)
+      val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorFeed.DEF_DESC)
 
       Seq(EventUtil.createEvent(
         did,
@@ -389,7 +389,7 @@ class DetectorNews(pd: PluginDescriptor) extends Sentry with Plugin {
           "latency" -> latency.toString,
           "desc" -> desc
         ),
-        sev = Some(DetectorNews.DEF_SEV_ERR)
+        sev = Some(DetectorFeed.DEF_SEV_ERR)
       ))
     } else {
       Seq.empty
