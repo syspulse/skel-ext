@@ -172,19 +172,12 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
     DetectorWar.DEF_DESC shouldBe "War Report: {title}"
   }
 
-  "DetectorWar.createPostAlert" should "extract AI response from 'result' field and flatten it" in {
+  "DetectorWar.createPostAlert" should "extract AI response from 'result' field with full GSUA-1.json content" in {
     val pd = PluginDescriptor("DetectorWar", "1.0.0", "War Report Detector")
     val detector = new DetectorWar(pd)
 
-    // Create a NewsPost with AI response in "result" field
-    val aiResponseJson = """{
-      "date_range": "24.02.22 — 29.12.2025",
-      "losses": {
-        "personnel": {"count": 120569, "change": 1180},
-        "aircraft": {"count": 434}
-      },
-      "source": "GSUAs"
-    }"""
+    // Load the actual GSUA-1.json file from test resources
+    val aiResponseJson = readResourceAsString("GSUA-1.json")
 
     val post = NewsPost(
       id = "test-post-1",
@@ -198,7 +191,7 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
       categories = List.empty,
       images = List.empty,
       feedMetadata = Map.empty,
-      result = Map("result" -> aiResponseJson)  // AI response in "result" field
+      result = Map("result" -> aiResponseJson)  // Full GSUA-1.json content in "result" field
     )
 
     // Create a minimal SentryRun for testing
@@ -248,12 +241,54 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
     event.metadata should contain ("author" -> "General Staff")
     event.metadata should contain ("latency" -> "1000")
 
-    // Verify flattened AI response fields are present
+    // Verify ALL flattened AI response fields from GSUA-1.json are present
     event.metadata should contain ("date_range" -> "24.02.22 — 29.12.2025")
+    event.metadata should contain ("source" -> "GSUAs")
+
+    // Personnel
     event.metadata should contain ("losses.personnel.count" -> "120569")
     event.metadata should contain ("losses.personnel.change" -> "1180")
+
+    // Aircraft
     event.metadata should contain ("losses.aircraft.count" -> "434")
-    event.metadata should contain ("source" -> "GSUAs")
+
+    // Helicopters
+    event.metadata should contain ("losses.helicopters.count" -> "347")
+
+    // UAVs
+    event.metadata should contain ("losses.operational_tactical_UAVs.count" -> "96532")
+    event.metadata should contain ("losses.operational_tactical_UAVs.change" -> "305")
+
+    // Cruise missiles
+    event.metadata should contain ("losses.cruise_missiles.count" -> "4136")
+
+    // Armored vehicles
+    event.metadata should contain ("losses.armored_combat_vehicles.count" -> "23877")
+    event.metadata should contain ("losses.armored_combat_vehicles.change" -> "6")
+
+    // Artillery
+    event.metadata should contain ("losses.artillery_systems.count" -> "35570")
+    event.metadata should contain ("losses.artillery_systems.change" -> "13")
+
+    // MLRS
+    event.metadata should contain ("losses.MLRS.count" -> "1581")
+
+    // Air defense
+    event.metadata should contain ("losses.air_defense_systems.count" -> "1264")
+
+    // Ships/boats
+    event.metadata should contain ("losses.ships_boats.count" -> "28")
+
+    // Submarines
+    event.metadata should contain ("losses.submarines.count" -> "2")
+
+    // Automotive
+    event.metadata should contain ("losses.automotive_and_fuel_tanks.count" -> "71891")
+    event.metadata should contain ("losses.automotive_and_fuel_tanks.change" -> "113")
+
+    // Special equipment
+    event.metadata should contain ("losses.special_equipment.count" -> "4030")
+    event.metadata should contain ("losses.special_equipment.change" -> "1")
 
     // Verify we have the flattened fields, not the raw AI response
     event.metadata should not contain key("ai_raw")
