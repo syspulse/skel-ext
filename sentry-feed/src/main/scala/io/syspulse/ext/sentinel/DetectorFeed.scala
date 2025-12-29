@@ -187,11 +187,11 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     // Load scripts and error tracking configuration using ScriptEngine
     ScriptEngine.loadConfig(rx, conf, DetectorFeed.DEF_TRACK_ERR, DetectorFeed.DEF_TRACK_ERR_ALWAYS)
 
-    // Set threshold for score-based filtering
+    // Set threshold for score-based filtering (optional)
     val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorFeed.DEF_THRESHOLD)
     val threshold = new ThresholdDouble(0.0, thresholdCondition)
     rx.set("threshold", threshold)
-    
+
     // Load categories filter configuration
     val categories = DetectorConfig.getString(conf, "categories")
       .orElse(DetectorFeed.DEF_CATEGORY)
@@ -288,12 +288,12 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     if (! scriptsOpt.isDefined) return posts
 
     val scripts = scriptsOpt.get
-    val threshold = rx.get("threshold").get.asInstanceOf[ThresholdDouble]
+    val thresholdOpt = rx.get("threshold").asInstanceOf[Option[ThresholdDouble]]
 
     posts.flatMap { post =>
-      val searchText = s"${post.title} ${post.summary}"      
+      val searchText = s"${post.title} ${post.summary}"
       // Pass author and images to script
-      val args = Map( 
+      val args = Map(
         "author" -> post.author,
         "images" -> post.images.mkString(",")
       )
@@ -301,13 +301,14 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
       val r = scripts.run("", searchText, args)
 
       r match {
-        case Success(result) if(! threshold.getCondition.isBlank) =>
+        case Success(result) if(thresholdOpt.isDefined && !thresholdOpt.get.getCondition.isBlank) =>
+          val threshold = thresholdOpt.get
 
           // Try to parse result as Double
           Try(result.toDouble) match {
             case Success(score) =>
               // Check if score meets threshold condition
-              if(threshold.set(score)) 
+              if(threshold.set(score))
                 Some(post.copy(result = Map("score" -> score.toString)))
               else
                 None
@@ -318,11 +319,11 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
               None
           }
 
-        // emptry condition means with result -> return Post with extended infor
+        // no threshold or empty condition means with result -> return Post with extended info
         case Success(result) if(! result.isBlank) =>
-          Some(post.copy(result = Map("result" ->result)))          
+          Some(post.copy(result = Map("result" ->result)))
 
-        // empty retuls and not condition
+        // empty results and no condition
         case Success(result) =>
           None
 
