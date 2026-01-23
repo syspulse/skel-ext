@@ -355,9 +355,7 @@ lazy val root = (project in file("."))
 // Sentry Demo is a Bundle for all detectors
 lazy val sentry_demo = (project in file("sentry-demo"))
   .dependsOn(
-    sentry_gov,
-    sentry_por,
-    sentry_bubbles,
+    sentry_gov,    
     sentry_feed,
     sentry_workflow,
     sentry_audit,
@@ -372,6 +370,24 @@ lazy val sentry_demo = (project in file("sentry-demo"))
     dockerBuildxSettings,
 
     appDockerConfig("sentry-demo","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),    
+  )
+
+// Sentry Demo is a Bundle for all detectors
+lazy val sentry_demo_evm = (project in file("sentry-demo-evm"))
+  .dependsOn(
+    sentry_por,
+    sentry_bubbles    
+  )
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(DockerPlugin)
+  .enablePlugins(AshScriptPlugin)
+  .settings (
+    sharedConfig,
+    sharedConfigAssembly,
+    sharedConfigDocker,
+    dockerBuildxSettings,
+
+    appDockerConfig("sentry-demo-evm","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),    
   )
 
 lazy val sentry_gov = (project in file("sentry-gov"))

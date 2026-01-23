@@ -47,6 +47,23 @@ class TwitterFeed(source: String, max:Option[Long] = None, timeout0:Option[Long]
     newTweets.map(twitToNewsPost)
   }
 
+  private def extractFirstSentence(text: String,limit:Int = 80): String = {
+    // Find the first sentence ending with "." or newline
+    val sentenceEnd = text.indexWhere(c => c == '.' || c == '\n')
+    val firstSentence = if (sentenceEnd >= 0) {
+      text.substring(0, sentenceEnd + 1).trim
+    } else {
+      text.trim
+    }
+    
+    // Limit to limit characters
+    if (firstSentence.length > limit) {
+      firstSentence.take(limit)
+    } else {
+      firstSentence
+    }
+  }
+
   private def twitToNewsPost(twit: Twit): NewsPost = {
     // Extract categories from media presence
     val categories = if (twit.media.nonEmpty) List("media") else List.empty
@@ -59,11 +76,11 @@ class TwitterFeed(source: String, max:Option[Long] = None, timeout0:Option[Long]
 
     NewsPost(
       id = twit.id,
-      title = s"@${twit.author_name}: ${twit.text.take(100)}${if (twit.text.length > 100) "..." else ""}",
+      title = extractFirstSentence(twit.text),
       link = s"https://x.com/${twit.author_name}/status/${twit.id}",
       author = s"@${twit.author_name}",
       publishedDate = twit.created_at,
-      summary = twit.text.take(1000),
+      summary = twit.text,
       source = source,
       typ = "twitter",
       categories = categories,
