@@ -22,8 +22,8 @@ import io.syspulse.skel.script.{Script, ScriptFlow, ScriptRegexp, ScriptFilter, 
 object DetectorWar {
   // Hardcoded configuration
   val TWITTER_ACCOUNT = "twitter://GeneralStaffUA"
-  val MAX_POSTS = 15
-  val MAX_SEEN_POSTS = 100
+  val DEF_MAX_POSTS = 15
+  val DEF_MAX_SEEN_POSTS = 100
   val CRON_INTERVAL = "150000" // 150 seconds
 
   val DEF_DESC = "War Report: {title}"
@@ -76,20 +76,21 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
   }
 
   override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
-    // Hardcoded configuration
-    val max = DetectorWar.MAX_POSTS
-    val maxSeenPosts = DetectorWar.MAX_SEEN_POSTS
-    rx.set("max", max)
+    val max = DetectorConfig.getInt(conf, "max", DetectorWar.DEF_MAX_POSTS)
+    val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorWar.DEF_MAX_SEEN_POSTS)
+    rx.set("max",max)
     rx.set("max_seen_posts", maxSeenPosts)
+    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorFeed.DEF_DESC))
+    
+    // Error tracking - always enabled
+    rx.set("track_err", true)
+    rx.set("err_always", true)
 
     // Create hardcoded Twitter feed
     val feed = new TwitterFeed(DetectorWar.TWITTER_ACCOUNT, Some(max))
     rx.set("feeds", Seq(feed))
 
     log.info(s"${rx.getExtId()}: Configured feed: ${feed}")
-
-    // Configuration
-    rx.set("desc", DetectorWar.DEF_DESC)
 
     // Create hardcoded script flow from direct Script instantiation
     try {
@@ -113,10 +114,6 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
         return SentryRun.SENTRY_STOPPED
     }
 
-    // Error tracking - always enabled
-    rx.set("track_err", true)
-    rx.set("err_always", true)
-
     SentryRun.SENTRY_RUNNING
   }
 
@@ -134,7 +131,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
       "summary" -> post.summary,
       "src" -> post.source,
       "latency" -> latency.toString,
-      "desc" -> desc.replace("{title}", post.title),
+      "desc" -> desc,
       "tx_hash" -> post.id
     ) ++ post.feedMetadata
 

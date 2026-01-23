@@ -159,7 +159,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorFeed.DEF_MAX_SEEN_POSTS)
     rx.set("max",max)
     rx.set("max_seen_posts", maxSeenPosts)
-    
+    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorFeed.DEF_DESC))    
 
     // Get feed type configuration
     val feedType = DetectorConfig.getString(conf, "type", DetectorFeed.DEF_TYPE).toLowerCase
@@ -180,9 +180,6 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
 
     log.info(s"${rx.getExtId()}: Configured feeds: ${feeds.size} (${feeds})")
     rx.set("feeds", feeds)
-
-    // Configuration
-    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorFeed.DEF_DESC))
 
     // Load scripts and error tracking configuration using ScriptEngine
     ScriptEngine.loadConfig(rx, conf, DetectorFeed.DEF_TRACK_ERR, DetectorFeed.DEF_TRACK_ERR_ALWAYS)
