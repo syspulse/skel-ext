@@ -23,6 +23,9 @@ test / fork := true
 run / fork := true
 run / connectInput := true
 
+// inject envs into tests
+Test / envVars := sys.env.toMap
+
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
 enablePlugins(AshScriptPlugin)
@@ -130,7 +133,8 @@ val sharedConfig = Seq(
       "typesafe repo"      at "https://repo.typesafe.com/typesafe/releases/",
       "confluent repo"     at "https://packages.confluent.io/maven/",
       "consensys repo"     at "https://artifacts.consensys.net/public/maven/maven/",
-      "consensys teku"     at "https://artifacts.consensys.net/public/teku/maven/"
+      "consensys teku"     at "https://artifacts.consensys.net/public/teku/maven/",
+      "mchv"               at "https://mvn.mchv.eu/repository/mchv/"
     ),
 
     // needed to fix error with quill-jasync
