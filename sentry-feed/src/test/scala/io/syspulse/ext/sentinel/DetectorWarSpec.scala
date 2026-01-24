@@ -167,9 +167,9 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
 
   it should "have hardcoded configuration constants" in {
     DetectorWar.TWITTER_ACCOUNT shouldBe "twitter://GeneralStaffUA"
-    DetectorWar.MAX_POSTS shouldBe 15
-    DetectorWar.MAX_SEEN_POSTS shouldBe 100
-    DetectorWar.DEF_DESC shouldBe "War Report: {title}"
+    DetectorWar.DEF_MAX_POSTS shouldBe 15
+    DetectorWar.DEF_MAX_SEEN_POSTS shouldBe 100
+    DetectorWar.DEF_DESC shouldBe "Losses Report: {loss_personnel_total}, {loss_aircraft_total}, {loss_UAV_total}, {loss_APC_total}, {loss_MLRS_total}, {loss_SAM_total}, {loss_ship_total}, {loss_submarine_total}, {loss_automotive_fuel_truck_total}, {loss_tank_total}, {loss_special_equipment_total}, {loss_cruise_missile_total}, {loss_artillery_total}, {loss_personnel_total}"
   }
 
   "DetectorWar.createPostAlert" should "extract AI response from 'result' field with full GSUA-1.json content" in {

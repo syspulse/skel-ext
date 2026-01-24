@@ -26,10 +26,37 @@ object DetectorWar {
   val DEF_MAX_SEEN_POSTS = 100
   val CRON_INTERVAL = "150000" // 150 seconds
 
-  val DEF_DESC = "War Report: {title}"
+  val DEF_DESC = "Losses Report: {loss_personnel_total}, {loss_aircraft_total}, {loss_UAV_total}, {loss_APC_total}, {loss_MLRS_total}, {loss_SAM_total}, {loss_ship_total}, {loss_submarine_total}, {loss_automotive_fuel_truck_total}, {loss_tank_total}, {loss_special_equipment_total}, {loss_cruise_missile_total}, {loss_artillery_total}, {loss_personnel_total}"
   val DEF_SEV_REPORT = Severity.INFO
   val DEF_SEV_ERR = Severity.ERROR
   val DEF_EID_HASH = true
+
+  val DEF_SCRIPT_REGEXP = ".*Загальні бойові втрати противника.*"
+  val DEF_SCRIPT_FILTER = ""
+  val DEF_SCRIPT_JS = "'image://' + images.split(',')[0]"
+  val DEF_SCRIPT_AI = """Extract text from provided image {input} and return result as json.
+  Json attribute rules:
+  1. Always use `loss_` prefix. use `_total` suffix for total and `_change` suffix for losses changes.   
+  2. Always use the consistent names in attributes: 
+    - helicopter, 
+    - aircraft,
+    - UAV,
+    - APC, 
+    - MLRS,
+    - SAM,
+    - ship,
+    - submarine,
+    - automotive_fuel_truck,
+    - tank,
+    - special_equipment,
+    - personnel,
+    - cruise_missile,    
+    - artillery,    
+    - personnel
+  3. Do NOT use random CAPITAL letters in attributes mentioned in rule 2 (e.g. no "ARTILLERY", use "artillery")
+
+  output://json_object"""
+  val DEF_AI_URI = "openai://?timeout=60000"
 
   /**
    * Flatten nested JSON structure into flat key-value pairs
@@ -80,7 +107,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorWar.DEF_MAX_SEEN_POSTS)
     rx.set("max",max)
     rx.set("max_seen_posts", maxSeenPosts)
-    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorFeed.DEF_DESC))
+    rx.set("desc", DetectorConfig.getString(conf, "desc", DetectorWar.DEF_DESC))
     
     // Error tracking - always enabled
     rx.set("track_err", true)
@@ -90,17 +117,23 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     val feed = new TwitterFeed(DetectorWar.TWITTER_ACCOUNT, Some(max))
     rx.set("feeds", Seq(feed))
 
+    val customRegexp = DetectorConfig.getString(conf, "custom_regexp").filter(!_.isBlank).getOrElse(DetectorWar.DEF_SCRIPT_REGEXP)
+    val customFilter = DetectorConfig.getString(conf, "custom_filter").filter(!_.isBlank).getOrElse("")
+    val customJs = DetectorConfig.getString(conf, "custom_js").filter(!_.isBlank).getOrElse(DetectorWar.DEF_SCRIPT_JS)
+    val customAi = DetectorConfig.getString(conf, "custom_ai").filter(!_.isBlank).getOrElse(DetectorWar.DEF_SCRIPT_AI)
+    val aiUri = DetectorConfig.getString(conf, "ai_uri").filter(!_.isBlank).getOrElse(DetectorWar.DEF_AI_URI)
+    
     log.info(s"${rx.getExtId()}: Configured feed: ${feed}")
 
     // Create hardcoded script flow from direct Script instantiation
     try {
       val scripts: Seq[Script] = Seq(
-        new ScriptRegexp(Some(".*Загальні бойові втрати противника.*")),
-        new ScriptFilter(Some("")),
-        new ScriptJS(Some("'image://' + images.split(',')[0]")),
+        new ScriptRegexp(Some(customRegexp)),
+        new ScriptFilter(Some(customFilter)),
+        new ScriptJS(Some(customJs)),
         new ScriptAI(
-          prompt0 = Some("Extract text from provided image {input} and return result as json. output://json_object"),
-          uri0 = Some("openai://?timeout=60000")
+          prompt0 = Some(customAi),
+          uri0 = Some(aiUri)
         )
       )
 

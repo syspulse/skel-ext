@@ -1,0 +1,89 @@
+{
+  "author": "Sys",
+  "createdAt": 1765725481270,
+  "description": "Detector monitors War telemetry",
+  "faq": [{
+    "name": "How does it work",
+    "value": "Nobody knows"
+  }],
+  "icon": "https://yt3.googleusercontent.com/JNyFHz4KXQh7vCnaSs5qHjohkhzyKGmZbIaWAFx-o1I9OV2n9XjYqb9xSlXj_oJhMn8TZaJcGQ=s160-c-k-c0x00ffffff-no-rj",
+  "id": 570,
+  "name": "DetectorWar",
+  "networkTags": [],
+  "schema": {
+    "properties": {
+      "cron": {
+        "default": "10 min",
+        "description": "Cron Interval",
+        "title": "Cron",
+        "type": "string"
+      },
+      "desc": {
+        "default": "Report: {title}{err}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },
+      "custom_regexp": {
+        "default": "",
+        "description": "Custom Regular Expression",
+        "title": "Custom Regular Expression",
+        "type": "string"
+      },
+      "custom_filter": {
+        "default": "",
+        "description": "Custom Filter",
+        "title": "Custom Filter",
+        "type": "string"
+      },
+      "custom_js": {
+        "default": "",
+        "description": "Custom JavaScript",
+        "title": "Custom JavaScript",
+        "type": "string"
+      },
+      "custom_ai": {
+        "default": "",
+        "description": "Custom AI",
+        "title": "Custom AI",
+        "type": "string"
+      },
+      "ai_uri": {
+        "default": "",
+        "description": "Custom AI URI",
+        "title": "Custom AI URI",
+        "type": "string"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always Alert on Error",
+        "title": "Track Error (always)",
+        "type": "boolean"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors as Alerts",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      }
+      
+    },
+    "required": ["cron"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL"],
+  "title": "War",
+  "uiSchema": {
+    "ui:order": ["cron", "desc", "custom_regexp", "custom_filter", "custom_js", "custom_ai", "ai_uri", "track_err", "err_always", "severity"]
+  },
+  "updatedAt": 1765725481270,
+  "version": "0.0.2"
+}

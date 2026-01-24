@@ -27,7 +27,7 @@ object DetectorFeed {
   val DEF_DESC = "Post: {title}{err}"
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
-  val DEF_THRESHOLD = ">= 0.5"  // Default threshold for score-based filtering
+  val DEF_SCORE = ""  // Default threshold for score-based filtering
   val DEF_CATEGORY = None  // Empty = all categories
 
   val DEF_TRACK_ERR = true
@@ -185,9 +185,9 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     ScriptEngine.loadConfig(rx, conf, DetectorFeed.DEF_TRACK_ERR, DetectorFeed.DEF_TRACK_ERR_ALWAYS)
 
     // Set threshold for score-based filtering (optional)
-    val thresholdCondition = DetectorConfig.getString(conf, "threshold", DetectorFeed.DEF_THRESHOLD)
-    val threshold = new ThresholdDouble(0.0, thresholdCondition)
-    rx.set("threshold", threshold)
+    val scoreCondition = DetectorConfig.getString(conf, "score", DetectorFeed.DEF_SCORE)
+    val score = new ThresholdDouble(0.0, scoreCondition)
+    rx.set("score", score)
 
     // Load categories filter configuration
     val categories = DetectorConfig.getString(conf, "categories")
@@ -285,7 +285,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     if (! scriptsOpt.isDefined) return posts
 
     val scripts = scriptsOpt.get
-    val thresholdOpt = rx.get("threshold").asInstanceOf[Option[ThresholdDouble]]
+    val scoreOpt = rx.get("score").asInstanceOf[Option[ThresholdDouble]]
 
     posts.flatMap { post =>
       val searchText = s"${post.title} ${post.summary}"
@@ -298,14 +298,14 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
       val r = scripts.run("", searchText, args)
 
       r match {
-        case Success(result) if(thresholdOpt.isDefined && !thresholdOpt.get.getCondition.isBlank) =>
-          val threshold = thresholdOpt.get
+        case Success(result) if(scoreOpt.isDefined && !scoreOpt.get.getCondition.isBlank) =>
+          val condition = scoreOpt.get
 
           // Try to parse result as Double
           Try(result.toDouble) match {
             case Success(score) =>
               // Check if score meets threshold condition
-              if(threshold.set(score))
+              if(condition.set(score))
                 Some(post.copy(result = Map("score" -> score.toString)))
               else
                 None
