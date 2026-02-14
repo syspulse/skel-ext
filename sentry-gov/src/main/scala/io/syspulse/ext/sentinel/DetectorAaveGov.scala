@@ -318,11 +318,11 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
 
                 case DetectorAaveGov.STATE_EXECUTED =>
                   if (!quorumMet) {
-                    (Severity.HIGH, "quorum NOT reached")
+                    (Severity.HIGH, "Quorum NOT reached")
                   } else if (votesAgainst > votesFor) {
-                    (Severity.HIGH, "NAY > YAE")
+                    (Severity.HIGH, "No > Yes")
                   } else {
-                    (Severity.INFO, "EXECUTED")
+                    (Severity.MEDIUM, "EXECUTED")
                   }
 
                 case DetectorAaveGov.STATE_ACTIVE =>

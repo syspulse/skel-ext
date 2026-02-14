@@ -4,7 +4,7 @@
   "description": "Detector monitors War telemetry",
   "faq": [{
     "name": "How does it work",
-    "value": "Nobody knows"
+    "value": ""
   }],
   "icon": "https://yt3.googleusercontent.com/JNyFHz4KXQh7vCnaSs5qHjohkhzyKGmZbIaWAFx-o1I9OV2n9XjYqb9xSlXj_oJhMn8TZaJcGQ=s160-c-k-c0x00ffffff-no-rj",
   "id": 570,
@@ -79,7 +79,7 @@
     "type": "object"
   },
   "status": "ACTIVE",
-  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL"],
+  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL","web2"],
   "title": "War",
   "uiSchema": {
     "ui:order": ["cron", "desc", "custom_regexp", "custom_filter", "custom_js", "custom_ai", "ai_uri", "track_err", "err_always", "severity"]

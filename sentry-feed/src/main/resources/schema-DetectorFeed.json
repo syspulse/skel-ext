@@ -1,0 +1,172 @@
+{
+  "author": "Hacken",
+  "createdAt": 1765725481270,
+  "description": "Detector monitors and procesess feeds via scripts pipeline",
+  "faq": [
+    {
+      "name": "How does it work",
+      "value": "Detects new messages/events from a feed and uses message data as input to scripts pipeline.\n\nScript results are used to generate alerts. Result can be treated as a score with a final `condition`."
+    }, 
+    {
+      "name": "Cron",
+      "value": "Cron interval to check for new messages/events. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+    },    
+    {
+      "name": "Feeds",
+      "value": "Feeds URI\n\nMulitple URI's can be specified with comma separation. If `type` is not specified, feed can be prefixed with type (`rss://`. `reddit://`, `twitter://@channel`)\n"
+    }, 
+    {
+      "name": "Max",
+      "value": "Max number of entries per Feed to process"
+    },
+    {
+      "name": "Category",
+      "value": "Message Category filter (comma separated list of categories). If not specified, all messages will be processed."
+    },
+    {
+      "name": "Scripts",
+      "value": "Scripts to execute\n\nScripts are executed in the order they are specified. Refer to [Scripts](https://docs.extractor.live/common-configurations#condition-threshold) for more details.\n\nScripts execution result will be in `result` meta field.\n"
+    },    
+    {
+      "name": "Score",
+      "value": "Condition to filter Alerts score on `result` (result must be in the range: [0..1]). Refer to [Condition](https://docs.extractor.live/common-configurations#condition) for more details"
+    },
+    {
+      "name": "Desc",
+      "value": "Description template for the Alert description. Can use any meta field as placeholder (e.g. `{result}`)"
+    },
+    {
+      "name": "Track Error",
+      "value": "Track Errors\n\nMuliple tags can be specified comma-separated (e.g. `sanctions, exploit`)\n\nNegative condition can be specified by prefixing tag with exclamation mark (e.g. `! sanctions`)\n\n__Tags__:\n\n`cybercrime` - OFAC or othe cybercrime activity\n\n`sanctions` - OFAC or other sanctioned entites\n\n`sanctions_exposure` - Indirect exposure to sanctioned entities\n\n`suspicious` - Suspcious activity\n\n`exploit` - Activity in Exploit case\n"
+    },
+    {
+      "name": "Track Error Always",
+      "value": "Track Errors Always\n\nIf enabled, the detector will track errors even if the script result is not a score."
+    },
+    {
+      "name": "Severity",
+      "value": "Severity of the Alert. If not specified, the detector will use the severity of the script result."
+    }    
+  ],
+  "icon": "https://cdn-icons-png.flaticon.com/512/4110/4110201.png",
+  "id": 446,
+  "name": "DetectorFeed",
+  "networkTags": [],
+  "schema": {
+    "$defs": {
+      "Script": {
+        "properties": {
+          "type": {
+            "description": "Script Type",
+            "title": "Type",
+            "type": "string",
+            "enum": ["regexp","filter","sq","jq","js", "ai","regexp_score","sq_score","jq_score"],
+            "default": "js"
+          },
+          "src": {
+            "description": "Script Source",
+            "title": "Source",
+            "default": "",
+            "type": "string"
+          },
+          "options": {
+            "description": "Script Options",
+            "title": "Options",
+            "default": "",
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "title": "Script",
+        "type": "object"
+      }
+    },
+
+    "properties": {
+      "script": {
+        "default": [],
+        "description": "Scripts to execute",
+        "items": {
+          "$ref": "#/$defs/Script"
+        },
+        "title": "Scripts",
+        "type": "array"
+      },
+      "cron": {
+        "default": "10 min",
+        "description": "Cron Interval",
+        "title": "Cron",
+        "type": "string"
+      },
+      "category": {
+        "default": "",
+        "description": "Category filter",
+        "title": "Category",
+        "type": "string"
+      },
+      "desc": {
+        "default": "News post: {title}{err}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },      
+      "feeds": {
+        "default": "rss://https://cointelegraph.com/rss",
+        "description": "Feeds URI",
+        "title": "Feeds",
+        "type": "string"
+      },      
+      "max": {
+        "default": 10,
+        "description": "Max news",
+        "title": "Max",
+        "type": "number"
+      },
+      "score": {
+        "default": "",
+        "description": "Score ",
+        "title": "Score condition",
+        "type": "string"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors as Alerts",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always Alert on Error",
+        "title": "Track Error (always)",
+        "type": "boolean"
+      }     
+    },
+    "required": ["feeds", "cron"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL","web2"],
+  "title": "Feed",
+  "uiSchema": {    
+    "script": {
+        "items": {
+            "src": {
+                "ui:options": {
+                    "rows": 5,
+                    "widget": "textarea"
+                }
+            }            
+        }
+    },
+    "ui:order": ["cron", "feeds", "max", "category", "script", "score", "track_err", "err_always","desc", "severity"]
+  },
+  "updatedAt": 1765725481270,
+  "version": "0.0.3"
+}

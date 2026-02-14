@@ -27,9 +27,9 @@ object DetectorSnapshotGov {
   val DEF_DESC = "{state}: {title}"
   val DEF_MIN_VP_FOR_ALERT = 1000.0
 
-  val STATE_PENDING = "pending"
-  val STATE_ACTIVE = "active"
-  val STATE_CLOSED = "closed"
+  val STATE_PENDING = "Pending"
+  val STATE_ACTIVE = "Active"
+  val STATE_CLOSED = "Closed"
 
   def calculateVoteDistribution(proposal: SnapshotProposal): Map[String, Double] = {
     val scores = proposal.scores.getOrElse(Seq.empty)
@@ -180,19 +180,19 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
               val (severity, alertReason) = state match {
                 case DetectorSnapshotGov.STATE_CLOSED =>
                   if (!quorumMet) {
-                    (Severity.HIGH, "CLOSED - quorum NOT reached")
+                    (Severity.HIGH, s"${state} - Quorum NOT reached")
                   } else {
-                    (Severity.INFO, "CLOSED")
+                    (Severity.MEDIUM, s"${state}")
                   }
 
                 case DetectorSnapshotGov.STATE_ACTIVE =>
-                  (Severity.INFO, "ACTIVE - voting in progress")
+                  (Severity.INFO, s"${state} - Voting in progress")
 
                 case DetectorSnapshotGov.STATE_PENDING =>
-                  (Severity.LOW, "PENDING - not started")
+                  (Severity.LOW, s"${state} - Not started")
 
                 case _ =>
-                  (Severity.INFO, s"Proposal in State: $state")
+                  (Severity.INFO, s"$state")
               }
 
               // Generate deterministic event ID based on state
