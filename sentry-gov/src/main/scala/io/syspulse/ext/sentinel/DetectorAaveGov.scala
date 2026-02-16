@@ -16,8 +16,11 @@ import io.hacken.ext.core.Event
 
 import requests._
 import ujson._
+import io.syspulse.skel.util.Util
 
 object DetectorAaveGov {
+  val log = Logger(getClass.getName)
+
   //val GOVERNANCE_SUBGRAPH = "A7QMszgomC9cnnfpAcqZVLr2DffvkGNfimD8iUSMiurK"
 
   val VOTING_SUBGRAPHS = Map(
@@ -50,8 +53,9 @@ object DetectorAaveGov {
     }
   }
 
-  def graphqlQuery(endpoint: String, query: String): Try[ujson.Value] = Try {
+  def graphqlQuery(subgraph: String, endpoint: String, query: String): Try[ujson.Value] = Try {
     val payload = ujson.Obj("query" -> query)
+    log.info(s"${subgraph}: '$payload' -> ${endpoint}")
     val response = post(
       endpoint,
       data = ujson.write(payload),
@@ -59,7 +63,13 @@ object DetectorAaveGov {
       readTimeout = 10000,
       connectTimeout = 10000
     )
-    ujson.read(response.text())
+    if(response.statusCode != 200) {
+      throw new Exception(s"${subgraph}: Failed to fetch proposals: ${response.statusCode} ${response.text()}")
+    }
+
+    val body = response.text()
+    log.debug(s"${subgraph}: ${response.statusCode}: '$body'")
+    ujson.read(body)
   }
 
   def fetchRecentProposals(subgraph: String, apiKey: String, count: Int = 5): Try[Seq[ujson.Value]] = {
@@ -89,9 +99,9 @@ object DetectorAaveGov {
     }
     """
 
-    graphqlQuery(endpoint, query).map { result =>
+    graphqlQuery(subgraph, endpoint, query).map { result => {      
       result("data")("proposals").arr.toSeq
-    }
+    }}
   }
 
   def fetchSpecificProposals(subgraph: String, apiKey: String, proposalIds: Seq[String]): Try[Seq[ujson.Value]] = {
@@ -123,11 +133,15 @@ object DetectorAaveGov {
       }
       """
 
-      graphqlQuery(endpoint, query) match {
+      val result = graphqlQuery(subgraph, endpoint, query) 
+      log.debug(s"${subgraph} (${Util.trunc(apiKey, 10)}): '$result'")
+      result match {
         case Success(result) =>
           val proposal = result("data")("proposal")
           if (!proposal.isNull) Some(proposal) else None
-        case Failure(_) => None
+        case Failure(e) => 
+          log.error(s"${subgraph}: Failed to fetch proposal",e)
+          None
       }
     }
 
@@ -152,7 +166,7 @@ object DetectorAaveGov {
     """
 
     try {
-      val result = graphqlQuery(endpoint, query)
+      val result = graphqlQuery(subgraphId, endpoint, query)
       result match {
         case Success(data) =>
           data("data")("voteEmitteds").arr.map { v =>
@@ -163,10 +177,14 @@ object DetectorAaveGov {
               "chain" -> chain
             )
           }.toSeq
-        case Failure(_) => Seq.empty
+        case Failure(e) => 
+          log.error(s"${subgraphId}: Failed to fetch proposal",e)
+          Seq.empty
       }
     } catch {
-      case _: Exception => Seq.empty
+      case e: Exception => 
+        log.error(s"${subgraphId}: Failed to fetch proposal",e)
+        Seq.empty
     }
   }
 }
@@ -197,7 +215,7 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
   override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
     // Store API key from config
     val defApiKey = rx.getConfiguration()(c => c.getString("thegraph.api.key")).getOrElse("")
-    val apiKey = DetectorConfig.getString(rx.conf, "api_key", defApiKey)
+    val apiKey = DetectorConfig.getString(rx.conf, "api_key").filter(!_.isBlank).getOrElse(defApiKey)
     rx.set("api_key", apiKey)
 
     val subgraph = rx.getConfiguration()(c => c.getString("thegraph.subgraph")).getOrElse("")

@@ -20,7 +20,7 @@ import ujson._
 object DetectorSnapshotGov {
   val DEF_PROPOSAL_COUNT = 5
   val DEF_PROPOSAL_IDS = ""
-  val DEF_SPACE = "aavedao.eth"
+  val DEF_SPACE = "" //"aavedao.eth"
   val DEF_TRACK_ACTIVE = true
   val DEF_TRACK_CLOSED = true
   val DEF_TRACK_PENDING = false
