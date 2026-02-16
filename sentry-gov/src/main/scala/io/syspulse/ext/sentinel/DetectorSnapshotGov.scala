@@ -5,6 +5,8 @@ import scala.concurrent.duration.{Duration,FiniteDuration}
 import com.typesafe.scalalogging.Logger
 import scala.util.{Try,Success,Failure}
 
+import java.time.Instant
+
 import io.syspulse.skel.plugin.{Plugin,PluginDescriptor}
 
 import io.hacken.ext.core.Severity
@@ -16,6 +18,8 @@ import io.hacken.ext.core.Event
 
 import requests._
 import ujson._
+import io.syspulse.skel.util.TimeUtil
+import io.syspulse.skel.util.Util
 
 object DetectorSnapshotGov {
   val DEF_PROPOSAL_COUNT = 5
@@ -27,9 +31,10 @@ object DetectorSnapshotGov {
   val DEF_DESC = "{state}: {title}"
   val DEF_MIN_VP_FOR_ALERT = 1000.0
 
-  val STATE_PENDING = "Pending"
-  val STATE_ACTIVE = "Active"
-  val STATE_CLOSED = "Closed"
+  val STATE_PENDING = "pending"
+  val STATE_ACTIVE = "active"
+  val STATE_CLOSED = "closed"
+  
 
   def calculateVoteDistribution(proposal: SnapshotProposal): Map[String, Double] = {
     val scores = proposal.scores.getOrElse(Seq.empty)
@@ -47,6 +52,8 @@ object DetectorSnapshotGov {
     if (distribution.isEmpty) None
     else Some(distribution.maxBy(_._2))
   }
+
+  def epochSecondToUtcIso(epochSec: Long): String = Instant.ofEpochSecond(epochSec).toString
 }
 
 class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
@@ -154,15 +161,17 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
             val state = proposal.state
 
             // Determine if we should process this proposal based on state and config
-            val shouldProcess = state match {
+            val shouldProcess = state.toLowerCase match {
               case DetectorSnapshotGov.STATE_ACTIVE => trackActive
               case DetectorSnapshotGov.STATE_CLOSED => trackClosed
               case DetectorSnapshotGov.STATE_PENDING => trackPending
               case _ => false
             }
 
+            log.info(s"${rx.getExtId()}: Proposal ${proposal.id} (state=$state, tracking=$shouldProcess)")
+
             if (!shouldProcess) {
-              log.debug(s"${rx.getExtId()}: Skipping proposal ${proposal.id} (state=$state, tracking disabled)")
+              log.debug(s"${rx.getExtId()}: Proposal ${proposal.id}: SKIP (state=$state, tracking disabled)")
               None
             } else {
               val distribution = DetectorSnapshotGov.calculateVoteDistribution(proposal)
@@ -180,23 +189,23 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
               val (severity, alertReason) = state match {
                 case DetectorSnapshotGov.STATE_CLOSED =>
                   if (!quorumMet) {
-                    (Severity.HIGH, s"${state} - Quorum NOT reached")
+                    (Severity.HIGH, "Quorum NOT reached")
                   } else {
-                    (Severity.MEDIUM, s"${state}")
+                    (Severity.MEDIUM, "Quorum reached")
                   }
 
                 case DetectorSnapshotGov.STATE_ACTIVE =>
-                  (Severity.INFO, s"${state} - Voting in progress")
+                  (Severity.INFO, "Voting in progress")
 
                 case DetectorSnapshotGov.STATE_PENDING =>
-                  (Severity.LOW, s"${state} - Not started")
+                  (Severity.LOW, "Not started")
 
                 case _ =>
-                  (Severity.INFO, s"$state")
+                  (Severity.INFO, "$state")
               }
 
               // Generate deterministic event ID based on state
-              val eid = state match {
+              val eid0 = state match {
                 case DetectorSnapshotGov.STATE_CLOSED =>
                   // Deterministic: did + proposalId + extId only (final state)
                   s"${did}-${proposal.id}-${rx.getExtId()}"
@@ -209,6 +218,8 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
                   // Other states: did + proposalId + extId + state
                   s"${did}-${proposal.id}-${rx.getExtId()}-${state}"
               }
+
+              val eid = Util.sha256(eid0)
 
               log.info(s"${rx.getExtId()}: Proposal ${proposal.id} [$state]: ${proposal.title} - Winning: $winningName (${winningPercent.toInt}%) - Total VP: ${totalVotes.toLong} - Votes: $voteCount - Severity: $severity - $alertReason")
 
@@ -225,28 +236,30 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
                 conf = Some(rx.getConf()),
                 meta = Map(
                   "desc" -> desc,
-                  "proposal_id" -> proposal.id,
+                  "id" -> proposal.id,
                   "title" -> proposal.title,
                   "author" -> proposal.author,
-                  "state" -> state,
+                  "state" -> (state.take(1).toUpperCase + state.drop(1)),
                   "space" -> proposal.space.id,
                   "space_name" -> proposal.space.name,
-                  "start" -> proposal.start.toString,
-                  "end" -> proposal.end.toString,
+                  "start" -> DetectorSnapshotGov.epochSecondToUtcIso(proposal.start),
+                  "end" -> DetectorSnapshotGov.epochSecondToUtcIso(proposal.end),
                   "snapshot" -> proposal.snapshot,
                   "winning_choice" -> winningName,
-                  "winning_score" -> f"$winningScore%.2f",
+                  "winning_score" -> winningScore.toString,
                   "winning_percentage" -> f"$winningPercent%.2f",
-                  "total_votes" -> f"$totalVotes%.2f",
+                  "total_votes" -> totalVotes.toString,
                   "vote_count" -> voteCount.toString,
-                  "quorum" -> f"$quorum%.2f",
+                  "quorum" -> quorum.toString,
                   "quorum_met" -> quorumMet.toString,
                   "choices_count" -> proposal.choices.length.toString,
                   "reason" -> alertReason,
+                  "link" -> s"https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}",
                   "tx_hash" -> proposal.id
                 ) ++ choicesMeta,
                 sev = Some(severity),
-                eid0 = Some(eid)
+                eid0 = Some(eid),
+                detectorTs = (proposal.start * 1000L).toString
               ))
             }
           } catch {

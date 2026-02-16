@@ -53,6 +53,44 @@ object DetectorAaveGov {
     }
   }
 
+  /** Normalize a timestamp value to ms: numeric (seconds or ms) or string -> Long; invalid/missing -> None. */
+  private def parseTimestampToMs(ts: ujson.Value): Option[Long] = {
+    if (ts == null || ts.isNull) return None
+    val raw = ts match {
+      case n: ujson.Num => Some(n.value.toLong)
+      case s: ujson.Str => Try(s.value.toLong).toOption
+      case _ => None
+    }
+    raw.filter(_ > 0).map { ms => if (ms < 1e12) ms * 1000L else ms }
+  }
+
+  /** Extract timestamp (ms): prefers proposal.transactions.created.timestamp (TransactionData), then proposal.proposalMetadata.timestamp, else System.currentTimeMillis(). */
+  def getTimestampFromProposalMetadata(proposal: ujson.Value): Long = {
+    def getTs(from: ujson.Value): Option[Long] =
+      for {
+        ts <- Try(from("timestamp")).toOption
+        ms <- parseTimestampToMs(ts)
+      } yield ms
+    val fromCreated = for {
+      transactions <- Try(proposal("transactions")).toOption
+      if transactions != null && !transactions.isNull
+      created <- Try(transactions("created")).toOption
+      if created != null && !created.isNull
+      ms <- getTs(created)
+    } yield ms
+    val fromMeta = for {
+      meta <- Try(proposal("proposalMetadata")).toOption
+      if meta != null && !meta.isNull
+      ms <- getTs(meta)
+    } yield ms
+    try {
+      fromCreated.orElse(fromMeta).getOrElse(System.currentTimeMillis())
+    } catch {      
+      case _: Exception =>
+        System.currentTimeMillis()
+    }
+  }
+
   def graphqlQuery(subgraph: String, endpoint: String, query: String): Try[ujson.Value] = Try {
     val payload = ujson.Obj("query" -> query)
     log.info(s"${subgraph}: '$payload' -> ${endpoint}")
@@ -92,6 +130,11 @@ object DetectorAaveGov {
           yesNoDifferential
           minPropositionPower
         }
+        transactions {
+          created {
+            timestamp
+          }
+        }
         proposalMetadata {
           title
         }
@@ -125,6 +168,11 @@ object DetectorAaveGov {
             yesThreshold
             yesNoDifferential
             minPropositionPower
+          }
+          transactions {
+            created {
+              timestamp
+            }
           }
           proposalMetadata {
             title
@@ -286,6 +334,8 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
             val stateCode = proposal("state").num.toInt
             val state = DetectorAaveGov.STATE_MAP.getOrElse(stateCode, "Unknown")
 
+            val eventTs = DetectorAaveGov.getTimestampFromProposalMetadata(proposal)
+
             // Determine if we should process this proposal based on state and config
             val shouldProcess = stateCode match {
               case DetectorAaveGov.STATE_ACTIVE => trackActive
@@ -351,7 +401,7 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
               }
 
               // Generate deterministic event ID based on state
-              val eid = stateCode match {
+              val eid0 = stateCode match {
                 case DetectorAaveGov.STATE_CANCELLED | DetectorAaveGov.STATE_EXECUTED =>
                   // Deterministic: did + proposalId + extId only
                   s"${did}-${proposalId}-${rx.getExtId()}"
@@ -365,6 +415,8 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
                   s"${did}-${proposalId}-${rx.getExtId()}-${stateCode}"
               }
 
+              val eid = Util.sha256(eid0)
+
               log.info(s"${rx.getExtId()}: Proposal #$proposalId [$state]: $title - YES: ${votesFor.toLong} AAVE (${yesPercent.toInt}%), NO: ${votesAgainst.toLong} AAVE - Severity: $severity - $alertReason")
 
               Some(EventUtil.createEvent(
@@ -374,26 +426,28 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
                 conf = Some(rx.getConf()),
                 meta = Map(
                   "desc" -> desc,
-                  "proposal_id" -> proposalId,
+                  "id" -> proposalId,
                   "title" -> title,
-                  "creator" -> creator,
+                  "author" -> creator,
                   "state" -> state,
                   "state_code" -> stateCode.toString,
-                  "vote_yes" -> f"$votesFor%.2f",
-                  "vote_no" -> f"$votesAgainst%.2f",
-                  "vote_total" -> f"$totalVotes%.2f",
+                  "vote_yes" -> votesFor.toString,
+                  "vote_no" -> votesAgainst.toString,
+                  "vote_total" -> totalVotes.toString,
                   "vote_yes_percentage" -> f"$yesPercent%.2f",
-                  "vote_differential" -> f"$differential%.2f",
-                  "vote_quorum" -> f"$quorum%.2f",
-                  "vote_quorum_met" -> quorumMet.toString,
+                  "vote_diff" -> differential.toString,
+                  "vote_quorum" -> quorum.toString,
+                  "quorum" -> quorumMet.toString,
                   "vote_count" -> allVotes.size.toString,
                   "vote_source" -> voteSource,
                   "vote_chains" -> (if (chainsWithVotes.nonEmpty) chainsWithVotes else "none"),
                   "reason" -> alertReason,
+                  "link" -> s"https://vote.onaave.com/proposal/?proposalId=${proposalId}",
                   "tx_hash" -> proposalId
                 ),
                 sev = Some(severity),
-                eid0 = Some(eid)
+                eid0 = Some(eid),
+                detectorTs = eventTs.toString
               ))
             }
           } catch {

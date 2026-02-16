@@ -10,7 +10,7 @@
     {
       "name": "Cron",
       "value": "Cron interval to check for new messages/events. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
-    },    
+    },
     {
       "name": "Feeds",
       "value": "Feeds URI\n\nMulitple URI's can be specified with comma separation. If `type` is not specified, feed can be prefixed with type (`rss://`. `reddit://`, `twitter://@channel`)\n"
@@ -32,7 +32,7 @@
       "value": "Condition to filter Alerts score on `result` (result must be in the range: [0..1]). Refer to [Condition](https://docs.extractor.live/common-configurations#condition) for more details"
     },
     {
-      "name": "Desc",
+      "name": "Description",
       "value": "Description template for the Alert description. Can use any meta field as placeholder (e.g. `{result}`)"
     },
     {
@@ -105,7 +105,7 @@
         "type": "string"
       },
       "desc": {
-        "default": "News post: {title}{err}",
+        "default": "{title} {err}",
         "description": "Description Template",
         "title": "Description",
         "type": "string"

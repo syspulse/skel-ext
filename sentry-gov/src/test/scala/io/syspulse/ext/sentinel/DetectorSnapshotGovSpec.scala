@@ -35,7 +35,7 @@ class DetectorSnapshotGovSpec extends AnyWordSpec with Matchers {
     "have correct default values" in {
       DetectorSnapshotGov.DEF_PROPOSAL_COUNT shouldBe 5
       DetectorSnapshotGov.DEF_PROPOSAL_IDS shouldBe ""
-      DetectorSnapshotGov.DEF_SPACE shouldBe "aavedao.eth"
+      DetectorSnapshotGov.DEF_SPACE shouldBe ""
       DetectorSnapshotGov.DEF_TRACK_ACTIVE shouldBe true
       DetectorSnapshotGov.DEF_TRACK_CLOSED shouldBe true
       DetectorSnapshotGov.DEF_TRACK_PENDING shouldBe false

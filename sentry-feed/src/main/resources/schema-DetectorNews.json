@@ -48,7 +48,7 @@
       "value": "Severity of the Alert. If not specified, the detector will use the severity of the script result."
     },
     {
-      "name": "Desc",
+      "name": "Description",
       "value": "Description template for the Alert description. Can use any meta field as placeholder (e.g. `{title}`)"
     }
   ],
@@ -121,7 +121,12 @@
         "title": "Feeds",
         "type": "string"
       },
-      
+      "category": {
+        "default": "",
+        "description": "Category filter",
+        "title": "Category",
+        "type": "string"
+      },
       "max": {
         "default": 10,
         "description": "Max news",
