@@ -1,0 +1,135 @@
+{
+  "author": "Hacken",
+  "createdAt": 1765719344445,
+  "description": "Detector monitors Aave governance proposals",
+  "faq": [
+    {
+      "name": "How does it work",
+      "value": "Detector monitors Aave governance proposals and generates alerts based on proposal state and voting conditions"
+    }, 
+    {
+      "name": "Cron",
+      "value": "Cron interval to check proposals. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+    },
+    {
+      "name": "Proposal Count",
+      "value": "Number of recent proposals to check (when not using specific IDs)"
+    }, 
+    {
+      "name": "Proposal IDs",
+      "value": "Optional comma-separated list of specific proposal IDs to monitor (e.g., \"400,399,398\").\n\nIf not specified, the detector will check the last `proposal_count` proposals."
+    }, 
+    {
+      "name": "Track Active",
+      "value": "Monitor Active proposals (state=2)"
+    }, 
+    {
+      "name": "Track Cancelled",
+      "value": "Monitor Cancelled proposals (state=6)"
+    }, 
+    {
+      "name": "Track Executed",
+      "value": "Monitor Executed proposals (state=4)"
+    },
+    {
+      "name": "API Key (proprietary)",
+      "value": "The Graph API key (optional)"
+    },
+    {
+      "name": "Track Error",
+      "value": "Track and alert on Errors"
+    },
+    {
+      "name": "Track Error Always",
+      "value": "Track Errors Always\n\nIf enabled, the detector will track errors even if the script result is not a score."
+    }
+  ],
+  "icon": "https://assets.coingecko.com/coins/images/12645/standard/aave-token-round.png",
+  "id": 1,
+  "name": "DetectorAaveGov",
+  "networkTags": [],
+  "schema": {
+    "properties": {      
+      "cron": {
+        "default": "1 day",
+        "description": "Cron expression",
+        "title": "Cron",
+        "type": "string"
+      },
+      "desc": {
+        "default": "{state}: {title}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always alert on Errors",
+        "title": "Track Errors (always)",
+        "type": "boolean"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "api_key": {
+        "default": "",
+        "description": "The Graph API key",
+        "title": "API Key",
+        "type": "string"
+      },
+      "track_active": {
+        "default": true,
+        "description": "Track Active proposals",
+        "title": "Track Active",
+        "type": "boolean"
+      },
+      "track_cancelled": {
+        "default": true,
+        "description": "Track Cancelled proposals",
+        "title": "Track Cancelled",
+        "type": "boolean"
+      },
+      "track_executed": {
+        "default": true,
+        "description": "Track Executed proposals",
+        "title": "Track Executed",
+        "type": "boolean" 
+      },
+      "proposal_count": {
+        "default": 5,
+        "description": "Number of recent proposals to check",
+        "title": "Proposal Count",
+        "type": "number"
+      },
+      "proposal_ids": {
+        "default": "",
+        "description": "Optional proposal IDs",
+        "title": "Proposal IDs",
+        "type": "string"
+      }
+    },
+    "required": ["cron"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "beta","DAO"],
+  "title": "Aave Governance",
+  "uiSchema": {
+    "api_key": {
+        "ui:secret": true
+    },
+    "ui:order": ["cron", "proposal_count", "proposal_ids", "track_active", "track_cancelled", "track_executed", "api_key", "track_err", "err_always", "desc", "severity"]
+  },
+  "updatedAt": 1770301606507,
+  "version": "0.0.7"
+}

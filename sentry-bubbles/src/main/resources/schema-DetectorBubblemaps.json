@@ -1,0 +1,111 @@
+{
+  "author": "Hacken",
+  "createdAt": 1765719344445,
+  "description": "Detector monitors Coin centralization anomaly ",
+  "faq": [{
+    "name": "How does it work",
+    "value": "Monitored Address must be a Coin.\n\nDetector uses mulitple sources to evaluate risk score\n\nData inputs:\n- [https://bubblemaps.io](https://bubblemaps.io)"
+  }, 
+  {
+    "name": "Cron",
+    "value": "Cron interval to check for bubble score. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+  },
+  {
+    "name": "Score",
+    "value": "Condition to filter by score. \n"
+  }, {
+    "name": "Track Holders",
+    "value": "Track Coin Top holders number\n"
+  }, {
+    "name": "Track Update",
+    "value": "Track Score update time (can be calculated at different time)"
+  }, {
+    "name": "Cluster Size",
+    "value": "Cluster size changes condition (number)"
+  }, {
+    "name": "Cluster Share",
+    "value": "Cluster share changes condition (in `[0..1]` range)"
+  }, {
+    "name": "Track Error",
+    "value": "Track and alert on Errors"
+  }],
+  "icon": "https://assets.coingecko.com/coins/images/52778/standard/background-square.png",
+  "id": 441,
+  "name": "DetectorBubblemaps",
+  "networkTags": ["evm"],
+  "schema": {
+    "properties": {
+      "cluster_share": {
+        "default": "",
+        "description": "Cluster share condition",
+        "title": "Cluster share",
+        "type": "string"
+      },
+      "cluster_size": {
+        "default": "",
+        "description": "Cluster size condition",
+        "title": "Cluster size",
+        "type": "string"
+      },
+      "condition": {
+        "default": "> 0.0",
+        "description": "Score Condition expression",
+        "title": "Score",
+        "type": "string"
+      },
+      "cron": {
+        "default": "1 hour",
+        "description": "Cron expression",
+        "title": "Cron",
+        "type": "string"
+      },
+      "desc": {
+        "default": "Decentralization: {score}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },      
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always alert on Errors",
+        "title": "Track Errors (always)",
+        "type": "boolean"
+      },
+      "track_holders": {
+        "default": 5,
+        "description": "Track Top holders number",
+        "title": "Track Holders",
+        "type": "number"
+      },
+      "track_update": {
+        "default": true,
+        "description": "Track Score update",
+        "title": "Track Update",
+        "type": "boolean"
+      }
+    },
+    "required": ["cron"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "beta"],
+  "title": "Bubblemaps Risk",
+  "uiSchema": {
+    "ui:order": ["condition", "cluster_size", "cluster_share", "track_holders", "track_update", "track_err", "err_always", "desc","cron", "severity"]
+  },
+  "updatedAt": 1770301606507,
+  "version": "0.0.3"
+}
