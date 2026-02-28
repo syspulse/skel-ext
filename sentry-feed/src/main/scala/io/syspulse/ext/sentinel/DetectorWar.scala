@@ -18,13 +18,14 @@ import io.hacken.ext.core.Event
 import io.syspulse.ext.sentinel.feeds._
 import io.syspulse.skel.util.Util
 import io.syspulse.skel.script.{Script, ScriptFlow, ScriptRegexp, ScriptFilter, ScriptJS, ScriptAI}
+import io.syspulse.skel.ai.core.AiURI
 
 object DetectorWar {
   // Hardcoded configuration
   val TWITTER_ACCOUNT = "twitter://GeneralStaffUA"
   val DEF_MAX_POSTS = 15
   val DEF_MAX_SEEN_POSTS = 100
-  val CRON_INTERVAL = "150000" // 150 seconds
+  val CRON_INTERVAL = "1 day"
 
   val DEF_DESC = "Losses Report: {loss_personnel_total}, {loss_aircraft_total}, {loss_UAV_total}, {loss_APC_total}, {loss_MLRS_total}, {loss_SAM_total}, {loss_ship_total}, {loss_submarine_total}, {loss_automotive_fuel_truck_total}, {loss_tank_total}, {loss_special_equipment_total}, {loss_cruise_missile_total}, {loss_artillery_total}, {loss_personnel_total}"
   val DEF_SEV_REPORT = Severity.INFO
@@ -35,6 +36,8 @@ object DetectorWar {
   val DEF_SCRIPT_FILTER = ""
   val DEF_SCRIPT_JS = "'image://' + images.split(',')[0]"
   val DEF_SCRIPT_AI = """Extract text from provided image {input} and return result as json.
+  Double check the `loss_personnel_total` OCR value for correctness (you often miss digits like `1` inside the number)
+  The `loss_personnel_total` number can NOT be negative or less then 1000000. If it is less than 1000000, you have made incorrect OCR and need to repeat OCR.
   Json attribute rules:
   1. Always use `loss_` prefix. use `_total` suffix for total and `_change` suffix for losses changes.   
   2. Always use the consistent names in attributes: 
@@ -54,9 +57,14 @@ object DetectorWar {
     - artillery,    
     - personnel
   3. Do NOT use random CAPITAL letters in attributes mentioned in rule 2 (e.g. no "ARTILLERY", use "artillery")
+  4. Do NOT generate null values for extracted attributes. Use 0 in attributes which have prefix "_change".  
+  6. Prefix non-total "losses" values with '+' (negative values are not possible anywhere)
 
   output://json_object"""
-  val DEF_AI_URI = "openai://?timeout=60000"
+
+  val DEF_AI_MODEL = "gpt-4o"
+  val DEF_AI_TIMEOUT = 60000
+  val DEF_AI_URI = s"openai://${DEF_AI_MODEL}?timeout=${DEF_AI_TIMEOUT}"
 
   /**
    * Flatten nested JSON structure into flat key-value pairs
@@ -122,6 +130,8 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     val customJs = DetectorConfig.getString(conf, "custom_js").filter(!_.isBlank).getOrElse(DetectorWar.DEF_SCRIPT_JS)
     val customAi = DetectorConfig.getString(conf, "custom_ai").filter(!_.isBlank).getOrElse(DetectorWar.DEF_SCRIPT_AI)
     val aiUri = DetectorConfig.getString(conf, "ai_uri").filter(!_.isBlank).getOrElse(DetectorWar.DEF_AI_URI)
+
+    rx.set("ai_uri",AiURI(aiUri))
     
     log.info(s"${rx.getExtId()}: Configured feed: ${feed}")
 
@@ -153,6 +163,9 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
   override def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
     val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorWar.DEF_DESC)
 
+    val aiUri = rx.get("ai_uri").asInstanceOf[Option[AiURI]]
+    val aiModel = aiUri.flatMap(_.model).orElse(Some(DetectorWar.DEF_AI_MODEL))
+
     // Base metadata
     var metadata = Map(
       "type" -> post.typ,
@@ -164,6 +177,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
       "summary" -> post.summary,
       "src" -> post.source,
       "latency" -> latency.toString,
+      "model" -> aiModel.getOrElse(""),
       "desc" -> desc,
       "tx_hash" -> post.id
     ) ++ post.feedMetadata

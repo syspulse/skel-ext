@@ -60,7 +60,7 @@
             "description": "Script Type",
             "title": "Type",
             "type": "string",
-            "enum": ["regexp","filter","sq","jq","js", "ai","regexp_score","sq_score","jq_score"],
+            "enum": ["regexp","filter","sq","jq","js", "ai","regexp_score","sq_score","jq_score","condition"],
             "default": "js"
           },
           "src": {
@@ -168,5 +168,5 @@
     "ui:order": ["cron", "feeds", "max", "category", "script", "score", "track_err", "err_always","desc", "severity"]
   },
   "updatedAt": 1765725481270,
-  "version": "0.0.3"
+  "version": "0.0.4"
 }

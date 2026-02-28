@@ -251,10 +251,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
           Seq.empty
       }
     }
-
-    val ts1 = System.currentTimeMillis()
-    val latency = ts1 - ts0
-
+    
     // Filter for new posts
     val newPosts = allPosts.filterNot(p => seenPosts.contains(p.id))
 
@@ -271,6 +268,9 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     val processedPostIds = allPosts.map(_.id).toSet
     val updatedSeen = (seenPosts ++ processedPostIds).takeRight(maxSeenPosts)
     rx.set("seen_posts", updatedSeen)
+
+    val ts1 = System.currentTimeMillis()
+    val latency = ts1 - ts0
 
     // Generate alerts for new filtered posts
     val postEvents = filteredPosts.map(post => createPostAlert(rx, post, latency))
@@ -312,7 +312,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
 
             case Failure(_) =>
               // Could not parse as Double, skip this element
-              log.warn(s"${rx.getExtId()}: Could not parse script result as Double: '${result}': post=${post.id}")
+              log.warn(s"${rx.getExtId()}: Could not parse script result: '${result}': post=${post.id}")
               None
           }
 
@@ -324,6 +324,9 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
         case Success(result) =>
           None
 
+        case f @ Failure(e: Script.ScriptBreakException) => 
+          log.info(s"${rx.getExtId()}: Script break: post=${post.id}: ${e.getMessage}")
+          None
         case Failure(e) =>
           // Script execution failed
           log.warn(s"${rx.getExtId()}: Script execution failed: post=${post.id}: ${e.getMessage}")
