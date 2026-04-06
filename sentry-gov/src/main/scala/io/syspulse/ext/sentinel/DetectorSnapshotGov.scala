@@ -8,8 +8,11 @@ import scala.util.{Try,Success,Failure}
 import java.time.Instant
 
 import io.syspulse.skel.plugin.{Plugin,PluginDescriptor}
+import io.syspulse.skel.util.TimeUtil
+import io.syspulse.skel.util.Util
 
 import io.hacken.ext.core.Severity
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.detector.DetectorConfig
@@ -18,8 +21,6 @@ import io.hacken.ext.core.Event
 
 import requests._
 import ujson._
-import io.syspulse.skel.util.TimeUtil
-import io.syspulse.skel.util.Util
 
 object DetectorSnapshotGov {
   val DEF_PROPOSAL_COUNT = 5
@@ -56,13 +57,13 @@ object DetectorSnapshotGov {
   def epochSecondToUtcIso(epochSec: Long): String = Instant.ofEpochSecond(epochSec).toString
 }
 
-class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
+class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}"
 
   private var snapshotApi: Option[Snapshot] = None
 
-  override def getSettings(rx: SentryRun): Map[String, Any] = {
+  override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map("_cron_rate_limit" -> 1 * 10 * 1000L) // 10 seconds for testing
       case "dev" => Map("_cron_rate_limit" -> 1 * 60 * 1000L) // 1 minute for dev
@@ -70,18 +71,18 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onInit(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onInit(rx: SentryRun0, conf: DetectorConfig): Int = {
     super.onInit(rx, conf)
     log.info(s"${rx.getExtId()}: Initialized Snapshot Governance detector")
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onStart(rx: SentryRun0, conf: DetectorConfig): Int = {
     super.onStart(rx, conf)
     onUpdate(rx, conf)
   }
 
-  override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onUpdate(rx: SentryRun0, conf: DetectorConfig): Int = {
     // Store API key from config (optional for Snapshot)
     val defApiKey = rx.getConfiguration()(c => c.getString("snapshot.api.key")).getOrElse("")
     val apiKey = DetectorConfig.getString(rx.conf, "api_key", defApiKey)
@@ -125,7 +126,7 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_RUNNING
   }
 
-  override def onCron(rx: SentryRun, elapsed: Long): Seq[Event] = {
+  override def onCron(rx: SentryRun0, elapsed: Long): Seq[Event] = {
     val space = rx.get("space").asInstanceOf[Option[String]].getOrElse(DetectorSnapshotGov.DEF_SPACE)
     val proposalCount = rx.get("proposal_count").asInstanceOf[Option[Int]].getOrElse(DetectorSnapshotGov.DEF_PROPOSAL_COUNT)
     val proposalIdsStr = rx.get("proposal_ids").asInstanceOf[Option[String]].getOrElse(DetectorSnapshotGov.DEF_PROPOSAL_IDS)

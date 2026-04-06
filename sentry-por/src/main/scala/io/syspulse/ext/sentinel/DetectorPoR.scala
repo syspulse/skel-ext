@@ -12,16 +12,18 @@ import io.syspulse.skel.crypto.eth.protocols.chainlink.Chainlink
 import io.syspulse.skel.crypto.eth.SolidityTuple
 import io.syspulse.skel.crypto.eth.Web3jTrace
 import io.syspulse.skel.crypto.Eth
+import io.syspulse.skel.crypto.eth.TokenUtil
 
-import io.haas.ingest.eth.{Block}
-import io.haas.ingest.eth.etl.{Tx}
+import io.haas.ingest.eth.flow.etl.{Block,Tx}
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentryRun
+import io.hacken.ext.sentinel.SentinelBlockchains._
+import io.hacken.ext.sentinel.WithWeb3Eth
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
-import io.syspulse.skel.crypto.eth.TokenUtil
+
 import io.hacken.ext.sentinel.util.TokenData
 import io.hacken.ext.core.Event
 import io.hacken.ext.sentinel.WithWeb3
@@ -45,11 +47,11 @@ object DetectorPoR {
   val WHEN_BLOCK = "block"
 }
 
-class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin {  
+class DetectorPoR(pd: PluginDescriptor) extends WithWeb3Eth with SentryEth with Plugin {  
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 
-  override def getSettings(rx:SentryRun): Map[String,Any] = {
+  override def getSettings(rx:SentryRunEth): Map[String,Any] = {
     rx.getConfig().env match {
       case "test" => Map()
       case "dev" =>
@@ -59,7 +61,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     }
   }
     
-  override def onInit(rx:SentryRun,conf: DetectorConfig): Int = {    
+  override def onInit(rx:SentryRunEth,conf: DetectorConfig): Int = {    
 
     //onUpdate(rx,conf)
     val r = super.onInit(rx,conf)
@@ -82,7 +84,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx:SentryRun,conf:DetectorConfig):Int = {    
+  override def onStart(rx:SentryRunEth,conf:DetectorConfig):Int = {    
 
     val r = onUpdate(rx,conf)
     if(r != SentryRun.SENTRY_RUNNING) {
@@ -92,7 +94,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     super.onStart(rx,conf)
   }
 
-  override def onUpdate(rx:SentryRun,conf: DetectorConfig): Int = {    
+  override def onUpdate(rx:SentryRunEth,conf: DetectorConfig): Int = {    
 
     if(rx.isAddrEmpty()) {
       log.warn(s"${rx.getExtId()}: address undefined: ${rx.getAddr()}")
@@ -140,7 +142,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     SentryRun.SENTRY_RUNNING
   }
 
-  def getPoR(rx:SentryRun,addr:Option[String]):Seq[Event] = {
+  def getPoR(rx:SentryRunEth,addr:Option[String]):Seq[Event] = {
     val addr = rx.getAddr() match {
       case Some(addr) => addr.toLowerCase
       case None => 
@@ -207,7 +209,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     ee
   }
 
-  override def onCron(rx:SentryRun,elapsed:Long):Seq[Event] = {
+  override def onCron(rx:SentryRunEth,elapsed:Long):Seq[Event] = {
 
     val when = rx.get("when").asInstanceOf[Option[String]].getOrElse("")
     if(when != "cron") {
@@ -217,7 +219,7 @@ class DetectorPoR(pd: PluginDescriptor) extends WithWeb3 with Sentry with Plugin
     getPoR(rx,None)
   }
   
-  override def onBlock(rx:SentryRun,txx:Seq[Tx]):Seq[Event] = {
+  override def onBlock(rx:SentryRunEth,block:Block,txx:Seq[Tx]):Seq[Event] = {
     val when = rx.get("when").asInstanceOf[Option[String]].getOrElse("")
     if(when != "block") {
       return Seq.empty

@@ -6,6 +6,7 @@ import scala.util.matching.Regex
 import spray.json._
 
 import io.hacken.ext.detector.DetectorConfig
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Config
 import io.syspulse.skel.plugin.PluginDescriptor
@@ -111,7 +112,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   // Helper method to create a test SentryRun with script configuration
-  def createTestSentryRun(filter: String, feedUri: String = getResourcePath("/rss/coindesk.rss")): SentryRun = {
+  def createTestSentryRun(filter: String, feedUri: String = getResourcePath("/rss/coindesk.rss")): SentryRun0 = {
     // Convert filter to script configuration for testing (score-based)
     val (isNegative, pattern) = if (filter.startsWith("!")) {
       (true, filter.substring(1))
@@ -515,7 +516,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   // Helper method to create a test SentryRun with script-based filtering
-  def createTestSentryRunWithScripts(feedUri: String, scripts: String): SentryRun = {
+  def createTestSentryRunWithScripts(feedUri: String, scripts: String): SentryRun0 = {
     val conf = DetectorConfig(
       id = 1,
       createdAt = System.currentTimeMillis(),

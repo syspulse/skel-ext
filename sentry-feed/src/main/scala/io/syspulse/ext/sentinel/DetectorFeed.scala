@@ -6,19 +6,20 @@ import com.typesafe.scalalogging.Logger
 import scala.util.{Try, Success, Failure}
 
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
+import io.syspulse.skel.util.Util
+import io.syspulse.skel.script.{Script, ScriptFlow}
 
 import io.hacken.ext.core.Severity
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.core.Event
-
-import io.syspulse.ext.sentinel.feeds._
-import io.syspulse.skel.util.Util
-import io.syspulse.skel.script.{Script, ScriptFlow}
 import io.hacken.ext.sentinel.ScriptEngine
 import io.hacken.ext.sentinel.ThresholdDouble
+
+import io.syspulse.ext.sentinel.feeds._
 
 object DetectorFeed {
   val DEF_CRON = "10 minutes"
@@ -103,7 +104,7 @@ object DetectorFeed {
   }
 }
 
-class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
+class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 
@@ -115,7 +116,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def getSettings(rx: SentryRun): Map[String, Any] = {
+  override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map()
       case "dev" =>
@@ -125,7 +126,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onInit(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onInit(rx: SentryRun0, conf: DetectorConfig): Int = {
     val r = super.onInit(rx, conf)
     if (r != SentryRun.SENTRY_INIT) {
       return r
@@ -137,7 +138,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onStart(rx: SentryRun0, conf: DetectorConfig): Int = {
     val r = onUpdate(rx, conf)
     if (r != SentryRun.SENTRY_RUNNING) {
       return r
@@ -146,7 +147,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     super.onStart(rx, conf)
   }
 
-  override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onUpdate(rx: SentryRun0, conf: DetectorConfig): Int = {
     // Parse feeds configuration
     val feedsStr = DetectorConfig.getString(conf, "feeds", DetectorFeed.DEF_FEEDS)
     if (feedsStr.isEmpty) {
@@ -202,7 +203,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_RUNNING
   }
 
-  private def initializeSeenPosts(rx: SentryRun): Unit = {
+  private def initializeSeenPosts(rx: SentryRun0): Unit = {
     val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
 
     val currentPosts = feeds.flatMap { feed =>
@@ -219,11 +220,11 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     log.info(s"${rx.getExtId()}: Initialized: ${postIds.size} (seen posts)")
   }
 
-  override def onCron(rx: SentryRun, elapsed: Long): Seq[Event] = {
+  override def onCron(rx: SentryRun0, elapsed: Long): Seq[Event] = {
     checkFeeds(rx)
   }
 
-  def checkFeeds(rx: SentryRun): Seq[Event] = {
+  def checkFeeds(rx: SentryRun0): Seq[Event] = {
     val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
     val seenPosts = rx.get("seen_posts").get.asInstanceOf[Set[String]]
     val max = rx.get("max").asInstanceOf[Option[Int]].getOrElse(DetectorFeed.DEF_MAX)
@@ -278,7 +279,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     errorEvents ++ postEvents
   }
 
-  def filter(rx: SentryRun, posts: Seq[NewsPost]): Seq[NewsPost] = {
+  def filter(rx: SentryRun0, posts: Seq[NewsPost]): Seq[NewsPost] = {
     val scriptsOpt = rx.get("scripts").asInstanceOf[Option[ScriptFlow]]
 
     // If no scripts configured, match everything
@@ -335,7 +336,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  protected def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
+  protected def createPostAlert(rx: SentryRun0, post: NewsPost, latency: Long): Event = {
     val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorFeed.DEF_DESC)
 
     val metadata = Map(
@@ -364,7 +365,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry with Plugin {
     )
   }
 
-  private def handleFeedError(rx: SentryRun, feed: NewsFeed, error: Throwable,latency: Long): Seq[Event] = {
+  private def handleFeedError(rx: SentryRun0, feed: NewsFeed, error: Throwable,latency: Long): Seq[Event] = {
     val trackErr = rx.get("track_err").asInstanceOf[Option[Boolean]].getOrElse(DetectorFeed.DEF_TRACK_ERR)
 
     if (!trackErr) return Seq.empty

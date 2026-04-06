@@ -6,6 +6,11 @@ import spray.json._
 import scala.io.Source
 
 class BubblemapsSpec extends AnyWordSpec with Matchers {
+  private def readResource(path: String): String =
+    Source
+      .fromResource(path.stripPrefix("/"))
+      .getLines()
+      .mkString("\n")
 
   "BubblemapsJsonProtocol" should {
     "parse SHIB-like response correctly" in {
@@ -40,7 +45,7 @@ class BubblemapsSpec extends AnyWordSpec with Matchers {
     "parse JESSE.json with nodes object correctly" in {
       import BubblemapsJsonProtocol._
 
-      val jsonText = Source.fromFile("sentry-bubbles/JESSE.json").mkString
+      val jsonText = readResource("JESSE.json")
       val apiResponse = jsonText.parseJson.convertTo[BubblemapsApiResponse]
 
       apiResponse.decentralization_score shouldBe 78.57
@@ -68,7 +73,7 @@ class BubblemapsSpec extends AnyWordSpec with Matchers {
     "parse BubblemapsResponse from JESSE.json" in {
       import BubblemapsJsonProtocol._
 
-      val jsonText = Source.fromFile("sentry-bubbles/JESSE.json").mkString
+      val jsonText = readResource("JESSE.json")
       val apiResponse = jsonText.parseJson.convertTo[BubblemapsApiResponse]
 
       val response = BubblemapsResponse(

@@ -7,18 +7,19 @@ import scala.util.{Try, Success, Failure}
 import spray.json._
 
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
+import io.syspulse.skel.util.Util
+import io.syspulse.skel.script.{Script, ScriptFlow, ScriptRegexp, ScriptFilter, ScriptJS, ScriptAI}
+import io.syspulse.skel.ai.core.AiURI
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentryRun
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.core.Event
 
 import io.syspulse.ext.sentinel.feeds._
-import io.syspulse.skel.util.Util
-import io.syspulse.skel.script.{Script, ScriptFlow, ScriptRegexp, ScriptFilter, ScriptJS, ScriptAI}
-import io.syspulse.skel.ai.core.AiURI
 
 object DetectorWar {
   // Hardcoded configuration
@@ -100,7 +101,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     }
   }
 
-  override def getSettings(rx: SentryRun): Map[String, Any] = {
+  override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map()
       case "dev" =>
@@ -110,7 +111,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     }
   }
 
-  override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onUpdate(rx: SentryRun0, conf: DetectorConfig): Int = {
     val max = DetectorConfig.getInt(conf, "max", DetectorWar.DEF_MAX_POSTS)
     val maxSeenPosts = DetectorConfig.getInt(conf, "max_seen_posts", DetectorWar.DEF_MAX_SEEN_POSTS)
     rx.set("max",max)
@@ -160,7 +161,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
     SentryRun.SENTRY_RUNNING
   }
 
-  override def createPostAlert(rx: SentryRun, post: NewsPost, latency: Long): Event = {
+  override def createPostAlert(rx: SentryRun0, post: NewsPost, latency: Long): Event = {
     val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorWar.DEF_DESC)
 
     val aiUri = rx.get("ai_uri").asInstanceOf[Option[AiURI]]

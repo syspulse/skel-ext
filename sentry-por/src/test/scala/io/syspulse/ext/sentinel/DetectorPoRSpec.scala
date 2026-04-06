@@ -7,11 +7,11 @@ import spray.json._
 
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.sentinel.SentryRun
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.Config
 import io.syspulse.skel.plugin.PluginDescriptor
-import io.haas.ingest.eth.{Block}
-import io.haas.ingest.eth.etl.{Tx, LogTx}
-import io.haas.ingest.ext.BlockExt
+import io.haas.ingest.eth.flow.etl.{Tx, Log, Block}
+import io.haas.ingest.ext.{Block => ExtBlock, Tx => ExtTx, Log => ExtLog}
 import io.syspulse.skel.blockchain.eth.EthUtil
 import io.hacken.ext.core.Event
 
@@ -23,55 +23,27 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
     timestamp: Long = System.currentTimeMillis(),
     hash: String = "0xblock123"
   ): Block = {
-    Block(
-      i = number,
+    ExtBlock(
       hash = hash,
-      phash = "0xparent123",
-      non = Some("0x"),
-      uncl = Some("0xuncles123"),
-      bloom = "0x",
-      txrt = "0xtx123",
-      strt = "0xstate123",
-      rert = "0xreceipts123",
+      number = number,
+      parent_hash = "0xparent123",
+      nonce = Some("0x"),
+      sha3_uncles = Some("0xuncles123"),
+      logs_bloom = "0x",
+      transactions_root = "0xtx123",
+      state_root = "0xstate123",
+      receipts_root = "0xreceipts123",
       miner = "0xminer123",
-      dif = BigInt(0),
-      dif0 = Some(BigInt(0)),
-      sz = 1000L,
-      data = "0x",
-      used = 21000L,
-      gas = 30000000L,
-      ts = timestamp,
-      txn = 1,
-      fee = Some(20000000000L),
+      difficulty = BigInt(0),
+      total_difficulty = Some(BigInt(0)),
+      size = 1000L,
+      extra_data = "0x",
+      gas_limit = 30000000L,
+      gas_used = 21000L,
+      timestamp = timestamp,
+      transaction_count = 1,
+      base_fee_per_gas = Some(20000000000L),
       tx = None
-    )
-  }
-
-  // Helper method to create BlockExt from Block
-  def createBlockExt(block: Block): BlockExt = {
-    // BlockExt constructor: (number, hash, parent_hash, nonce, sha3_uncles, logs_bloom, 
-    // transactions_root, state_root, receipts_root, miner, difficulty, total_difficulty, 
-    // size, extra_data, gas_limit, gas_used, timestamp, transaction_count, base_fee_per_gas)
-    new BlockExt(
-      block.i,           // number
-      block.hash,        // hash
-      block.phash,       // parent_hash
-      block.non,         // nonce
-      block.uncl,        // sha3_uncles
-      block.bloom,       // logs_bloom
-      block.txrt,        // transactions_root
-      block.strt,        // state_root
-      block.rert,        // receipts_root
-      block.miner,       // miner
-      block.dif,         // difficulty
-      block.dif0,        // total_difficulty
-      block.sz,          // size
-      block.data,        // extra_data
-      block.gas,         // gas_limit
-      block.used,        // gas_used
-      block.ts,          // timestamp
-      block.txn,         // transaction_count
-      block.fee          // base_fee_per_gas
     )
   }
 
@@ -80,15 +52,14 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
     from: String = "0x1111111111111111111111111111111111111111",
     to: Option[String] = Some("0x2222222222222222222222222222222222222222"),
     value: BigInt = BigInt(1000000000000000000L), // 1 ETH in wei
-    logs: Array[LogTx] = Array.empty,
+    logs: Array[Log] = Array.empty,
     blockNumber: Long = 12345L,
     timestamp: Long = System.currentTimeMillis(),
     txHash: String = "0xtest123"
   ): Tx = {
     val block = createTestBlock(blockNumber, timestamp)
-    val blockExt = createBlockExt(block)
     
-    new Tx(
+    ExtTx(
       hash = txHash,
       nonce = BigInt(1),
       transaction_index = 0,
@@ -107,7 +78,7 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
       receipt_root = Some("0xreceipt123"),
       receipt_status = Some(1),
       receipt_effective_gas_price = Some(BigInt(20000000000L)),
-      block = blockExt,
+      block = block,
       logs = logs,
       sim = None
     )
@@ -119,17 +90,17 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
     to: String = "0x2222222222222222222222222222222222222222",
     value: BigInt = BigInt(1000000000000000000L), // 1 token with 18 decimals
     tokenAddress: String = "0xcccccccccccccccccccccccccccccccccccc0001"
-  ): LogTx = {
+  ): Log = {
     val transferTopic = EthUtil.EVENT_TRANSFER
     val fromTopic = "0x000000000000000000000000" + from.drop(2)
     val toTopic = "0x000000000000000000000000" + to.drop(2)
     val valueData = "0x" + ("0" * 64 + value.toString(16)).takeRight(64)
     
-    new LogTx(
+    ExtLog(
+      index = 0,
       address = tokenAddress,
       data = valueData,
       topics = Array(transferTopic, fromTopic, toTopic),
-      index = 0
     )
   }
 
@@ -252,7 +223,7 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
     rx.set("when", "cron")
     
     val tx = createTestTx()
-    val events = detector.onBlock(rx, Seq(tx))
+    val events = detector.onBlock(rx, tx.block, Seq(tx))
     
     // When "when" != "block", should return empty sequence
     events shouldBe empty
@@ -308,7 +279,7 @@ class DetectorPoRSpec extends AnyFlatSpec with Matchers {
     
     // Note: This will likely fail because Chainlink is not initialized,
     // but it tests that onBlock is called with transactions
-    val events = Try(detector.onBlock(rx, Seq(tx1, tx2)))
+    val events = Try(detector.onBlock(rx, tx1.block, Seq(tx1, tx2)))
     
     // The method should be called (even if it fails due to missing Chainlink setup)
     events.isSuccess || events.isFailure shouldBe true

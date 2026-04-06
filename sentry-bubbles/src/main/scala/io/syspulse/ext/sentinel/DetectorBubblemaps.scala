@@ -8,11 +8,11 @@ import scala.util.{Try, Success, Failure}
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
 import io.syspulse.skel.blockchain.Blockchain
 
-import io.haas.ingest.eth.{Block}
-import io.haas.ingest.eth.etl.{Tx}
+import io.haas.ingest.eth.{Block,Tx}
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentryRun
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
@@ -37,11 +37,11 @@ object DetectorBubblemaps {
   val DEF_SEV_ERR = Severity.ERROR
 }
 
-class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
+class DetectorBubblemaps(pd: PluginDescriptor) extends SentryEth with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 
-  override def getSettings(rx: SentryRun): Map[String, Any] = {
+  override def getSettings(rx: SentryRunEth): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map()
       case "dev" =>
@@ -51,7 +51,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onInit(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onInit(rx: SentryRunEth, conf: DetectorConfig): Int = {
     val r = super.onInit(rx, conf)
     if (r != SentryRun.SENTRY_INIT) {
       return r
@@ -60,7 +60,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onStart(rx: SentryRunEth, conf: DetectorConfig): Int = {
     val r = onUpdate(rx, conf)
     if (r != SentryRun.SENTRY_RUNNING) {
       return r
@@ -79,7 +79,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onUpdate(rx: SentryRunEth, conf: DetectorConfig): Int = {
     if (rx.isAddrEmpty()) {
       log.warn(s"${rx.getExtId()}: address undefined: ${rx.getAddr()}")
       error(s"Address undefined",None)
@@ -139,7 +139,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_RUNNING
   }
 
-  def checkDecentralization(rx: SentryRun, init: Boolean = false): Seq[Event] = {
+  def checkDecentralization(rx: SentryRunEth, init: Boolean = false): Seq[Event] = {
     val addr = rx.getAddr() match {
       case Some(addr) => addr.toLowerCase
       case None =>
@@ -285,7 +285,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onCron(rx: SentryRun, elapsed: Long): Seq[Event] = {
+  override def onCron(rx: SentryRunEth, elapsed: Long): Seq[Event] = {
     checkDecentralization(rx)
   }
 }

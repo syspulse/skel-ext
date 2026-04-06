@@ -12,30 +12,32 @@ import spray.json._
 
 import io.syspulse.skel.plugin.{Plugin,PluginDescriptor}
 
+import io.syspulse.skel.util.Util
+import io.syspulse.skel.util.TimeUtil
+import io.syspulse.skel.blockchain.Blockchains
+import io.syspulse.skel.blockchain.BlockchainRpc
+import io.syspulse.skel.blockchain.Token
+
 import io.syspulse.skel.blockchain.Blockchain
 import io.syspulse.skel.blockchain.Token
 import io.syspulse.skel.crypto.eth.SolidityTuple
 import io.syspulse.skel.crypto.eth.Web3jTrace
 import io.syspulse.skel.crypto.Eth
+import io.syspulse.skel.crypto.eth.TokenUtil
 
-import io.haas.ingest.eth.{Block}
-import io.haas.ingest.eth.etl.{Tx}
+import io.hacken.ext.core.Event
+import io.haas.ingest.eth.flow.etl.{Tx,Block}
 
 import io.hacken.ext.core.Severity
-import io.hacken.ext.sentinel.SentryRun
+import io.hacken.ext.sentinel.SentinelBlockchains._
+import io.hacken.ext.sentinel.WithWeb3Eth
 import io.hacken.ext.sentinel.Sentry
+import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.util.EventUtil
-import io.hacken.ext.detector.DetectorConfig
-import io.syspulse.skel.crypto.eth.TokenUtil
-import io.hacken.ext.sentinel.util.TokenData
-import io.hacken.ext.core.Event
-import io.hacken.ext.sentinel.WithWeb3
 import io.hacken.ext.sentinel.ThresholdDouble
-import io.syspulse.skel.blockchain.Blockchains
-import io.syspulse.skel.blockchain.BlockchainRpc
-import io.syspulse.skel.blockchain.Token
-import io.syspulse.skel.util.Util
-import io.syspulse.skel.util.TimeUtil
+import io.hacken.ext.sentinel.util.TokenData
+import io.hacken.ext.detector.DetectorConfig
+
 
 // Import refactored packages
 import io.syspulse.ext.sentinel.kuba.api.Moralis
@@ -277,13 +279,13 @@ object DetectorKuba {
   }
 }
 
-class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {  
+class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {  
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
   override val log = Logger(this.getClass.getSimpleName)
   @volatile private var job: Option[Job] = None
 
-  override def getSettings(rx:SentryRun): Map[String,Any] = {
+  override def getSettings(rx:SentryRunEth): Map[String,Any] = {
     rx.getConfig().env match {
       case "test" => Map()
       case "dev" =>
@@ -293,7 +295,7 @@ class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
       
-  override def onInit(rx:SentryRun,conf: DetectorConfig): Int = {
+  override def onInit(rx:SentryRunEth,conf: DetectorConfig): Int = {
 
     //onUpdate(rx,conf)
     val r = super.onInit(rx,conf)
@@ -324,7 +326,7 @@ class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx:SentryRun,conf:DetectorConfig):Int = {    
+  override def onStart(rx:SentryRunEth,conf:DetectorConfig):Int = {    
 
     val r = onUpdate(rx,conf)
     if(r != SentryRun.SENTRY_RUNNING) {
@@ -334,7 +336,7 @@ class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {
     super.onStart(rx,conf)
   }
 
-  override def onUpdate(rx:SentryRun,conf: DetectorConfig): Int = {
+  override def onUpdate(rx:SentryRunEth,conf: DetectorConfig): Int = {
 
     // Get chain mapping from context
     val chainMapping = rx.get("chain_mapping") match {
@@ -441,7 +443,7 @@ class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_RUNNING
   }
 
-  def start(rx:SentryRun,job:Job):Seq[Event] = {
+  def start(rx:SentryRunEth,job:Job):Seq[Event] = {
     log.info(s"${rx.getExtId()}: [START]: ${job}")
     
     val balanceSource = rx.get("balance_source") match {
@@ -629,7 +631,7 @@ class DetectorKuba(pd: PluginDescriptor) extends Sentry with Plugin {
     ee
   }
 
-  override def onCron(rx:SentryRun,elapsed:Long):Seq[Event] = {
+  override def onCron(rx:SentryRunEth,elapsed:Long):Seq[Event] = {
     val newJob = this.synchronized {
       job match {
         case Some(job) =>

@@ -6,17 +6,18 @@ import com.typesafe.scalalogging.Logger
 import scala.util.{Try,Success,Failure}
 
 import io.syspulse.skel.plugin.{Plugin,PluginDescriptor}
+import io.syspulse.skel.util.Util
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentryRun
-import io.hacken.ext.sentinel.Sentry
+import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.core.Event
 
 import requests._
 import ujson._
-import io.syspulse.skel.util.Util
+
 
 object DetectorAaveGov {
   val log = Logger(getClass.getName)
@@ -237,11 +238,11 @@ object DetectorAaveGov {
   }
 }
 
-class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
+class DetectorAaveGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}"
 
-  override def getSettings(rx: SentryRun): Map[String, Any] = {
+  override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map("_cron_rate_limit" -> 1 * 10 * 1000L) // 10 seconds for testing
       case "dev" => Map("_cron_rate_limit" -> 1 * 60 * 1000L) // 1 minute for dev
@@ -249,18 +250,18 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
     }
   }
 
-  override def onInit(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onInit(rx: SentryRun0, conf: DetectorConfig): Int = {
     super.onInit(rx, conf)
     log.info(s"${rx.getExtId()}: Initialized Aave Governance detector")
     SentryRun.SENTRY_INIT
   }
 
-  override def onStart(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onStart(rx: SentryRun0, conf: DetectorConfig): Int = {
     super.onStart(rx, conf)
     onUpdate(rx, conf)
   }
 
-  override def onUpdate(rx: SentryRun, conf: DetectorConfig): Int = {
+  override def onUpdate(rx: SentryRun0, conf: DetectorConfig): Int = {
     // Store API key from config
     val defApiKey = rx.getConfiguration()(c => c.getString("thegraph.api.key")).getOrElse("")
     val apiKey = DetectorConfig.getString(rx.conf, "api_key").filter(!_.isBlank).getOrElse(defApiKey)
@@ -295,7 +296,7 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry with Plugin {
     SentryRun.SENTRY_RUNNING
   }
 
-  override def onCron(rx: SentryRun, elapsed: Long): Seq[Event] = {
+  override def onCron(rx: SentryRun0, elapsed: Long): Seq[Event] = {
     val subgraph = rx.get("subgraph").asInstanceOf[Option[String]].getOrElse("")
     if (subgraph.isEmpty) {
       log.error(s"${rx.getExtId()}: Subgraph is not set")
