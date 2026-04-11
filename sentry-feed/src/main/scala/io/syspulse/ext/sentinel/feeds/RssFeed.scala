@@ -4,6 +4,9 @@ import scala.util.{Try, Success, Failure}
 import scala.xml.XML
 import scala.xml.Elem
 import com.typesafe.scalalogging.Logger
+import scala.concurrent.{ExecutionContext, Future}
+
+import io.syspulse.skel.HTTP
 
 class RssFeed(source: String) extends NewsFeed {
   private val log = Logger(getClass.getName)
@@ -13,84 +16,80 @@ class RssFeed(source: String) extends NewsFeed {
   override def getSource(): String = source
   override def getSourceType(): String = "rss"
 
-  override def fetchFeed(): Try[Seq[NewsPost]] = Try {
-    // 1. Load XML
-    val xml = loadXml(source)
+  override def fetchFeed(timeout: Long)(implicit ec: ExecutionContext): Future[Seq[NewsPost]] = {
+    loadXml(source, timeout)(ec).map { xml =>
 
-    // 2. Parse RSS 2.0 structure
-    val items = (xml \\ "item")
+      // 2. Parse RSS 2.0 structure
+      val items = (xml \\ "item")
 
-    items.map { item =>
-      val guid = (item \ "guid").text.trim
-      val title = (item \ "title").text.trim
-      val link = (item \ "link").text.trim
-      // Extract author from dc:creator field (try multiple namespace access methods)
-      val ns = "http://purl.org/dc/elements/1.1/"
-      val author = {
-        val direct = (item \ s"{$ns}creator").text.trim
-        val deep = (item \\ s"{$ns}creator").headOption.map(_.text.trim).getOrElse("")
-        val unprefixed = (item \ "creator").text.trim  // Fallback if namespace prefix is stripped
-        if (direct.nonEmpty) direct else if (deep.nonEmpty) deep else unprefixed
-      }.trim
-      val pubDateStr = (item \ "pubDate").text.trim
-      val description = (item \ "description").text.trim
+      items.map { item =>
+        val guid = (item \ "guid").text.trim
+        val title = (item \ "title").text.trim
+        val link = (item \ "link").text.trim
+        // Extract author from dc:creator field (try multiple namespace access methods)
+        val ns = "http://purl.org/dc/elements/1.1/"
+        val author = {
+          val direct = (item \ s"{$ns}creator").text.trim
+          val deep = (item \\ s"{$ns}creator").headOption.map(_.text.trim).getOrElse("")
+          val unprefixed = (item \ "creator").text.trim // Fallback if namespace prefix is stripped
+          if (direct.nonEmpty) direct else if (deep.nonEmpty) deep else unprefixed
+        }.trim
+        val pubDateStr = (item \ "pubDate").text.trim
+        val description = (item \ "description").text.trim
 
-      // Parse RFC-822 date format
-      val publishedDate = DateParser.parseRfc822(pubDateStr)
+        // Parse RFC-822 date format
+        val publishedDate = DateParser.parseRfc822(pubDateStr)
 
-      // Extract categories as List
-      val categories = (item \ "category").map(_.text.trim).filter(_.nonEmpty).toList
+        // Extract categories as List
+        val categories = (item \ "category").map(_.text.trim).filter(_.nonEmpty).toList
 
-      // Extract media URLs if present (from media:content with medium="image")
-      val mediaNamespace = "http://search.yahoo.com/mrss/"
-      val mediaUrls = (item \ s"{$mediaNamespace}content")
-        .filter(content => (content \ "@medium").text == "image")
-        .map(content => (content \ "@url").text.trim)
-        .filter(_.nonEmpty)
-        .toList
-      
-      // Fallback to enclosure if no media:content found
-      val enclosureUrls = if (mediaUrls.isEmpty) {
-        (item \ "enclosure")
-          .filter(enc => (enc \ "@type").text.startsWith("image/"))
-          .map(enc => (enc \ "@url").text.trim)
+        // Extract media URLs if present (from media:content with medium="image")
+        val mediaNamespace = "http://search.yahoo.com/mrss/"
+        val mediaUrls = (item \ s"{$mediaNamespace}content")
+          .filter(content => (content \ "@medium").text == "image")
+          .map(content => (content \ "@url").text.trim)
           .filter(_.nonEmpty)
           .toList
-      } else {
-        List.empty[String]
-      }
-      
-      val images = if (mediaUrls.nonEmpty) mediaUrls else enclosureUrls
 
-      val metadata = Map.empty[String, String]
+        // Fallback to enclosure if no media:content found
+        val enclosureUrls =
+          if (mediaUrls.isEmpty) {
+            (item \ "enclosure")
+              .filter(enc => (enc \ "@type").text.startsWith("image/"))
+              .map(enc => (enc \ "@url").text.trim)
+              .filter(_.nonEmpty)
+              .toList
+          } else {
+            List.empty[String]
+          }
 
-      NewsPost(
-        id = if (guid.nonEmpty) guid else link,  // Fallback to link if no GUID
-        title = title,
-        link = link,
-        author = if (author.nonEmpty) author else "Unknown",
-        publishedDate = publishedDate,
-        summary = stripHtml(description).take(1000),  // Strip CDATA/HTML, limit length
-        source = source,
-        typ = "rss",
-        categories = categories,
-        images = images,
-        feedMetadata = metadata
-      )
-    }.toSeq
+        val images = if (mediaUrls.nonEmpty) mediaUrls else enclosureUrls
+
+        val metadata = Map.empty[String, String]
+
+        NewsPost(
+          id = if (guid.nonEmpty) guid else link, // Fallback to link if no GUID
+          title = title,
+          link = link,
+          author = if (author.nonEmpty) author else "Unknown",
+          publishedDate = publishedDate,
+          summary = stripHtml(description).take(1000), // Strip CDATA/HTML, limit length
+          source = source,
+          typ = "rss",
+          categories = categories,
+          images = images,
+          feedMetadata = metadata
+        )
+      }.toSeq
+    }
   }
 
-  private def loadXml(source: String): Elem = {
+  private def loadXml(source: String, timeoutMs: Long)(ec: ExecutionContext): Future[Elem] = {
     if (source.startsWith("http://") || source.startsWith("https://")) {
-      val response = requests.get(source, readTimeout = 30000, connectTimeout = 10000)
-      if (response.statusCode == 200) {
-        XML.loadString(response.text())
-      } else {
-        throw new Exception(s"HTTP ${response.statusCode}: ${response.text()}")
-      }
+      HTTP.get(source, timeoutMs).map(XML.loadString)(ec)
     } else {
       val path = if (source.startsWith("file://")) source.substring(7) else source
-      XML.loadFile(path)
+      Future(XML.loadFile(path))(ec)
     }
   }
 

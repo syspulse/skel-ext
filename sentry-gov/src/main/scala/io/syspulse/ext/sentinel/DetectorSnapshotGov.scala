@@ -86,7 +86,7 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
     // Store API key from config (optional for Snapshot)
     val defApiKey = rx.getConfiguration()(c => c.getString("snapshot.api.key")).getOrElse("")
     val apiKey = DetectorConfig.getString(rx.conf, "api_key", defApiKey)
-    val apiKeyOpt = if (apiKey.nonEmpty) Some(apiKey) else None
+    val apiKeyOpt = if (!apiKey.isBlank) Some(apiKey) else None
     rx.set("api_key", apiKeyOpt)
 
     // Initialize Snapshot API
@@ -144,8 +144,8 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
     log.info(s"${rx.getExtId()}: Checking Snapshot governance proposals for space: $space")
 
     // Determine which proposals to fetch
-    val proposalsResult = if (proposalIdsStr.nonEmpty && proposalIdsStr.trim.nonEmpty) {
-      val ids = proposalIdsStr.split(",").map(_.trim).filter(_.nonEmpty)
+    val proposalsResult = if (!proposalIdsStr.isBlank && !proposalIdsStr.trim.isBlank) {
+      val ids = proposalIdsStr.split(",").map(_.trim).filter(!_.isBlank)
       log.info(s"${rx.getExtId()}: Fetching specific proposals: ${ids.mkString(", ")}")
       api.fetchSpecificProposals(space, ids.toSeq)
     } else {

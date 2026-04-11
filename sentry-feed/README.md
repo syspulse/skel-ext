@@ -1,6 +1,18 @@
+# Feeds
 
+## Reddit Feed
 
-### Test
+```
+APP_EXEC=bloop ../sentinel.sh --conf=conf/detector-test-Reddit-http-1.conf --env=test
+```
+
+## RSS Feed
+
+```
+APP_EXEC=bloop ../sentinel.sh --conf=conf/detector-test-RSS-http-1.conf --env=test
+```
+
+## Complex Flow 
 
 Need Twitter, OpenAI creds
 

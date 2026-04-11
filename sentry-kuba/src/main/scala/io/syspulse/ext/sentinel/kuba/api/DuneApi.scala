@@ -138,7 +138,7 @@ object DuneApi {
                   }
 
                   dataLines.foreach { line =>
-                    if (line.trim.nonEmpty) {
+                    if (!line.trim.isBlank) {
                       writer.write(line)
                       writer.newLine()
                       linesWritten += 1

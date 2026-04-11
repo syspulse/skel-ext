@@ -1,0 +1,262 @@
+{
+  "author": "Hacken",
+  "createdAt": 1743984000000,
+  "description": "Detector monitors Meltwater media intelligence feeds with advanced filtering",
+  "faq": [
+    {
+      "name": "How does it work",
+      "value": "Track media mentions from Meltwater with configurable filters for source, influencer, country, language, reach, social echo, and document tags"
+    },
+    {
+      "name": "Feed",
+      "value": "Meltwater Feeds URI\n\nMultiple URI's can be specified with comma separation. Supported Feeds: `meltwater://, file://, http://). CSV files can be UTF-16 LE or UTF-8 encoded."
+    },
+    {
+      "name": "Cron",
+      "value": "Cron interval to check for new posts. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+    },    
+    {
+      "name": "Max",
+      "value": "Max number of entries per Feed to process"
+    },
+    {
+      "name": "Source Filter",
+      "value": "Filter by Source field (e.g., `Open PR,Reuters`)\n\nComma-separated list. Supports negation with `!` prefix (e.g., `!Spam Source`).\n\nMatching is case-insensitive and uses substring matching."
+    },
+    {
+      "name": "Influencer Filter",
+      "value": "Filter by Influencer/Author field (e.g., `John Doe,Jane Smith`)\n\nComma-separated list. Supports negation with `!` prefix."
+    },
+    {
+      "name": "Country Filter",
+      "value": "Filter by Country field (e.g., `us,de,uk`)\n\nComma-separated list. Supports negation with `!` prefix."
+    },
+    {
+      "name": "Language Filter",
+      "value": "Filter by Language field (e.g., `en,de`)\n\nComma-separated list. Supports negation with `!` prefix."
+    },
+    {
+      "name": "Reach Filter",
+      "value": "Filter by Reach field using threshold condition (e.g., `>100000`, `>=50000`, `<1000000`)\n\nRefer to [Condition](https://docs.extractor.live/common-configurations#condition) for more details."
+    },
+    {
+      "name": "Social Echo Filter",
+      "value": "Filter by total Social Echo (sum of Twitter, Facebook, Reddit) using threshold condition (e.g., `>500`, `>=100`)\n\nRefer to [Condition](https://docs.extractor.live/common-configurations#condition) for more details."
+    },
+    {
+      "name": "Document Tags Filter",
+      "value": "Filter by Document Tags field (e.g., `technology,blockchain`)\n\nComma-separated list. Supports negation with `!` prefix."
+    },
+    {
+      "name": "Scripts",
+      "value": "Scripts to execute on post content\n\nScripts are executed in the order they are specified. Refer to [Scripts](https://docs.extractor.live/common-configurations#condition-threshold) for more details.\n\nScripts execution result will be in `result` meta field."
+    },
+    {
+      "name": "Score",
+      "value": "Condition to filter Alerts score on `result` (result must be in the range: [0..1]). Refer to [Condition](https://docs.extractor.live/common-configurations#condition) for more details"
+    },
+    {
+      "name": "API Key",
+      "value": "Meltwater API Key"
+    },
+    {
+      "name": "Track Error",
+      "value": "Track Errors as Alerts when feed fetching fails"
+    },
+    {
+      "name": "Track Error Always",
+      "value": "Track Errors Always\n\nIf enabled, the detector will generate an alert for every error, not just the first occurrence."
+    },
+    {
+      "name": "Severity",
+      "value": "Severity of the Alert. If not specified, defaults to INFO level."
+    },
+    {
+      "name": "Description",
+      "value": "Description template for the Alert description. Can use any metadata field as placeholder (e.g., `{title}`, `{Source}`, `{Country}`, `{Reach}`)"
+    }
+  ],
+  "icon": "https://media.licdn.com/dms/image/v2/D560BAQHA0c4TvRwk7g/company-logo_200_200/company-logo_200_200/0/1688408972033/meltwater_logo?e=2147483647&v=beta&t=wyjJk6Tse6WL0Gwia-krAxe0XSSgAFwaXwD4Gpsd7dM",
+  "id": 447,
+  "name": "DetectorMeltwater",
+  "networkTags": [],
+  "schema": {
+    "$defs": {
+      "Script": {
+        "properties": {
+          "type": {
+            "description": "Script Type",
+            "title": "Type",
+            "type": "string",
+            "enum": ["regexp","filter","sq","jq","js", "ai","regexp_score","sq_score","jq_score","condition"],
+            "default": "js"
+          },
+          "src": {
+            "description": "Script Source",
+            "title": "Source",
+            "default": "",
+            "type": "string"
+          },
+          "options": {
+            "description": "Script Options",
+            "title": "Options",
+            "default": "",
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "title": "Script",
+        "type": "object"
+      }
+    },
+
+    "properties": {
+      "script": {
+        "default": [],
+        "description": "Scripts to execute",
+        "items": {
+          "$ref": "#/$defs/Script"
+        },
+        "title": "Scripts",
+        "type": "array"
+      },
+
+      "cron": {
+        "default": "10 min",
+        "description": "Cron Interval",
+        "title": "Cron",
+        "type": "string"
+      },
+      "desc": {
+        "default": "{title} [{Source}] ({Country}, {Language}) Reach: {Reach}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always Alert on Error",
+        "title": "Track Error (always)",
+        "type": "boolean"
+      },
+      "feeds": {
+        "default": "meltwater://",
+        "description": "Meltwater Feed URI",
+        "title": "Feeds",
+        "type": "string"
+      },
+      "source": {
+        "default": "",
+        "description": "Source filter (comma-separated, supports !negation)",
+        "title": "Source Filter",
+        "type": "string"
+      },
+      "influencer": {
+        "default": "",
+        "description": "Influencer/Author filter (comma-separated, supports !negation)",
+        "title": "Influencer Filter",
+        "type": "string"
+      },
+      "country": {
+        "default": "",
+        "description": "Country filter (comma-separated, supports !negation)",
+        "title": "Country Filter",
+        "type": "string"
+      },
+      "language": {
+        "default": "",
+        "description": "Language filter (comma-separated, supports !negation)",
+        "title": "Language Filter",
+        "type": "string"
+      },
+      "reach": {
+        "default": "",
+        "description": "Reach threshold condition (e.g., >100000)",
+        "title": "Reach Filter",
+        "type": "string"
+      },
+      "social_echo": {
+        "default": "",
+        "description": "Total Social Echo threshold condition (e.g., >500)",
+        "title": "Social Echo Filter",
+        "type": "string"
+      },
+      "document_tags": {
+        "default": "",
+        "description": "Document Tags filter (comma-separated, supports !negation)",
+        "title": "Document Tags Filter",
+        "type": "string"
+      },
+      "max": {
+        "default": 100,
+        "description": "Max posts to process per feed",
+        "title": "Max",
+        "type": "number"
+      },
+      "score": {
+        "default": "",
+        "description": "Score condition",
+        "title": "Score condition",
+        "type": "string"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity level",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors as Alerts",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "api_key": {
+        "default": "",
+        "description": "Meltwater API Key",
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "required": ["feeds", "type", "cron"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "alpha", "web2"],
+  "title": "Meltwater Intelligence",
+  "uiSchema": {
+    "script": {
+        "items": {
+            "src": {
+                "ui:options": {
+                    "rows": 5,
+                    "widget": "textarea"
+                }
+            }
+        }
+    },
+    "ui:order": [
+      "cron",
+      "feeds",
+      "type",
+      "max",
+      "source",
+      "influencer",
+      "country",
+      "language",
+      "reach",
+      "social_echo",
+      "document_tags",
+      "score",
+      "script",
+      "track_err",
+      "err_always",
+      "api_key",
+      "desc",
+      "severity"
+    ]
+  },
+  "updatedAt": 1743984000000,
+  "version": "0.0.1"
+}

@@ -11,24 +11,34 @@
     "value": "Cron interval to check for bubble score. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
   },
   {
+    "name": "API Key",
+    "value": "Bubblemaps API Key (custom)"
+  },
+  {
     "name": "Score",
     "value": "Condition to filter by score. \n"
-  }, {
+  }, 
+  {
     "name": "Track Holders",
     "value": "Track Coin Top holders number\n"
-  }, {
+  }, 
+  {
     "name": "Track Update",
     "value": "Track Score update time (can be calculated at different time)"
-  }, {
+  }, 
+  {
     "name": "Cluster Size",
     "value": "Cluster size changes condition (number)"
-  }, {
+  }, 
+  {
     "name": "Cluster Share",
     "value": "Cluster share changes condition (in `[0..1]` range)"
-  }, {
+  }, 
+  {
     "name": "Track Error",
     "value": "Track and alert on Errors"
-  }],
+  }
+  ],
   "icon": "https://assets.coingecko.com/coins/images/52778/standard/background-square.png",
   "id": 441,
   "name": "DetectorBubblemaps",
@@ -94,6 +104,12 @@
         "description": "Track Score update",
         "title": "Track Update",
         "type": "boolean"
+      },
+      "api_key": {
+        "default": "",
+        "description": "Bubblemaps API Key (custom)",
+        "title": "API Key",
+        "type": "string"
       }
     },
     "required": ["cron"],
@@ -101,11 +117,11 @@
     "type": "object"
   },
   "status": "ACTIVE",
-  "tags": ["SECURITY", "COMPLIANCE", "beta"],
+  "tags": ["SECURITY", "COMPLIANCE"],
   "title": "Bubblemaps Risk",
   "uiSchema": {
-    "ui:order": ["condition", "cluster_size", "cluster_share", "track_holders", "track_update", "track_err", "err_always", "desc","cron", "severity"]
+    "ui:order": ["condition", "cluster_size", "cluster_share", "track_holders", "track_update", "track_err", "err_always", "desc", "cron", "api_key", "severity"]
   },
   "updatedAt": 1770301606507,
-  "version": "0.0.3"
+  "version": "0.0.4"
 }

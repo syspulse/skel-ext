@@ -66,7 +66,7 @@ object User {
     }
 
     // Map chain prefix (kuid) to actual chain name
-    val chain = if (chainPrefix.nonEmpty) {
+    val chain = if (!chainPrefix.isBlank) {
       if (!chainMapping.contains(chainPrefix)) {
         log.warn(s"${addrChain}: Chain mapping not found for prefix: '${chainPrefix}'")
       }
@@ -176,7 +176,7 @@ object DetectorKuba {
 
     ss.split("[\n,]")
       .map(s => s.trim)
-      .filter(s => s.nonEmpty)
+      .filter(s => !s.isBlank)
       .filter(s => !s.startsWith("#"))
       .map(s => User(s, chainMapping))
   }
@@ -189,7 +189,7 @@ object DetectorKuba {
 
     ss.split("[\n,]")
       .map(s => s.trim)
-      .filter(s => s.nonEmpty)
+      .filter(s => !s.isBlank)
       .filter(s => !s.startsWith("#"))
       .flatMap(s => {
         s.split("=").toList match {
@@ -240,7 +240,7 @@ object DetectorKuba {
     csvContent.split("\n")
       .drop(1) // Skip header
       .map(_.trim)
-      .filter(_.nonEmpty)
+      .filter(!_.isBlank)
       .flatMap { line =>
         // Parse CSV line handling quoted values
         val parts = line.split(",", 2)
@@ -370,7 +370,7 @@ class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {
 
     // Moralis API key configuration
     val moralisApiKey = Util.replaceEnvVar(DetectorConfig.getString(rx.conf,"moralis_api_key",DetectorKuba.DEF_MORALIS_API_KEY),sys.env)
-    if (moralisApiKey.nonEmpty) {
+    if (!moralisApiKey.isBlank) {
       log.info(s"${rx.getExtId()}: Moralis API key configured")
     } else {
       log.warn(s"${rx.getExtId()}: Moralis API key not configured, will use current block height")
@@ -384,7 +384,7 @@ class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {
     // Optional: User-specified snapshot timestamp (in configured timezone)
     // If not specified, will use current time when cron triggers
     val snapshotTimestampStr = DetectorConfig.getString(rx.conf,"snapshot_timestamp","")
-    val snapshotTs =if(snapshotTimestampStr.nonEmpty) {
+    val snapshotTs =if(!snapshotTimestampStr.isBlank) {
       try {
         val snapshotTs = DetectorKuba.parseTimestamp(snapshotTimestampStr, timezone)
         rx.set("snapshot_timestamp",Some(snapshotTs))
@@ -421,7 +421,7 @@ class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {
     // CSV output path configuration
     val outputCsv = DetectorConfig.getString(rx.conf,"output_csv",DetectorKuba.DEF_OUTPUT_CSV)
     rx.set("output_csv",outputCsv)
-    if(outputCsv.nonEmpty) {
+    if(!outputCsv.isBlank) {
       log.info(s"${rx.getExtId()}: CSV output enabled: ${outputCsv}")
     }
 

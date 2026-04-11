@@ -3,10 +3,19 @@ package io.syspulse.ext.sentinel
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import scala.util.{Success, Failure}
+import scala.util.Try
+import scala.concurrent.{Await, ExecutionContext}
+import scala.concurrent.duration._
 
 import io.syspulse.ext.sentinel.feeds.RedditFeed
+import io.hacken.ext.sentinel.Config
 
 class RedditFeedSpec extends AnyFlatSpec with Matchers {
+  private implicit val ec: ExecutionContext = ExecutionContext.global
+  private implicit val config: Config = Config()
+
+  private def awaitFeed(feed: RedditFeed, timeoutMs: Long = 0L): Try[Seq[io.syspulse.ext.sentinel.feeds.NewsPost]] =
+    Try(Await.result(feed.fetchFeed(timeoutMs)(ec), (config.detectorTimeout + 1000L).millis))
 
   private def getResourcePath(resource: String): String = {
     getClass.getResource(resource).getPath
@@ -14,7 +23,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   "RedditFeed" should "parse Reddit Atom feed from file" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -30,7 +39,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract subreddit from category" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
 
@@ -47,7 +56,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract categories (subreddit) as List" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
 
@@ -65,7 +74,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML from content" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<"
@@ -77,7 +86,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from entry/author/name" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // Check that we have authors (Reddit format is /u/username)
@@ -87,7 +96,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "limit summary to 1000 characters" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary.length should be <= 1000
@@ -97,7 +106,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
   it should "handle single-line XML format" in {
     // Reddit feed is stored as single line without line terminators
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     result.get should not be empty
@@ -105,7 +114,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract thumbnail if present" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // Some posts might have thumbnails
     val postsWithThumbnails = posts.filter(_.feedMetadata.contains("thumbnail"))
@@ -115,7 +124,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract images from media:thumbnail elements" in {
     val feed = new RedditFeed(getResourcePath("/reddit/reddit-1.xml"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
 
@@ -157,7 +166,7 @@ class RedditFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle malformed XML gracefully" in {
     val feed = new RedditFeed("/nonexistent.xml")
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Failure[_]]
   }

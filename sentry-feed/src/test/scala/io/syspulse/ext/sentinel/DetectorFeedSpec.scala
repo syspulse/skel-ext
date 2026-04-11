@@ -4,6 +4,8 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import scala.util.matching.Regex
 import spray.json._
+import scala.concurrent.{Await, ExecutionContext}
+import scala.concurrent.duration._
 
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.sentinel.SentinelBlockchains._
@@ -14,6 +16,11 @@ import io.syspulse.ext.sentinel.feeds.{NewsPost, RssFeed}
 import io.syspulse.skel.script.{Script, ScriptFlow}
 
 class DetectorFeedSpec extends AnyFlatSpec with Matchers {
+  private implicit val ec: ExecutionContext = ExecutionContext.global
+  private implicit val config: Config = Config()
+
+  private def awaitPosts(feed: io.syspulse.ext.sentinel.feeds.NewsFeed, timeoutMs: Long = 0L): Seq[NewsPost] =
+    Await.result(feed.fetchFeed(timeoutMs)(ec), (config.detectorTimeout + 1000L).millis)
 
   private def getResourcePath(resource: String): String = {
     getClass.getResource(resource).getPath
@@ -198,7 +205,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     
     // Get posts from feed
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val allPosts = feed.fetchFeed().get
+    val allPosts = awaitPosts(feed)
     allPosts.size should be > 0
     
     // Filter posts using DetectorFeed.filter
@@ -229,7 +236,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     
     // Get posts from feed
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val allPosts = feed.fetchFeed().get
+    val allPosts = awaitPosts(feed)
     
     // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
@@ -250,7 +257,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     
     // Get posts from feed
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val allPosts = feed.fetchFeed().get
+    val allPosts = awaitPosts(feed)
     
     // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
@@ -275,7 +282,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     
     // Get posts from feed
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val allPosts = feed.fetchFeed().get
+    val allPosts = awaitPosts(feed)
     
     // Filter posts using DetectorFeed.filter
     val filteredPosts = detector.filter(rx, allPosts)
@@ -326,7 +333,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
 
     // Get all posts from all feeds
     val allPosts = feeds.flatMap { feed =>
-      feed.fetchFeed().get
+      awaitPosts(feed)
     }
 
     // Filter posts using DetectorFeed.filter

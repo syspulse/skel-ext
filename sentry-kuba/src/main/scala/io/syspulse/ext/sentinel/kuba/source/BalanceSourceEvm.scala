@@ -18,7 +18,7 @@ class BalanceSourceEvm(rpcUrl: String, chainName: String, chainId: String, snaps
 
   // Calculate and cache block for the snapshot timestamp
   private val cachedBlock: Long = {
-    if (moralisApiKey.nonEmpty) {
+    if (!moralisApiKey.isBlank) {
       // Use Moralis API to get block by timestamp
       Moralis.getBlockByTimestamp(chainName, snapshotTs, moralisApiKey) match {
         case Success(blockNumber) =>

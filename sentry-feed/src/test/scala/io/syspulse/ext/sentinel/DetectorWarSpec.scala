@@ -77,7 +77,7 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "flatten GSUA-1.json structure correctly" in {
-    val jsonString = readResourceAsString("GSUA-1.json")
+    val jsonString = readResourceAsString("twit/GSUA-1.json")
     val json = jsonString.parseJson
     val result = DetectorWar.flattenJson(json)
 
@@ -177,7 +177,7 @@ class DetectorWarSpec extends AnyFlatSpec with Matchers {
     val detector = new DetectorWar(pd)
 
     // Load the actual GSUA-1.json file from test resources
-    val aiResponseJson = readResourceAsString("GSUA-1.json")
+    val aiResponseJson = readResourceAsString("twit/GSUA-1.json")
 
     val post = NewsPost(
       id = "test-post-1",

@@ -314,8 +314,8 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
     log.info(s"${rx.getExtId()}: Checking Aave governance proposals...")
 
     // Determine which proposals to fetch
-    val proposalsResult = if (proposalIdsStr.nonEmpty && proposalIdsStr.trim.nonEmpty) {
-      val ids = proposalIdsStr.split(",").map(_.trim).filter(_.nonEmpty)
+    val proposalsResult = if (!proposalIdsStr.isBlank && !proposalIdsStr.trim.isBlank) {
+      val ids = proposalIdsStr.split(",").map(_.trim).filter(!_.isBlank)
       log.info(s"${rx.getExtId()}: Fetching specific proposals: ${ids.mkString(", ")}")
       DetectorAaveGov.fetchSpecificProposals(subgraph, apiKey, ids.toSeq)
     } else {

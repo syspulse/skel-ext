@@ -3,10 +3,19 @@ package io.syspulse.ext.sentinel
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import scala.util.{Success, Failure}
+import scala.util.Try
+import scala.concurrent.{Await, ExecutionContext}
+import scala.concurrent.duration._
 
 import io.syspulse.ext.sentinel.feeds.RssFeed
+import io.hacken.ext.sentinel.Config
 
 class RssFeedSpec extends AnyFlatSpec with Matchers {
+  private implicit val ec: ExecutionContext = ExecutionContext.global
+  private implicit val config: Config = Config()
+
+  private def awaitFeed(feed: RssFeed, timeoutMs: Long = 0L): Try[Seq[io.syspulse.ext.sentinel.feeds.NewsPost]] =
+    Try(Await.result(feed.fetchFeed(timeoutMs)(ec), (config.detectorTimeout + 1000L).millis))
 
   private def getResourcePath(resource: String): String = {
     getClass.getResource(resource).getPath
@@ -14,7 +23,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   "RssFeed" should "parse Cointelegraph RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -30,7 +39,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract categories from RSS feed" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // Check if any posts have categories
     val postsWithCategories = posts.filter(_.categories.nonEmpty)
@@ -47,7 +56,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from dc:creator field" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // The feed has dc:creator fields, so at least some posts should have authors
@@ -57,7 +66,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML and CDATA from description" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<![CDATA["
@@ -69,7 +78,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "limit summary to 1000 characters" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary.length should be <= 1000
@@ -80,7 +89,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
     // This test would need a special test RSS file with no GUID
     // For now, we just verify the logic doesn't crash
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.id should not be empty
@@ -89,7 +98,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle malformed XML gracefully" in {
     val feed = new RssFeed("/nonexistent.xml")
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Failure[_]]
   }
@@ -107,7 +116,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "parse PR Newswire RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/prnews-news-releases-list.rss"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -126,7 +135,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract media URL from PR Newswire feed" in {
     val feed = new RssFeed(getResourcePath("/rss/prnews-news-releases-list.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // Check if any posts have media URLs
     // Note: PR Newswire uses media:content with @url attribute, parser may need enhancement
@@ -146,7 +155,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from dc:contributor in PR Newswire feed" in {
     val feed = new RssFeed(getResourcePath("/rss/prnews-news-releases-list.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // PR Newswire uses dc:contributor instead of dc:creator
@@ -159,7 +168,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "parse CoinDesk RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -178,7 +187,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from dc:creator in CoinDesk feed" in {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // CoinDesk uses dc:creator, so at least some posts should have authors
@@ -188,7 +197,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract categories from CoinDesk feed" in {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // CoinDesk feed may or may not have categories - just verify the field exists
     posts.foreach { post =>
@@ -198,7 +207,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle guid with isPermaLink=false in CoinDesk feed" in {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       // CoinDesk uses UUID-style GUIDs, not URLs
@@ -210,7 +219,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML and CDATA from PR Newswire descriptions" in {
     val feed = new RssFeed(getResourcePath("/rss/prnews-news-releases-list.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<![CDATA["
@@ -222,7 +231,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML and CDATA from CoinDesk descriptions" in {
     val feed = new RssFeed(getResourcePath("/rss/coindesk.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<![CDATA["
@@ -234,7 +243,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "parse Decrypt RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/decrypt.rss"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -250,7 +259,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from dc:creator in Decrypt feed" in {
     val feed = new RssFeed(getResourcePath("/rss/decrypt.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // Decrypt uses dc:creator, so at least some posts should have authors
@@ -260,7 +269,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract categories from Decrypt feed" in {
     val feed = new RssFeed(getResourcePath("/rss/decrypt.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // Decrypt feed may or may not have categories - just verify the field exists
     posts.foreach { post =>
@@ -270,7 +279,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle guid with isPermaLink=false in Decrypt feed" in {
     val feed = new RssFeed(getResourcePath("/rss/decrypt.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       // Decrypt uses guid with isPermaLink="false"
@@ -281,7 +290,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML and CDATA from Decrypt descriptions" in {
     val feed = new RssFeed(getResourcePath("/rss/decrypt.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<![CDATA["
@@ -293,7 +302,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "parse The Block RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/theblock.rss"))
-    val result = feed.fetchFeed()
+    val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
     val posts = result.get
@@ -309,7 +318,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract author from dc:creator in The Block feed" in {
     val feed = new RssFeed(getResourcePath("/rss/theblock.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts should not be empty
     // The Block uses dc:creator, so at least some posts should have authors
@@ -319,7 +328,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "extract categories from The Block feed" in {
     val feed = new RssFeed(getResourcePath("/rss/theblock.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     // The Block feed may or may not have categories - just verify the field exists
     posts.foreach { post =>
@@ -329,7 +338,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle guid with isPermaLink=false in The Block feed" in {
     val feed = new RssFeed(getResourcePath("/rss/theblock.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       // The Block uses guid with isPermaLink="false"
@@ -340,7 +349,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "strip HTML and CDATA from The Block descriptions" in {
     val feed = new RssFeed(getResourcePath("/rss/theblock.rss"))
-    val posts = feed.fetchFeed().get
+    val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
       post.summary should not include "<![CDATA["

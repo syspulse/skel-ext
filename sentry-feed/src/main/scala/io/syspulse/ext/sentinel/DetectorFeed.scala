@@ -4,6 +4,8 @@ import scala.jdk.CollectionConverters._
 import scala.concurrent.duration.{Duration, FiniteDuration}
 import com.typesafe.scalalogging.Logger
 import scala.util.{Try, Success, Failure}
+import scala.concurrent.{Await, ExecutionContext, Future}
+import java.util.concurrent.TimeUnit
 
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
 import io.syspulse.skel.util.Util
@@ -13,6 +15,7 @@ import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Sentry
+import io.hacken.ext.sentinel.Config
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
 import io.hacken.ext.core.Event
@@ -24,7 +27,7 @@ import io.syspulse.ext.sentinel.feeds._
 object DetectorFeed {
   val DEF_CRON = "10 minutes"
   val DEF_FEEDS = ""
-  val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://, twitter://), "rss" = all RSS, "reddit" = all Reddit, "twitter" = all Twitter
+  val DEF_TYPE = ""  // Empty = parse URI prefixes (rss://, reddit://, twitter://, meltwater://), "rss" = all RSS, "reddit" = all Reddit, "twitter" = all Twitter, "meltwater" = all Meltwater
   val DEF_DESC = "Post: {title}{err}"
   val DEF_MAX = 0  // 0 = no limit on posts to parse
   val DEF_MAX_SEEN_POSTS = 100
@@ -41,9 +44,9 @@ object DetectorFeed {
 
   /**
    * Parse feed URI based on type configuration
-   * @param uri The feed URI (may have rss://, reddit://, or twitter:// prefix)
-   * @param feedType The configured feed type ("", "rss", "reddit", or "twitter")
-   * @return Tuple of (actualFeedType: "rss", "reddit", or "twitter", cleanedUri: String)
+   * @param uri The feed URI (may have rss://, reddit://, twitter://, or meltwater:// prefix)
+   * @param feedType The configured feed type ("", "rss", "reddit", "twitter", or "meltwater")
+   * @return Tuple of (actualFeedType: "rss", "reddit", "twitter", or "meltwater", cleanedUri: String)
    */
   def parseFeedUri(uri: String, feedType: String): (String, String) = {
     feedType.toLowerCase match {
@@ -59,14 +62,20 @@ object DetectorFeed {
         // All feeds are Twitter
         ("twitter", uri)
 
+      case "meltwater" =>
+        // All feeds are Meltwater
+        ("meltwater", uri)
+
       case "" =>
-        // Parse URI prefix: rss://, reddit://, twitter://, or assume RSS
+        // Parse URI prefix: rss://, reddit://, twitter://, meltwater://, or assume RSS
         if (uri.startsWith("rss://")) {
           ("rss", uri.substring(6)) // Strip "rss://"
         } else if (uri.startsWith("reddit://")) {
           ("reddit", uri.substring(9)) // Strip "reddit://"
         } else if (uri.startsWith("twitter://")) {
           ("twitter", uri) // Keep full URI for TwitterConnect
+        } else if (uri.startsWith("meltwater://")) {
+          ("meltwater", uri.substring(12)) // Strip "meltwater://"
         } else {
           // No prefix, assume RSS
           ("rss", uri)
@@ -88,7 +97,7 @@ object DetectorFeed {
     if (!categories.isDefined || categories.get.isEmpty)
       return true
 
-    val categories1 = categories.get.map(_.trim).filter(_.nonEmpty)
+    val categories1 = categories.get.map(_.trim).filter(!_.isBlank)
     val positiveCategories = categories1.filter(!_.startsWith("!"))
     val negativeCategories = categories1.filter(_.startsWith("!"))
 
@@ -107,6 +116,8 @@ object DetectorFeed {
 class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
+
+  private implicit val ec: ExecutionContext = ExecutionContext.global
 
   def eid(post: NewsPost) = {
     if (DetectorFeed.DEF_EID_HASH) {
@@ -166,15 +177,17 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
     val feedType = DetectorConfig.getString(conf, "type", DetectorFeed.DEF_TYPE).toLowerCase
 
     // Create feed instances based on type configuration
-    val feeds: Seq[NewsFeed] = feedsStr.split(",")
+    val feeds: Seq[NewsFeed] = scala.collection.immutable.ArraySeq
+      .unsafeWrapArray(feedsStr.split(","))
       .map(_.trim)
-      .filter(_.nonEmpty)
+      .filter(!_.isBlank)
       .map { uri =>
         val (actualFeedType, cleanedUri) = DetectorFeed.parseFeedUri(uri, feedType)
         actualFeedType match {
           case "rss" => new RssFeed(cleanedUri)
           case "reddit" => new RedditFeed(cleanedUri)
           case "twitter" => new TwitterFeed(cleanedUri,Some(max))
+          case "meltwater" => new MeltwaterFeed(cleanedUri)
           case _ => new RssFeed(cleanedUri) // Fallback
         }
       }
@@ -193,9 +206,12 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
     // Load categories filter configuration
     val categories = DetectorConfig.getString(conf, "categories")
       .orElse(DetectorFeed.DEF_CATEGORY)
-      .map(_.split(",").map(_.trim).filter(_.nonEmpty).toSeq)
+      .map(_.split(",").map(_.trim).filter(!_.isBlank).toSeq)
     rx.set("category", categories)
     log.info(s"${rx.getExtId()}: Categories filter: ${categories.getOrElse(Seq.empty)}")
+
+    val timeoutMs = DetectorConfig.getLong(conf, "timeout", 0L)
+    rx.set("timeout", timeoutMs)
 
     // Initialize seen posts with current feed state (don't alert on first run)
     //initializeSeenPosts(rx)
@@ -206,13 +222,24 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
   private def initializeSeenPosts(rx: SentryRun0): Unit = {
     val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
 
-    val currentPosts = feeds.flatMap { feed =>
-      feed.fetchFeed() match {
-        case Success(posts) => posts
-        case Failure(e) =>
+    implicit val cfg: Config = rx.getConfig()
+    val timeoutMs = rx.get("timeout").asInstanceOf[Option[Long]].getOrElse(0L)
+    val effectiveTimeoutMs = if (timeoutMs > 0) timeoutMs else cfg.detectorTimeout
+    val wait = Duration(effectiveTimeoutMs + 1000L, TimeUnit.MILLISECONDS)
+
+    val futures = feeds.map { feed =>
+      feed.fetchFeed(timeoutMs)(ec)
+        .map(posts => Right(posts))
+        .recover { case e =>
           log.warn(s"${rx.getExtId()}: Failed to initialize: ${feed.getSource()}: ${e.getMessage}")
-          Seq.empty
-      }
+          Left(e)
+        }
+    }
+
+    val results = Await.result(Future.sequence(futures), wait)
+    val currentPosts = results.flatMap {
+      case Right(posts) => posts
+      case Left(_) => Seq.empty
     }
 
     val postIds = currentPosts.map(_.id).toSet
@@ -236,13 +263,23 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
 
     // Fetch all posts from all feeds, sorting and applying max limit per feed
     val ts0 = System.currentTimeMillis()
-    val allPosts = feeds.flatMap { feed =>
-      feed.fetchFeed() match {
+    implicit val cfg: Config = rx.getConfig()
+    val timeoutMs = rx.get("timeout").asInstanceOf[Option[Long]].getOrElse(0L)
+    val effectiveTimeoutMs = if (timeoutMs > 0) timeoutMs else cfg.detectorTimeout
+    val wait = Duration(effectiveTimeoutMs + 1000L, TimeUnit.MILLISECONDS)
+
+    val futures = feeds.map { feed =>
+      feed.fetchFeed(timeoutMs)(ec)
+        .map(posts => (feed, Success(posts): Try[Seq[NewsPost]]))
+        .recover { case e => (feed, Failure(e): Try[Seq[NewsPost]]) }
+    }
+
+    val fetched = Await.result(Future.sequence(futures), wait)
+
+    val allPosts = fetched.flatMap { case (feed, r) =>
+      r match {
         case Success(posts) =>
-          // Sort posts by publishedDate in descending order (newest first)
           val sortedPosts = posts.sortBy(-_.publishedDate)
-          
-          // Apply max limit to this feed (0 = no limit)
           val limitedPosts = if (max > 0) sortedPosts.take(max) else sortedPosts
           log.info(s"${rx.getExtId()}: Feed: ${feed.getSource()}: ${posts.size} (fetched), ${limitedPosts.size} (max)")
           limitedPosts
@@ -289,15 +326,15 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
     val scoreOpt = rx.get("score").asInstanceOf[Option[ThresholdDouble]]
 
     posts.flatMap { post =>
-      val searchText = s"${post.title} ${post.summary}"
+      val scriptText = s"${post.title} ${post.summary}"
       // Pass author and images to script
       val args = Map(
         "author" -> post.author,
         "images" -> post.images.mkString(",")
       )
 
-      val r = scripts.run("", searchText, args)
-
+      val r = scripts.run("", scriptText, args)
+      
       r match {
         case Success(result) if(scoreOpt.isDefined && !scoreOpt.get.getCondition.isBlank) =>
           val condition = scoreOpt.get
@@ -318,10 +355,11 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
           }
 
         // no threshold or empty condition means with result -> return Post with extended info
-        case Success(result) if(! result.isBlank) =>
+        // ATTENTION: also it checks for non-blank results which may include spaces !!!
+        case Success(result) if(result.nonEmpty) =>
           Some(post.copy(result = Map("result" ->result)))
 
-        // empty results and no condition
+        // blank response ('') and no condition
         case Success(result) =>
           None
 
