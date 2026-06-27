@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Thu, 28 May 2026 08:58:57 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Bitcoin slips below $74,000 for the first time since April as on-chain data shows momentum stalling</title>
+		<link>https://cryptoslate.com/bitcoin-slips-below-74000-for-the-second-time-in-may-as-on-chain-data-shows-momentum-stalling/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Thu, 28 May 2026 08:55:16 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[ETF]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538614</guid>
+
+					<description><![CDATA[<p>Bitcoin slipped below $75,000 for the second time in May, touching an intraday low near $74,200 as the market's recovery from spring lows lost momentum again. The first break came on May 23, when spot ETF outflows and forced liquidations pulled BTC to below $75,000. Then, amid a sell-off in Asian markets, Bitcoin has dipped [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-slips-below-74000-for-the-second-time-in-may-as-on-chain-data-shows-momentum-stalling/">Bitcoin slips below $74,000 for the first time since April as on-chain data shows momentum stalling</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> slipped below $75,000 for the second time in May, touching an intraday low near $74,200 as the market's recovery from spring lows lost momentum again.</p>
+<p>The first break came on May 23, when spot ETF outflows and forced liquidations pulled BTC to below $75,000. Then, amid a sell-off in Asian markets, Bitcoin has dipped to $73,600 as of press time, with a low of $72,600.</p>
+<p>Glassnode's May 27 report frames <a href="https://insights.glassnode.com/the-week-onchain-week-21-2026/">both moves as symptoms</a> of Bitcoin stabilizing above its deeper-cycle support, but the <a href="https://cryptoslate.com/market/">market's</a> $75,000-$78,000 band has become a bottleneck, with spot demand, <a href="https://cryptoslate.com/bitcoin-etf-flows-macro-risk-test/">ETF flows</a>, and options positioning all retreating too far to drive a convincing recovery.</p>
+<p>That band sits directly beneath the Short-Term Holder Cost Basis and the <a href="https://cryptoslate.com/heres-why-bitcoin-is-stuck-below-80000-and-what-powells-fomc-meeting-did-for-btc-price/">True Market Mean</a>, both converging near $78,000, and the two on-chain metrics Glassnode identifies as critical for the next leg.</p>
+<p><a href="https://cryptoslate.com/trading/">Trading</a> below that cluster leaves the market's most price-sensitive cohort, which are recent buyers clustered close to spot, at breakeven or underwater, extending their exposure without rewarding it and converting them from a support base into a source of potential selling.</p>
+<p><a href="https://cryptoslate.com/companies/glassnode/">Glassnode</a> says dealers have concentrated their positioning around the $75,000-$76,000 strikes for May monthly expiry, with more than $8 billion of <a href="https://cryptoslate.com/bitcoin-breaks-70000-but-75000-is-the-2b-options-trap-that-could-turn-this-rally-violent/">negative gamma</a> near $75,000.</p>
+<figure id="attachment_538617" aria-describedby="caption-attachment-538617" style="width: 910px" class="wp-caption aligncenter"><img fetchpriority="high" decoding="async" class="wp-image-538617 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/brave_ZhtYCeV62d.jpg" alt="Bitcoin trapped between $75,000 and $78,000" width="910" height="650" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/brave_ZhtYCeV62d.jpg 910w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_ZhtYCeV62d-300x214.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_ZhtYCeV62d-768x549.jpg 768w" sizes="(max-width: 910px) 100vw, 910px" /><figcaption id="caption-attachment-538617" class="wp-caption-text">A Glassnode-sourced chart showing Bitcoin trapped in a $75,000–$78,000 band, with more than $8 billion in negative gamma concentrated near $75,000.</figcaption></figure>
+<p>That exposure forces dealers to sell into falling <a href="https://cryptoslate.com/price-watch/">prices</a> and buy into rising prices, compressing the range and making spot unusually reactive to small order flows near the strike.</p>
+<p>Price had already stalled at the $78,000 wall before the expiry overhang built, pointing to demand failure rather than mechanical hedging as the primary driver of the range.</p>
+<h2>What the on-chain data shows</h2>
+<p>Glassnode's Spot Volume Delta rolled back toward sell-side dominance in recent sessions, erasing a brief recovery from earlier in May as BTC pulled away from the low-$80,000 region.</p>
+<p>ETF flows drove the earlier rally and have now reversed it, with US spot Bitcoin <a href="https://cryptoslate.com/etf/">ETFs</a> shedding roughly $2.26 billion over two weeks through late May, with <a href="https://cryptoslate.com/companies/farside-investors/">Farside Investors'</a> daily data <a href="https://farside.co.uk/btc/">showing outflows</a> of $648.6 million on May 18, $331.1 million on May 19, $105.2 million on May 22, and $333.6 million on May 26.</p>
+<p>Glassnode cites constrained liquidity, elevated yields, oil price volatility, a firm dollar, and unresolved Iran-related geopolitical uncertainty as forces keeping <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> correlated with global risk appetite.</p>
+<table>
+<thead>
+<tr>
+<th>Pressure point</th>
+<th>Current signal</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spot demand</td>
+<td>Spot Volume Delta rolling back toward sell-side dominance</td>
+<td>Buyers are not absorbing supply aggressively</td>
+</tr>
+<tr>
+<td>ETF flows</td>
+<td>Roughly $2.26B in outflows over two weeks</td>
+<td>Removes a key structural bid</td>
+</tr>
+<tr>
+<td>Options positioning</td>
+<td>More than $8B negative gamma near $75K</td>
+<td>Amplifies moves around the strike</td>
+</tr>
+<tr>
+<td>Macro liquidity</td>
+<td>Elevated yields and constrained liquidity</td>
+<td>Reduces risk appetite</td>
+</tr>
+<tr>
+<td>Dollar / oil / geopolitics</td>
+<td>Firm dollar, oil volatility, Iran uncertainty</td>
+<td>Keeps BTC trading like a risk asset</td>
+</tr>
+<tr>
+<td>On-chain capital flows</td>
+<td>Realized P/L Ratio at 1.56</td>
+<td>Positive, but below early bull-market strength</td>
+</tr>
+</tbody>
+</table>
+<p>US equity funds recorded over $12 billion in outflows in the week ending May 20 as long-term borrowing costs climbed, and BTC closely tracked that deterioration.</p>
+<p>Glassnode's on-chain data places Bitcoin in a partial recovery, lacking the capital flow strength to confirm a bull transition.</p>
+<p>The Realized Profit/Loss Ratio stands at 1.56, confirming net positive flows since the $60,000 floor, but it sits below the 2-5 range the firm associates with early, persistent bull markets.</p>
+<p>Short-term holder net realized P&L has recovered from -0.44% in February to around -0.02%, showing that recent buyers have climbed out of deep capitulation without accumulating the capital-flow momentum needed to drive expansion above the True Market Mean.</p>
+<h2>What $78,000 decides</h2>
+<p>In the bear case, Bitcoin fails to reclaim $78,000 once May options expiry clears, ETF outflows persist, and Spot Volume Delta stays sell-side.</p>
+<p>The negative gamma overhang near $75,000 clears with expiry, but without renewed spot buying or ETF demand, price drifts below $75,000 on a structural basis.</p>
+<p>That outcome forecloses the pre-bull transition Glassnode identifies as plausible and moves the conversation back toward the $60,000 floor.</p>
+<p>The on-chain structure holds, since the Realized P/L Ratio has been net positive since spring, but a recovery thesis built on fading inflows and retreating spot demand runs out of runway.</p>
+<p>In the bull case, expiry clears the negative gamma overhang, and BTC reclaims $78,000 with spot-led buying rather than a mechanical squeeze.</p>
+<p>Glassnode says that the threshold, consisting of the convergence of the Short-Term Holder Cost Basis and the True Market Mean near $78,000-$78,300, is the level needed to validate a pre-bull transition.</p>
+<p>ETF flows stabilizing or turning positive would give that move structural credibility, and a recovery driven by expiry mechanics alone would leave the same demand gap in place a week later.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Bear case: BTC fails below $78K</th>
+<th>Bull case: BTC reclaims $78K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Key trigger</td>
+<td>ETF outflows persist, spot demand remains sell-side</td>
+<td>Spot-led buying returns, ETF flows stabilize</td>
+</tr>
+<tr>
+<td>Options impact</td>
+<td>Gamma pressure clears, but price still cannot recover</td>
+<td>Expiry clears pressure and price holds above threshold</td>
+</tr>
+<tr>
+<td>On-chain read</td>
+<td>Net positive flows remain, but recovery weakens</td>
+<td>Pre-bull transition becomes more credible</td>
+</tr>
+<tr>
+<td>Price implication</td>
+<td>Sustained break below $75K brings $60K floor back into discussion</td>
+<td>Low-$80K region comes back into view</td>
+</tr>
+<tr>
+<td>Market message</td>
+<td>Stabilized, but underbid</td>
+<td>Recovery regains credibility</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="https://cryptoslate.com/macro/">macro</a> picture also needs to be supported by softer yields, a weaker dollar, or reduced geopolitical uncertainty to provide the external tailwind the internal data cannot supply on its own.</p>
+<p>Below $78,000, the cohort of recent buyers positioned between $75,000 and $80,000 since April is a liability, close enough to spot that any sustained sell-side session can push them into loss-averse selling.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-slips-below-74000-for-the-second-time-in-may-as-on-chain-data-shows-momentum-stalling/">Bitcoin slips below $74,000 for the first time since April as on-chain data shows momentum stalling</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-slip-75k.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-slip-75k.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Hut 8 AI landlord data center strategy turns Bitcoin collateral into bridge capital</title>
+		<link>https://cryptoslate.com/hut-8-ai-data-center-bitcoin-collateral/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 19:35:22 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Digital Asset Treasuries]]></category>
+		<category><![CDATA[Enterprise]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Mining]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538567</guid>
+
+					<description><![CDATA[<p>The miner's $16.8 billion lease base shows how power and BTC-backed debt are financing a move beyond mining.</p>
+<p>The post <a href="https://cryptoslate.com/hut-8-ai-data-center-bitcoin-collateral/">Hut 8 AI landlord data center strategy turns Bitcoin collateral into bridge capital</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Hut 8 is pushing even further into AI infrastructure than most other Bitcoin miners are. Its latest disclosures show a company using power access, data center leases, project debt, and BTC-backed liquidity to build the financing stack for that move.</p>
+<p>The company's latest disclosures put numbers around that transition. Hut 8 <a href="https://www.sec.gov/Archives/edgar/data/1964789/000110465926055894/hut-20260506xex99d1.htm">reported</a> $16.8 billion in triple-net, take-or-pay contracted lease revenue across two hyperscale AI campuses, then separately <a href="https://www.hut8.com/news-insights/press-releases/hut-8-advances-capital-strategy-with-refinancing-of-bitcoin-backed-credit-facility">refinanced</a> a $200 million Bitcoin-backed credit facility with FalconX.</p>
+<p>The new facility cut the fixed rate to 7.0% from 9.0% and unencumbered roughly 3,300 BTC from the prior collateral package.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/hut-8-receives-150-million-boost-for-ai-data-center-expansion/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2024/06/ai-bitcoin-mining-1024x538.jpg" alt="Hut 8 receives $150 million boost for AI data center expansion" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Hut 8 receives $150 million boost for AI data center expansion</h3>
+                            <div class="cs-article-embed__summary">The miner says the investment would help to boost its data center portfolio.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Jun 24, 2024</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Oluwapelumi Adejumo</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+
+<p>Taken together, the disclosures show a miner identity changing into something closer to an infrastructure landlord. Hut 8 is turning megawatts, lease commitments, project debt, and Bitcoin holdings into the machinery for a business that depends less on mining alone.</p>
+<p>The result is a case study with more substance than a generic AI pivot. Hut 8 is showing a funded path into data center infrastructure, though the model still needs operating proof. The test is whether contracted AI cash flows arrive on schedule and become durable enough that Bitcoin collateral becomes a bridge instead of a recurring source of balance-sheet dependence.</p>
+<h2>The lease base turns power into finance</h2>
+<p>The strongest number in Hut 8's first-quarter disclosure sits outside the Q1 income statement: $16.8 billion of contracted lease revenue across River Bend and Beacon Point, covering 597 MW of AI data center capacity.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/05/ig_06bd471e39694958016a16d42007908191adc36c70c2f14f43.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-538578 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/ig_06bd471e39694958016a16d42007908191adc36c70c2f14f43.png" alt="Infographic showing Hut 8's AI landlord stack, including $16.8 billion in contracted lease revenue, 597 MW of AI capacity, project finance, and execution risks." width="1122" height="1402" /></a></p>
+<p>Hut 8 generated $71 million of revenue in the first quarter, including $66 million from Compute, and posted a $253 million net loss that included $295 million of primarily unrealized digital-asset losses.</p>
+<p>The $16.8 billion figure represents long-term contracted lease value that Hut 8 is presenting as the foundation for a different kind of business.</p>
+<p>The pieces are specific. Hut 8's <a href="https://www.hut8.com/news-insights/press-releases/hut-8-commercializes-first-phase-of-1-gw-beacon-point-ai-data-center-campus-with-15-year-352-mw">Beacon Point lease</a> added 352 MW of IT capacity and $9.8 billion of base-term value. Its earlier <a href="https://www.hut8.com/news-insights/press-releases/hut-8-signs-15-year-245-mw-ai-data-center-lease-at-river-bend-campus-with-total-contract-value">River Bend lease</a> added 245 MW and $7 billion of base-term value, with Google providing a financial backstop for the base lease term.</p>
+<p>Hut 8 is commercializing scarce power and data center capacity under long-term lease structures. The appeal comes from contracts and power access rather than a token, a cloud slogan, or a vague compute promise.</p>
+<p>Triple-net and take-or-pay terms are designed to make those cash flows more financeable because the tenant obligation is less tied to day-to-day mining economics.</p>
+<p>Hut 8's disclosures line up across four moving parts:</p>
+<table>
+<thead>
+<tr>
+<th>Model component</th>
+<th>Hut 8 evidence</th>
+<th>Reader impact</th>
+<th>Risk still live</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power and sites</td>
+<td>597 MW of contracted AI data center capacity across two campuses</td>
+<td>Turns miner infrastructure into leaseable digital infrastructure</td>
+<td>Delivery, interconnection, construction, and tenant concentration</td>
+</tr>
+<tr>
+<td>Contracted demand</td>
+<td>$16.8 billion in base-term contracted lease revenue</td>
+<td>Creates a financing story beyond hashprice exposure</td>
+<td>Lease value depends on execution over long timelines</td>
+</tr>
+<tr>
+<td>Project finance</td>
+<td>$3.25 billion River Bend notes, non-recourse to Hut 8</td>
+<td>Reduces the need to fund all growth from equity or BTC sales</td>
+<td>Large projects still carry cost, schedule, and market risks</td>
+</tr>
+<tr>
+<td>Bitcoin balance sheet</td>
+<td>$200 million FalconX BTC-backed facility and 3,300 BTC unencumbered</td>
+<td>Gives liquidity without immediately selling coins</td>
+<td>Collateral value still moves with BTC</td>
+</tr>
+</tbody>
+</table>
+<p>Hut 8's AI transition has more to it than most, but each component still carries a different kind of risk.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/are-bitcoin-miners-becoming-ai-utilities-the-math-says-yes/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2025/10/bitcoin-ai-1-1024x538.jpg" alt="Bitcoin miners are transforming into AI utilities based on math" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin miners are transforming into AI utilities based on math</h3>
+                            <div class="cs-article-embed__summary">With 500MW and 168MW hosting deals inked, miners get financing-friendly dollars while hashrate and fee trajectories determine who captures the upside.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Oct 31, 2025</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Gino Matos</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+
+<p>The leases reduce some revenue uncertainty. The bond financing reduces some parent-level funding pressure. The Bitcoin facility improves liquidity. Still, all three leave Hut 8 with the task of building, delivering, and operating infrastructure for customers whose requirements differ from Bitcoin mining.</p>
+<h2>Bitcoin becomes bridge capital</h2>
+<p>The FalconX refinancing is the clearest sign that Bitcoin is becoming part of the financing machinery rather than only the asset being mined.</p>
+<p>The full Hut 8 release distributed through Nasdaq described the facility as a 364-day Bitcoin-backed loan with limited recourse to pledged BTC, a no-rehypothecation covenant, fixed loan-to-value thresholds, and no loan-to-value ratchet triggered by declines in Bitcoin's price.</p>
+<p>Those terms blunt part of the obvious criticism. The deal improves the terms of a miner's coin-backed borrowing instead of worsening them to chase a new market.</p>
+<p>Hut 8 lowered its fixed cost of debt by 200 basis points and increased Bitcoin held outside collateral covenants. The release valued the newly unencumbered coins at roughly $260 million as of May 1, 2026, giving Hut 8 more balance-sheet room without selling the asset.</p>
+<p>That makes the facility a better tool, but not a risk-free one.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/05/ig_06bd471e39694958016a16d489019481918b98756addc315a9.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-538580 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/ig_06bd471e39694958016a16d489019481918b98756addc315a9.png" alt="Infographic showing Bitcoin collateral as bridge capital for Hut 8, including the FalconX facility, treasury scale, and market risk signals." width="1122" height="1402" /></a></p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/riot-platforms-leverages-1-8-billion-bitcoin-trove-for-100-million-coinbase-loan/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2025/04/riot-platform-bitcoin-1024x538.jpg" alt="Riot Platforms leverages $1.8 billion Bitcoin trove for $100 million Coinbase loan" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Riot Platforms leverages $1.8 billion Bitcoin trove for $100 million Coinbase loan</h3>
+                            <div class="cs-article-embed__summary">Riot Platforms charts path for strategic growth with novel Bitcoin-backed loan amidst industry headwinds.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Apr 24, 2025</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Oluwapelumi Adejumo</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+
+<p>Hut 8's own balance sheet shows why the distinction is important. Its 10-Q said the company held about 16,332 BTC as of March 31, 2026, including about 9,311 BTC held by Hut 8 and about 7,021 BTC held by American Bitcoin.</p>
+<p>The aggregate fair value was about $1.11 billion, based on approximately $68,222 per BTC. The same filing tied the first-quarter digital-asset loss to Bitcoin's decline during the period.</p>
+<p>Today, <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> trades near $75,782 on CryptoSlate's price page, down 2.1% over 24 hours and roughly 40% below its October 2025 all-time high. The market-price channel is the relevant risk.</p>
+<p>Bitcoin can provide liquidity without a sale, but the borrowing value, covenant comfort, and refinancing backdrop still depend on the asset's market behavior.</p>
+<p>That is why the AI landlord strategy cannot be separated from the Bitcoin treasury strategy. If AI leases produce reliable cash flows, BTC collateral can be transitional capital. If delivery slips, financing markets tighten, or Bitcoin weakens at the wrong time, the same collateral can keep the pivot tied to the volatility it was meant to escape.</p>
+<h2>The miner label is becoming less useful</h2>
+<p>Earlier <a href="https://cryptoslate.com/bitcoin-miners-start-funding-pivot-to-ai-with-debt-while-selling-btc-to-stay-liquid/">coverage of miners' AI pivot</a> showed the broader identity split facing the sector. Miners are moving toward AI and high-performance computing because power access, cooling infrastructure, land, interconnection work, and industrial operations can be worth more under contracted dollar revenue than under compressed mining margins.</p>
+<p>Hut 8 fits that broader sector shift. Public miners built businesses around converting power into BTC, and AI data center demand is now giving some of them a second possible use for the same physical footprint.</p>
+<p>The difference is that AI customers do not buy the same thing the Bitcoin network buys. Mining can tolerate interruption when economics or grid conditions change. AI tenants want uptime, delivery certainty, dense power, cooling, network architecture, and creditworthy execution.</p>
+<p>A miner with megawatts still has to become a hyperscale landlord. It has to turn a power position into infrastructure that lenders and tenants will treat as dependable.</p>
+<p>Hut 8's disclosures show both sides of that transition. The company describes itself as an energy infrastructure platform integrating power, digital infrastructure, and compute. It also still reports digital-asset losses, BTC holdings, and exposure to mining economics.</p>
+<p>Some Compute revenue and BTC holdings are held by American Bitcoin, a consolidated subsidiary, making Hut 8's strategy less straightforward than a clean exit from mining.</p>
+<p>That complexity is part of the shift. The market is watching whether miners can stop being pure BTC proxies without losing the balance-sheet optionality that made their treasuries valuable in the first place.</p>
+<p>The strongest argument in Hut 8's favor is that the AI pivot uses more than Bitcoin-backed debt. The company said it closed $3.25 billion of fully amortizing 16.5-year investment-grade senior secured notes to finance River Bend.</p>
+<p>Hut 8 described the financing as non-dilutive and non-recourse to Hut 8, with loan-to-cost increasing to about 95%.</p>
+<p>That weakens the crutch argument. If project-level debt funds the campus and long-term leases support the debt, then Bitcoin collateral is one part of the structure rather than the whole. It is a liquidity tool alongside project finance and contracted revenue.</p>
+<p>The caution is that the financial structure still has to become operationally sound. River Bend is still advancing toward delivery, Beacon Point still has to be built out, and the company still has to convert an 8,375 MW development pipeline into real contracted capacity.</p>
+<p>Hut 8 also warned investors about risks tied to data center construction, financing, power expansion, permitting, supply chains, technical challenges, and market conditions.</p>
+<p>Hut 8 is showing that miners can finance a route into AI infrastructure when they have scarce power, credible tenants, project-finance access, and a Bitcoin balance sheet lenders will underwrite. It has yet to show that the route is self-sustaining.</p>
+<p>The next test is whether AI infrastructure cash flows become strong enough to push Bitcoin collateral into the background. If they do, Hut 8's BTC-backed financing will look like bridge capital for a miner that successfully monetized its power footprint.</p>
+<p>If they fail to do so, the pivot will remain tethered to the same balance-sheet asset that made the strategy possible in the first place.</p>
+<p>The post <a href="https://cryptoslate.com/hut-8-ai-data-center-bitcoin-collateral/">Hut 8 AI landlord data center strategy turns Bitcoin collateral into bridge capital</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/hut8-bitcoin-miner-ai-pivot.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/hut8-bitcoin-miner-ai-pivot.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>CME’s 24/7 crypto launch will kill Bitcoin’s weekend gap, but Monday now matters more</title>
+		<link>https://cryptoslate.com/cme-bitcoins-weekend-gap-dead-clearing-monday/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 17:20:16 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538568</guid>
+
+					<description><![CDATA[<p>The exchange is taking crypto futures and options 24/7, while trade dates, settlement and reporting stay tied to business days.</p>
+<p>The post <a href="https://cryptoslate.com/cme-bitcoins-weekend-gap-dead-clearing-monday/">CME’s 24/7 crypto launch will kill Bitcoin’s weekend gap, but Monday now matters more</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>CME gaps are supposed to die Friday.</p>
+<p>CME Group says its regulated crypto futures and options will <a href="https://investor.cmegroup.com/news-releases/news-release-details/cme-group-launch-247-cryptocurrency-futures-and-options-trading">move to 24-hour, seven-day trading</a> on May 29, pending regulatory review, cutting into one of <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a>&#8216;s familiar institutional market tells.</p>
+<p>The weekday venue that helped create weekend CME-gap talk is preparing to keep matching trades while crypto prices keep moving.</p>
+<p>CME is extending the moment traders can execute, while other parts of the regulated futures stack still keep a business-day clock.</p>
+<p>Weekend and holiday trades from Friday evening through Sunday evening will still carry the following business day's trade date, and CME says clearing, settlement and regulatory reporting tied to that activity will be processed on that following business day.</p>
+<p>For participating institutional users, the execution gap gets smaller. The harder question shifts to liquidity quality, clearing behavior and Monday post-trade processing.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/cme-to-start-trading-crypto-futures-24-7-what-changes-for-bitcoin/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2025/10/cme-bitcoin-1024x538.jpg" alt="CME to start trading crypto futures 24/7: What changes for Bitcoin?" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">CME to start trading crypto futures 24/7: What changes for Bitcoin?</h3>
+                            <div class="cs-article-embed__summary">Round-the-clock trading could narrow gaps with crypto-native venues. We chart who benefits and when.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Oct 3, 2025</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Andjela Radmilac</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+
+<h2>What CME Is Changing</h2>
+<p>CME announced that its regulated cryptocurrency futures and options will become available for trading 24 hours a day, seven days a week beginning May 29, pending regulatory review.</p>
+<p>The move applies to the exchange's crypto futures and options complex and is being implemented through CME Globex and ClearPort, subject to maintenance windows.</p>
+<p>The commercial case is clear. CME said client demand for digital-asset risk management reached a record level, with <a href="https://investor.cmegroup.com/news-releases/news-release-details/cme-group-launch-247-cryptocurrency-futures-and-options-trading">$3 trillion in notional volume</a> across its crypto futures and options in 2025.</p>
+<p>It also reported 407,200 year-to-date average daily contracts in 2026, up 46% from the prior year.</p>
+<p>Those figures show why the weekend access problem has moved beyond a meme. Bitcoin traded around $75,782 in CryptoSlate's May 27 snapshot, with a market capitalization near $1.52 trillion and 24-hour volume near $35.17 billion.</p>
+<p>In a market of that size, a regulated derivatives venue that closes through the weekend can leave institutional desks managing price risk with a time-zone mismatch.</p>
+<p>For traders using futures to hedge spot exposure, manage basis, or offset ETF-linked flows, the practical question is whether the regulated instruments they are allowed or required to use can respond when prices move outside the old CME week.</p>
+<p>CME's move gives qualified participants a regulated execution channel during periods that previously sat outside that trading window.</p>
+<p>That access can change how a weekend shock is absorbed. Instead of compressing every move into a Sunday evening or Monday reopening, participating desks can hedge, roll, quote or adjust exposure while the broader crypto market is already trading.</p>
+<p>The improvement is meaningful for basis trades, ETF-linked exposure, liquidation risk and headline-driven volatility, even as the rest of the regulated workflow remains more constrained.</p>
+<p>For CME, the scale also shifts the launch from product housekeeping into market-structure work: a large derivatives franchise is adapting its access model to an asset class that keeps pricing risk through weekends.</p>
+<h2>The Post-Trade Clock Still Runs On Business Days</h2>
+<p>CME's <a href="https://www.cmegroup.com/clearing/files/cryptocurrency-guidelines.pdf">clearing and global operations guidelines</a> spell out the limit of the change. The document says there will still be five business days, Monday through Friday, and that Saturday and Sunday clearing settlement cycles are outside the new setup.</p>
+<p>The distinction is operationally important: execution becomes continuous, while the official machinery that turns trades into cleared obligations still leans on the next business day.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Weekend change</th>
+<th>Business-day mechanic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trading access</td>
+<td>Crypto futures and options can trade through weekends and holidays, subject to maintenance windows.</td>
+<td>Some clients may remain on five-day access instead of enabling seven-day trading.</td>
+</tr>
+<tr>
+<td>Trade date</td>
+<td>Trades can be executed from Friday evening through Sunday evening.</td>
+<td>Those trades carry the following business day's trade date.</td>
+</tr>
+<tr>
+<td>Clearing and settlement</td>
+<td>Weekend trades are accepted into the regulated workflow.</td>
+<td>Settlement-cycle processing waits for the following business day.</td>
+</tr>
+<tr>
+<td>Regulatory reporting</td>
+<td>Weekend activity enters the reporting chain.</td>
+<td>CME says reporting tied to weekend and holiday activity is processed on the following business day.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/05/ig_0399fff071103112016a16d3683190819195fe54c155eb35f8.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-532220 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/ig_0399fff071103112016a16d3683190819195fe54c155eb35f8.png" alt="Infographic comparing CME 24/7 crypto execution with business-day post-trade processing" width="1122" height="1402" /></a></p>
+<p>That design reflects the unresolved operating problem for regulated crypto markets. Crypto prices can move continuously, while futures markets depend on clearing members, collateral, risk controls, settlement cycles, reporting records and operational staffing built around business-day discipline.</p>
+<p>CME's guidelines show how the exchange is trying to bridge the mismatch. Clearing members that participate in supplemental trading hours must be approved by CME Clearing.</p>
+<p>They must have risk policies and procedures that cover the extra hours, including account monitoring, credit controls, position limits, intraday and overnight monitoring, and defined liquidity sources.</p>
+<p>During certain weekend hours, CME Clearing will monitor exposure against posted performance bond and available liquidity. Clearing members are required to submit weekly liquidity templates and deposit collateral for anticipated weekend clearing activity by Friday afternoon into separate weekend settlement accounts.</p>
+<p>Those mechanics are the back-office version of 24/7 trading: prefunded risk capacity and monitoring until the business-day cycle catches up.</p>
+<h2>Weekend Liquidity Has To Prove Itself</h2>
+<p>The old CME gap became shorthand because Bitcoin and other crypto assets kept trading while CME's institutional venue was closed. If spot prices moved sharply on Saturday, CME futures reopened later at a different level, creating a visible gap on the chart.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/the-bitcoin-cme-gap-is-dead-and-past-gaps-could-close-forever-in-may-this-year/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2026/02/bitcoin-gap-1024x538.jpg" alt="The Bitcoin CME gap will now close forever in May leaving a return to $84k hanging" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">The Bitcoin CME gap will now close forever in May leaving a return to $84k hanging</h3>
+                            <div class="cs-article-embed__summary">With 24/7 crypto futures launching May 29, the legendary CME gap faces extinction but a new risk may replace it.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Feb 20, 2026</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Liam &#039;Akiba&#039; Wright</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+
+<p>That chart pattern was only one part of the issue. The deeper problem was that regulated access stopped during precisely the period when crypto-native venues, offshore platforms, ETFs, market makers and leveraged traders could still be forced to react.</p>
+<p>CME's <a href="https://www.cmegroup.com/trading/btic-on-cryptocurrency-futures.html?redirect=/cryptobtic">BTIC materials</a> show how weekend access reaches the basis-trading and ETF workflows around crypto futures, not just directional bets.</p>
+<p>In plain terms, a basis trade at index close lets participants trade crypto futures basis against CME CF reference rates, including reference-rate closes in London, New York and APAC. CME also cites ETF creation and redemption NAV risk as a use case.</p>
+<p>That places CME's derivatives complex close to the plumbing of institutional exposure. A desk managing basis against a reference rate, hedging ETF-linked exposure, or carrying futures against spot needs instruments, margin processes and liquidity when prices move.</p>
+<p>Access alone still leaves market quality to prove itself. If weekend books are thin, spreads widen, or clearing constraints bite during stress, the market may feel more available without feeling fully continuous.</p>
+<p>
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/how-institutions-made-bitcoin-a-weekday-market-so-retail-takes-on-all-the-weekend-risk/" class="cs-article-embed__link">
+                    <div class="cs-article-embed__media">
+                <img src="https://cryptoslate.com/wp-content/uploads/2026/04/bitcoin-retail-institution-1024x683.jpg" alt="Bitcoin weekend liquidity has vanished even as BTC leads out of hours markets because institutions dominate weekdays" loading="lazy" decoding="async">
+            </div>
+                <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin weekend liquidity has vanished even as BTC leads out of hours markets because institutions dominate weekdays</h3>
+                            <div class="cs-article-embed__summary">ETF-era Bitcoin is deeper on weekdays and thinner on weekends, leaving smaller traders more exposed when volatility hits.</div>
+                                        <div class="cs-article-embed__meta">
+                                            <span class="cs-article-embed__meta-item">Apr 11, 2026</span>
+                                                                <span class="cs-article-embed__meta-divider">&middot;</span>
+                                                                <span class="cs-article-embed__meta-item">Andjela Radmilac</span>
+                                    </div>
+                    </div>
+    </a>
+</div>
+<br />
+<a href="https://cryptoslate.com/wp-content/uploads/2026/05/ig_0399fff071103112016a16d3b567108191885e3ea515369984.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-532220 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/ig_0399fff071103112016a16d3b567108191885e3ea515369984.png" alt="Infographic showing CME weekend liquidity tests including market-maker programs, spreads, depth and prefunding" width="1122" height="1402" /></a></p>
+<p>CME appears aware of that risk. Separate <a href="https://www.cftc.gov/filings/orgrules/rules0513263316.pdf">CFTC filings</a> show weekend market-maker programs for cryptocurrency futures and options.</p>
+<p>The <a href="https://www.cftc.gov/filings/orgrules/rules0513263322.pdf">options program</a> says participants must quote continuous two-sided markets in covered products at maximum bid-ask spreads and minimum quote sizes during a required share of time in market.</p>
+<p>Those filings support a launch-liquidity program rather than evidence of deep weekend markets. The first live measure will be practical: which clearing members enable seven-day access, how much volume trades outside old hours, how weekend bid-ask spreads compare with weekdays, whether options quotes remain reliable, and whether exposure alerts or prefunding requirements shape behavior during volatile periods.</p>
+<p>There are two plausible paths. In the stronger version, CME's weekend access becomes a genuine pressure valve.</p>
+<p>Institutional traders can hedge, roll, quote and adjust exposure while crypto-native markets are already moving, and Monday becomes more of an administrative processing point than a delayed risk event.</p>
+<p>In the weaker version, the venue is technically open while liquidity remains uneven, with many users still treating Monday as the real moment when weekend activity becomes visible in clearing, settlement and reporting.</p>
+<p>The launch would still be important; it would show that the weekend gap has migrated from price charts into market depth and operations.</p>
+<p>CME's 24/7 launch gives institutional traders a way to use familiar futures and options products while Bitcoin and the broader crypto market move through weekends and holidays.</p>
+<p>It also exposes the limits of the shift. Regulated crypto can trade more like crypto, while it still clears and reports through machinery built for business days.</p>
+<p>For the weekend gap, the split is now clearer. CME is likely to kill the most visible version for traders who can access the venue through the weekend.</p>
+<p>The tougher part moves into a less visible place: whether liquidity, risk controls and clearing behavior can make regulated crypto feel continuous when the back office still keeps a business-day clock.</p>
+<p>The post <a href="https://cryptoslate.com/cme-bitcoins-weekend-gap-dead-clearing-monday/">CME’s 24/7 crypto launch will kill Bitcoin’s weekend gap, but Monday now matters more</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-cme-gap.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-cme-gap.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Ethereum’s privacy push faces a 12-month deadline as markets reward privacy-first assets</title>
+		<link>https://cryptoslate.com/ethereums-privacy-push-12-month-deadline-markets-reward-privacy-first/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 15:15:40 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Privacy]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[ETH]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[ZCash]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538399</guid>
+
+					<description><![CDATA[<p>Ethereum developers are racing to bring native privacy to the world’s largest smart contract blockchain as investors warn that delays could weaken ETH’s claim as crypto’s default settlement layer. The pressure has intensified as the market rotates toward privacy-focused assets while Ethereum struggles to hold investor attention amid its current wave of FUD and questions [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/ethereums-privacy-push-12-month-deadline-markets-reward-privacy-first/">Ethereum’s privacy push faces a 12-month deadline as markets reward privacy-first assets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/coins/ethereum/">Ethereum</a> developers are racing to bring native privacy to the world’s largest smart contract blockchain as investors warn that delays could weaken ETH’s claim as crypto’s default settlement layer.</p>
+<p>The pressure has intensified as the market rotates toward privacy-focused assets while Ethereum struggles to hold investor attention amid its current wave of FUD and questions over its identity.</p>
+<p><a href="https://cryptoslate.com/ethereum-market-sentiment-turns-negative-amid-foundation-brain-drain-and-price-struggles/">ETH has fallen roughly 30% this year</a> and recently traded near $2,000, even as Zcash has registered double-digit gains during the same period.</p>
+<p>That divergence has turned privacy from a long-running cypherpunk goal into a product deadline for Ethereum.</p>
+<p>The network still dominates stablecoin settlement, tokenization, decentralized finance, and Layer 2 activity, but its default transparency remains a problem for users and institutions that do not want balances, counterparties, or transaction histories visible in real time.</p>
+<p>Tom Dunleavy, head of venture at Varys Capital, <a href="https://x.com/dunleavy89/status/2059259457972924773">said</a> Ethereum’s privacy push is bullish, but only if developers move quickly.</p>
+<p>According to him:</p>
+<blockquote><p>“Super bullish on the privacy push for Ethereum, but it needs to happen in a reasonable, under-12-month timeframe, or it effectively doesn’t matter. Ethereum now more than ever is in a race on the product side, and its competition is extremely well-funded, motivated, and has all of the connections Ethereum lacks. Ship or die.”</p></blockquote>
+<p>The warning comes as Ethereum’s market position is already under pressure. GSR Research said blockchain revenue is shifting toward rival networks such as <a href="https://cryptoslate.com/coins/solana/">Solana</a>, Tron, and <a href="https://cryptoslate.com/coins/hyperliquid/">Hyperliquid</a>, while the ETH-to-Bitcoin ratio recently hit its lowest level since mid-2025.</p>
+<figure id="attachment_538402" aria-describedby="caption-attachment-538402" style="width: 679px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538402 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/HJP0XTyWkAAJiSg.jpg" alt="Quarterly Blockchain Revenue" width="679" height="382" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/HJP0XTyWkAAJiSg.jpg 679w, https://cryptoslate.com/wp-content/uploads/2026/05/HJP0XTyWkAAJiSg-300x169.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/HJP0XTyWkAAJiSg-480x270.jpg 480w" sizes="(max-width: 679px) 100vw, 679px" /><figcaption id="caption-attachment-538402" class="wp-caption-text">Quarterly Blockchain Revenue (Source: GSR Research)</figcaption></figure>
+<p>This trend is also reflected in <a href="https://cryptoslate.com/companies/cryptoquant/">CryptoQuant</a> data, which points to a sharp retreat among retail and mid-tier Ethereum holders.</p>
+<p>According to the firm, wallets holding between 100 and 1,000 ETH have nearly halved their balances over the past three years, falling from a 2023 peak of 16.2 million ETH to roughly 8.75 million ETH today.</p>
+<p>Larger holders have also begun reducing exposure. Wallets holding between 1,000 and 10,000 ETH, which helped drive Ethereum’s 2024 rally, reportedly started trimming their positions late last year.</p>
+<figure id="attachment_538401" aria-describedby="caption-attachment-538401" style="width: 1131px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538401" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-023318.jpg" alt="Ethereum Holders Balances" width="1131" height="646" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-023318.jpg 1131w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-023318-300x171.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-023318-1024x585.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-023318-768x439.jpg 768w" sizes="(max-width: 1131px) 100vw, 1131px" /><figcaption id="caption-attachment-538401" class="wp-caption-text">Ethereum Holders' Balances (Source: CryptoQuant)</figcaption></figure>
+<p>Those outflows cannot be directly attributed to demand for privacy. However, they add pressure to Ethereum’s broader narrative at a time when privacy-focused assets are gaining market attention, and investors are questioning what could <a href="https://cryptoslate.com/ethereum-loses-10-of-its-defi-market-share-as-rival-chains-close-in/">restore ETH’s momentum</a>.</p>
+<h2>How privacy became a crypto market trade</h2>
+<p>The push for Ethereum privacy coincides with a broader market thesis that financial confidentiality will dictate the next major cryptocurrency cycle.</p>
+<p><a href="https://cryptoslate.com/companies/grayscale-investments/">Grayscale Research</a> recently published an analysis arguing that the digital asset sector is on the cusp of a “third wave” of widespread public attention regarding financial privacy.</p>
+<figure id="attachment_538404" aria-describedby="caption-attachment-538404" style="width: 969px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538404" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-024502.jpg" alt="Financial Privacy " width="969" height="652" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-024502.jpg 969w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-024502-300x202.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-024502-768x517.jpg 768w" sizes="(max-width: 969px) 100vw, 969px" /><figcaption id="caption-attachment-538404" class="wp-caption-text">Financial Privacy Search on Google (Source: Grayscale)</figcaption></figure>
+<p>According to the firm, this shift is driven by the proliferation of stablecoins and blockchain-based applications, as well as the rapid <a href="https://cryptoslate.com/ai-is-powering-the-fourth-industrial-revolution-but-without-blockchain-can-we-trust-it/">advancement of artificial intelligence.</a> These AI tools, Grayscale warned, introduce new and highly sophisticated methods of financial surveillance.</p>
+<p>On public blockchains, balances, counterparties, and transaction histories can remain visible indefinitely.</p>
+<p>Grayscale researchers emphasized that the demand for privacy is not solely limited to users seeking full anonymity. Instead, it reflects ordinary preferences for confidentiality in economic life.</p>
+<p>Individuals generally do not want their spending history exposed by default, while businesses require confidentiality for supplier payments, payroll, and treasury flows. Institutions similarly view the real-time mapping of their wallet structures as a non-starter.</p>
+<p>However, implementing these features involves significant commercial tradeoffs.</p>
+<p>Grayscale noted that stronger privacy protections have historically led to weaker market distribution, creating friction with centralized exchange support, regulatory compliance, and wallet integration.</p>
+<p>Despite these hurdles, Grayscale Investments Chairman <a href="https://cryptoslate.com/people/barry-silbert/">Barry Silbert</a> echoed the report’s sentiment, declaring that the “privacy era” in digital assets has officially commenced.</p>
+<figure id="attachment_538400" aria-describedby="caption-attachment-538400" style="width: 2560px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538400" src="https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-scaled.jpg" alt="Privacy Coins" width="2560" height="1073" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-scaled.jpg 2560w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-300x126.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-1024x429.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-768x322.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-1536x644.jpg 1536w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQJWcRasAAbs8V-2048x858.jpg 2048w" sizes="(max-width: 2560px) 100vw, 2560px" /><figcaption id="caption-attachment-538400" class="wp-caption-text">Privacy Coins Dominate Crypto Industry Meta</figcaption></figure>
+<p>This narrative shift is already evident in the crypto market, where <a href="https://cryptoslate.com/zcash-just-exploded-40-and-the-privacy-coin-rally-is-no-longer-just-a-crypto-native-trade/">Zcash's market capitalization has surged</a> by over 900% in the past year, approaching nearly $10 billion. Even Monero, which frequently faces regulatory scrutiny over its use in illicit markets, has doubled in value.</p>
+<h2>Ethereum co-founder makes play for privacy</h2>
+<p>Over the past weeks, Ethereum co-founder Vitalik Buterin has pushed the issue back to the front of the network’s technical agenda, <a href="https://x.com/VitalikButerin/status/2059229162963943769">calling</a> for developers to “accelerate the cypherpunk privacy reality” after years of privacy research and debate.</p>
+<p>His near-term <a href="https://x.com/VitalikButerin/status/2056992175318073477">roadmap</a> focuses on three areas, including account abstraction and FOCIL, keyed nonces, and access-layer privacy work.</p>
+<p>Together, they are designed to make private Ethereum activity harder to censor, harder to link, and less dependent on trusted infrastructure.</p>
+<p>FOCIL, short for fork-choice-enforced inclusion lists, is designed to address transaction censorship.</p>
+<p>Today, transactions can sit in a public mempool before they are finalized, giving block builders and other intermediaries visibility into pending activity. That creates openings for exclusion, front-running, and surveillance.</p>
+<p>FOCIL would allow a committee of validators to propose lists of transactions that block builders are expected to include.</p>
+<p>If builders ignore those transactions, their blocks may be rejected by the network. The mechanism is designed to make it harder to censor transactions, including private transfers, before they reach the chain.</p>
+<p>Account abstraction addresses another weakness in Ethereum’s current design. Most users still rely on externally owned accounts controlled by a single private key.</p>
+<p><a href="https://cryptoslate.com/ethereum-launches-erc-4337-smart-accounts/">Account abstraction</a> allows accounts to behave more like programmable smart contracts, supporting features such as social recovery, multisignature approval, and fee sponsorship.</p>
+<p>For privacy, that flexibility matters because wallet activity can be structured to reduce obvious behavioral patterns. It also makes it easier for applications or relayers to pay fees on behalf of users without forcing every action through the same exposed account model.</p>
+<p>Keyed nonces target a narrower but important metadata leak. Ethereum accounts currently use a single counter, known as a nonce, to prevent the same transaction from being replayed. Because that counter increases in sequence, observers can use it to link transactions that might otherwise appear separate.</p>
+<p>The proposed fix splits the account counter into different replay domains. That would allow separate types of activity to use different nonce keys, making it harder to link private actions back to the same account through simple sequencing.</p>
+<p>Lastly, the most ambitious part of that wider push may be Kohaku, an <a href="https://cryptoslate.com/companies/ethereum-foundation/">Ethereum Foundation</a>-backed open-source toolkit designed to bring privacy features into the wallets people already use. The project goes beyond private transfers by targeting the access-layer leaks that expose users before a transaction even settles.</p>
+<p>Even if transactions become private, wallets can still leak information when they query the blockchain. Most wallets rely on remote procedure call providers to check balances, read smart contracts, and submit transactions, giving those providers visibility into a user’s IP address, wallet identity, and requested data.</p>
+<p><a href="https://cryptoslate.com/ethereum-doubles-down-on-privacy-with-new-kohaku-wallet-ahead-of-devcon/">Kohaku</a> is designed to reduce that exposure by giving wallet developers privacy and security components that can be integrated into existing products. Its roadmap includes private sending, safer key management, private reads, and a reference wallet for developers and power users.</p>
+<p>The toolkit can also connect wallets to shielded protocols such as Railgun, which is already live on Ethereum, and Privacy Pools, which remains in development.</p>
+<p>Ultimately, its goal is to give users private transfers and DeFi access without forcing them to adopt niche tools or move away from wallets they already use.</p>
+<p>Ethereum researcher soispoke.eth <a href="https://x.com/soispoke/status/2059269087381852618">said</a> the combined package could enable the blockchain network to offer native, trustless, and censorship-resistant private transactions as soon as next year if the proposals ship together.</p>
+<h2>Why ETH needs to ship privacy features</h2>
+<p>Crypto lawyer Gabriel Shapiro <a href="https://x.com/lex_node/status/2058930872728899874">said</a> these privacy works could help Ethereum compete for institutional tokenization because enterprises need confidentiality for tokenized securities, treasury flows, and DeFi interactions.</p>
+<p>That argument goes to the center of <a href="https://cryptoslate.com/guides/how-to-buy-ethereum/">Ethereum’s investment case</a>. The network’s advantage has long been its breadth: stablecoins, lending markets, decentralized exchanges, tokenized assets, Layer 2 networks, and developer infrastructure.</p>
+<p>However, this breadth alone may not be enough if every financial interaction remains visible by default.</p>
+<p>For institutions, public settlement without privacy can be a liability. A company does not want competitors mapping its suppliers. A fund does not want trading routes exposed. A bank does not want clients’ tokenized securities activity to be visible on a public ledger.</p>
+<p>Ethereum has the infrastructure to serve those users, but the market is pressing for proof that privacy can reach wallet-level products rather than remain a research agenda.</p>
+<p>That is why Dunleavy’s 12-month warning lands with force: Zcash already has the clearest privacy narrative, and Monero remains a major privacy asset despite exchange and regulatory pressure.</p>
+<p>At the same time, rival blockchain networks, including Solana, Tron, and <a href="https://cryptoslate.com/spacex-ipo-valuation-hyperliquid/">Hyperliquid, are capturing market attention</a> while Bitcoin still commands the strongest institutional demand.</p>
+<p>Still, Ethereum has the deepest application base in crypto with over $350 billion in assets tokenized on the blockchain, but the market is no longer treating that lead as permanent.</p>
+<p>If <a href="https://cryptoslate.com/ethereums-2026-roadmap-includes-a-validator-risk-that-is-bigger-than-you-think-to-deliver-the-massive-throughput-gains/">Hegota</a> introduces usable privacy products within the next year, the feature could strengthen ETH’s role as a settlement infrastructure for both individuals and institutions.</p>
+<p>However, if those upgrades remain technical promises, the current privacy trade may continue rewarding assets that made confidentiality their core feature from the start.</p>
+<p>The post <a href="https://cryptoslate.com/ethereums-privacy-push-12-month-deadline-markets-reward-privacy-first/">Ethereum’s privacy push faces a 12-month deadline as markets reward privacy-first assets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/ethereum-privacy.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/ethereum-privacy.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Tiny x402 payments expose the approval gap holding AI agents back</title>
+		<link>https://cryptoslate.com/tiny-x402-payments-expose-gap-holding-ai-agents-back/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 13:40:07 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538356</guid>
+
+					<description><![CDATA[<p>Agentic payment protocol x402 volume collapsed roughly 77% from its November 2025 peak of $5.15 million to $1.19 million by May 2026. Meanwhile, transaction count fell only 41% from its December 2025 peak of 4.85 million, then rebounded to 2.89 million in May, up 12.5x from a February trough, with an average transaction size of [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/tiny-x402-payments-expose-gap-holding-ai-agents-back/">Tiny x402 payments expose the approval gap holding AI agents back</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Agentic payment protocol x402 volume collapsed roughly 77% from its November 2025 peak of $5.15 million to $1.19 million by May 2026.</p>
+<p>Meanwhile, transaction count fell only 41% from its December 2025 peak of 4.85 million, then rebounded to 2.89 million in May, up 12.5x from a February trough, with an average transaction size of $0.52.</p>
+<p>The <a href="https://cryptoslate.com/market/">market's</a> recovery took the form of high-frequency, low-value usage, revealing that agents are paying for APIs, data, and compute over HTTP at sub-dollar amounts, relying on automation to function.</p>
+<p>A conservative 5-to-15-second wallet confirmation to each of <a href="https://www.artemis.ai/sectors/agentic-payments">those 2.89 million monthly x402 transactions</a> can generate between 4,000 and 12,000 user-hours of approval friction in a single month.</p>
+<p>At a $25/hour time value, each manual confirmation costs $0.03 to $0.10, which is material for a $0.52 transaction, and economically absurd for a $0.01 API call.</p>
+<p>At sub-cent payment sizes, the friction cost exceeds the transaction value itself, and the smaller the payment, the wider that distance.</p>
+<p>That logic explains why every major actor building agentic payment infrastructure now concentrates on authorization frameworks.</p>
+<figure id="attachment_538357" aria-describedby="caption-attachment-538357" style="width: 1053px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538357 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/brave_0LSoPDdjIC.jpg" alt="AI agents: volumes and transactions" width="1053" height="723" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/brave_0LSoPDdjIC.jpg 1053w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_0LSoPDdjIC-300x206.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_0LSoPDdjIC-1024x703.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_0LSoPDdjIC-768x527.jpg 768w" sizes="(max-width: 1053px) 100vw, 1053px" /><figcaption id="caption-attachment-538357" class="wp-caption-text">x402 adjusted volume fell 77% from its November 2025 peak of $5.15 million, while transaction count rebounded to 2.89 million by May 2026.</figcaption></figure>
+<h2>Industry actors building the delegation layer</h2>
+<p><a href="https://cryptoslate.com/companies/google/">Google</a> donated AP2 to the FIDO Alliance <a href="https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/">in April 2026</a> after developing it as an authorization framework for delegated AI tasks.</p>
+<p>AP2 uses cryptographically signed &#8220;mandates,&#8221; instructions that define what an agent can do, under what conditions, and within what limits.</p>
+<p>For tasks where the user is absent, AP2 supports pre-authorized rules that cover <a href="https://cryptoslate.com/price-watch/">price</a> ceilings, time windows, and action scope. Donating it to FIDO pushes it toward a cross-platform standard, and FIDO frames AP2 as enabling secure delegation, verifiable authorization, and trusted transaction execution.</p>
+<p><a href="https://cryptoslate.com/companies/mastercard-blockchain/">Mastercard's</a> Verifiable Intent creates a tamper-resistant record linking what the user authorized to what the agent executed, an audit trail that travels with the transaction and answers whether an agent did exactly what the user asked and nothing more.</p>
+<p>Stripe and Tempo's implementation of the Model Context Protocol for payments addresses the on-chain friction version of the same challenge.</p>
+<p>A Tempo Machine Payments Protocol (MPP) session requires only two on-chain transactions, one to open, one to settle, regardless of how many payments occur in between, letting agents execute high-frequency, low-value payments without paying on-chain costs per request.</p>
+<p>Stripe's machine payments documentation describes pay-per-use models starting at 0.01 <a href="https://cryptoslate.com/coins/usd-coin/">USDC</a> per agent invocation, recurring payments, and programmatic API calls, all designed for agents acting without a human in the loop.</p>
+<p>Cloudflare treats x402 and MPP as HTTP infrastructure, <a href="https://cryptoslate.com/app-days-are-numbered-the-end-state-of-software-is-private-personal-verified-and-ai-agent-built/">with agents discovering services</a>, receiving 402 Payment Required challenges, and retrying with payment credentials programmatically.</p>
+<p><a href="https://cryptoslate.com/companies/visa/">Visa's</a> Intelligent Commerce Connect, already in pilot with AWS, Diddo, Highnote, Mesh, Payabli, and Sumvin, adds tokenization, spend controls, and authentication to the same stack.</p>
+<p>Across all of these, the common architecture positions authorization at the policy level, where a single user decision governs many agent actions.</p>
+<table>
+<thead>
+<tr>
+<th>Player / protocol</th>
+<th>Delegation mechanism</th>
+<th>What it controls</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google AP2</td>
+<td>Signed mandates</td>
+<td>Price ceilings, time windows, action scope</td>
+<td>Lets agents act under pre-authorized rules</td>
+</tr>
+<tr>
+<td>Mastercard Verifiable Intent</td>
+<td>Tamper-resistant intent record</td>
+<td>Whether action matched user authorization</td>
+<td>Creates audit trail between intent and execution</td>
+</tr>
+<tr>
+<td>Stripe / Tempo MPP</td>
+<td>Sessions</td>
+<td>Many payments inside one open/settle flow</td>
+<td>Reduces friction for high-frequency payments</td>
+</tr>
+<tr>
+<td>Cloudflare x402 / MPP</td>
+<td>HTTP 402 challenge flow</td>
+<td>Programmatic paywall and retry logic</td>
+<td>Turns web resources into machine-payable services</td>
+</tr>
+<tr>
+<td>Visa Intelligent Commerce Connect</td>
+<td>Tokenization, spend controls, authentication</td>
+<td>Agent-initiated commerce safeguards</td>
+<td>Brings payments-network controls to agent commerce</td>
+</tr>
+<tr>
+<td>Base MCP</td>
+<td>Wallet approval gate</td>
+<td>Swaps, transfers, contract calls, x402 payments</td>
+<td>Shows the gap between “agent proposes” and “agent spends”</td>
+</tr>
+</tbody>
+</table>
+<h2>Both sides of the contradiction</h2>
+<p>Base expands what agents can do by enabling check balances, sending funds, swapping tokens, signing messages, executing contract calls, and paying via x402-enabled APIs, but every write action still requires user approval through Base Account.</p>
+<p>For swaps, lending positions, and larger wallet actions, that gate is a safety feature. For recurring micropayments of $0.52 or less, it is the same approval wall as at the wallet layer.</p>
+<p>Launched on May 26, <a href="https://x.com/base/status/2059305572793508045">Base MCP</a> exposes the delegation disconnect: an agent that can propose an <a href="https://cryptoslate.com/what-is-x402-the-http-402-payments-standard-powering-ai-agents-explained/">x402 payment</a> but cannot execute it without a wallet pop-up cannot function autonomously in a micropayment economy.</p>
+<p>The distance between &#8220;agents can propose&#8221; and &#8220;agents can spend&#8221; is what AP2 mandates, MPP sessions, and Verifiable Intent are trying to close.</p>
+<h2>Infrastructure ahead of trust</h2>
+<p>If the delegation frameworks mature and achieve broad adoption, x402 adjusted transactions could climb from 2.89 million monthly to 10 to 30 million, with average transaction size remaining mostly sub-dollar.</p>
+<p>The growth driver would be a higher ratio of payments per user authorization, in which a user sets a budget and defines an allowlist, and an agent executes thousands of microtransactions within those parameters.</p>
+<p>McKinsey estimates that by 2030, agentic commerce could orchestrate <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants">up to $1 trillion in US B2C retail revenue</a> and $3 to $5 trillion globally.</p>
+<p>That figure depends on agents operating reliably within delegated authority, across machine-readable transaction objects, at frequencies no human approval loop can support.</p>
+<p>The bear case turns on institutional coordination, and trust-building moves more slowly than infrastructure does. Gartner predicts that over <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">40% of agentic AI projects will be canceled</a> by the end of 2027, citing costs, unclear value, and weak risk controls.</p>
+<p>If wallets default to human-in-the-loop for liability reasons, if merchants add friction to agent-initiated payments because they cannot verify intent, or if a single high-profile exploit forces <a href="https://cryptoslate.com/regulation/">regulators</a> into the conversation before standards harden, x402 adjusted transactions could stay in the <a href="https://cryptoslate.com/staggering-28-trillion-is-flowing-through-cryptos-agent-economy-but-76-of-it-is-just-bots-shuffling-stablecoins/">1-to-3 million monthly range</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Delegation outcome</th>
+<th align="right">x402 / agentic payment signal</th>
+<th>What it would mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bear case</td>
+<td>Wallets stay human-in-the-loop</td>
+<td align="right">1M–3M monthly x402 tx</td>
+<td>Payments remain niche because approval friction persists</td>
+</tr>
+<tr>
+<td>Base case</td>
+<td>Budgets and allowlists become common</td>
+<td align="right">3M–10M monthly tx</td>
+<td>Agents handle routine API/tool/data payments safely</td>
+</tr>
+<tr>
+<td>Bull case</td>
+<td>Policy-level authorization scales</td>
+<td align="right">10M–30M monthly tx</td>
+<td>Approval density becomes the main adoption metric</td>
+</tr>
+<tr>
+<td>Trust shock</td>
+<td>Exploit or spoofing event slows adoption</td>
+<td align="right">Activity contracts or becomes noisy</td>
+<td>Standards harden before growth resumes</td>
+</tr>
+</tbody>
+</table>
+<p>Standards like AP2 and Verifiable Intent require broad <a href="https://cryptoslate.com/adoption/">adoption</a> to serve as trust signals, and that adoption depends on wallets, merchants, and platforms converging on a common authorization model.</p>
+<p>MPP routes through Tempo <a href="https://cryptoslate.com/stablecoins/">stablecoins</a>, Stripe-supported cards, Lightning, and custom payment methods, so on-chain Artemis data covers only a portion of its activity.</p>
+<p>When judged by agent invocations per authorized session, MPP's footprint expands into the foundational plumbing layer of machine payments.</p>
+<p>That measurement difference shapes how the category gets evaluated, and miscalibrated evaluation affects where capital goes and which standards win the adoption race.</p>
+<p>The next phase of agentic payments is proving they deserve the authority to spend, and that the humans, wallets, and merchants on the other side of those transactions are willing to grant it in advance.</p>
+<p>The post <a href="https://cryptoslate.com/tiny-x402-payments-expose-gap-holding-ai-agents-back/">Tiny x402 payments expose the approval gap holding AI agents back</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/agents-payment.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/agents-payment.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin just absorbed a single $1.3B IBIT block trade with barely any price movement</title>
+		<link>https://cryptoslate.com/bitcoin-just-absorbed-a-single-1-3b-ibit-block-trade-with-barely-any-price-movement/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 12:05:29 +0000</pubDate>
+				<category><![CDATA[ETF]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538367</guid>
+
+					<description><![CDATA[<p>At 10:30:34 a.m. ET, a single IBIT print of 29,212,864 shares, crossed at $43.16, for a notional of roughly $1.26 billion. The next-largest visible movement was 1.3 million shares, making one trade dwarf everything else in IBIT's session, accounting for about 34.8% of the ETF's reported intraday volume of 83.86 million shares. IBIT ended the [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-just-absorbed-a-single-1-3b-ibit-block-trade-with-barely-any-price-movement/">Bitcoin just absorbed a single $1.3B IBIT block trade with barely any price movement</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>At 10:30:34 a.m. ET, a single IBIT print of 29,212,864 shares, crossed at $43.16, for a notional of roughly $1.26 billion.</p>
+<p>The next-largest visible movement was 1.3 million shares, making one trade dwarf everything else in IBIT's session, accounting for about 34.8% of the ETF's reported intraday volume of 83.86 million shares.</p>
+<p>IBIT ended the sequence at $42.99, up about 0.09%, while Bitcoin traded around $75,911, down roughly 1.73%. A dark pool executed the trade with a momentary 1% dip in Bitcoin, which recovered immediately, confirming the block absorbed through organized liquidity and settled cleanly.</p>
+<p>IBIT's intraday volume of 83.86 million shares gave the <a href="https://cryptoslate.com/market/">market</a> enough daily turnover to absorb even a 29.2 million-share print, and a buyer or a network of buyers matched the seller at $43.16 without triggering a disorderly repricing of the ETF.</p>
+<p>Before spot Bitcoin <a href="https://cryptoslate.com/etf/">ETFs</a> launched, moving a billion dollars of <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> exposure required either a large OTC desk arrangement or a sequence of exchange orders that would leave visible <a href="https://cryptoslate.com/price-watch/">price</a> impact across crypto markets.</p>
+<p>Today's block routed through block desks, market makers, arbitrage desks, <a href="https://cryptoslate.com/ibit-flips-to-in-kind-creations-what-it-means-for-spreads-taxes-flows/?utm_source=chatgpt.com">authorized participants standing ready</a>, and IBIT closed near where it started.</p>
+<h2>The secondary market distinction</h2>
+<p>IBIT shares <a href="https://cryptoslate.com/trading/">trade</a> continuously on the secondary market among investors, and a block trade between those investors changes ownership of the shares, leaving the trust's underlying Bitcoin holdings intact unless something else happens.</p>
+<p><a href="https://cryptoslate.com/companies/blackrock/">BlackRock's</a> fund documentation states that IBIT shares are bought and sold on the secondary market and are not individually redeemable from the trust.</p>
+<p>Only authorized participants, which are large financial institutions that interact directly with the fund, can create or redeem shares in large baskets. This happens through a separate process, and that process determines whether the trust actually sells Bitcoin.</p>
+<p><a href="https://cryptoslate.com/companies/farside-investors/"><strong>Farside Investors</strong></a> May 26 <a href="https://cryptoslate.com/products/ishares-bitcoin-trust/">IBIT</a> flow row was not yet populated, leaving confirmation of whether today's block translated into fund-level Bitcoin selling still pending.</p>
+<p>IBIT's <a href="https://cryptoslate.com/crossroads-for-bitcoin-whats-next-92k-or-79k-lets-break-it-down/?utm_source=chatgpt.com">previous single-day withdrawal</a> record was approximately $523 million, set in November 2025. A confirmed outflow matching today's full notional size would more than double that record.</p>
+<p>If IBIT reports no major outflow, the block transfer of exposure from one institutional holder to another is a liquidity event confined to the secondary market.</p>
+<figure id="attachment_538368" aria-describedby="caption-attachment-538368" style="width: 909px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538368 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/brave_Hpk2uW4Cmj.jpg" alt="Why a block trade is not automatically an ETF outflow" width="909" height="635" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/brave_Hpk2uW4Cmj.jpg 909w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_Hpk2uW4Cmj-300x210.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_Hpk2uW4Cmj-768x537.jpg 768w" sizes="(max-width: 909px) 100vw, 909px" /><figcaption id="caption-attachment-538368" class="wp-caption-text">A 29.21 million-share IBIT block trade splits into two paths: secondary-market ownership transfer, which leaves trust holdings intact, or primary-market basket redemption.</figcaption></figure>
+<p>If IBIT posts a large outflow, particularly one approaching or exceeding its prior record of $523 million, the block translates into basket-redemption pressure.</p>
+<p>A large holder may have wanted to cut Bitcoin exposure and used IBIT because it offered enough liquidity to move size discreetly. The buyer may have been a different institution rotating into Bitcoin exposure via the ETF wrapper.</p>
+<p>The trade could also reflect a portfolio rebalancing, a basis-trade unwind, a hedge adjustment, or a mandate-driven allocation change, none of which requires a directional view on Bitcoin's price.</p>
+<h2>Plumbing under pressure</h2>
+<p>In the bull case, ETF flow data shows no major IBIT outflow, and today's block confirms the depth of Bitcoin's institutional market.</p>
+<p>One institution reduced exposure, and another absorbed it through the ETF structure, keeping spot Bitcoin off the exchange order books and the ETF price intact.</p>
+<p>That outcome supports the argument that Bitcoin's market structure has matured, as billion-dollar exposure transfers can now occur within ETF plumbing.</p>
+<p>Institutions looking to size into or out of Bitcoin have a liquid, organized venue capable of handling the volume, and May 26 movement is the evidence.</p>
+<p>In the bear case, IBIT reports a large outflow in the next flow print, one that approaches or exceeds its prior record of $523 million.</p>
+<p>That would mean the block translated into basket redemption pressure, as authorized participants returned shares to BlackRock, the fund sold Bitcoin to meet redemptions, and the ETF structure amplified the concentrated selling, transmitting it into spot price pressure.</p>
+<p>The broader implication is that institutional de-risking at scale can activate the redemption cycle, converting a secondary-market block trade into primary-market Bitcoin sales in a sequence the tape alone cannot show.</p>
+<p>Whatever the flow data confirms, today's block already demonstrated the depth of Bitcoin's institutional infrastructure.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>ETF flow print</th>
+<th>Interpretation</th>
+<th>Market meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Absorption</strong></td>
+<td>No major IBIT outflow</td>
+<td>One holder sold, another absorbed the shares</td>
+<td>ETF market passed a billion-dollar liquidity test</td>
+</tr>
+<tr>
+<td><strong>Partial redemption</strong></td>
+<td>Outflow below prior record</td>
+<td>Some primary-market pressure, but not full block conversion</td>
+<td>Mixed signal; secondary liquidity still absorbed part of trade</td>
+</tr>
+<tr>
+<td><strong>Record outflow</strong></td>
+<td>Outflow near or above <strong>$523M</strong></td>
+<td>Block likely translated into basket-redemption pressure</td>
+<td>Institutional de-risking became fund-level selling</td>
+</tr>
+<tr>
+<td><strong>Extreme case</strong></td>
+<td>Outflow approaches full <strong>$1.26B</strong> notional</td>
+<td>More than double prior IBIT withdrawal record</td>
+<td>Could reframe the event as major ETF redemption shock</td>
+</tr>
+</tbody>
+</table>
+<p>A trade worth roughly $1.26 billion crossed at a single venue, and the ETF held its price, sustained by IBIT's order book depth, block-desk liquidity, and the <a href="https://cryptoslate.com/bitcoin-liquidity-has-vanished-into-a-shadow-system-where-corporate-debt-cycles-now-dictate-the-crash-risk/?utm_source=chatgpt.com">arbitrage apparatus</a> that keeps the ETF's price tethered to its net asset value under stress.</p>
+<p>The block trade only converts into deeper Bitcoin sell pressure if it shows up in the next ETF flow print. Until then, the cleaner interpretation is that a billion-dollar transfer of Bitcoin exposure happened, and the market absorbed it.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-just-absorbed-a-single-1-3b-ibit-block-trade-with-barely-any-price-movement/">Bitcoin just absorbed a single $1.3B IBIT block trade with barely any price movement</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-liquidity-test.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/bitcoin-liquidity-test.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Aave is bank-sized, but $2.9T in corporate loans reveals the risk DeFi still can’t price</title>
+		<link>https://cryptoslate.com/aave-has-bank-sized-deposits-but-2-9t-corporate-credit-shows-what-defi-still-cant-price/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 10:35:05 +0000</pubDate>
+				<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lending]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538361</guid>
+
+					<description><![CDATA[<p>US commercial and industrial lending reached $2.89 trillion at commercial banks for the week ending May 13, up roughly $183 billion year-to-date and 8.19% above year-ago levels. Corporate America has borrowed heavily through rising rates and continues borrowing into tightening bank credit conditions, adding more to bank balance sheets in the first five months of [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/aave-has-bank-sized-deposits-but-2-9t-corporate-credit-shows-what-defi-still-cant-price/">Aave is bank-sized, but $2.9T in corporate loans reveals the risk DeFi still can’t price</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>US commercial and industrial lending reached $2.89 trillion at commercial banks for the week ending May 13, up roughly $183 billion year-to-date and 8.19% above year-ago levels.</p>
+<p>Corporate America has borrowed heavily through rising rates and continues borrowing into tightening bank credit conditions, adding more to bank balance sheets in the first five months of 2026 than most DeFi protocols have ever intermediated in total.</p>
+<p>Aave ended 2025 with $55 billion in deposits after peaking at $75 billion, placing it alongside mid-sized US banks in terms of asset scale. DefiLlama data show its current active loan book <a href="https://defillama.com/protocol/aave">is $10.9 billion</a>, roughly 0.38% of the US C&I loan <a href="https://cryptoslate.com/market/">market</a>.</p>
+<p><a href="https://cryptoslate.com/rwa-tokenization-defi-composability-gap/">Tokenized credit</a> across all on-chain platforms, including Maple, Centrifuge, and STOKR, reaches $5.3 billion in distributed value and $22.7 billion in represented value, according to RWA.xyz.</p>
+<p>Together, those figures represent less than 1% of what US banks extend to businesses alone.</p>
+<figure id="attachment_538362" aria-describedby="caption-attachment-538362" style="width: 909px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538362 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/brave_BHATBs5WNF.jpg" alt="The corporate credit market DeFi has barely touched" width="909" height="675" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/brave_BHATBs5WNF.jpg 909w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_BHATBs5WNF-300x223.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/brave_BHATBs5WNF-768x570.jpg 768w" sizes="(max-width: 909px) 100vw, 909px" /><figcaption id="caption-attachment-538362" class="wp-caption-text">US commercial bank C&I loans at $2.89 trillion dwarf Aave's $10.9 billion active loan book and $5.3 billion in tokenized credit distributed value.</figcaption></figure>
+<h2>The rate paradox</h2>
+<p>Aave V3 on Base shows a 30-day average USDC borrow APR of 4.24%, against the Federal Reserve's published US bank prime loan rate of 6.75%.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Aave-style DeFi lending</th>
+<th>Bank C&I lending</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What the lender prices</td>
+<td>Liquid collateral risk</td>
+<td>Business repayment risk</td>
+</tr>
+<tr>
+<td>Typical collateral</td>
+<td>Crypto assets / stablecoins</td>
+<td>Cash flows, receivables, inventory, contracts</td>
+</tr>
+<tr>
+<td>Main risk control</td>
+<td>Automatic liquidation</td>
+<td>Covenants, underwriting, legal recovery</td>
+</tr>
+<tr>
+<td>Rate behavior</td>
+<td>Variable, utilization-driven</td>
+<td>More predictable credit lines / negotiated terms</td>
+</tr>
+<tr>
+<td>Best borrower fit</td>
+<td>Crypto-native borrower with liquid collateral</td>
+<td>Company seeking working capital or expansion credit</td>
+</tr>
+<tr>
+<td>Main blocker for corporate adoption</td>
+<td>Borrower must post excess liquid collateral</td>
+<td>Slower, more expensive, but built for business risk</td>
+</tr>
+</tbody>
+</table>
+<p>The Fed's April Senior Loan Officer Opinion Survey noted that banks tightened C&I credit standards across firm sizes, raised premiums on riskier loans, and imposed stricter covenants and collateral requirements, even as C&I balances continued to climb.</p>
+<p>Aave's borrow rate <a href="https://cryptoslate.com/price-watch/">prices</a> collateral risk, which is the cost of accessing liquidity against assets that the protocol can liquidate automatically, while a bank's prime rate prices repayment risk based on whether a business will generate enough cash flow to service its debt.</p>
+<p>Those are structurally different credit products, and the 250-basis-point distance between them reflects that structural difference.</p>
+<p>A company typically borrows because it needs capital against cash flows, receivables, inventory, purchase orders, or future contracts. Those are the business fundamentals a bank underwrites, and Aave cannot yet evaluate on-chain.</p>
+<p>Aave's own V3 documentation describes its borrowing model as always overcollateralized, with liquidations triggered when collateral coverage falls below defined thresholds.</p>
+<p>That structure works well for crypto-native borrowers seeking <a href="https://cryptoslate.com/stablecoins/">stablecoin</a> liquidity, but leaves corporate borrowers without a matching product.</p>
+<h2>What the infrastructure still lacks</h2>
+<p>Cash-flow underwriting requires evaluating whether a borrower can repay from sales, margins, and contracts over time.</p>
+<p>DeFi protocols price token collateral dynamically and accurately, with no equivalent mechanism for assessing a company's revenue quality or covenant compliance.</p>
+<p>Corporate borrowing is useful precisely because the borrower lacks liquid collateral equal to the loan amount, and <a href="https://cryptoslate.com/after-the-16-5-billion-in-exploits-defi-now-forced-toward-the-controls-it-once-resisted/">DeFi's most battle-tested lending markets</a> rely on overcollateralization to reduce default risk by removing the need for trust.</p>
+<p>Real-world collateral requires valuation, verification, custody, <a href="https://cryptoslate.com/legal/">legal</a> enforceability, and recovery processes that smart contracts alone cannot execute.</p>
+<p>Tokenized credit platforms like Maple and Centrifuge have made progress, but their combined distributed value of $5.31 billion represents a fraction of the receivables-backed lending that flows through traditional bank facilities each quarter.</p>
+<p>Aave can liquidate ETH or <a href="https://cryptoslate.com/coins/usd-coin/">USDC</a> collateral in a single block, while corporate credit workouts involve covenants, waivers, restructuring negotiations, servicers, bankruptcy proceedings, and courts.</p>
+<p>Aave's <a href="https://cryptoslate.com/coins/ethereum/">Ethereum</a>/USDC borrow APR on May 26 was 12.82%, compared with a 30-day average of 4.72% for the same pool, which tripled over the measurement window.</p>
+<p>A corporate treasurer managing a revolving credit facility needs a predictable cost of capital, and that swing makes on-chain variable credit structurally incompatible with standard treasury practice.</p>
+<p>Aave's credit delegation mechanism lets suppliers delegate borrowing power to other users, with enforcement through off-chain legal agreements or on-chain smart contracts, showing that DeFi has the conceptual primitives for undercollateralized credit.</p>
+<p>It also shows why the bridge to corporate borrowing still runs through legal infrastructure and off-chain trust, exactly the components DeFi has not yet automated at scale.</p>
+<h2>Two speeds</h2>
+<p>In the bull case, tokenized collateral rails, institutional credit managers, stablecoin settlement, and enforceable claims converge into a functioning corporate credit sleeve.</p>
+<p>On-chain private credit could reach $100 billion to $300 billion, between 3.5% and 10.4% of the current US C&I market. The path runs through crypto-native firms and fintech lenders first, where borrowers already operate in digital asset environments, before expanding to traditional corporate borrowers.</p>
+<p>April CPI at <a href="https://cryptoslate.com/bitcoin-was-waiting-for-cuts-hot-cpi-just-put-hikes-back-on-the-table/">3.8% year-over-year</a>, payroll growth slowing to 115,000, and tightening bank credit standards create conditions in which programmable alternative credit rails should attract attention from treasury desks that already use stablecoins for settlement.</p>
+<p>In the bear case, DeFi serves as a powerful liquidity market for crypto-collateralized borrowing, while corporate credit stays overwhelmingly on bank balance sheets.</p>
+<p>On-chain credit holds in the $5 billion to $20 billion range, under 0.7% of the C&I market, as legal, underwriting, and recovery infrastructure matures more slowly than token markets do.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>What has to happen</th>
+<th align="right">Onchain corporate/private credit range</th>
+<th align="right">Share of current U.S. C&I market</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bear case</td>
+<td>DeFi remains mostly crypto-collateralized; legal and underwriting rails mature slowly</td>
+<td align="right"><strong>$5B–$20B</strong></td>
+<td align="right"><strong>&lt;0.7%</strong></td>
+</tr>
+<tr>
+<td>Base case</td>
+<td>Tokenized collateral, fintech lenders, and institutional credit managers expand gradually</td>
+<td align="right"><strong>$25B–$75B</strong></td>
+<td align="right"><strong>0.9%–2.6%</strong></td>
+</tr>
+<tr>
+<td>Bull case</td>
+<td>Tokenized collateral rails, enforceable claims, stablecoin settlement, and credit managers converge</td>
+<td align="right"><strong>$100B–$300B</strong></td>
+<td align="right"><strong>3.5%–10.4%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Banks retain the compliance, reporting, and legal recovery apparatus that corporate borrowers require, and building an equivalent on-chain infrastructure takes longer than deploying a new lending pool.</p>
+<p>DeFi has demonstrated that on-chain money markets can handle deposits, borrow rates, automated liquidations, and global stablecoin liquidity at a meaningful scale.</p>
+<p>The next opportunity in corporate lending lies in underwriting capability, legal enforceability, and institutional trust.</p>
+<p>The post <a href="https://cryptoslate.com/aave-has-bank-sized-deposits-but-2-9t-corporate-credit-shows-what-defi-still-cant-price/">Aave is bank-sized, but $2.9T in corporate loans reveals the risk DeFi still can’t price</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/corporate-credit.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/corporate-credit.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Ripple is expanding institutional finance ambitions while XRP traders are losing confidence</title>
+		<link>https://cryptoslate.com/ripple-is-expanding-institutional-finance-ambitions-while-xrp-traders-are-losing-confidence/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 09:06:56 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Bybit]]></category>
+		<category><![CDATA[Ripple]]></category>
+		<category><![CDATA[xrp]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538340</guid>
+
+					<description><![CDATA[<p>XRP’s latest decline is exposing a widening split between traders betting on more weakness and investors using the selloff to build exposure. Over the past few weeks, the digital asset has faced sustained downward pressure driven by capitulating short-term holders and aggressive short selling in futures markets. However, underlying spot demand has proved resilient, as [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/ripple-is-expanding-institutional-finance-ambitions-while-xrp-traders-are-losing-confidence/">Ripple is expanding institutional finance ambitions while XRP traders are losing confidence</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/coins/xrp/">XRP’s</a> latest decline is exposing a widening split between traders betting on more weakness and investors using the selloff to build exposure.</p>
+<p>Over the past few weeks, the digital asset has faced sustained downward pressure driven by capitulating short-term holders and aggressive short selling in futures markets.</p>
+<p>However, underlying spot demand has proved resilient, as evidenced by XRP-linked exchange-traded funds being on track to record their strongest monthly performance of the year.</p>
+<p>This market disconnect is playing out as Ripple accelerates its expansion into institutional finance, providing long-term investors with a structural adoption narrative even as momentum traders exit at a loss.</p>
+<p>For market participants, the critical question is whether XRP is establishing a macro accumulation base or simply pausing within an extended downtrend.</p>
+<h2>Trader losses mount as sentiment sours</h2>
+<p>Beneath <a href="https://cryptoslate.com/xrp-longest-slump-ripple-institutional-expansion/">XRP’s sluggish price action</a> lies significant retail distress. According to blockchain analytics firm Santiment, the average trader active in the token over the past 30 days is holding unrealized losses of roughly 47%.</p>
+<p>The drawdown has pushed XRP’s 30-day market-value-to-realized-value (MVRV) ratio to its lowest point since December 2020.</p>
+<figure id="attachment_538383" aria-describedby="caption-attachment-538383" style="width: 2560px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538383 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-scaled.jpg" alt="XRP Traders Return" width="2560" height="1437" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-scaled.jpg 2560w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-300x168.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-1024x575.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-768x432.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-1536x862.jpg 1536w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-2048x1150.jpg 2048w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-480x270.jpg 480w, https://cryptoslate.com/wp-content/uploads/2026/05/HJQ4yrSWgAImP9c-1200x675.jpg 1200w" sizes="(max-width: 2560px) 100vw, 2560px" /><figcaption id="caption-attachment-538383" class="wp-caption-text">XRP Traders Return (Source: Santiment)</figcaption></figure>
+<p>The steep decline marks a sharp reversal from recent optimism. XRP surged in late 2024 and early 2025 as investors priced in favorable regulatory developments, the debut of US exchange-traded funds, and Ripple’s evolving corporate profile.</p>
+<p>The subsequent pullback trapped many late entrants, leaving them underwater after acquiring the asset near local peaks.</p>
+<p>In cryptocurrency markets, deeply negative MVRV readings often serve as a gauge of trader exhaustion rather than a direct directional signal.</p>
+<p>When a large segment of the short-term holder base is severely compromised, the risk of forced selling typically diminishes. For XRP proponents, this zone suggests that months of liquidations may be nearing an end.</p>
+<p>Moreover, the broader crowd <a href="https://cryptoslate.com/xrp-sentiment-hits-a-5-week-high-as-money-rotates-away-from-bitcoin-and-ethereum/">sentiment surrounding the token</a> aligns with this exhaustion.</p>
+<p>Santiment’s positive-to-negative commentary ratio for XRP has compressed to approximately 1.1 bullish remarks for every bearish one, indicating that the speculative fervor defining earlier rallies has largely evaporated.</p>
+<figure id="attachment_538384" aria-describedby="caption-attachment-538384" style="width: 2560px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538384" src="https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-scaled.jpg" alt="XRP's Rising FUD" width="2560" height="1439" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-scaled.jpg 2560w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-300x169.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-1024x576.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-768x432.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-1536x864.jpg 1536w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-2048x1151.jpg 2048w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-480x270.jpg 480w, https://cryptoslate.com/wp-content/uploads/2026/05/HJMule4asAAikXZ-1200x675.jpg 1200w" sizes="(max-width: 2560px) 100vw, 2560px" /><figcaption id="caption-attachment-538384" class="wp-caption-text">XRP's Rising FUD (Source: <a href="https://x.com/SantimentData/status/2059043383814083008">Santiment</a>)</figcaption></figure>
+<p>While extreme pessimism can serve as a contrarian indicator, signaling that weak hands have exited the market, sentiment alone is insufficient to catalyze a reversal.</p>
+<p>Thus, XRP requires clear evidence of buyer conviction that can absorb the heavy selling pressure originating from leveraged trading platforms.</p>
+<h2>Derivatives selling meets spot market absorption</h2>
+<p>The structural divide between retail capitulation and institutional accumulation is most visible across exchange order books.</p>
+<p><a href="https://cryptoquant.com/insights/quicktake/6a1523bbf2609c4353777cf3-XRP-Spot-Buyers-Clash-With-Binance-Perp-Sellers-as-Binance-and-Bybit-Add-796M-XR">Data</a> compiled by CryptoQuant shows a sharp bifurcation between <a href="https://cryptoslate.com/xrp-rallies-as-ledger-activity-surges-even-as-etfs-suffer-over-50-million-in-outflows/">XRP’s spot and derivatives venues.</a></p>
+<p>On May 22, <a href="https://cryptoslate.com/xrp-is-sitting-on-a-volatility-trap-as-liquidity-dries-up-and-leverage-builds/">open interest for XRP expanded</a> aggressively across centralized derivatives exchanges. Binance recorded an addition of roughly 25.6 million XRP in open interest, while Bybit added 54 million XRP.</p>
+<p>The combined injection of nearly 79.6 million XRP carried a notional value of approximately $107 million, with the asset trading near $1.35.</p>
+<p>A subsequent surge occurred on May 26, when Binance open interest increased by another 28.9 million XRP, paired with a 42.9 million XRP rise on <a href="https://cryptoslate.com/companies/bybit/">Bybit</a>. At an average price of $1.34, this represented $96 million in new speculative positioning.</p>
+<figure id="attachment_538385" aria-describedby="caption-attachment-538385" style="width: 1014px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538385" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012052.jpg" alt="XRP Open Interest" width="1014" height="559" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012052.jpg 1014w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012052-300x165.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012052-768x423.jpg 768w" sizes="(max-width: 1014px) 100vw, 1014px" /><figcaption id="caption-attachment-538385" class="wp-caption-text">XRP's Open Interest Across Exchanges (Source: CryptoQuant)</figcaption></figure>
+<p>These events marked the most significant expansions in XRP open interest since mid-March, signaling a return of speculative leverage after a two-month lull.</p>
+<p>However, the direction of that leverage provides the critical context.</p>
+<p>The cumulative volume delta (CVD) for <a href="https://cryptoslate.com/companies/binance/">Binance</a> perpetual futures has plunged to a record negative reading of roughly -$641.9 million. This metric indicates that aggressive short sellers have dominated the perpetual market, persistently betting against the token even as open interest climbs.</p>
+<p>Conversely, spot markets demonstrate the opposite trend. Estimated spot CVD across all centralized exchanges has increased to roughly $397.3 million, surpassing the $380 million threshold established in late April.</p>
+<p>The divergence is stark: traders are heavily utilizing leverage to short XRP, while spot buyers are consistently taking the other side of those trades.</p>
+<p>The <a href="https://cryptoslate.com/bitcoin-ethereum-etf-outflows-altcoin-rotation/">XRP-linked ETF products</a> corroborate this absorption thesis. Data from SoSoValue shows that the US-listed spot XRP funds are pacing toward their strongest monthly performance this year, drawing approximately $117 million in recent inflows and extending their positive streak to 13 consecutive trading sessions. This has pushed their cumulative inflows beyond $1.12 billion.</p>
+<figure id="attachment_538387" aria-describedby="caption-attachment-538387" style="width: 1798px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538387" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230.jpg" alt="XRP ETFs Inflows" width="1798" height="418" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230.jpg 1798w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230-300x70.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230-1024x238.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230-768x179.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012230-1536x357.jpg 1536w" sizes="(max-width: 1798px) 100vw, 1798px" /><figcaption id="caption-attachment-538387" class="wp-caption-text">XRP ETFs Inflows in May (Source: SoSoValue)</figcaption></figure>
+<p>While ETF inflows cannot entirely offset futures market pressure, they provide a regulated anchor for the asset.</p>
+<p>The data suggests that XRP’s current price weakness is being met by capital with a longer investment horizon, shifting the market focus toward Ripple’s corporate developments.</p>
+<h2>Ripple’s Wall Street foray bolsters fundamental case</h2>
+<p>Ripple’s ongoing strategic pivot has injected a new <a href="https://cryptoslate.com/jpmorgan-mastercard-and-ripple-complete-cross-border-tokenized-treasury-settlement/">fundamental narrative into XRP’s market structure.</a></p>
+<p>The company recently <a href="https://tmsearch.uspto.gov/search/search-results/99826260">filed</a> US trademark applications that reflect a clear ambition to integrate traditional financial operations, covering treasury operations, prime brokerage, hedge fund management, securities lending, financial clearinghouse services, and digital asset management.</p>
+<p>While trademark filings do not guarantee the launch of specific products, they delineate a company’s strategic perimeter. In this instance, the filings indicate a calculated push into the core infrastructure of institutional finance.</p>
+<p>This direction aligns with the firm's ongoing <a href="https://cryptoslate.com/how-xrp-and-rlusd-is-making-ripple-the-jpmorgan-of-the-crypto-industry/">aggressive corporate buildout</a> that began last year.</p>
+<p>During this period, Ripple has structured a vertically integrated enterprise comprising <a href="https://cryptoslate.com/ripple-eyes-major-roles-for-xrp-rlusd-and-xrpl-following-1-25-billion-hidden-road-acquisition/">Ripple Prime</a>, which serves as an institutional trading desk; <a href="https://cryptoslate.com/ripple-files-trademark-for-ripple-custody-in-digital-asset-expansion-drive/">Ripple Custody</a>, which secures assets via institutional-grade architecture; and <a href="https://cryptoslate.com/ripple-boosts-stablecoin-payments-clout-with-200-million-rail-acquisition/">Ripple Payments</a>, which functions as a cross-border settlement layer.</p>
+<p>XRP and the <a href="https://cryptoslate.com/coins/ripple-usd/">RLUSD</a> stablecoin operate as the connective tissue, facilitating liquidity and treasury workflows across these divisions.</p>
+<p>Market observers noted that Ripple is positioning itself as a crypto-native alternative to legacy clearinghouses and investment banks by expanding beyond its original mandate of cross-border remittances.</p>
+<p>This evolution provides long-term <a href="https://cryptoslate.com/guides/what-is-xrp/">XRP</a> holders with an adoption thesis that is decoupled from retail trading enthusiasm.</p>
+<h2>What's next for XRP?</h2>
+<p>As Ripple constructs its institutional framework, on-chain data is prompting debate over the <a href="https://cryptoslate.com/xrpls-coming-hard-fork-shows-who-really-controls-a-blockchain-split/">XRP Ledger’s (XRPL) macro trajectory.</a></p>
+<p>Additional <a href="https://cryptoquant.com/insights/quicktake/6a14715d2f49764f5f1f4c62-Is-History-Repeating-The-Transaction-Count-Data-Shows-XRP-Aiming-8">data</a> from CryptoQuant highlight massive, anomalous spikes in XRPL transaction counts. Historically, these vertical surges in network activity have served as leading indicators, occurring months before significant price expansions.</p>
+<p>In November 2019, an extreme spike in trading volume preceded <a href="https://cryptoslate.com/how-xrp-could-break-its-all-time-high-this-year-is-a-170-surge-really-possible/">XRP’s 2021 bull run</a>, which saw the token appreciate from roughly 15 cents to $1.79. A parallel event occurred in July 2024, acting as a precursor to the asset’s climb from 50 cents to its mid-2025 cycle peak of $3.17.</p>
+<figure id="attachment_538389" aria-describedby="caption-attachment-538389" style="width: 784px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538389" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012904.jpg" alt="XRP Ledger (XRPL)" width="784" height="436" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012904.jpg 784w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012904-300x167.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-27-012904-768x427.jpg 768w" sizes="(max-width: 784px) 100vw, 784px" /><figcaption id="caption-attachment-538389" class="wp-caption-text">XRPL's Transaction Count (Source: CryptoQuant)</figcaption></figure>
+<p>Market analysts are now scrutinizing a similar explosion in transaction volume recorded in April 2026. Following that surge, XRP has entered a prolonged consolidation phase, trading primarily within a $1.30 to $1.50 range.</p>
+<p>Proponents of this cyclical theory argue that if historical patterns hold and the current range solidifies into a macro floor, a standard multiple expansion could position XRP’s next cycle target between $7.50 and $8.00.</p>
+<p>However, such projections remain speculative cycle comparisons rather than guaranteed forecasts. Previous network spikes did not trigger immediate price appreciation; they were followed by extensive periods of reaccumulation, cooling, and structural market realignment.</p>
+<p>For XRP to mount a sustained rally toward those targets, the market would need to exhibit continued spot absorption, a capitulation of short sellers in the derivatives market, and a definitive technical breakout.</p>
+<p>Presently, the market remains in a state of friction. Retail traders are absorbing heavy losses, sentiment is deeply depressed, and futures speculators are aggressively shorting the asset.</p>
+<p>Yet, strengthening spot cumulative volume delta, consistent ETF inflows, and Ripple’s steady encroachment into Wall Street infrastructure suggest a robust counter-narrative.</p>
+<p>If spot demand continues to neutralize derivatives selling, the current period of extreme pessimism may ultimately be recognized as a foundational accumulation phase.</p>
+<p>Until that underlying demand is either exhausted or victorious, Ripple’s institutional expansion remains a forward-looking catalyst anchored to a market waiting for its next decisive move.</p>
+<p>The post <a href="https://cryptoslate.com/ripple-is-expanding-institutional-finance-ambitions-while-xrp-traders-are-losing-confidence/">Ripple is expanding institutional finance ambitions while XRP traders are losing confidence</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/xrp-institution.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/xrp-institution.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Stablecoins just hit a record $322 billion &#8211; and the bank-run warnings are getting louder</title>
+		<link>https://cryptoslate.com/stablecoins-just-hit-a-record-322-billion-and-the-bank-run-warnings-are-getting-louder/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Wed, 27 May 2026 07:37:13 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[Tokenized deposit]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538164</guid>
+
+					<description><![CDATA[<p>The global stablecoin market has climbed to a record $322 billion valuation, cementing the rise of digital dollars as one of the cryptocurrency sector's most viable commercial products. The milestone reflects an accelerating demand for real-time settlement, borderless cross-border transfers, and reliable dollar access on blockchain rails. However, this expansion is also intensifying anxieties within [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/stablecoins-just-hit-a-record-322-billion-and-the-bank-run-warnings-are-getting-louder/">Stablecoins just hit a record $322 billion &#8211; and the bank-run warnings are getting louder</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The global <a href="https://cryptoslate.com/clarity-act-deadlock-fails-to-stop-stablecoins-smashing-past-320b-and-yield-bearing-tokens-surge-past-market/">stablecoin market</a> has climbed to a record $322 billion valuation, cementing the rise of digital dollars as one of the cryptocurrency sector's most viable commercial products.</p>
+<p>The milestone reflects an accelerating demand for real-time settlement, borderless cross-border transfers, and reliable dollar access on blockchain rails.</p>
+<p>However, this expansion is also intensifying anxieties within the traditional banking sector, where these privately issued tokens are increasingly viewed as a direct threat to core deposits, payment relationships, and the legacy plumbing of global commerce.</p>
+<p>As a result, the friction is driving a fundamental restructuring of digital finance. As stablecoin issuers expand under newly established federal frameworks, a parallel defensive-offensive is unfolding: global banks are quietly deploying tokenized deposit systems that already route trillions of dollars annually through blockchain-based infrastructure.</p>
+<h2>Stablecoin market moves deeper into finance</h2>
+<p>Over the years, stablecoins have evolved from a niche crypto-trading refuge into a settlement layer that threatens to disintermediate traditional banks.</p>
+<p>While dollar-pegged tokens originally gained traction as a volatility hedge for digital asset traders, they are now gaining a foothold in global remittances, merchant settlements, and cross-border corporate flows.</p>
+<p>Despite this commercial expansion, the market remains heavily top-heavy. <a href="https://cryptoslate.com/guides/what-is-tether/">Tether (USDT)</a> and <a href="https://cryptoslate.com/guides/what-is-usdc/">Circle (USDC)</a> maintain a powerful duopoly, controlling more than 80% of the circulating supply, with <a href="https://cryptoslate.com/guides/how-to-buy-tether-usdt/">USDT</a> alone accounting for nearly 59%.</p>
+<figure id="attachment_538215" aria-describedby="caption-attachment-538215" style="width: 1600px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538215" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405.jpg" alt="Top Stablecoins by Market Cap" width="1600" height="468" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405.jpg 1600w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405-300x88.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405-1024x300.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405-768x225.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110405-1536x449.jpg 1536w" sizes="(max-width: 1600px) 100vw, 1600px" /><figcaption id="caption-attachment-538215" class="wp-caption-text">Top Stablecoins by Market Cap (Source: DeFiLlama)</figcaption></figure>
+<p>Meanwhile, a similar chokepoint exists at the network level, where Ethereum and Tron process the vast majority of outstanding token balances.</p>
+<p>Yet that structural concentration is not deterring major traditional financial players from building on alternative, high-throughput rails to capture market share.</p>
+<p>For context, Western Union recently <a href="https://cryptoslate.com/stablecoins-infiltrate-deeper-into-global-finance-as-western-union-enters-crypto/">launched USDPT</a>, a US dollar-denominated payment stablecoin issued by <a href="https://cryptoslate.com/companies/anchorage-digital/">Anchorage Digital Bank</a> on the <a href="https://cryptoslate.com/coins/solana/">Solana</a> network. Fully backed by bank deposits and short-dated Treasury bills, the token represents a deliberate push to route global money transfers through digital-asset infrastructure rather than legacy correspondent banking systems.</p>
+<p>This pivot places Western Union alongside a growing cohort of payments companies, such as <a href="https://cryptoslate.com/ftx-continues-to-exclude-nigeria-and-china-in-remaining-creditor-repayments-but-includes-payoneer/">Payoneer</a>, that treat stablecoins as essential commercial plumbing rather than speculative instruments.</p>
+<p>For remittance firms and fintechs, the appeal is undeniable: blockchain rails offer round-the-clock settlement, bypass sluggish legacy intermediaries, and provide immediate dollar liquidity to markets struggling with unreliable local currencies.</p>
+<p>This utility has transformed stablecoins into one of the most concrete commercial successes in the digital asset sector.</p>
+<p>While the current market size remains a fraction of global commercial banking, aggressive forecasts project that stablecoin adoption could scale into a multitrillion-dollar sector by the end of the decade if fintechs fully integrate digital dollars into everyday financial flows.</p>
+<p>Even at their current scale, hundreds of billions of dollars in tokenized balances are already large enough to influence <a href="https://cryptoslate.com/tethers-141-billion-treasury-pile-reveals-the-stablecoin-risk-now-embedded-in-us-debt/">US Treasury demand,</a> dictate exchange liquidity, and force a defensive rethink across Wall Street.</p>
+<p>As stablecoins move deeper into mainstream finance, their impact is no longer contained within the cryptocurrency ecosystem; they are now the center of a high-stakes policy fight over who will control the future of global digital money.</p>
+<h2>Regulation turns stablecoin growth into a bank threat</h2>
+<p>This rapid growth has revived a historic critique within economic policy circles: privately issued money expands aggressively during market upturns but risks triggering systemic crises if collective confidence fractures.</p>
+<p>A recent Wall Street Journal analysis <a href="https://www.wsj.com/finance/currencies/stablecoins-are-private-money-thats-why-theyre-a-risk-to-the-economy-d3498171">framed</a> the stablecoin boom through this precise historical lens, warning that these tokens could replicate the vulnerabilities of 1800s-era &#8220;private money,&#8221; where unregulated issuers chased yield at the expense of depositor safety.</p>
+<p>The underlying concern is that private issuers are inherently incentivized to maximize circulating supply and optimize reserve returns, potentially creating liquidity mismatches during periods of severe market contraction.</p>
+<p>The digital asset sector is pushing back strongly against this characterization. Faryar Shirzad, Chief Policy Officer at <a href="https://cryptoslate.com/companies/coinbase/">Coinbase</a>, <a href="https://x.com/faryarshirzad/status/2058933374178173378">points out</a> that private money already underpins the modern US financial system, noting that commercial bank deposits and money market fund shares comprise roughly 90% of the M2 money supply.</p>
+<p>From this perspective, the relevant regulatory question is not whether an asset is publicly or privately issued, but whether its structural guardrails accurately match its unique risk profile.</p>
+<p>This argument has gained significant legal footing under the federal<a href="https://cryptoslate.com/the-genius-act-opened-the-door-for-stablecoins-but-regulators-want-to-narrow-it/"> GENIUS Act framework.</a> The legislation introduces a purpose-built architecture for payment stablecoins, while mandating strict reserve segregation, monthly independent attestations, and direct federal oversight.</p>
+<p>The legislation also requires issuers to back circulating tokens 1:1 with exceptionally safe, liquid assets such as cash, short-dated US Treasuries, and Federal Reserve-eligible repurchase agreements.</p>
+<p>This statutory framework has created a sharp operational divide between stablecoin issuers and commercial banks, with the latter allowed to accept deposits to extend credit, manage complex maturity transformations, use leverage, and generate fractional-reserve money.</p>
+<p>On the other hand, the regulated stablecoin issuers function strictly as full-reserve transaction vehicles, prohibited from lending or leveraging reserve assets and structurally mitigating the &#8220;reach for yield&#8221; that historically triggered money-market disruptions.</p>
+<p>Despite these legal separations, commercial banks view the expansion of stablecoins as an existential <a href="https://cryptoslate.com/us-bankers-association-push-for-60-day-pause-to-stop-stablecoin-rules-going-live/">balance-sheet threat</a>.</p>
+<p>When an enterprise or retail client exchanges fiat currency for a third-party stablecoin, that liquidity is effectively drained from the traditional banking system.</p>
+<p>This shifts the financial relationship from a heavily regulated deposit institution to a non-bank digital issuer, costing the bank access to vital payment data, transaction fees, and, most critically, low-cost funding.</p>
+<p>As a result, Wall Street has increasingly mounted a direct technological counteroffensive against the emerging industry.</p>
+<h2>Banks build a $4 trillion on-chain counterweight</h2>
+<p>To protect their balance sheets from this nonbank disintermediation, traditional financial institutions are moving aggressively onto the blockchain with their own alternative: <a href="https://cryptoslate.com/bank-of-englands-24-7-settlement-plan-shows-where-tokenized-finance-can-enter-core-markets/">tokenized deposits</a>.</p>
+<p>A tokenized deposit updates the technical form factor of a traditional bank account by placing deposit liabilities directly onto blockchain rails.</p>
+<p>Instead of a corporate treasury department offloading cash to a third-party crypto wrapper like USDT or USDC, the customer retains their deposit relationship with a regulated commercial bank.</p>
+<figure id="attachment_538214" aria-describedby="caption-attachment-538214" style="width: 904px" class="wp-caption aligncenter"><img decoding="async" class="size-full wp-image-538214" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110034.jpg" alt="Tokenized Deposits" width="904" height="583" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110034.jpg 904w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110034-300x193.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-110034-768x495.jpg 768w" sizes="(max-width: 904px) 100vw, 904px" /><figcaption id="caption-attachment-538214" class="wp-caption-text">Tokenized Deposits (Source: McKinsey)</figcaption></figure>
+<p>The client captures the fundamental operational advantages of blockchain technology, such as smart-contract programmability, near-instant settlement finality, and automated reconciliation, while keeping their capital securely inside the established banking perimeter.</p>
+<p>This structural architecture provides commercial banks with a powerful competitive advantage. Because tokenized deposits are simply traditional bank liabilities represented on a ledger, they automatically inherit existing legal, regulatory, and clearing frameworks.</p>
+<p>Furthermore, they circumvent a major commercial limitation of stablecoins: while licensed stablecoin issuers are largely prohibited from paying yield to token holders under global regulatory frameworks, commercial banks can leverage their traditional fractional-reserve lending operations to pay competitive interest rates on tokenized balances.</p>
+<p>While stablecoins dominate public media coverage, bank-led tokenization networks have quietly achieved an order-of-magnitude higher transaction volume.</p>
+<p>Total stablecoin payment activity is estimated to reach $400 billion in 2025; by contrast, institutional tokenized deposit networks are currently on track to facilitate more than $4 trillion in annual transaction volume, McKinsey noted.</p>
+<p>Much of this immense volume is driven by proprietary wall-garden infrastructure such as <a href="https://cryptoslate.com/jpmorgan-just-put-real-bank-deposits-on-ethereum-and-beat-the-fed-to-24-7-settlement/">JPMorgan Chase's Kinexys</a>, which is estimated to process more than $1 trillion annually for internal corporate treasury movements, cross-border intercompany settlements, and wholesale liquidity positioning.</p>
+<p>These massive financial flows occur deep within permissioned, institutional ledger environments rather than on public, retail-facing blockchains, making them less visible to the public but deeply disruptive to global corporate banking.</p>
+<p>However, the primary vulnerability of the banking sector’s strategy is severe network fragmentation.</p>
+<p>While stablecoins enjoy massive network effects due to their native interoperability across public blockchains, tokenized deposits are currently confined to closed, single-bank permissioned networks.</p>
+<p>A tokenized dollar minted on one bank's proprietary blockchain cannot naturally interact with a smart contract running on a competitor's ledger, threatening to replace legacy correspondent banking friction with a new network of isolated digital islands.</p>
+<p>Overcoming this obstacle requires extensive legal and operational coordination rather than purely technical fixes.</p>
+<p>To achieve true interbank fungibility, international banking coalitions are actively testing shared orchestration networks and unified ledger initiatives, including the Bank for International Settlements' Project Agorá, the <a href="https://cryptoslate.com/swift-reportedly-picks-linea-for-multi-month-interbank-messaging-system-transition/">Swift orchestration layer</a>, Partior, and <a href="https://cryptoslate.com/chainlink-emerges-as-the-unlikely-3b-winner-of-kelpdao-exploit-as-defi-projects-dump-layerzero/">Chainlink’s CCIP</a>.</p>
+<h2>Digital dollars move toward a layered system</h2>
+<p>The unfolding battle between crypto-native firms and Wall Street giants suggests that the future of digital money will not be dominated by a single token or platform.</p>
+<p>Instead, the global financial system is steadily organizing itself into a sophisticated, three-layer digital-dollar monetary stack, where distinct forms of tokenized value fulfill highly specialized economic roles:</p>
+<ul>
+<li><strong>Stablecoins: &#8220;Money in Motion&#8221;</strong></li>
+</ul>
+<p>Positioned at the user-facing top layer of the stack, open-source <a href="https://cryptoslate.com/the-digital-dollar-power-balance-cracks-as-circles-growth-spurt-closes-in-on-tethers-dominance/">stablecoins like USDC and USDT</a> will likely maintain their dominance across public, permissionless networks.</p>
+<p>Their deep exchange liquidity, borderless accessibility, and frictionless distribution make them the ideal instrument for retail digital asset trading, decentralized finance (DeFi) protocols, peer-to-peer global remittances, and cross-border commercial transactions in regions lacking stable local banking infrastructure.</p>
+<ul>
+<li><strong>Tokenized Bank Deposits: &#8220;Money at Rest&#8221;</strong></li>
+</ul>
+<p>Occupying the institutional mid-layer, <a href="https://cryptoslate.com/programmable-bank-deposits-go-live-will-blockchain-finally-shrink-fraud/">bank-led tokenized deposits</a> are poised to become the default settlement asset for high-value corporate finance.</p>
+<p>Because they preserve institutional bank balance sheets, offer regulatory alignment, permit interest accumulation, and integrate directly with legacy cash-management services, these instruments are structurally optimized for corporate treasury balances, wholesale enterprise payments, and large-scale commercial bank settlements.</p>
+<ul>
+<li><strong>Tokenized Central Bank Money: &#8220;Settlement Money&#8221;</strong></li>
+</ul>
+<p>Forming the sovereign foundation of the entire system, wholesale <a href="https://cryptoslate.com/are-us-stablecoins-just-cbdcs-in-disguise-look-closely-and-the-differences-start-to-blur/">central bank digital currencies (CBDCs)</a> and tokenized central bank reserves will serve as the ultimate risk-mitigation layer.</p>
+<p>Operating primarily behind the scenes, this sovereign asset will be used strictly to resolve imbalances and execute final, irrevocable settlements between disparate commercial bank networks, thereby eliminating institutional counterparty risk at the macro level.</p>
+<figure id="attachment_538213" aria-describedby="caption-attachment-538213" style="width: 921px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-538213 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-105905.jpg" alt="Digital Dollars in Layered System" width="921" height="718" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-105905.jpg 921w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-105905-300x234.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/Screenshot-2026-05-26-105905-768x599.jpg 768w" sizes="(max-width: 921px) 100vw, 921px" /><figcaption id="caption-attachment-538213" class="wp-caption-text">Digital Dollars in Layered System (Source: McKinsey)</figcaption></figure>
+<p>Ultimately, the record-breaking $322 billion stablecoin market proves that the market demand for a modernized, real-time digital dollar is permanent.</p>
+<p>At the same time, the $4 trillion scale of bank-led tokenization proves that traditional financial institutions have no intention of surrendering the future of payments to nonbank crypto enterprises.</p>
+<p>As these ecosystems move toward inevitability, the definitive battleground will no longer be over the underlying technology itself, but over the regulatory perimeters, interoperability standards, and ultimate control of the customer relationship.</p>
+<p>The post <a href="https://cryptoslate.com/stablecoins-just-hit-a-record-322-billion-and-the-bank-run-warnings-are-getting-louder/">Stablecoins just hit a record $322 billion &#8211; and the bank-run warnings are getting louder</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/stabelcoin-warning.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/stabelcoin-warning.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>What happens when crypto traders can bet on CPI, Fed cuts, and oil 24/7?</title>
+		<link>https://cryptoslate.com/what-happens-crypto-traders-cpi-fed-cuts-oil-24-7/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Tue, 26 May 2026 19:35:52 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[brent]]></category>
+		<category><![CDATA[CPI]]></category>
+		<category><![CDATA[exchanges]]></category>
+		<category><![CDATA[Hyperliquid]]></category>
+		<category><![CDATA[Oil futures]]></category>
+		<category><![CDATA[OKX]]></category>
+		<category><![CDATA[perps]]></category>
+		<category><![CDATA[Polymarket]]></category>
+		<category><![CDATA[prediction markets]]></category>
+		<category><![CDATA[wti]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=538243</guid>
+
+					<description><![CDATA[<p>Hyperliquid launched a prediction market this week tied directly to the May US CPI year-over-year reading. Intercontinental Exchange, the owner of the New York Stock Exchange, announced a partnership with OKX to roll out oil futures contracts that never expire, putting ICE's Brent and WTI benchmarks in a crypto product with 24/7 trading. Polymarket, whose [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/what-happens-crypto-traders-cpi-fed-cuts-oil-24-7/">What happens when crypto traders can bet on CPI, Fed cuts, and oil 24/7?</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/coins/hyperliquid/">Hyperliquid</a> launched a prediction market this week tied directly to the May US CPI year-over-year reading.</p>
+<p><a href="https://cryptoslate.com/hyperliquid-oil-perps-wall-street-24-7-trading/">Intercontinental Exchange</a>, the owner of the New York Stock Exchange, announced a partnership with <a href="https://cryptoslate.com/companies/okx/">OKX</a> to roll out oil futures contracts that never expire, putting ICE's Brent and WTI benchmarks in a crypto product with 24/7 trading.</p>
+<p><a href="https://cryptoslate.com/companies/polymarket/">Polymarket</a>, whose <a href="https://cryptoslate.com/prediction-markets/">prediction markets</a> have recorded nearly $39 billion in US volume so far in 2026, launched a suite of private-company contracts tied to valuation milestones at OpenAI, SpaceX, Anthropic, and Anduril.</p>
+<p>Collectively, these represent something much more systematic than just individual product launches: crypto exchanges are moving into tradfi. These three launches (and there's bound to be more soon) are turning the macro calendar into a live retail trading product collateralized in stablecoins and available for trading around the clock.</p>
+<h2>Macro data as a consumer product</h2>
+<p>Prediction markets turn binary questions into prices: a contract might ask whether CPI lands above a specific threshold, or whether a private company reaches a set valuation by year-end. When a contract trades at 43 cents, the market's expressing roughly a 43% probability for that outcome, with the usual caveats around liquidity, participant mix, and settlement rules.</p>
+<p>Perpetual futures let traders maintain ongoing synthetic exposure to an asset or benchmark without a fixed expiry date, using funding payments to keep the contract price anchored near the underlying reference. In crypto, perps became the default instrument for leveraged <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> exposure, and we're now seeing that same design applied to macro assets long confined to institutional terminals and regulated commodity exchanges.</p>
+<p>The OKX and ICE partnership shows just how far that application has traveled. ICE's Brent and WTI benchmark prices will underpin these never-expiring contracts available across territories where OKX is already licensed to offer perpetual futures, <a href="https://www.coindesk.com/business/2026/05/22/okx-and-ice-are-bringing-never-expiring-oil-futures-to-120-million-crypto-users">giving OKX's 120 million retail traders</a> access to energy benchmark products that previously required a commodity brokerage account.</p>
+<p>The announcement came as <a href="https://cryptoslate.com/hyperliquid-oil-perps-wall-street-24-7-trading/">Hyperliquid's oil perps</a> were already generating roughly $1.6 billion in daily trading volume, a figure large enough to push CME and ICE to press US regulators to pay closer attention to these offshore exchanges.</p>
+<p>Hyperliquid's CPI market takes these even further. <a href="https://cryptoslate.com/bitcoin-was-waiting-for-cuts-hot-cpi-just-put-hikes-back-on-the-table/">Inflation prints already move Bitcoin</a>: traders watch the number, compare it with consensus expectations, then reprice the Fed path, the dollar, yields, equities, gold, and crypto in rapid sequence.</p>
+<p><a href="https://www.binance.com/en/square/post/326962310931826">Hyperliquid launched the May CPI year-over-year market</a> with contracts pricing roughly a 43% probability for a reading below 4.3%, settling against the BLS release on June 10. Trading volume at launch was modest, around $3,274.</p>
+<p>However, the most interesting data point here is the design itself: crypto exchanges are testing whether official data releases can become reusable market templates, the same way Bitcoin perps became the default for nearly every other crypto derivative.</p>
+<p><a href="https://www.ft.com/content/51b820aa-cbca-416f-9e96-99b03573dcf4">Polymarket's private-company expansion</a> addresses a different market gap: most of the world's most valuable companies can't be traded by retail investors.</p>
+<p>The platform launched 23 markets in its first batch, covering contracts on whether OpenAI surpasses a $1 trillion valuation by year-end, whether Anthropic exceeds $500 billion, and whether SpaceX completes an IPO before 2027, all resolved against Nasdaq Private Market data. Traders have priced Anthropic at roughly 90% probability of hitting $1 trillion by December 31, 2026, and OpenAI at 76% odds of reaching $900 billion by the same date.</p>
+<p>These are event-based contracts structured around whether an outcome occurs, with Nasdaq Private Market making the underlying valuation data publicly available for free as part of the deal, creating a real-time probability layer on companies that have raised tens of billions without a single public filing.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic.jpg"><img decoding="async" class="aligncenter wp-image-538351 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic.jpg" alt="Comic-style crypto subway scene showing traders boarding a Bitcoin train amid CPI, Fed rate cut, oil, and valuation signals." width="1280" height="720" srcset="https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic.jpg 1280w, https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic-300x169.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic-1024x576.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic-768x432.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic-480x270.jpg 480w, https://cryptoslate.com/wp-content/uploads/2026/05/cpi-fed-oil-247-comic-1200x675.jpg 1200w" sizes="(max-width: 1280px) 100vw, 1280px" /></a></p>
+<h2>When the regulatory framework hasn't caught up with crypto</h2>
+<p>We're now seeing product development running laps around the legal architecture, and it's creating friction across multiple jurisdictions. <a href="https://www.cftc.gov/PressRoom/PressReleases/9233-26">The CFTC sued Minnesota</a> this month after the state passed the first explicit statutory ban on prediction markets, criminalizing their operation as a felony under state law.</p>
+<p>The CFTC called it the most aggressive state-level incursion into federally regulated markets in the agency's history. CFTC Chair Michael Selig said the law would turn lawful crypto operators into felons overnight, while Minnesota Attorney General Keith Ellison countered that prediction markets prey on young people and low-income communities.</p>
+<p>The question everyone is trying to answer is whether these markets are derivative products governed by federal law or consumer-facing gambling products subject to state regulation, and courts are working through it across at least six states simultaneously.</p>
+<p>Europe also found itself facing the same question, but it seems to have gotten there by a different route. <a href="https://www.yahoo.com/news/articles/spain-blocks-prediction-markets-polymarket-080314866.html">Spain's Consumer Rights Ministry temporarily banned Polymarket and Kalshi</a> this week, citing the absence of mandatory gambling licenses and opening a formal investigation expected to run three to four months. The regulator said that identity-verification systems were missing and there were insufficient controls for minors.</p>
+<p>Spain, like most European jurisdictions, treats placing bets on uncertain future outcomes as gambling, making the financial-market and gambling-law frameworks equally plausible classification tools, depending on which ministry is looking. The same crypto product is a regulated derivatives instrument in one country and an unlicensed gambling service in the next.</p>
+<p>Market integrity is a separate concern that only compounds as these markets get larger. CPI and Fed decisions have fixed release times and official sources, which keep settlement nice and clean, but private-company valuations, geopolitical events, and corporate milestones are considerably harder to adjudicate.</p>
+<p>The more markets depend on external data sources, the more consequential it becomes to know who holds the relevant information first.</p>
+<p>Bubblemaps analysts <a href="https://www.coindesk.com/business/2026/05/21/crypto-prediction-markets-are-turning-into-dangerous-national-security-risks-and-congress-wants-to-ban-them">identified a cluster of 80 bets on Polymarket</a> tied to US military actions against Iran with a 98% win rate, a figure they called statistically impossible to explain through luck, raising the possibility that prediction markets could become the venue where sensitive information finds a price before it finds itself in a headline.</p>
+<p>The weekend-pricing issue is also pretty underappreciated by observers focused on the legal battles.</p>
+<p><a href="https://cryptoslate.com/crypto-traders-drive-500m-oil-bets-on-hyperliquid-as-hormuz-closure-threatens-100-crude/">When Iran moved to close the Strait of Hormuz in April</a>, crypto traders moved more than $500 million in synthetic oil futures on Hyperliquid over a single weekend while traditional commodity exchanges sat dark. Gold showed the same pattern after strikes on Iranian nuclear facilities in February, when <a href="https://cryptoslate.com/hyperliquid-gold-perps-front-ran-cme-after-iran-strikes-and-the-monday-gap-exposed-a-new-weekend-leader/">Hyperliquid's gold perps front-ran CME's reopen</a> by roughly 48 hours.</p>
+<p>Crypto exchanges are already the de facto weekend reference price for macro assets, a role they've accumulated through circumstance well before any regulator designated them to do it. The same product that offers a faster way to express a view on inflation or oil can look, depending on who's using it and where, like a retail speculation engine with macro branding.</p>
+<p>Crypto turned tokens into 24/7 global assets, and the version forming now is attempting the same for events, data releases, benchmarks, and private-company valuations. Whether the result is better forecasting, a new hedging layer, or a faster route to consumer harm is a question regulators in at least five countries are actively trying to answer, and the products are scaling faster than the answers.</p>
+<p>The post <a href="https://cryptoslate.com/what-happens-crypto-traders-cpi-fed-cuts-oil-24-7/">What happens when crypto traders can bet on CPI, Fed cuts, and oil 24/7?</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/05/crypto-trader-cpi-fed-oil.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/05/crypto-trader-cpi-fed-oil.jpg" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>

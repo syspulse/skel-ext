@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>CryptoSlate</title>
+    <link>https://cryptoslate.com/feed</link>
+    <description>Test fixture for host-only guid</description>
+    <lastBuildDate>Fri, 12 Dec 2025 00:00:00 +0000</lastBuildDate>
+
+    <item>
+      <title>Stablecoins just hit a record $322 billion...</title>
+      <link>https://cryptoslate.com/stablecoins-just-hit-a-record-322-billion-and-the-bank-run-warnings-are-getting-louder</link>
+      <pubDate>Fri, 12 Dec 2025 00:00:00 +0000</pubDate>
+      <dc:creator>CryptoSlate</dc:creator>
+      <guid isPermaLink="false">cryptoslate.com</guid>
+      <description><![CDATA[<p>Test entry</p>]]></description>
+    </item>
+
+    <item>
+      <title>Another post</title>
+      <link>https://cryptoslate.com/another-post</link>
+      <pubDate>Fri, 12 Dec 2025 00:10:00 +0000</pubDate>
+      <dc:creator>CryptoSlate</dc:creator>
+      <guid isPermaLink="false">cryptoslate.com</guid>
+      <description><![CDATA[<p>Test entry 2</p>]]></description>
+    </item>
+  </channel>
+</rss>
+

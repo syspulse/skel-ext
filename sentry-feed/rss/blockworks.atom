@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blockworks.com</id>
+    <title>Blockworks: Building trust in onchain capital markets.</title>
+    <updated>2026-05-28T06:33:58.981Z</updated>
+    <generator>Blockworks</generator>
+    <author>
+        <name>Blockworks</name>
+        <email>info@blockworks.co</email>
+        <uri>https://x.com/Blockworks_</uri>
+    </author>
+    <link rel="alternate" href="https://blockworks.com"/>
+    <link rel="self" href="https://blockworks.com/feed"/>
+    <subtitle>Blockworks is a data and software platform for crypto markets. It offers investor relations software, a data API, and a market research platform to its users that span across crypto-native startups and traditional institutions. The company’s focus on consistent data models and repeatable analytical frameworks enables it to be the operating system for onchain businesses.</subtitle>
+    <logo>https://blockworks.com/images/share-image.png</logo>
+    <rights>2026, Blockworks</rights>
+    <category term="Markets"/>
+    <category term="Finance"/>
+    <category term="Policy"/>
+    <category term="DeFi"/>
+    <category term="Business"/>
+    <category term="Web3"/>
+    <category term="Forward Guidance Newsletter"/>
+    <category term="Opinion"/>
+    <category term="Empire Newsletter"/>
+    <category term="Lightspeed Newsletter"/>
+    <category term="0xResearch Newsletter"/>
+    <category term="People"/>
+    <category term="Analysis"/>
+    <category term="Sponsored"/>
+    <category term="The Drop"/>
+    <category term="Podcast"/>
+    <category term="The Breakdown"/>
+    <category term="Education"/>
+    <category term="Supply Shock"/>
+    <category term="Announcements"/>
+    <category term="Uncategorized"/>
+    <category term="Token Holder Report"/>
+    <entry>
+        <title type="html"><![CDATA[Venezuela’s sanctions are stablecoins’ proof of concept]]></title>
+        <id>https://blockworks.com/news/venezuelas-sanctions-stablecoins</id>
+        <link href="https://blockworks.com/news/venezuelas-sanctions-stablecoins"/>
+        <updated>2026-01-07T14:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Banned from the dollar system, the country uses digital dollars instead]]></summary>
+        <content type="html"><![CDATA[Banned from the dollar system, the country uses digital dollars instead]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="Policy" term="Policy"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2026-01-07T14:00:00.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The Strategy playbook looks different in 2026]]></title>
+        <id>https://blockworks.com/news/strategy-playbook-2026</id>
+        <link href="https://blockworks.com/news/strategy-playbook-2026"/>
+        <updated>2026-01-06T17:36:33.000Z</updated>
+        <summary type="html"><![CDATA[The treasury company now holds 673,783 BTC, but flow is more likely to be episodic in this year’s financial climate]]></summary>
+        <content type="html"><![CDATA[The treasury company now holds 673,783 BTC, but flow is more likely to be episodic in this year’s financial climate]]></content>
+        <author>
+            <name>Shaunda Devens</name>
+            <uri>https://blockworks.com/shaunda-devens</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Business" term="Business"/>
+        <published>2026-01-06T17:36:33.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ranger’s ICO starts today, and MetaDAO eyes a reset]]></title>
+        <id>https://blockworks.com/news/rangers-ico-metadao</id>
+        <link href="https://blockworks.com/news/rangers-ico-metadao"/>
+        <updated>2026-01-06T15:07:05.000Z</updated>
+        <summary type="html"><![CDATA[Ranger’s Jan 6–10 sale could re-accelerate MetaDAO volumes and revenue]]></summary>
+        <content type="html"><![CDATA[Ranger’s Jan 6–10 sale could re-accelerate MetaDAO volumes and revenue]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="DeFi" term="DeFi"/>
+        <published>2026-01-06T15:07:05.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ETH derivatives reset and the next retail trade]]></title>
+        <id>https://blockworks.com/news/eth-derivatives-reset</id>
+        <link href="https://blockworks.com/news/eth-derivatives-reset"/>
+        <updated>2026-01-05T15:14:17.000Z</updated>
+        <summary type="html"><![CDATA[ETH derivatives show a disciplined rebuild of risk, with rising open interest pointing to healthier leverage]]></summary>
+        <content type="html"><![CDATA[ETH derivatives show a disciplined rebuild of risk, with rising open interest pointing to healthier leverage]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2026-01-05T15:14:17.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Friday charts: Finding good news, in spite of bad headlines]]></title>
+        <id>https://blockworks.com/news/friday-charts-finding-good-news-in-spite-of-bad-headlines</id>
+        <link href="https://blockworks.com/news/friday-charts-finding-good-news-in-spite-of-bad-headlines"/>
+        <updated>2026-01-02T23:41:06.000Z</updated>
+        <summary type="html"><![CDATA[2025 was far from perfect, but much better than we think it was.]]></summary>
+        <content type="html"><![CDATA[2025 was far from perfect, but much better than we think it was.]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2026-01-02T23:41:06.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DePIN and crypto gaming led a surprising end-of-year rebound]]></title>
+        <id>https://blockworks.com/news/depin-gaming-surprising-rebound</id>
+        <link href="https://blockworks.com/news/depin-gaming-surprising-rebound"/>
+        <updated>2026-01-02T16:53:02.000Z</updated>
+        <summary type="html"><![CDATA[BTC finished the week up 1.6%, while L2s, RWAs and the treasury trade continued to grind lower]]></summary>
+        <content type="html"><![CDATA[BTC finished the week up 1.6%, while L2s, RWAs and the treasury trade continued to grind lower]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2026-01-02T16:53:02.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Canton’s $6T RWA rails and Lighter’s Hyperliquid multiple]]></title>
+        <id>https://blockworks.com/news/cantons-rwa-rails</id>
+        <link href="https://blockworks.com/news/cantons-rwa-rails"/>
+        <updated>2026-01-01T18:00:00.000Z</updated>
+        <summary type="html"><![CDATA[DTCC moves DTC-custodied Treasuries onchain via Canton, while Lighter’s LIT launches trading at a fees multiple in Hyperliquid territory]]></summary>
+        <content type="html"><![CDATA[DTCC moves DTC-custodied Treasuries onchain via Canton, while Lighter’s LIT launches trading at a fees multiple in Hyperliquid territory]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <author>
+            <name>Shaunda Devens</name>
+            <uri>https://blockworks.com/shaunda-devens</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="DeFi" term="DeFi"/>
+        <published>2026-01-01T18:00:00.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The long wait for crypto’s “coffee pot” moment]]></title>
+        <id>https://blockworks.com/news/cryptos-coffee-pot-moment</id>
+        <link href="https://blockworks.com/news/cryptos-coffee-pot-moment"/>
+        <updated>2026-01-01T14:00:00.000Z</updated>
+        <summary type="html"><![CDATA[In the 90s, rapt audiences worldwide watched a coffee pot — will that fascination ever turn to crypto?]]></summary>
+        <content type="html"><![CDATA[In the 90s, rapt audiences worldwide watched a coffee pot — will that fascination ever turn to crypto?]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2026-01-01T14:00:00.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Failure is an option in crypto finance]]></title>
+        <id>https://blockworks.com/news/failure-is-an-option</id>
+        <link href="https://blockworks.com/news/failure-is-an-option"/>
+        <updated>2026-01-01T00:18:58.000Z</updated>
+        <summary type="html"><![CDATA[Some systems improve by failing — and crypto has no choice]]></summary>
+        <content type="html"><![CDATA[Some systems improve by failing — and crypto has no choice]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="DeFi" term="DeFi"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2026-01-01T00:18:58.000Z</published>
+        <rights>2026, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Yield Basis is making native BTC yield a reality]]></title>
+        <id>https://blockworks.com/news/yield-basis-native-btc-yield</id>
+        <link href="https://blockworks.com/news/yield-basis-native-btc-yield"/>
+        <updated>2025-12-31T19:20:49.000Z</updated>
+        <summary type="html"><![CDATA[Yield Basis introduces an IL-free AMM design that already dominates BTC DEX liquidity]]></summary>
+        <content type="html"><![CDATA[Yield Basis introduces an IL-free AMM design that already dominates BTC DEX liquidity]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-31T19:20:49.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Users are the best investors to have]]></title>
+        <id>https://blockworks.com/news/users-are-the-best-investors-to-have</id>
+        <link href="https://blockworks.com/news/users-are-the-best-investors-to-have"/>
+        <updated>2025-12-31T17:13:32.000Z</updated>
+        <summary type="html"><![CDATA[Maybe tokenholders don’t need the rights that corporate shareholders have come to expect]]></summary>
+        <content type="html"><![CDATA[Maybe tokenholders don’t need the rights that corporate shareholders have come to expect]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-31T17:13:32.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A sleeper in the perps category]]></title>
+        <id>https://blockworks.com/news/boros-sleeper-perps</id>
+        <link href="https://blockworks.com/news/boros-sleeper-perps"/>
+        <updated>2025-12-30T17:50:45.000Z</updated>
+        <summary type="html"><![CDATA[As Hyperliquid and Lighter battle for perps DEX dominance, Boros could capture the structural upside]]></summary>
+        <content type="html"><![CDATA[As Hyperliquid and Lighter battle for perps DEX dominance, Boros could capture the structural upside]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <author>
+            <name>Sam Schubert</name>
+            <uri>https://blockworks.com/sam-schubert</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-30T17:50:45.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The old story of investing in new technology]]></title>
+        <id>https://blockworks.com/news/the-old-story-of-investing-in-new-technology</id>
+        <link href="https://blockworks.com/news/the-old-story-of-investing-in-new-technology"/>
+        <updated>2025-12-30T15:24:59.000Z</updated>
+        <summary type="html"><![CDATA[Investors are often right about the future, but wrong about the returns]]></summary>
+        <content type="html"><![CDATA[Investors are often right about the future, but wrong about the returns]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-30T15:24:59.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2025 Reflections]]></title>
+        <id>https://blockworks.com/news/blockworks-2025-reflections</id>
+        <link href="https://blockworks.com/news/blockworks-2025-reflections"/>
+        <updated>2025-12-30T14:31:28.000Z</updated>
+        <summary type="html"><![CDATA[A look back at 2025, reflections on our industry, and what it means for Blockworks in 2026]]></summary>
+        <content type="html"><![CDATA[A look back at 2025, reflections on our industry, and what it means for Blockworks in 2026]]></content>
+        <author>
+            <name>Michael Ippolito</name>
+            <uri>https://blockworks.com/michaelblockworksgroup-io</uri>
+        </author>
+        <author>
+            <name>Jason Yanowitz</name>
+            <uri>https://blockworks.com/jasonblockworksgroup-io</uri>
+        </author>
+        <category label="Announcements" term="Announcements"/>
+        <published>2025-12-30T14:31:28.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The perps wars are heating up]]></title>
+        <id>https://blockworks.com/news/perps-wars-heating-up</id>
+        <link href="https://blockworks.com/news/perps-wars-heating-up"/>
+        <updated>2025-12-29T16:13:32.000Z</updated>
+        <summary type="html"><![CDATA[Hyperliquid’s weekly volume trails newer rivals as a Lighter airdrop looms]]></summary>
+        <content type="html"><![CDATA[Hyperliquid’s weekly volume trails newer rivals as a Lighter airdrop looms]]></content>
+        <author>
+            <name>Boccaccio</name>
+            <uri>https://blockworks.com/boccaccio</uri>
+        </author>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-29T16:13:32.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gold and silver won 2025]]></title>
+        <id>https://blockworks.com/news/gold-silver-won-2025</id>
+        <link href="https://blockworks.com/news/gold-silver-won-2025"/>
+        <updated>2025-12-26T15:42:48.000Z</updated>
+        <summary type="html"><![CDATA[Gold is having its best year since 1979, while many DeFi names are trading near multi-year lows]]></summary>
+        <content type="html"><![CDATA[Gold is having its best year since 1979, while many DeFi names are trading near multi-year lows]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-26T15:42:48.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Maple’s fundamentals are driving outperformance]]></title>
+        <id>https://blockworks.com/news/maples-fundamentals</id>
+        <link href="https://blockworks.com/news/maples-fundamentals"/>
+        <updated>2025-12-23T19:54:37.000Z</updated>
+        <summary type="html"><![CDATA[Maple is outperforming peers on growth, yield, and revenue — while benefiting from limited supply overhang and clear value accrual]]></summary>
+        <content type="html"><![CDATA[Maple is outperforming peers on growth, yield, and revenue — while benefiting from limited supply overhang and clear value accrual]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-23T19:54:37.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The incredible, incomprehensible, possibly impossible world of trillion-dollar tech valuations]]></title>
+        <id>https://blockworks.com/news/trillion-dollar-tech-valuations</id>
+        <link href="https://blockworks.com/news/trillion-dollar-tech-valuations"/>
+        <updated>2025-12-22T18:49:43.000Z</updated>
+        <summary type="html"><![CDATA[Will mega-unicorns collectively earn the trillions of dollars of revenue required to justify their valuations?]]></summary>
+        <content type="html"><![CDATA[Will mega-unicorns collectively earn the trillions of dollars of revenue required to justify their valuations?]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-22T18:49:43.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The year new tokens died]]></title>
+        <id>https://blockworks.com/news/year-new-tokens-died</id>
+        <link href="https://blockworks.com/news/year-new-tokens-died"/>
+        <updated>2025-12-22T16:27:50.000Z</updated>
+        <summary type="html"><![CDATA[2025 saw a huge compression in the valuation of new tokens, with the steepest losses in infrastructure and gaming]]></summary>
+        <content type="html"><![CDATA[2025 saw a huge compression in the valuation of new tokens, with the steepest losses in infrastructure and gaming]]></content>
+        <author>
+            <name>Shaunda Devens</name>
+            <uri>https://blockworks.com/shaunda-devens</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-22T16:27:50.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Grinch rally: Crypto indices track lower through the week]]></title>
+        <id>https://blockworks.com/news/grinch-rally</id>
+        <link href="https://blockworks.com/news/grinch-rally"/>
+        <updated>2025-12-19T18:50:02.000Z</updated>
+        <summary type="html"><![CDATA[The AI sector was the top loser on the week, trading down -26%]]></summary>
+        <content type="html"><![CDATA[The AI sector was the top loser on the week, trading down -26%]]></content>
+        <author>
+            <name>Luke Leasure</name>
+            <uri>https://blockworks.com/lukeleasure</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-19T18:50:02.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A holiday guide to explaining crypto to your relatives]]></title>
+        <id>https://blockworks.com/news/explaining-crypto-to-relatives</id>
+        <link href="https://blockworks.com/news/explaining-crypto-to-relatives"/>
+        <updated>2025-12-19T15:46:06.000Z</updated>
+        <summary type="html"><![CDATA[Spoiler alert: talking about crypto to normies is still really hard]]></summary>
+        <content type="html"><![CDATA[Spoiler alert: talking about crypto to normies is still really hard]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-19T15:46:06.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Coinbase embeds Solana trading]]></title>
+        <id>https://blockworks.com/news/coinbase-embeds-solana-trading</id>
+        <link href="https://blockworks.com/news/coinbase-embeds-solana-trading"/>
+        <updated>2025-12-19T03:27:13.000Z</updated>
+        <summary type="html"><![CDATA[The platform turns to onchain rails for Solana assets while crypto M&A and fundraising  surge to cycle highs]]></summary>
+        <content type="html"><![CDATA[The platform turns to onchain rails for Solana assets while crypto M&A and fundraising  surge to cycle highs]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <author>
+            <name>Boccaccio</name>
+            <uri>https://blockworks.com/boccaccio</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-19T03:27:13.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Robinhood’s leap shows the prediction-market arms race is underway]]></title>
+        <id>https://blockworks.com/news/robinhoods-leap-shows-the-prediction-market-arms-race-is-underway</id>
+        <link href="https://blockworks.com/news/robinhoods-leap-shows-the-prediction-market-arms-race-is-underway"/>
+        <updated>2025-12-18T20:02:16.000Z</updated>
+        <summary type="html"><![CDATA[Robinhood is pushing deeper into high-margin market design, joining competitors like Kalshi and DraftKings]]></summary>
+        <content type="html"><![CDATA[Robinhood is pushing deeper into high-margin market design, joining competitors like Kalshi and DraftKings]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-18T20:02:16.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The competitive advantage of not knowing you’re wrong]]></title>
+        <id>https://blockworks.com/news/not-knowing-youre-wrong</id>
+        <link href="https://blockworks.com/news/not-knowing-youre-wrong"/>
+        <updated>2025-12-18T16:12:30.000Z</updated>
+        <summary type="html"><![CDATA[When not knowing the odds improves your chances]]></summary>
+        <content type="html"><![CDATA[When not knowing the odds improves your chances]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-18T16:12:30.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The network is the innovation]]></title>
+        <id>https://blockworks.com/news/the-network-is-the-innovation</id>
+        <link href="https://blockworks.com/news/the-network-is-the-innovation"/>
+        <updated>2025-12-17T16:06:37.000Z</updated>
+        <summary type="html"><![CDATA[What Thomas Edison actually invented — and what it tells us about the future of crypto]]></summary>
+        <content type="html"><![CDATA[What Thomas Edison actually invented — and what it tells us about the future of crypto]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-17T16:06:37.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Another week, another MetaDAO advertisement]]></title>
+        <id>https://blockworks.com/news/metadao-advertisement</id>
+        <link href="https://blockworks.com/news/metadao-advertisement"/>
+        <updated>2025-12-16T17:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Meanwhile, recent acquisitions continue to neglect tokenholders]]></summary>
+        <content type="html"><![CDATA[Meanwhile, recent acquisitions continue to neglect tokenholders]]></content>
+        <author>
+            <name>Luke Leasure</name>
+            <uri>https://blockworks.com/lukeleasure</uri>
+        </author>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-16T17:00:00.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A man’s blockchain is his castle]]></title>
+        <id>https://blockworks.com/news/mans-blockchain-castle</id>
+        <link href="https://blockworks.com/news/mans-blockchain-castle"/>
+        <updated>2025-12-16T15:22:36.000Z</updated>
+        <summary type="html"><![CDATA[But who gets a key to the gate?]]></summary>
+        <content type="html"><![CDATA[But who gets a key to the gate?]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-16T15:22:36.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Capital gets selective]]></title>
+        <id>https://blockworks.com/news/capital-gets-selective</id>
+        <link href="https://blockworks.com/news/capital-gets-selective"/>
+        <updated>2025-12-15T15:44:01.000Z</updated>
+        <summary type="html"><![CDATA[Unit economics inflect, institutional capital shows up onchain, and market structure continues to evolve]]></summary>
+        <content type="html"><![CDATA[Unit economics inflect, institutional capital shows up onchain, and market structure continues to evolve]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-15T15:44:01.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Friday charts: The many, many architects of AI]]></title>
+        <id>https://blockworks.com/news/architects-of-ai</id>
+        <link href="https://blockworks.com/news/architects-of-ai"/>
+        <updated>2025-12-12T22:36:59.000Z</updated>
+        <summary type="html"><![CDATA[Throughout its billions of searches, Google’s goal has always been to train and hone its algorithms]]></summary>
+        <content type="html"><![CDATA[Throughout its billions of searches, Google’s goal has always been to train and hone its algorithms]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-12T22:36:59.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[BTC is up and L1s are down as flows turn messy again]]></title>
+        <id>https://blockworks.com/news/flows-turn-messy-again</id>
+        <link href="https://blockworks.com/news/flows-turn-messy-again"/>
+        <updated>2025-12-12T18:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The Nasdaq slipped yesterday after disappointing Q3 revenue from Oracle]]></summary>
+        <content type="html"><![CDATA[The Nasdaq slipped yesterday after disappointing Q3 revenue from Oracle]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-12T18:00:00.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Links: Trading, valuations, and the end of crypto’s ‘golden age’]]></title>
+        <id>https://blockworks.com/news/links-trading-valuations-golden-age</id>
+        <link href="https://blockworks.com/news/links-trading-valuations-golden-age"/>
+        <updated>2025-12-12T15:24:30.000Z</updated>
+        <summary type="html"><![CDATA[It’s getting harder and harder to trade crypto like the good ol’ days]]></summary>
+        <content type="html"><![CDATA[It’s getting harder and harder to trade crypto like the good ol’ days]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-12T15:24:30.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Fixing crypto’s broken investor relations]]></title>
+        <id>https://blockworks.com/news/fixing-investor-relations</id>
+        <link href="https://blockworks.com/news/fixing-investor-relations"/>
+        <updated>2025-12-11T20:37:17.000Z</updated>
+        <summary type="html"><![CDATA[Lightspeed IR, launched with the Solana Foundation, aims to give allocators a single surface for diligence and communication]]></summary>
+        <content type="html"><![CDATA[Lightspeed IR, launched with the Solana Foundation, aims to give allocators a single surface for diligence and communication]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <author>
+            <name>Shaunda Devens</name>
+            <uri>https://blockworks.com/shaunda-devens</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-11T20:37:17.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Dollar dominance can’t be manufactured]]></title>
+        <id>https://blockworks.com/news/dollar-dominance</id>
+        <link href="https://blockworks.com/news/dollar-dominance"/>
+        <updated>2025-12-11T17:11:37.000Z</updated>
+        <summary type="html"><![CDATA[Stablecoins are no substitute for what makes the dollar dominant]]></summary>
+        <content type="html"><![CDATA[Stablecoins are no substitute for what makes the dollar dominant]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="Finance" term="Finance"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-11T17:11:37.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Blockworks launches investor relations platform with Solana]]></title>
+        <id>https://blockworks.com/news/blockworks-solana-investor-relations-platform</id>
+        <link href="https://blockworks.com/news/blockworks-solana-investor-relations-platform"/>
+        <updated>2025-12-11T13:28:59.000Z</updated>
+        <summary type="html"><![CDATA[Crypto tokens need better investor relations infrastructure; today, Blockworks solves that.]]></summary>
+        <content type="html"><![CDATA[Crypto tokens need better investor relations infrastructure; today, Blockworks solves that.]]></content>
+        <author>
+            <name>Jason Yanowitz</name>
+            <uri>https://blockworks.com/jasonblockworksgroup-io</uri>
+        </author>
+        <author>
+            <name>Michael Ippolito</name>
+            <uri>https://blockworks.com/michaelblockworksgroup-io</uri>
+        </author>
+        <category label="Announcements" term="Announcements"/>
+        <published>2025-12-11T13:28:59.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ETFs flash a bid, HumidiFi tokenizes]]></title>
+        <id>https://blockworks.com/news/etfs-flash-humidifi-tokenizes</id>
+        <link href="https://blockworks.com/news/etfs-flash-humidifi-tokenizes"/>
+        <updated>2025-12-10T20:05:42.000Z</updated>
+        <summary type="html"><![CDATA[BTC leads a broad crypto bid as ETFs post their strongest inflow in weeks]]></summary>
+        <content type="html"><![CDATA[BTC leads a broad crypto bid as ETFs post their strongest inflow in weeks]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <author>
+            <name>Boccaccio</name>
+            <uri>https://blockworks.com/boccaccio</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-10T20:05:42.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Beam-me-up money]]></title>
+        <id>https://blockworks.com/news/beam-me-up-money</id>
+        <link href="https://blockworks.com/news/beam-me-up-money"/>
+        <updated>2025-12-10T15:55:35.000Z</updated>
+        <summary type="html"><![CDATA[Quantum teleportation could make money a physical resource again]]></summary>
+        <content type="html"><![CDATA[Quantum teleportation could make money a physical resource again]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-10T15:55:35.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Analyzing Jup Lend vs. Kamino]]></title>
+        <id>https://blockworks.com/news/jup-lend-vs-kamino</id>
+        <link href="https://blockworks.com/news/jup-lend-vs-kamino"/>
+        <updated>2025-12-09T21:03:44.000Z</updated>
+        <summary type="html"><![CDATA[The exchange between Kamino and Jupiter has escalated from healthy competition to a clear public dispute]]></summary>
+        <content type="html"><![CDATA[The exchange between Kamino and Jupiter has escalated from healthy competition to a clear public dispute]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="DeFi" term="DeFi"/>
+        <published>2025-12-09T21:03:44.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rangebound markets, resilient onchain lending]]></title>
+        <id>https://blockworks.com/news/rangebound-markets-resilient</id>
+        <link href="https://blockworks.com/news/rangebound-markets-resilient"/>
+        <updated>2025-12-09T18:38:30.000Z</updated>
+        <summary type="html"><![CDATA[Crypto lags behind TradFi benchmarks, but trends in stablecoins, deposits and loans point to durable multi-year growth]]></summary>
+        <content type="html"><![CDATA[Crypto lags behind TradFi benchmarks, but trends in stablecoins, deposits and loans point to durable multi-year growth]]></content>
+        <author>
+            <name>Luke Leasure</name>
+            <uri>https://blockworks.com/lukeleasure</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-09T18:38:30.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The productivity bull case for almost everything]]></title>
+        <id>https://blockworks.com/news/productivity-bull-case</id>
+        <link href="https://blockworks.com/news/productivity-bull-case"/>
+        <updated>2025-12-09T15:54:37.000Z</updated>
+        <summary type="html"><![CDATA[And the bear case for bitcoin]]></summary>
+        <content type="html"><![CDATA[And the bear case for bitcoin]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-09T15:54:37.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Risk back on the table as crypto ETFs bounce back]]></title>
+        <id>https://blockworks.com/news/risk-back-on-table</id>
+        <link href="https://blockworks.com/news/risk-back-on-table"/>
+        <updated>2025-12-08T15:44:01.000Z</updated>
+        <summary type="html"><![CDATA[Kalshi raises a billion dollars, and Trump’s new Fed Chair pick is imminent ]]></summary>
+        <content type="html"><![CDATA[Kalshi raises a billion dollars, and Trump’s new Fed Chair pick is imminent ]]></content>
+        <author>
+            <name>Boccaccio</name>
+            <uri>https://blockworks.com/boccaccio</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-08T15:44:01.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Illuminating progress: Is a $140K income ‘poor’?]]></title>
+        <id>https://blockworks.com/news/illuminating-progress</id>
+        <link href="https://blockworks.com/news/illuminating-progress"/>
+        <updated>2025-12-05T22:29:37.000Z</updated>
+        <summary type="html"><![CDATA[Bad math makes headlines: real progress, a history of candlelight, and “the worst poverty analysis…ever seen”]]></summary>
+        <content type="html"><![CDATA[Bad math makes headlines: real progress, a history of candlelight, and “the worst poverty analysis…ever seen”]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-05T22:29:37.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Solana tokens see gains amidst weeklong crypto slump]]></title>
+        <id>https://blockworks.com/news/crypto-weeklong-slump</id>
+        <link href="https://blockworks.com/news/crypto-weeklong-slump"/>
+        <updated>2025-12-05T16:06:36.000Z</updated>
+        <summary type="html"><![CDATA[Despite a soft market backdrop, Solana DeFi tokens showed relative strength, with Sanctum leading the pack]]></summary>
+        <content type="html"><![CDATA[Despite a soft market backdrop, Solana DeFi tokens showed relative strength, with Sanctum leading the pack]]></content>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-05T16:06:36.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Thursday links: Prediction markets, agent hackers, quantum risks]]></title>
+        <id>https://blockworks.com/news/agent-hackers-quantum-risks</id>
+        <link href="https://blockworks.com/news/agent-hackers-quantum-risks"/>
+        <updated>2025-12-04T22:41:47.000Z</updated>
+        <summary type="html"><![CDATA[Anthropic researchers report that their AI agents successfully exploited 56% of vulnerable smart contracts]]></summary>
+        <content type="html"><![CDATA[Anthropic researchers report that their AI agents successfully exploited 56% of vulnerable smart contracts]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-04T22:41:47.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hyperliquid: The frontend wars]]></title>
+        <id>https://blockworks.com/news/hyperliquid-the-frontend-wars</id>
+        <link href="https://blockworks.com/news/hyperliquid-the-frontend-wars"/>
+        <updated>2025-12-04T20:51:50.000Z</updated>
+        <summary type="html"><![CDATA[Nearly 40% of Hyperliquid’s daily active users trade through third-party frontends rather than the native UI]]></summary>
+        <content type="html"><![CDATA[Nearly 40% of Hyperliquid’s daily active users trade through third-party frontends rather than the native UI]]></content>
+        <author>
+            <name>Shaunda Devens</name>
+            <uri>https://blockworks.com/shaunda-devens</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <published>2025-12-04T20:51:50.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[After Monad’s TGE, can the chain turn hype into long-term conversion?]]></title>
+        <id>https://blockworks.com/news/after-monad-tge</id>
+        <link href="https://blockworks.com/news/after-monad-tge"/>
+        <updated>2025-12-04T18:23:56.000Z</updated>
+        <summary type="html"><![CDATA[The data paint a complicated picture about user activity and the Monad ecosystem]]></summary>
+        <content type="html"><![CDATA[The data paint a complicated picture about user activity and the Monad ecosystem]]></content>
+        <author>
+            <name>Kunal Doshi</name>
+            <uri>https://blockworks.com/kunaldoshi</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-04T18:23:56.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Too funded to fail: Crypto needs a forest fire]]></title>
+        <id>https://blockworks.com/news/forest-fire</id>
+        <link href="https://blockworks.com/news/forest-fire"/>
+        <updated>2025-12-04T16:07:23.000Z</updated>
+        <summary type="html"><![CDATA[For new growth, crypto may need to shed tired norms like over-raising and the hoarding of investment resources]]></summary>
+        <content type="html"><![CDATA[For new growth, crypto may need to shed tired norms like over-raising and the hoarding of investment resources]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="DeFi" term="DeFi"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-04T16:07:23.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ethereum’s Fusaka upgrade lands today]]></title>
+        <id>https://blockworks.com/news/fusaka-update-today</id>
+        <link href="https://blockworks.com/news/fusaka-update-today"/>
+        <updated>2025-12-03T17:05:47.000Z</updated>
+        <summary type="html"><![CDATA[Ethereum rolls out Fusaka, setting the stage for a stronger blob fee market and renewed deflationary potential]]></summary>
+        <content type="html"><![CDATA[Ethereum rolls out Fusaka, setting the stage for a stronger blob fee market and renewed deflationary potential]]></content>
+        <author>
+            <name>Marc Arjoon</name>
+            <uri>https://blockworks.com/marc-arjoon</uri>
+        </author>
+        <author>
+            <name>Sam Schubert</name>
+            <uri>https://blockworks.com/sam-schubert</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-03T17:05:47.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The sci-fi future of onchain assets and smart locks]]></title>
+        <id>https://blockworks.com/news/the-sci-fi-future-of-onchain-assets-and-smart-locks</id>
+        <link href="https://blockworks.com/news/the-sci-fi-future-of-onchain-assets-and-smart-locks"/>
+        <updated>2025-12-03T16:03:42.000Z</updated>
+        <summary type="html"><![CDATA[Futuristic DeFi is stuck inside the computer. An old idea might be its escape hatch]]></summary>
+        <content type="html"><![CDATA[Futuristic DeFi is stuck inside the computer. An old idea might be its escape hatch]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="DeFi" term="DeFi"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-03T16:03:42.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Strategy stress, liquidity strain]]></title>
+        <id>https://blockworks.com/news/strategy-stress-liquidity-strain</id>
+        <link href="https://blockworks.com/news/strategy-stress-liquidity-strain"/>
+        <updated>2025-12-02T17:12:19.000Z</updated>
+        <summary type="html"><![CDATA[Money market indicators are flashing liquidity stress again as crypto underperforms equities]]></summary>
+        <content type="html"><![CDATA[Money market indicators are flashing liquidity stress again as crypto underperforms equities]]></content>
+        <author>
+            <name>Sam Schubert</name>
+            <uri>https://blockworks.com/sam-schubert</uri>
+        </author>
+        <author>
+            <name>Carlos</name>
+            <uri>https://blockworks.com/carlos-g-campos</uri>
+        </author>
+        <category label="0xResearch Newsletter" term="0xResearch Newsletter"/>
+        <category label="Markets" term="Markets"/>
+        <published>2025-12-02T17:12:19.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Privacy is not a ‘natural’ right — it’s an invention]]></title>
+        <id>https://blockworks.com/news/privacy-right-invention</id>
+        <link href="https://blockworks.com/news/privacy-right-invention"/>
+        <updated>2025-12-02T15:01:15.000Z</updated>
+        <summary type="html"><![CDATA[From passageways to penumbras: a history of private life]]></summary>
+        <content type="html"><![CDATA[From passageways to penumbras: a history of private life]]></content>
+        <author>
+            <name>Byron Gilliam</name>
+            <uri>https://blockworks.com/byrongilliam</uri>
+        </author>
+        <category label="Policy" term="Policy"/>
+        <category label="The Breakdown" term="The Breakdown"/>
+        <published>2025-12-02T15:01:15.000Z</published>
+        <rights>2025, Blockworks</rights>
+    </entry>
+</feed>
