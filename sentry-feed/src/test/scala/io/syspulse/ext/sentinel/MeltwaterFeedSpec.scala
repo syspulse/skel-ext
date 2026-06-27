@@ -21,8 +21,12 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
     getClass.getResource(resource).getPath
   }
 
+  // CSV files are now addressed with the csv:// prefix (JSON is the primary/default format).
+  private def csvResource(resource: String): String = "csv://" + getResourcePath(resource)
+  private def jsonResource(resource: String): String = getResourcePath(resource)
+
   "MeltwaterFeed" should "parse Meltwater CSV feed from file" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
@@ -37,7 +41,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "parse Meltwater Twitter export CSV from file" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-twitter-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-twitter-1.csv"))
     val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
@@ -53,7 +57,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "parse Meltwater Facebook export CSV from file" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-facebook-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-facebook-1.csv"))
     val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
@@ -69,7 +73,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract metadata from Meltwater CSV" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     posts should not be empty
@@ -87,7 +91,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "parse date field correctly" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
@@ -100,7 +104,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "extract author from Influencer field" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     posts should not be empty
@@ -112,7 +116,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "include all CSV fields except Date in metadata" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     posts should not be empty
@@ -136,7 +140,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "limit summary to 1000 characters" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     posts.foreach { post =>
@@ -145,7 +149,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "return correct source type" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     feed.getSourceType() shouldBe "meltwater"
   }
 
@@ -164,7 +168,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
 
   it should "handle UTF-16 LE encoding" in {
     // The actual Meltwater export files are UTF-16 LE encoded
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val result = awaitFeed(feed)
 
     result shouldBe a[Success[_]]
@@ -178,7 +182,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "create unique IDs for each post" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     // All posts should have unique IDs
@@ -187,7 +191,7 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "use URL as ID when available" in {
-    val feed = new MeltwaterFeed(getResourcePath("/meltwater/Examples/export-news-1.csv"))
+    val feed = new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv"))
     val posts = awaitFeed(feed).get
 
     val postsWithUrl = posts.filter(p => p.feedMetadata.get("URL").exists(!_.isBlank))
@@ -196,5 +200,81 @@ class MeltwaterFeedSpec extends AnyFlatSpec with Matchers {
       val url = post.feedMetadata("URL")
       post.id shouldBe url
     }
+  }
+
+  // ---------------------------------------------------------------------------
+  // JSON (Meltwater Search API response shape) - primary format
+  // ---------------------------------------------------------------------------
+
+  "MeltwaterFeed (JSON)" should "parse a Search API JSON response from file" in {
+    val feed = new MeltwaterFeed(jsonResource("/meltwater/search-mentions-1.json"))
+    val result = awaitFeed(feed)
+
+    result shouldBe a[Success[_]]
+    val posts = result.get
+    posts should have size 10
+
+    posts.foreach { post =>
+      post.id should not be empty
+      post.typ shouldBe "meltwater"
+      post.publishedDate should be > 0L
+    }
+  }
+
+  it should "map JSON document fields into NewsPost metadata" in {
+    val feed = new MeltwaterFeed(jsonResource("/meltwater/search-mentions-1.json"))
+    val posts = awaitFeed(feed).get
+
+    // The news article document carries the richest fields.
+    val newsPost = posts.find(_.feedMetadata.get("Content_Type").contains("news article"))
+    newsPost shouldBe defined
+
+    val p = newsPost.get
+    p.title should not be empty
+    p.link should startWith("https://www.ainvest.com")
+    p.feedMetadata.get("Source") shouldBe Some("AInvest")
+    p.feedMetadata.get("Domain") shouldBe Some("ainvest.com")
+    p.feedMetadata.get("Language") shouldBe Some("en")
+    p.feedMetadata.get("Sentiment") shouldBe Some("negative")
+    p.feedMetadata.get("Reach") shouldBe Some("176892")
+    p.feedMetadata.get("Search_Id") shouldBe Some("28737363")
+    p.feedMetadata.get("Search_Name") shouldBe Some("DLT Foundations - Adverse Signals")
+    p.feedMetadata.get("Keywords") shouldBe Some("The Open Network, collapse")
+  }
+
+  it should "parse published_date from ISO-8601 to epoch millis" in {
+    val feed = new MeltwaterFeed(jsonResource("/meltwater/search-mentions-1.json"))
+    val posts = awaitFeed(feed).get
+
+    posts.foreach { post =>
+      post.publishedDate should be > 0L
+      // All documents are from 2026-06.
+      post.publishedDate should be >= 1780272000000L // 2026-06-01
+      post.publishedDate should be < 1782864000000L  // 2026-07-01
+    }
+  }
+
+  it should "detect json mode for plain and file:// paths" in {
+    val path = jsonResource("/meltwater/search-mentions-1.json")
+    new MeltwaterFeed(path).getSourceType() shouldBe "meltwater"
+    awaitFeed(new MeltwaterFeed("file://" + path)).get should have size 10
+  }
+
+  it should "resolve apiKey and ids from a meltwater:// URI (?apiKey=)" in {
+    val feed = new MeltwaterFeed("meltwater://100?apiKey=KEY")
+    feed.getSourceType() shouldBe "meltwater"
+    feed.getApiKey shouldBe "KEY"
+    feed.getSearchIds shouldBe Seq("100")
+  }
+
+  it should "let an explicit constructor apiKey win over the URI/env" in {
+    val feed = new MeltwaterFeed("meltwater://100", apiKey = "EXPLICIT")
+    feed.getApiKey shouldBe "EXPLICIT"
+    feed.getSearchIds shouldBe Seq("100")
+  }
+
+  it should "expose no search ids for csv/json sources" in {
+    new MeltwaterFeed(csvResource("/meltwater/Examples/export-news-1.csv")).getSearchIds shouldBe empty
+    new MeltwaterFeed(jsonResource("/meltwater/search-mentions-1.json")).getSearchIds shouldBe empty
   }
 }

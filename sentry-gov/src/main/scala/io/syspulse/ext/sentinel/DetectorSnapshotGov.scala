@@ -255,7 +255,7 @@ class DetectorSnapshotGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
                   "quorum_met" -> quorumMet.toString,
                   "choices_count" -> proposal.choices.length.toString,
                   "reason" -> alertReason,
-                  "link" -> s"https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}",
+                  "ref" -> s"https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}",
                   "tx_hash" -> proposal.id
                 ) ++ choicesMeta,
                 sev = Some(severity),

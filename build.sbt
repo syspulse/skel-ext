@@ -356,9 +356,7 @@ lazy val root = (project in file("."))
 lazy val sentry_demo = (project in file("sentry-demo"))
   .dependsOn(
     sentry_gov,    
-    sentry_feed,
-    sentry_workflow,
-    sentry_audit,
+    sentry_feed    
   )
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(DockerPlugin)

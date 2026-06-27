@@ -443,7 +443,7 @@ class DetectorAaveGov(pd: PluginDescriptor) extends Sentry0 with Plugin {
                   "vote_source" -> voteSource,
                   "vote_chains" -> (if (chainsWithVotes.nonEmpty) chainsWithVotes else "none"),
                   "reason" -> alertReason,
-                  "link" -> s"https://vote.onaave.com/proposal/?proposalId=${proposalId}",
+                  "ref" -> s"https://vote.onaave.com/proposal/?proposalId=${proposalId}",
                   "tx_hash" -> proposalId
                 ),
                 sev = Some(severity),

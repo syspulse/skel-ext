@@ -15,19 +15,20 @@ import io.syspulse.skel.crypto.Eth
 import io.syspulse.skel.crypto.eth.TokenUtil
 
 import io.haas.ingest.eth.flow.etl.{Block,Tx}
+import io.haas.ingest.eth.{MempoolTx}
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.SentinelBlockchains._
-import io.hacken.ext.sentinel.WithWeb3Eth
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.util.EventUtil
 import io.hacken.ext.detector.DetectorConfig
 
 import io.hacken.ext.sentinel.util.TokenData
 import io.hacken.ext.core.Event
-import io.hacken.ext.sentinel.WithWeb3
 import io.hacken.ext.sentinel.ThresholdDouble
+import io.hacken.ext.sentinel.WithEvm
+
 
 // --------------------------------------------------------------------------------------------------------------------------
 object DetectorPoR {
@@ -47,7 +48,7 @@ object DetectorPoR {
   val WHEN_BLOCK = "block"
 }
 
-class DetectorPoR(pd: PluginDescriptor) extends WithWeb3Eth with SentryEth with Plugin {  
+class DetectorPoR(pd: PluginDescriptor) extends WithEvm[Tx,Block,MempoolTx] with SentryEth with Plugin {  
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 

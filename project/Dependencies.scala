@@ -28,8 +28,8 @@ object Dependencies {
     lazy val janinoVersion = "3.0.16" //"3.1.6" //"3.0.16"
     lazy val elastic4sVersion = "7.17.3"
     
-    lazy val skelVersion = "0.18.0"
-    lazy val extVersion = "0.18.0"
+    lazy val skelVersion = "0.20.0"
+    lazy val extVersion = "0.20.0"
     
     lazy val sentinelVersion = "0.20.0"
     lazy val trunkVersion = "0.20.0"

@@ -12,7 +12,7 @@ import io.hacken.ext.sentinel.SentinelBlockchains._
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Config
 import io.syspulse.skel.plugin.PluginDescriptor
-import io.syspulse.ext.sentinel.feeds.{NewsPost, RssFeed}
+import io.syspulse.ext.sentinel.feeds.{NewsPost, NewsFeed, RssFeed, MeltwaterFeed}
 import io.syspulse.skel.script.{Script, ScriptFlow}
 
 class DetectorFeedSpec extends AnyFlatSpec with Matchers {
@@ -24,6 +24,10 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
 
   private def getResourcePath(resource: String): String = {
     getClass.getResource(resource).getPath
+  }
+
+  private def getResourceDir(resourceDir: String): java.io.File = {
+    new java.io.File(getClass.getResource(resourceDir).toURI)
   }
 
   "DetectorFeed.parseFeedUri" should "parse RSS URI when type is 'rss'" in {
@@ -56,6 +60,12 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://./reddit/feed.xml", "")
     feedType shouldBe "reddit"
     cleanedUri shouldBe "./reddit/feed.xml"
+  }
+
+  it should "strip atom:// prefix when type is empty" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("atom://./rss/blockworks.atom", "")
+    feedType shouldBe "atom"
+    cleanedUri shouldBe "./rss/blockworks.atom"
   }
 
   it should "assume RSS for no prefix when type is empty" in {
@@ -94,16 +104,40 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     cleanedUri shouldBe "./feed.xml"
   }
 
-  it should "ignore prefix when type is explicitly set to rss" in {
-    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://./feed.xml", "rss")
-    feedType shouldBe "rss"
-    cleanedUri shouldBe "reddit://./feed.xml" // URI not cleaned, type forces RSS
+  it should "parse Atom URI when type is 'atom'" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("./rss/blockworks.atom", "atom")
+    feedType shouldBe "atom"
+    cleanedUri shouldBe "./rss/blockworks.atom"
   }
 
-  it should "ignore prefix when type is explicitly set to reddit" in {
-    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://./feed.xml", "reddit")
+  it should "parse Meltwater URI when type is 'meltwater'" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("file://./meltwater/feed.json", "meltwater")
+    feedType shouldBe "meltwater"
+    cleanedUri shouldBe "file://./meltwater/feed.json"
+  }
+
+  it should "keep meltwater:// prefix (feed detects API mode)" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("meltwater://28737363,28739045", "")
+    feedType shouldBe "meltwater"
+    cleanedUri shouldBe "meltwater://28737363,28739045"
+  }
+
+  it should "route csv:// to the meltwater feed keeping the prefix" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("csv://./meltwater/feed.csv", "")
+    feedType shouldBe "meltwater"
+    cleanedUri shouldBe "csv://./meltwater/feed.csv"
+  }
+
+  it should "let prefix override explicit type (reddit:// overrides rss)" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("reddit://./feed.xml", "rss")
     feedType shouldBe "reddit"
-    cleanedUri shouldBe "rss://./feed.xml" // URI not cleaned, type forces Reddit
+    cleanedUri shouldBe "./feed.xml"
+  }
+
+  it should "let prefix override explicit type (rss:// overrides reddit)" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("rss://./feed.xml", "reddit")
+    feedType shouldBe "rss"
+    cleanedUri shouldBe "./feed.xml"
   }
 
   it should "handle multiple slashes after prefix" in {
@@ -693,6 +727,80 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     info("Full lifecycle test completed successfully")
   }
 
+  it should "generate alerts with consistent id/tx_hash/ref for all rss fixtures" in {
+    val dir = getResourceDir("/rss")
+    dir.exists() shouldBe true
+
+    val rssFiles = dir.listFiles().filter(f => f.isFile && f.getName.endsWith(".rss")).toSeq
+    rssFiles.size should be > 0
+
+    rssFiles.foreach { f =>
+      val pd = PluginDescriptor("DetectorFeed", "1.0.0", "News Detector Test")
+      val detector = new DetectorFeed(pd)
+
+      val conf = DetectorConfig(
+        id = 1,
+        createdAt = System.currentTimeMillis(),
+        updatedAt = System.currentTimeMillis(),
+        status = "active",
+        contract = io.hacken.ext.detector.DetectorConfigContract(
+          id = 1,
+          createdAt = System.currentTimeMillis(),
+          updatedAt = System.currentTimeMillis(),
+          projectId = 1,
+          tenantId = 1,
+          chainUid = None,
+          proxyAddress = None,
+          implementation = None,
+          address = None,
+          name = "News-RSS"
+        ),
+        schema = None,
+        name = "DetectorFeed",
+        source = "test",
+        tags = Seq.empty,
+        config = Some(s"""{
+          "cron": "5000",
+          "desc": "Alert: {title}",
+          "type": "rss",
+          "feeds": "${f.getAbsolutePath}",
+          "max": 50,
+          "max_seen_posts": 200,
+          "track_err": true,
+          "err_always": true
+        }""".parseJson.asJsObject),
+        destinations = Seq.empty
+      )
+
+      val config = new Config { override val env: String = "test" }
+      val rx = new SentryRun(detector, conf, config, None)
+
+      detector.onInit(rx, conf) shouldBe SentryRun.SENTRY_INIT
+      detector.onStart(rx, conf) shouldBe SentryRun.SENTRY_RUNNING
+
+      val events = detector.onCron(rx, 5000L)
+
+      // Only validate "post" events (error events may not have id/ref/tx_hash)
+      val postEvents = events.filter(e => e.metadata.contains("id"))
+      postEvents should not be empty
+
+      val ids = postEvents.map(_.metadata.getOrElse("id", "")).filter(_.nonEmpty)
+      ids.size shouldBe postEvents.size
+      ids.distinct.size shouldBe ids.size
+      all(ids) should not startWith ("http")
+
+      postEvents.foreach { e =>
+        val id = e.metadata.getOrElse("id", "")
+        val txHash = e.metadata.getOrElse("tx_hash", "")
+        val ref = e.metadata.getOrElse("ref", "")
+
+        id should not be empty
+        txHash shouldBe id
+        ref should startWith("http")
+      }
+    }
+  }
+
   it should "execute onCron and generate alerts with script filtering" in {
     // Create detector instance
     val pd = PluginDescriptor("DetectorFeed", "1.0.0", "News Detector Test")
@@ -762,7 +870,7 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
       events1.foreach { event =>
         event.did shouldBe "DetectorFeed"
         event.metadata should contain key "title"
-        event.metadata should contain key "link"
+        event.metadata should contain key "ref"
         event.metadata should contain key "type"
       }
       // Note: ScriptFlow filtering behavior may vary - events may or may not match the filter pattern
@@ -838,5 +946,86 @@ class DetectorFeedSpec extends AnyFlatSpec with Matchers {
     events.size should be >= 0
 
     info("Empty script configuration test completed successfully")
+  }
+
+  // ---------------------------------------------------------------------------
+  // DetectorFeed with type "meltwater" (generic detector, not DetectorMeltwater)
+  // ---------------------------------------------------------------------------
+
+  private def createMeltwaterRun(feedUri: String): (DetectorFeed, DetectorConfig, SentryRun0) = {
+    val conf = DetectorConfig(
+      id = 1,
+      createdAt = System.currentTimeMillis(),
+      updatedAt = System.currentTimeMillis(),
+      status = "active",
+      contract = io.hacken.ext.detector.DetectorConfigContract(
+        id = 1,
+        createdAt = System.currentTimeMillis(),
+        updatedAt = System.currentTimeMillis(),
+        projectId = 1,
+        tenantId = 1,
+        chainUid = None,
+        proxyAddress = None,
+        implementation = None,
+        address = None,
+        name = "News-Meltwater"
+      ),
+      schema = None,
+      name = "DetectorFeed",
+      source = "test",
+      tags = Seq.empty,
+      config = Some(JsObject(
+        "cron" -> JsString("5000"),
+        "type" -> JsString("meltwater"),
+        "feeds" -> JsString(feedUri),
+        "max" -> JsNumber(10),
+        "script" -> JsArray(JsObject("type" -> JsString("regexp_score"), "src" -> JsString("(?s).*")))
+      )),
+      destinations = Seq.empty
+    )
+    val config = new Config { override val env: String = "test" }
+    val pd = PluginDescriptor("DetectorFeed", "1.0.0", "DetectorFeed")
+    val detector = new DetectorFeed(pd)
+    val rx = new SentryRun(detector, conf, config, None)
+    (detector, conf, rx)
+  }
+
+  "DetectorFeed (meltwater type)" should "create a MeltwaterFeed for a file:// JSON feed" in {
+    val feedUri = "file://" + getResourcePath("/meltwater/search-mentions-1.json")
+    val (detector, conf, rx) = createMeltwaterRun(feedUri)
+    detector.onInit(rx, conf)
+    detector.onStart(rx, conf)
+
+    val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
+    feeds should have size 1
+    feeds.head shouldBe a[MeltwaterFeed]
+    feeds.head.getSourceType() shouldBe "meltwater"
+  }
+
+  it should "generate alerts from a file:// JSON Meltwater feed" in {
+    val feedUri = "file://" + getResourcePath("/meltwater/search-mentions-1.json")
+    val (detector, conf, rx) = createMeltwaterRun(feedUri)
+    detector.onInit(rx, conf)
+    detector.onStart(rx, conf)
+
+    val events = detector.onCron(rx, 0L)
+    events should not be empty
+    events.foreach { event =>
+      event.did shouldBe "DetectorFeed"
+      event.metadata should not be empty
+    }
+  }
+
+  it should "use the custom apiKey from a meltwater://{id}?apiKey=KEY URI" in {
+    // No network: only assert the feed parsed the URI (apiKey + ids) correctly.
+    val (detector, conf, rx) = createMeltwaterRun("meltwater://100?apiKey=KEY")
+    detector.onInit(rx, conf)
+    detector.onStart(rx, conf)
+
+    val feeds = rx.get("feeds").get.asInstanceOf[Seq[NewsFeed]]
+    feeds should have size 1
+    val feed = feeds.head.asInstanceOf[MeltwaterFeed]
+    feed.getApiKey shouldBe "KEY"
+    feed.getSearchIds shouldBe Seq("100")
   }
 }

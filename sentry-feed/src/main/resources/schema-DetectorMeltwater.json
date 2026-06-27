@@ -141,7 +141,7 @@
       },
       "feeds": {
         "default": "meltwater://",
-        "description": "Meltwater Feed URI",
+        "description": "Comma-separated Meltwater Feed URIs. meltwater://<id>,<id> = query Search API (empty = list+query all searches); file://path.json / https / plain = saved Search API JSON (primary format); csv://path.csv = Meltwater CSV export",
         "title": "Feeds",
         "type": "string"
       },
@@ -211,10 +211,22 @@
         "title": "Track Errors",
         "type": "boolean"
       },
-      "api_key": {
-        "default": "",
-        "description": "Meltwater API Key",
-        "title": "API Key",
+      "window": {
+        "default": "24h",
+        "description": "Search API rolling time window (e.g. 24h, 7d, 90m). start = now - window, end = now",
+        "title": "Search Window",
+        "type": "string"
+      },
+      "tz": {
+        "default": "UTC",
+        "description": "Search API timezone",
+        "title": "Timezone",
+        "type": "string"
+      },
+      "template": {
+        "default": "api.json",
+        "description": "Search API response template name",
+        "title": "Template",
         "type": "string"
       }
     },
@@ -252,7 +264,9 @@
       "script",
       "track_err",
       "err_always",
-      "api_key",
+      "window",
+      "tz",
+      "template",
       "desc",
       "severity"
     ]

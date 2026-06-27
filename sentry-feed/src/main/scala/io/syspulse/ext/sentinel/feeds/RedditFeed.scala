@@ -23,7 +23,7 @@ class RedditFeed(source: String) extends NewsFeed {
       val entries = (xml \\ "entry")
 
       entries.map { entry =>
-        val id = (entry \ "id").text.trim
+        val id0 = (entry \ "id").text.trim
         val title = (entry \ "title").text.trim
         val link = (entry \ "link" \ "@href").text.trim
         val author = (entry \ "author" \ "name").text.trim
@@ -54,6 +54,9 @@ class RedditFeed(source: String) extends NewsFeed {
           "subreddit" -> subredditLabel
         ).filter(_._2.nonEmpty)
 
+        val stableIdSource = if (id0.nonEmpty) id0 else if (link.nonEmpty) link else title
+        val id = FeedId.stableId(stableIdSource)
+
         NewsPost(
           id = id,
           title = title,
@@ -73,7 +76,7 @@ class RedditFeed(source: String) extends NewsFeed {
 
   private def loadXml(source: String, timeoutMs: Long)(ec: ExecutionContext): Future[Elem] = {
     if (source.startsWith("http://") || source.startsWith("https://")) {
-      HTTP.get(source, timeoutMs).map(XML.loadString)(ec)
+      HTTP.get(source, timeout = timeoutMs).map(XML.loadString)(ec)
     } else {
       val path = if (source.startsWith("file://")) source.substring(7) else source
       Future(XML.loadFile(path))(ec)

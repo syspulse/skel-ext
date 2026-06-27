@@ -19,9 +19,11 @@ class DetectorMeltwaterSpec extends AnyFlatSpec with Matchers {
   private implicit val ec: ExecutionContext = ExecutionContext.global
   private implicit val config: Config = Config()
 
-  private val meltwaterCsv: String = getClass.getResource("/meltwater/Examples/export-news-1.csv").getPath
-  private val meltwaterTwitterCsv: String = getClass.getResource("/meltwater/Examples/export-twitter-1.csv").getPath
-  private val meltwaterFacebookCsv: String = getClass.getResource("/meltwater/Examples/export-facebook-1.csv").getPath
+  // CSV payloads use the csv:// prefix (JSON is the primary/default Meltwater format).
+  private val meltwaterCsv: String = "csv://" + getClass.getResource("/meltwater/Examples/export-news-1.csv").getPath
+  private val meltwaterTwitterCsv: String = "csv://" + getClass.getResource("/meltwater/Examples/export-twitter-1.csv").getPath
+  private val meltwaterFacebookCsv: String = "csv://" + getClass.getResource("/meltwater/Examples/export-facebook-1.csv").getPath
+  private val meltwaterJson: String = getClass.getResource("/meltwater/search-mentions-1.json").getPath
 
   private def createRun(confJson: String): (DetectorMeltwater, DetectorConfig, SentryRun0) = {
     val conf = DetectorConfig(
@@ -62,16 +64,16 @@ class DetectorMeltwaterSpec extends AnyFlatSpec with Matchers {
     cleanedUri shouldBe "./meltwater/feed.csv"
   }
 
-  it should "strip meltwater:// prefix when type is empty" in {
-    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("meltwater://./meltwater/feed.csv", "")
+  it should "keep meltwater:// prefix when type is empty (feed detects API mode)" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("meltwater://28737363,28739045", "")
     feedType shouldBe "meltwater"
-    cleanedUri shouldBe "./meltwater/feed.csv"
+    cleanedUri shouldBe "meltwater://28737363,28739045"
   }
 
-  it should "strip meltwater:// prefix with file:// URI" in {
-    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("meltwater://file://./meltwater/feed.csv", "")
+  it should "route csv:// to the meltwater feed keeping the prefix" in {
+    val (feedType, cleanedUri) = DetectorFeed.parseFeedUri("csv://./meltwater/feed.csv", "")
     feedType shouldBe "meltwater"
-    cleanedUri shouldBe "file://./meltwater/feed.csv"
+    cleanedUri shouldBe "csv://./meltwater/feed.csv"
   }
 
   "DetectorMeltwater" should "create detector from config" in {
@@ -170,6 +172,29 @@ class DetectorMeltwaterSpec extends AnyFlatSpec with Matchers {
       event.did shouldBe "DetectorMeltwater"
       event.metadata should not be empty
       event.metadata.get("Source").map(_.toString) shouldBe Some("facebook")
+    }
+  }
+
+  it should "generate alerts from a Meltwater JSON Search response" in {
+    val confJson = s"""{
+      "cron": "5000",
+      "type": "meltwater",
+      "feeds": "$meltwaterJson",
+      "max": 5,
+      "max_seen_posts": 100,
+      "script": [ { "type": "regexp_score", "src": "(?s).*" } ]
+    }"""
+    val (detector, conf, rx) = createRun(confJson)
+    detector.onInit(rx, conf)
+    detector.onStart(rx, conf)
+
+    val events = detector.onCron(rx, 0L)
+
+    events should not be empty
+    events.foreach { event =>
+      event.did shouldBe "DetectorMeltwater"
+      event.metadata should not be empty
+      event.metadata.contains("Search_Id") shouldBe true
     }
   }
 

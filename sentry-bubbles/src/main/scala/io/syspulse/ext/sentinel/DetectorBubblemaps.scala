@@ -216,7 +216,7 @@ class DetectorBubblemaps(pd: PluginDescriptor) extends SentryEth with Plugin {
             "clusters" -> filteredClusters.length.toString,
             "total" -> data.clusters.length.toString,
             "top" -> holdersMetadata,
-            "link" -> link,
+            "ref" -> link,
             "desc" -> desc
           )
 

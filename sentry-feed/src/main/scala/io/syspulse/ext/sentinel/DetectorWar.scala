@@ -93,14 +93,6 @@ object DetectorWar {
 class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
   override def toString = s"${this.getClass.getSimpleName}(${did})"
 
-  override def eid(post: NewsPost) = {
-    if (DetectorWar.DEF_EID_HASH) {
-      Some(Util.sha256(post.id))
-    } else {
-      Some(post.id)
-    }
-  }
-
   override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
       case "test" => Map()
@@ -172,7 +164,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
       "type" -> post.typ,
       "id" -> post.id,
       "title" -> post.title,
-      "link" -> post.link,
+      "ref" -> post.link,
       "author" -> post.author,
       "date" -> DateParser.formatTimestamp(post.publishedDate),
       "summary" -> post.summary,
@@ -204,7 +196,7 @@ class DetectorWar(pd: PluginDescriptor) extends DetectorFeed(pd) {
       conf = Some(rx.getConf()),
       meta = metadata,
       detectorTs = post.publishedDate.toString,
-      eid0 = eid(post),
+      eid0 = eid(rx,post),
       sev = Some(DetectorWar.DEF_SEV_REPORT)
     )
   }

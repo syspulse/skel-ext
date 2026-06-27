@@ -13,7 +13,11 @@
     },
     {
       "name": "Feeds",
-      "value": "Feeds URI\n\nMulitple URI's can be specified with comma separation. If `type` is not specified, feed can be prefixed with type (`rss://`. `reddit://`, `twitter://@channel`)\n"
+      "value": "Feeds URI\n\nMulitple URI's can be specified with comma separation. If `type` is not specified, feed can be prefixed with type (`rss://`. `atom://`, `reddit://`, `twitter://@channel`)\n"
+    }, 
+    {
+      "name": "Type",
+      "value": "Type of feed:\n- `rss`\n- `atom`\n- `reddit`\n- `twitter`\n- `meltwater`"
     }, 
     {
       "name": "Max",
@@ -115,7 +119,14 @@
         "description": "Feeds URI",
         "title": "Feeds",
         "type": "string"
-      },      
+      },
+      "type": {
+        "default": "rss",
+        "description": "Feed Type",
+        "title": "Feed type",
+        "type": "string",
+        "enum": ["rss","atom","reddit","twitter","meltwater"]
+      },
       "max": {
         "default": 10,
         "description": "Max news",
@@ -124,7 +135,7 @@
       },
       "score": {
         "default": "",
-        "description": "Score ",
+        "description": "Score",
         "title": "Score condition",
         "type": "string"
       },
@@ -145,9 +156,39 @@
         "description": "Always Alert on Error",
         "title": "Track Error (always)",
         "type": "boolean"
-      }     
+      },
+      "event_sid": {
+        "default": "",
+        "description": "Internal Source ID",
+        "title": "Event Source ID",
+        "type": "string"
+      },
+      "event_cat": {
+        "default": "",
+        "description": "Internal Event Category",
+        "title": "Event Category",
+        "type": "string"
+      },
+      "event_type": {
+        "default": "",
+        "description": "Internal Event Type",
+        "title": "Event Type",
+        "type": "string"
+      },
+      "timeout": {
+        "default": 10000,
+        "description": "Timeout",
+        "title": "Timeout",
+        "type": "number"
+      },
+      "delay": {
+        "default": 1000,
+        "description": "Delay",
+        "title": "Delay",
+        "type": "number"
+      }      
     },
-    "required": ["feeds", "cron"],
+    "required": ["feeds", "type", "cron"],
     "title": "Schema",
     "type": "object"
   },
@@ -165,8 +206,8 @@
             }            
         }
     },
-    "ui:order": ["cron", "feeds", "max", "category", "script", "score", "track_err", "err_always","desc", "severity"]
+    "ui:order": ["cron", "feeds", "type", "max", "category", "script", "score", "track_err", "err_always","desc", "event_type","event_cat", "event_sid", "timeout", "delay", "severity"]
   },
   "updatedAt": 1765725481270,
-  "version": "0.0.4"
+  "version": "0.0.6"
 }

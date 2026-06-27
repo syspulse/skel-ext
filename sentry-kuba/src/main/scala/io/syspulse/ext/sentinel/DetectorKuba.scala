@@ -14,7 +14,6 @@ import io.syspulse.skel.plugin.{Plugin,PluginDescriptor}
 
 import io.syspulse.skel.util.Util
 import io.syspulse.skel.util.TimeUtil
-import io.syspulse.skel.blockchain.Blockchains
 import io.syspulse.skel.blockchain.BlockchainRpc
 import io.syspulse.skel.blockchain.Token
 
@@ -30,7 +29,6 @@ import io.haas.ingest.eth.flow.etl.{Tx,Block}
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.sentinel.SentinelBlockchains._
-import io.hacken.ext.sentinel.WithWeb3Eth
 import io.hacken.ext.sentinel.Sentry
 import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.util.EventUtil
@@ -311,7 +309,7 @@ class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {
       return SentryRun.SENTRY_STOPPED
     }
 
-    val rpc = Blockchains(blockchains)
+    val rpc = BlockchainRpc(blockchains)
     rx.set("rpc",rpc)
 
     // Load chain mapping (kuid -> chain_name) from configuration
@@ -403,7 +401,7 @@ class DetectorKuba(pd: PluginDescriptor) extends SentryEth with Plugin {
     val balanceSource: BalanceSource = source match {
       case "chain" =>
         // Get blockchains from configuration
-        val rpc = rx.get("rpc").asInstanceOf[Option[Blockchains]].get
+        val rpc = rx.get("rpc").asInstanceOf[Option[Map[String,BlockchainRpc]]].get
         new BalanceSourceChain(rpc, snapshotTs, moralisApiKey)
       case "dune" =>
         val apiKey = DetectorConfig.getString(rx.conf,"dune_api_key","")

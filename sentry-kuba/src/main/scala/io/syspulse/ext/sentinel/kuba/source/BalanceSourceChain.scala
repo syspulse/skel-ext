@@ -4,18 +4,18 @@ import scala.util.{Try, Failure}
 import com.typesafe.scalalogging.Logger
 
 import io.syspulse.skel.blockchain.Token
-import io.syspulse.skel.blockchain.Blockchains
+import io.syspulse.skel.blockchain.BlockchainRpc
 import io.syspulse.ext.sentinel.Balance
 import io.syspulse.ext.sentinel.DetectorKuba
 
 // Router that delegates to appropriate chain-specific implementation
-class BalanceSourceChain(rpc: Blockchains, snapshotTs: Long, moralisApiKey: String) extends BalanceSource {
+class BalanceSourceChain(rpc: Map[String,BlockchainRpc], snapshotTs: Long, moralisApiKey: String) extends BalanceSource {
   val log = Logger(this.getClass.getSimpleName)
 
   // Map chain_id -> BalanceSource implementation
   // Each source calculates and caches its block height during construction
   private val chainSources: Map[String, BalanceSource] = {
-    rpc.all().flatMap { r =>
+    rpc.flatMap { case (chainName, r) =>
       val name = r.name
       val id = r.id
       val rpcUrl = r.rpcUri

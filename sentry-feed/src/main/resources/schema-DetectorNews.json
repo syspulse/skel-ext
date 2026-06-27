@@ -156,7 +156,37 @@
         "description": "Feed Type",
         "title": "Feed type",
         "type": "string",
-        "enum": ["rss","reddit","twitter"]
+        "enum": ["rss","atom","reddit","twitter","meltwater"]
+      },
+      "event_sid": {
+        "default": "",
+        "description": "Internal Source ID",
+        "title": "Event Source ID",
+        "type": "string"
+      },
+      "event_cat": {
+        "default": "",
+        "description": "Internal Event Category",
+        "title": "Event Category",
+        "type": "string"
+      },
+      "event_type": {
+        "default": "",
+        "description": "Internal Event Type",
+        "title": "Event Type",
+        "type": "string"
+      },
+      "timeout": {
+        "default": 10000,
+        "description": "Timeout",
+        "title": "Timeout",
+        "type": "number"
+      },
+      "delay": {
+        "default": 1000,
+        "description": "Delay",
+        "title": "Delay",
+        "type": "number"
       }
     },
     "required": ["feeds", "type", "cron"],
@@ -177,8 +207,8 @@
             }            
         }
     },
-    "ui:order": ["cron", "feeds", "type", "max", "category", "score", "script", "track_err", "err_always", "desc", "severity"]
+    "ui:order": ["cron", "feeds", "type", "max", "category", "score", "script", "track_err", "err_always", "desc", "event_type","event_cat", "event_sid", "timeout", "delay", "severity"]
   },
   "updatedAt": 1765725481270,
-  "version": "0.0.9"
+  "version": "0.0.11"
 }

@@ -68,7 +68,7 @@ class TwitterFeed(source: String, max:Option[Long] = None, timeout0:Option[Long]
     // Build metadata
     val metadata = Map(
       "author_id" -> twit.author_id,
-      "link" -> s"https://x.com/${twit.author_name}/status/${twit.id}"
+      "ref" -> s"https://x.com/${twit.author_name}/status/${twit.id}"
     )
 
     NewsPost(

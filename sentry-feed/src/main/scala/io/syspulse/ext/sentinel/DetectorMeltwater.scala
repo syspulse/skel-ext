@@ -95,7 +95,20 @@ class DetectorMeltwater(pd: PluginDescriptor) extends DetectorFeed(pd) {
     val apiKey = DetectorConfig.getString(conf, "api_key","")
     rx.set("api_key", apiKey)
 
-    // Override feed type to "meltwater" and recreate feeds as MeltwaterFeed instances
+    // Build the Search API query parameters (rolling window + paging).
+    val query = MeltwaterQuery(
+      windowMs = MeltwaterFeed.parseWindow(
+        DetectorConfig.getString(conf, "window", ""), MeltwaterFeed.DEF_WINDOW_MS),
+      pageFrom = DetectorConfig.getInt(conf, "page_from", MeltwaterFeed.DEF_PAGE_FROM),
+      pageSize = DetectorConfig.getInt(conf, "page_size", MeltwaterFeed.DEF_PAGE_SIZE),
+      sortBy = DetectorConfig.getString(conf, "sort_by", MeltwaterFeed.DEF_SORT_BY),
+      sortOrder = DetectorConfig.getString(conf, "sort_order", MeltwaterFeed.DEF_SORT_ORDER),
+      tz = DetectorConfig.getString(conf, "tz", MeltwaterFeed.DEF_TZ),
+      template = DetectorConfig.getString(conf, "template", MeltwaterFeed.DEF_TEMPLATE)
+    )
+
+    // Override feed type to "meltwater" and recreate feeds as MeltwaterFeed instances.
+    // Keep the URI prefix intact (meltwater:// / csv:// / file://) so the feed can pick its format.
     val feedsStr = DetectorConfig.getString(conf, "feeds", DetectorFeed.DEF_FEEDS)
     if (feedsStr.isEmpty) {
       log.warn(s"${rx.getExtId()}: feeds configuration required")
@@ -108,8 +121,7 @@ class DetectorMeltwater(pd: PluginDescriptor) extends DetectorFeed(pd) {
       .map(_.trim)
       .filter(!_.isBlank)
       .map { uri =>
-        val cleanedUri = if (uri.startsWith("meltwater://")) uri.substring(12) else uri
-        new MeltwaterFeed(cleanedUri)
+        new MeltwaterFeed(uri, apiKey, query)
       }
 
     log.info(s"${rx.getExtId()}: Configured Meltwater feeds: ${feeds.size} (${feeds})")

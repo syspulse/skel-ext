@@ -21,6 +21,29 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
     getClass.getResource(resource).getPath
   }
 
+  private def getResourceDir(resourceDir: String): java.io.File = {
+    // resourceDir should be like "/rss"
+    new java.io.File(getClass.getResource(resourceDir).toURI)
+  }
+
+  it should "parse all rss fixtures with unique slug ids" in {
+    val dir = getResourceDir("/rss")
+    dir.exists() shouldBe true
+
+    val files = dir.listFiles().filter(f => f.isFile && f.getName.endsWith(".rss")).toSeq
+    files.size should be > 0
+
+    files.foreach { f =>
+      val feed = new RssFeed(f.getAbsolutePath)
+      val posts = awaitFeed(feed).get
+
+      posts should not be empty
+      all(posts.map(_.id)) should not startWith ("http")
+      posts.map(_.id).distinct.size shouldBe posts.size
+      all(posts.map(_.link)) should not be empty
+    }
+  }
+
   "RssFeed" should "parse Cointelegraph RSS feed from file" in {
     val feed = new RssFeed(getResourcePath("/rss/coingtelegraph-all.rss"))
     val result = awaitFeed(feed)
@@ -130,7 +153,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
     firstPost.typ shouldBe "rss"
     
     // PR Newswire uses guid that matches link
-    firstPost.id should startWith("https://")
+    firstPost.id should not startWith("http")
   }
 
   it should "extract media URL from PR Newswire feed" in {
@@ -284,7 +307,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
     posts.foreach { post =>
       // Decrypt uses guid with isPermaLink="false"
       post.id should not be empty
-      post.id should startWith("https://")
+      post.id should not startWith("http")
     }
   }
 
@@ -343,7 +366,7 @@ class RssFeedSpec extends AnyFlatSpec with Matchers {
     posts.foreach { post =>
       // The Block uses guid with isPermaLink="false"
       post.id should not be empty
-      post.id should startWith("https://")
+      post.id should not startWith("http")
     }
   }
 
