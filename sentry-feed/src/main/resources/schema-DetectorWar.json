@@ -4,7 +4,7 @@
   "description": "Detector monitors War telemetry",
   "faq": [{
     "name": "How does it work",
-    "value": ""
+    "value": "Complex ScriptFlow"
   }],
   "icon": "https://yt3.googleusercontent.com/JNyFHz4KXQh7vCnaSs5qHjohkhzyKGmZbIaWAFx-o1I9OV2n9XjYqb9xSlXj_oJhMn8TZaJcGQ=s160-c-k-c0x00ffffff-no-rj",
   "id": 570,
@@ -71,19 +71,48 @@
         "description": "Severity",
         "title": "Severity",
         "type": "number"
+      },
+      "event_sid": {
+        "default": "",
+        "description": "Internal Source ID (ext:sentinel)",
+        "title": "Event Source ID",
+        "type": "string"
+      },
+      "event_cat": {
+        "default": "",
+        "description": "Internal Event Category (ALERT)",
+        "title": "Event Category",
+        "type": "string"
+      },
+      "event_type": {
+        "default": "",
+        "description": "Internal Event Type (sentry)",
+        "title": "Event Type",
+        "type": "string"
+      },
+      "timeout": {
+        "default": 90000,
+        "description": "Flow processing timeout",
+        "title": "Timeout",
+        "type": "number"
+      },      
+      "dat": {
+        "default": "",
+        "description": "Custom data",
+        "title": "Data",
+        "type": "string"
       }
-      
     },
     "required": ["cron"],
     "title": "Schema",
     "type": "object"
   },
   "status": "ACTIVE",
-  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL","web2"],
+  "tags": ["SECURITY", "COMPLIANCE", "beta", "FINANCIAL", "web2"],
   "title": "War",
   "uiSchema": {
-    "ui:order": ["cron", "desc", "custom_regexp", "custom_filter", "custom_js", "custom_ai", "ai_uri", "track_err", "err_always", "severity"]
+    "ui:order": ["cron", "desc", "custom_regexp", "custom_filter", "custom_js", "custom_ai", "ai_uri", "track_err", "err_always", "event_type","event_cat", "event_sid", "timeout", "dat", "severity"]
   },
   "updatedAt": 1765725481270,
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

@@ -159,34 +159,40 @@
       },
       "event_sid": {
         "default": "",
-        "description": "Internal Source ID",
+        "description": "Internal Source ID (ext:sentinel)",
         "title": "Event Source ID",
         "type": "string"
       },
       "event_cat": {
         "default": "",
-        "description": "Internal Event Category",
+        "description": "Internal Event Category (ALERT)",
         "title": "Event Category",
         "type": "string"
       },
       "event_type": {
         "default": "",
-        "description": "Internal Event Type",
+        "description": "Internal Event Type (sentry)",
         "title": "Event Type",
         "type": "string"
       },
       "timeout": {
         "default": 10000,
-        "description": "Timeout",
+        "description": "Feed processing timeout",
         "title": "Timeout",
         "type": "number"
       },
       "delay": {
         "default": 1000,
-        "description": "Delay",
+        "description": "Delay between feeds (if multiple feeds are specified)",
         "title": "Delay",
         "type": "number"
-      }      
+      },
+      "dat": {
+        "default": "",
+        "description": "Custom data",
+        "title": "Data",
+        "type": "string"
+      }
     },
     "required": ["feeds", "type", "cron"],
     "title": "Schema",
@@ -206,8 +212,8 @@
             }            
         }
     },
-    "ui:order": ["cron", "feeds", "type", "max", "category", "script", "score", "track_err", "err_always","desc", "event_type","event_cat", "event_sid", "timeout", "delay", "severity"]
+    "ui:order": ["cron", "feeds", "type", "max", "category", "script", "score", "track_err", "err_always","desc", "event_type","event_cat", "event_sid", "timeout", "delay", "dat", "severity"]
   },
   "updatedAt": 1765725481270,
-  "version": "0.0.6"
+  "version": "0.0.7"
 }

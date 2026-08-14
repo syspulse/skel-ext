@@ -42,7 +42,7 @@ object DetectorFeed {
 
   val DEF_EID_HASH = true
 
-  val DEF_TIMEOUT = 10000L
+  val DEF_TIMEOUT = 30000L
   val DEF_DELAY = 0L
 
   /**
@@ -211,6 +211,7 @@ class DetectorFeed(pd: PluginDescriptor) extends Sentry0 with Plugin {
 
     rx.set("timeout", DetectorConfig.getLong(conf, "timeout", DetectorFeed.DEF_TIMEOUT))
     rx.set("delay", DetectorConfig.getLong(conf, "delay").map(_.longValue()))
+    rx.set("dat", DetectorConfig.getString(conf, "dat"))
 
     // Initialize seen posts with current feed state (don't alert on first run)
     //initializeSeenPosts(rx)
