@@ -33,7 +33,9 @@ object DetectorWar {
   val DEF_SEV_ERR = Severity.ERROR
   val DEF_EID_HASH = true
 
-  val DEF_SCRIPT_REGEXP = ".*Загальні бойові втрати противника.*"
+  // val DEF_SCRIPT_REGEXP = ".*Загальні бойові втрати противника.*"
+  val DEF_SCRIPT_REGEXP = ".*The estimated total combat losses of the enemy.*"
+  
   val DEF_SCRIPT_FILTER = ""
   val DEF_SCRIPT_JS = "'image://' + images.split(',')[0]"
   val DEF_SCRIPT_AI = """Extract text from provided image {input} and return result as json.

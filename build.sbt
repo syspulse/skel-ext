@@ -328,19 +328,23 @@ def appAssemblyConfig(appName:String,appMainClass:String) =
 lazy val root = (project in file("."))
   .aggregate(
     sentry_gov,
+    sentry_demo,
+    sentry_demo_evm,
     // sentry_por,
     // sentry_kuba,
-    // sentry_bubbles,
-    // sentry_feed,
+    sentry_bubbles,
+    sentry_feed,
     // sentry_audit,
     // sentry_workflow,
   )
   .dependsOn(
     sentry_gov,
+    sentry_demo,
+    sentry_demo_evm,
     // sentry_por,
     // sentry_kuba,
-    // sentry_bubbles,
-    // sentry_feed,
+    sentry_bubbles,
+    sentry_feed,
     // sentry_audit,
     // sentry_workflow,
   )
