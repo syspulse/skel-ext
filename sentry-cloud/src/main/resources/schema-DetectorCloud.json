@@ -1,0 +1,118 @@
+{
+  "author": "Hacken",
+  "createdAt": 1793000000000,
+  "description": "Detector monitors Cloud provider (AWS, GCP, Azure) health and security: CloudWatch alarms, IAM events and S3 availability",
+  "faq": [
+    {
+      "name": "How does it work",
+      "value": "Detector periodically queries Cloud provider API and generates Alerts for problems found: \n\n- `Watch` (CloudWatch): alarms (VPC, EC2, EKS and other services health)\n- `Trail` (CloudTrail): management events (IAM changes, security groups, bucket policies, ...)\n- `IAM`: insecure IAM configuration (root access keys, missing MFA, old access keys)\n- `Storage` (S3): buckets availability\n\nAWS is supported. GCP and Azure are **mocked** for now."
+    },
+    {
+      "name": "Cron",
+      "value": "Cron interval to check Cloud. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+    },
+    {
+      "name": "URI",
+      "value": "Cloud URI: `aws://`, `gcp://`, `azure://`\n\nFormat: `cloud://ACCESS_KEY:ACCESS_SECRET[:SESSION_TOKEN]@[host]?param=value&param=value`\n\nIf credentials are not specified, they are read from environment variables `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`, `AWS_REGION` (`GCP_`, `AZURE_` for other clouds).\n\nExamples:\n\n`aws://?region=eu-west-1`\n\n`aws://AKIA...:SECRET@?region=eu-west-1`\n\n`aws://?region=eu-west-1&states=ALARM,INSUFFICIENT_DATA&namespace=AWS/EC2,AWS/EKS` (Watch)\n\n`aws://?source=iam.amazonaws.com&events=CreateUser,DeleteUser&window=60` (Trail)\n\n`aws://?max_key_age=90` (IAM)\n\n`aws://?buckets=my-bucket,my-bucket-2&latency=3000`"
+    },
+    {
+      "name": "System",
+      "value": "Cloud systems to monitor (comma-separated): `Watch` (CloudWatch), `Trail` (CloudTrail), `IAM`, `Storage` (S3)"
+    },
+    {
+      "name": "Condition",
+      "value": "Condition on the number of findings (per system) to generate Alerts. Default is `> 0`. Refer to [Condition](https://docs.extractor.live/common-configurations#condition-threshold) for more details"
+    },
+    {
+      "name": "New only",
+      "value": "Alert only once on every new finding. If disabled, all active findings are reported on every check"
+    },
+    {
+      "name": "Timeout",
+      "value": "Max time (milliseconds) to wait for Cloud API"
+    },
+    {
+      "name": "Track Error",
+      "value": "Track and alert on Errors (Cloud access errors, invalid credentials)"
+    }
+  ],
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+  "id": 449,
+  "name": "DetectorCloud",
+  "networkTags": [],
+  "schema": {
+    "properties": {
+      "uri": {
+        "default": "aws://",
+        "description": "Cloud URI: aws://, gcp://, azure://",
+        "title": "URI",
+        "type": "string"
+      },
+      "cron": {
+        "default": "10 min",
+        "description": "Cron expression",
+        "title": "Cron",
+        "type": "string"
+      },
+      "system": {
+        "default": "Watch",
+        "description": "Cloud systems to monitor (comma-separated): Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)",
+        "title": "System",
+        "type": "string"
+      },
+      "condition": {
+        "default": "> 0",
+        "description": "Condition on the number of findings",
+        "title": "Condition",
+        "type": "string"
+      },
+      "new_only": {
+        "default": true,
+        "description": "Alert only on new findings",
+        "title": "New only",
+        "type": "boolean"
+      },
+      "timeout": {
+        "default": 60000,
+        "description": "Cloud API timeout (ms)",
+        "title": "Timeout",
+        "type": "number"
+      },
+      "desc": {
+        "default": "{system}: {title}{err}",
+        "description": "Description Template",
+        "title": "Description",
+        "type": "string"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always alert on Errors",
+        "title": "Track Errors (always)",
+        "type": "boolean"
+      }
+    },
+    "required": ["uri", "cron", "system"],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": ["SECURITY", "COMPLIANCE", "alpha", "web2"],
+  "title": "Cloud Monitor",
+  "uiSchema": {
+    "ui:order": ["uri", "system", "condition", "new_only", "track_err", "err_always", "timeout", "desc", "cron", "severity"]
+  },
+  "updatedAt": 1793000000000,
+  "version": "0.0.1"
+}
