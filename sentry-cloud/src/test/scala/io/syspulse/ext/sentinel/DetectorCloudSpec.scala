@@ -21,7 +21,7 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     DetectorCloud.DEF_URI shouldBe "aws://"
     DetectorCloud.DEF_SYSTEM shouldBe "Watch"
     DetectorCloud.DEF_CONDITION shouldBe "> 0"
-    DetectorCloud.DEF_NEW_ONLY shouldBe true
+    DetectorCloud.DEF_TRACK_NEW shouldBe true
   }
 
   "DetectorCloud.parseSystems" should "parse and normalize systems" in {
@@ -34,9 +34,9 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
   "DetectorCloud.selectNew" should "select only new findings" in {
     def a(id: String) = CloudAlert("IAM", id, "r", "S", Severity.HIGH, "t")
     val alerts = Seq(a("1"), a("2"), a("3"))
-    DetectorCloud.selectNew(alerts, Set("1", "3"), newOnly = true).map(_.id) shouldBe Seq("2")
-    DetectorCloud.selectNew(alerts, Set("1", "3"), newOnly = false).map(_.id) shouldBe Seq("1", "2", "3")
-    DetectorCloud.selectNew(alerts, Set.empty, newOnly = true) should have size 3
+    DetectorCloud.selectNew(alerts, Set("1", "3"), trackNew = true).map(_.id) shouldBe Seq("2")
+    DetectorCloud.selectNew(alerts, Set("1", "3"), trackNew = false).map(_.id) shouldBe Seq("1", "2", "3")
+    DetectorCloud.selectNew(alerts, Set.empty, trackNew = true) should have size 3
   }
 
   // ---- Detector from DetectorConfig ----
@@ -62,6 +62,81 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     events.foreach { e =>
       e.metadata("region") shouldBe "europe-west1"
       e.metadata("account") shouldBe "acc-1"
+    }
+  }
+
+  it should "add cloud specific system name to Alerts as `sys`" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage" }""")
+    val events = detector.onCron(rx, 0L)
+    events.map(e => e.metadata("system") -> e.metadata("sys")).toMap shouldBe Map(
+      "Watch" -> "Cloud Monitoring", "Trail" -> "Cloud Audit Logs", "IAM" -> "Cloud IAM", "Storage" -> "Cloud Storage")
+
+    // AWS names
+    val (d2, c2, rx2, r2) = start("""{ "cron": "1 min", "uri": "aws://localhost:1?region=us-east-1&ssl=false", "system": "Trail,Storage" }""")
+    val errors = d2.onCron(rx2, 0L)
+    errors.map(e => e.metadata("system") -> e.metadata("sys")).toMap shouldBe Map("Trail" -> "CloudTrail", "Storage" -> "S3")
+  }
+
+  it should "set ref and Cloud provider id (tx_hash) to Alerts" in {
+    import scala.concurrent.Future
+    import io.syspulse.ext.sentinel.cloud.{CloudAlert, CloudURI}
+
+    class Stub extends Cloud {
+      val uri = CloudURI("aws://?region=eu-west-1")
+      def provider = "stub"
+      def checkWatch() = Future.successful(Seq.empty)
+      def checkIAM() = Future.successful(Seq.empty)
+      def checkStorage() = Future.successful(Seq.empty)
+      def checkTrail(trackEvent: Boolean) = Future.successful(Seq(
+        CloudAlert("Trail", "trail:ev-1", "r", "CreateUser", 0.5, "t1", 0L, Map.empty, ref = "https://console/ev-1", uid = "ev-1"),
+        // no ref and uid
+        CloudAlert("Trail", "trail:ev-2", "r", "CreateUser", 0.5, "t2")
+      ))
+    }
+
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=ok", "system": "Trail" }""")
+    rx.set("cloud", new Stub)
+
+    val events = detector.onCron(rx, 0L).sortBy(_.metadata("id"))
+    events should have size 2
+    events(0).metadata("ref") shouldBe "https://console/ev-1"
+    events(0).metadata("tx_hash") shouldBe "ev-1"
+    // finding id if Cloud does not provide the id
+    events(1).metadata.get("ref") shouldBe None
+    events(1).metadata("tx_hash") shouldBe "trail:ev-2"
+    // eid is not the provider id
+    events(0).eid should not be "ev-1"
+  }
+
+  it should "track_event is disabled by default" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=ok", "system": "Trail" }""")
+    r shouldBe SentryRun.SENTRY_RUNNING
+    rx.get("track_event").get shouldBe false
+  }
+
+  it should "pass track_event to Cloud Trail check" in {
+    import scala.concurrent.Future
+    import io.syspulse.ext.sentinel.cloud.{CloudAlert, CloudURI}
+
+    class Spy extends Cloud {
+      var tracked: Option[Boolean] = None
+      val uri = CloudURI("aws://")
+      def provider = "spy"
+      def checkWatch() = Future.successful(Seq.empty)
+      def checkIAM() = Future.successful(Seq.empty)
+      def checkStorage() = Future.successful(Seq.empty)
+      def checkTrail(trackEvent: Boolean) = { tracked = Some(trackEvent); Future.successful(Seq.empty) }
+    }
+
+    for (flag <- Seq(true, false)) {
+      val (detector, conf, rx, r) = start(s"""{ "cron": "1 min", "uri": "gcp://?mock=ok", "system": "Trail", "track_event": ${flag} }""")
+      r shouldBe SentryRun.SENTRY_RUNNING
+      rx.get("track_event").get shouldBe flag
+
+      val spy = new Spy
+      rx.set("cloud", spy)
+      detector.onCron(rx, 0L) shouldBe empty
+      spy.tracked shouldBe Some(flag)
     }
   }
 
@@ -115,7 +190,7 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
   }
 
   it should "generate idempotent eid" in {
-    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "new_only": false }""")
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "track_new": false }""")
     val e1 = detector.onCron(rx, 0L)
     val e2 = detector.onCron(rx, 0L)
     e1 should have size 4
@@ -126,7 +201,7 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     e1.foreach(e => e.eid shouldBe detector.eid(rx, CloudAlert(e.metadata("system"), e.metadata("id"), "", "", 0.0, "")))
 
     // the same configuration in another Detector instance 
-    val (detector2, conf2, rx2, r2) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "new_only": false }""")
+    val (detector2, conf2, rx2, r2) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "track_new": false }""")
     detector2.onCron(rx2, 0L).map(_.eid) shouldBe e1.map(_.eid)
   }
 
@@ -140,8 +215,8 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     e2.map(_.eid) shouldBe e1.map(_.eid)
   }
 
-  it should "alert on every check if new_only is disabled" in {
-    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "IAM", "new_only": false }""")
+  it should "alert on every check if track_new is disabled" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "IAM", "track_new": false }""")
     detector.onCron(rx, 0L) should have size 1
     detector.onCron(rx, 0L) should have size 1
   }

@@ -105,6 +105,28 @@ class CloudAWSIntegrationSpec extends AnyFlatSpec with Matchers with DetectorClo
     }
   }
 
+  it should "generate INFO Alerts for read-only CloudTrail events" in {
+    requireAws()
+
+    // our own calls (CloudWatch/IAM/CloudTrail LookupEvents) are read-only events 
+    val cloud = new io.syspulse.ext.sentinel.cloud.CloudAWS(uri("source=iam.amazonaws.com&window=120"))
+    try {
+      iam.listUsers()
+      val events = scala.concurrent.Await.result(cloud.checkTrail(trackEvent = true), scala.concurrent.duration.Duration(60, "sec"))
+      info(s"alerts: ${events.size}")
+      events.foreach(_.sev should (be (Severity.INFO) or be (Severity.MEDIUM) or be (Severity.HIGH)))
+      // provider event id and console link
+      events.foreach { a =>
+        a.uid should not be empty
+        a.ref should startWith ("https://")
+        a.ref should endWith (s"#/events/${a.uid}")
+      }
+      events.headOption.foreach(a => info(s"ref: ${a.ref}"))
+    } finally {
+      cloud.close()
+    }
+  }
+
   it should "detect CloudWatch alarm" in {
     requireAws()
 

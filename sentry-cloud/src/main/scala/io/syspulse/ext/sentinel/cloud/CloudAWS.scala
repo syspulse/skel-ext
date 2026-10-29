@@ -31,6 +31,14 @@ import com.amazonaws.services.s3.model.HeadBucketRequest
 import io.hacken.ext.core.Severity
 
 object CloudAWS {
+  /** AWS names of the systems */
+  val SYS = Map(
+    Cloud.SYSTEM_WATCH -> "CloudWatch",
+    Cloud.SYSTEM_TRAIL -> "CloudTrail",
+    Cloud.SYSTEM_IAM -> "IAM",
+    Cloud.SYSTEM_STORAGE -> "S3"
+  )
+
   // Credentials
   val DEF_ROLE_SESSION = "sentry-cloud"
   val DEF_ROLE_DURATION = 3600                // seconds. Credentials are refreshed automatically before expiration
@@ -85,6 +93,7 @@ object CloudAWS {
   // Trail (CloudTrail)
   val DEF_TRAIL_SOURCE = ""                   // event sources (comma-separated): iam.amazonaws.com, s3.amazonaws.com. Empty = all (write events only)
   val DEF_TRAIL_EVENTS = ""                   // event names filter (comma-separated). Empty = all
+  val DEF_TRAIL_EVENT_SEV = Severity.INFO     // severity of read-only events (generated if `track_event` is enabled in Detector config) (write events: HIGH for security sensitive, MEDIUM for others)
   val DEF_WINDOW = 60                         // minutes
   val DEF_MAX_EVENTS = 200
 
@@ -102,6 +111,23 @@ object CloudAWS {
   val GLOBAL_SOURCES = Set("iam.amazonaws.com", "sts.amazonaws.com", "signin.amazonaws.com", "organizations.amazonaws.com", "cloudfront.amazonaws.com", "route53.amazonaws.com")
   val GLOBAL_REGION = "us-east-1"
 
+  // ----- Console links (ref) -------------------------------------------------------------------------------------
+  def consoleHost(region: String): String = if (region.isEmpty) "https://console.aws.amazon.com" else s"https://${region}.console.aws.amazon.com"
+
+  private def enc(s: String): String = java.net.URLEncoder.encode(s, "UTF-8").replace("+", "%20")
+
+  def refTrail(eventId: String, region: String): String =
+    if (eventId.isEmpty) "" else s"${consoleHost(region)}/cloudtrail/home?region=${if (region.isEmpty) GLOBAL_REGION else region}#/events/${enc(eventId)}"
+
+  def refAlarm(name: String, region: String): String =
+    if (name.isEmpty) "" else s"${consoleHost(region)}/cloudwatch/home?region=${if (region.isEmpty) GLOBAL_REGION else region}#alarmsV2:alarm/${enc(name)}"
+
+  def refIAM(user: String): String =
+    if (user == ROOT_ACCOUNT) "https://console.aws.amazon.com/iam/home#/security_credentials"
+    else s"https://console.aws.amazon.com/iam/home#/users/details/${enc(user)}?section=security_credentials"
+
+  def refS3(bucket: String): String = s"https://s3.console.aws.amazon.com/s3/buckets/${enc(bucket)}"
+
   // ----- Watch (CloudWatch) --------------------------------------------------------------------------------------
   def severityAlarm(state: String): Double = state match {
     case "ALARM" => Severity.HIGH
@@ -109,7 +135,8 @@ object CloudAWS {
     case _ => Severity.INFO
   }
 
-  def fromAlarm(a: MetricAlarm): CloudAlert = {
+  /** @param region region of the Cloud (used for the link if ARN of the alarm does not have it) */
+  def fromAlarm(a: MetricAlarm, region: String = ""): CloudAlert = {
     val name = Option(a.getAlarmName).getOrElse("")
     val state = Option(a.getStateValue).getOrElse("")
     val ts = Option(a.getStateUpdatedTimestamp).map(_.getTime).getOrElse(0L)
@@ -135,7 +162,10 @@ object CloudAWS {
         "metric" -> Option(a.getMetricName).getOrElse(""),
         "dimensions" -> dims,
         "description" -> Option(a.getAlarmDescription).getOrElse("")
-      )
+      ),
+      // ARN: arn:aws:cloudwatch:<region>:<account>:alarm:<name>
+      ref = refAlarm(name, arn.split(":", 6).lift(3).filter(_.nonEmpty).getOrElse(region)),
+      uid = arn
     )
   }
 
@@ -162,7 +192,8 @@ object CloudAWS {
 
       def alert(check: String, status: String, sev: Double, title: String, meta: Map[String, String] = Map.empty) =
         CloudAlert(Cloud.SYSTEM_IAM, s"iam:${user}:${check}", user, status, sev, title, now,
-          Map("provider" -> "aws", "user" -> user, "arn" -> arn, "check" -> check) ++ meta)
+          Map("provider" -> "aws", "user" -> user, "arn" -> arn, "check" -> check) ++ meta,
+          ref = refIAM(user), uid = arn)
 
       val rootKeys =
         if (isRoot && (isTrue("access_key_1_active") || isTrue("access_key_2_active")))
@@ -218,26 +249,31 @@ object CloudAWS {
   /** 
    * Severity of the CloudTrail event. None for read-only events (ignored).
    * @param readOnly `ReadOnly` attribute of the event ("true"/"false"), if CloudTrail returned it
+   * @param trackEvent generate Alerts for read-only events with DEF_TRAIL_EVENT_SEV (INFO)
    */
-  def classifyTrailEvent(name: String, readOnly: Option[String] = None): Option[Double] = {
+  def classifyTrailEvent(name: String, readOnly: Option[String] = None, trackEvent: Boolean = false): Option[Double] = {
     val isRead = readOnly match {
       case Some(r) => r.equalsIgnoreCase("true")
       case None => READ_ONLY_PREFIX.exists(p => name.startsWith(p))
     }
-    if (isRead) None
+    if (isRead) { if (trackEvent) Some(DEF_TRAIL_EVENT_SEV) else None }
     else if (HIGH_RISK.contains(name)) Some(Severity.HIGH)
     else Some(Severity.MEDIUM)
   }
 
-  /** error code from the raw CloudTrail event JSON (AccessDenied, ...) */
-  def trailErrorCode(raw: String): String = {
-    if (raw == null || raw.isEmpty) return ""
-    Try(raw.parseJson.asJsObject.fields.get("errorCode")).toOption.flatten.collect { case JsString(s) => s }.getOrElse("")
+  /** string field of the raw CloudTrail event JSON */
+  def trailField(raw: String, field: String): Option[String] = {
+    if (raw == null || raw.isEmpty) return None
+    Try(raw.parseJson.asJsObject.fields.get(field)).toOption.flatten.collect { case JsString(s) => s }
   }
 
-  def fromTrailEvent(e: TrailEvent): Option[CloudAlert] = {
+  /** error code from the raw CloudTrail event JSON (AccessDenied, ...) */
+  def trailErrorCode(raw: String): String = trailField(raw, "errorCode").getOrElse("")
+
+  /** @param region region where the event was looked up (used for the link if the event does not have `awsRegion`) */
+  def fromTrailEvent(e: TrailEvent, trackEvent: Boolean = false, region: String = ""): Option[CloudAlert] = {
     val name = Option(e.getEventName).getOrElse("")
-    classifyTrailEvent(name, Option(e.getReadOnly)).map { sev =>
+    classifyTrailEvent(name, Option(e.getReadOnly), trackEvent).map { sev =>
       val user = Option(e.getUsername).getOrElse("")
       val src = Option(e.getEventSource).getOrElse("")
       val ts = Option(e.getEventTime).map(_.getTime).getOrElse(0L)
@@ -258,7 +294,9 @@ object CloudAWS {
           "resources" -> res.mkString(","),
           "source" -> src,
           "error_code" -> trailErrorCode(e.getCloudTrailEvent)
-        )
+        ),
+        ref = refTrail(Option(e.getEventId).getOrElse(""), trailField(e.getCloudTrailEvent, "awsRegion").filter(_.nonEmpty).getOrElse(region)),
+        uid = Option(e.getEventId).getOrElse("")
       )
     }
   }
@@ -282,7 +320,9 @@ object CloudAWS {
       sev = sev,
       title = s"S3 bucket '${bucket}': ${status}",
       ts = System.currentTimeMillis(),
-      meta = Map("provider" -> "aws", "bucket" -> bucket, "latency" -> latency.toString, "error" -> err)
+      meta = Map("provider" -> "aws", "bucket" -> bucket, "latency" -> latency.toString, "error" -> err),
+      ref = refS3(bucket),
+      uid = s"arn:aws:s3:::${bucket}"
     )
 }
 
@@ -307,6 +347,8 @@ class CloudAWS(uri0: String) extends Cloud {
 
   val uri = CloudURI(uri0)
   def provider: String = "aws"
+
+  override def sys(system: String): String = SYS.getOrElse(system, system)
 
   implicit private val ec: ExecutionContext = ExecutionContext.global
 
@@ -476,7 +518,7 @@ class CloudAWS(uri0: String) extends Cloud {
         // state filter is also applied here: not all AWS compatible services support it
         .filter(a => states.contains(a.getStateValue))
         .filter(a => namespaces.isEmpty || namespaces.contains(a.getNamespace))
-        .map(fromAlarm)
+        .map(a => fromAlarm(a, uri.region.getOrElse("")))
     }
   }
 
@@ -507,19 +549,23 @@ class CloudAWS(uri0: String) extends Cloud {
   }
 
   // ----- Trail (CloudTrail) --------------------------------------------------------------------------------------
-  def checkTrail(): Future[Seq[CloudAlert]] = Future {
+  def checkTrail(trackEvent: Boolean): Future[Seq[CloudAlert]] = Future {
     blocking {
       val window = Try(uri.param("window", DEF_WINDOW.toString).toLong).getOrElse(DEF_WINDOW.toLong)
       val names = uri.paramList("events").toSet
       val sources = uri.paramList("source")
       val now = System.currentTimeMillis()
 
-      // CloudTrail allows only one lookup attribute: EventSource (per source) or ReadOnly=false for everything
-      val lookups: Seq[(Option[String], LookupAttribute)] = 
+
+      // CloudTrail allows only one lookup attribute: EventSource (per source) or ReadOnly=false for everything.
+      // Read-only events are requested without attributes (everything)
+      val lookups: Seq[(Option[String], Option[LookupAttribute])] = 
         if (sources.nonEmpty) 
-          sources.map(s => (Some(s), new LookupAttribute().withAttributeKey(LookupAttributeKey.EventSource).withAttributeValue(s)))
+          sources.map(s => (Some(s), Some(new LookupAttribute().withAttributeKey(LookupAttributeKey.EventSource).withAttributeValue(s))))
+        else if (trackEvent)
+          Seq((None, None))
         else 
-          Seq((None, new LookupAttribute().withAttributeKey(LookupAttributeKey.ReadOnly).withAttributeValue("false")))
+          Seq((None, Some(new LookupAttribute().withAttributeKey(LookupAttributeKey.ReadOnly).withAttributeValue("false"))))
 
       val events = lookups.flatMap { case (source, attr) =>
         val region = uri.params.get("trail_region").filter(_.nonEmpty)
@@ -529,10 +575,10 @@ class CloudAWS(uri0: String) extends Cloud {
         var token: String = null
         do {
           val req = new LookupEventsRequest()
-            .withLookupAttributes(attr)
             .withStartTime(new Date(now - window * 60L * 1000L))
             .withEndTime(new Date(now))
             .withMaxResults(50)
+          attr.foreach(a => req.withLookupAttributes(a))
           if (token != null) req.setNextToken(token)
 
           val rsp = trail(region).lookupEvents(req)
@@ -540,11 +586,11 @@ class CloudAWS(uri0: String) extends Cloud {
           token = rsp.getNextToken
         } while (token != null && all.size < DEF_MAX_EVENTS)
         
-        all.toSeq
+        all.toSeq.map(e => (e, region.getOrElse("")))
       }
 
       val alerts = events
-        .flatMap(fromTrailEvent)
+        .flatMap { case (e, region) => fromTrailEvent(e, trackEvent, region) }
         .filter(a => names.isEmpty || names.contains(a.status))
         .distinctBy(_.id)
 

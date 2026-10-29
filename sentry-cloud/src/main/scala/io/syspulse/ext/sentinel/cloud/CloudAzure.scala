@@ -12,6 +12,14 @@ class CloudAzure(uri0: String) extends CloudMocked(uri0) {
 
   def provider: String = "azure"
 
+  override def sys(system: String): String = system match {
+    case Cloud.SYSTEM_WATCH => "Azure Monitor"
+    case Cloud.SYSTEM_TRAIL => "Activity Log"
+    case Cloud.SYSTEM_IAM => "Entra ID"
+    case Cloud.SYSTEM_STORAGE => "Blob Storage"
+    case s => s
+  }
+
   protected def sample(system: String): Seq[CloudAlert] = {
     val sub = uri.param("subscription", "mock-subscription")
     val ts = System.currentTimeMillis()

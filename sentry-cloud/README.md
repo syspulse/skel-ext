@@ -5,11 +5,38 @@
 | System    | AWS service            | What is reported                                                                 |
 |-----------|------------------------|----------------------------------------------------------------------------------|
 | `Watch`   | CloudWatch             | Metric alarms (`ALARM`, optionally `INSUFFICIENT_DATA`): EC2, EKS, VPC, ... health |
-| `Trail`   | CloudTrail             | Management events (write only): IAM changes, security group, bucket policy, ... |
+| `Trail`   | CloudTrail             | Management events (write only, read-only with `track_event`): IAM changes, security group, bucket policy, ... |
 | `IAM`     | IAM credential report  | Root access keys, root/console users without MFA, old access keys                |
 | `Storage` | S3                     | Buckets availability (`ACCESS_DENIED`, `NOT_FOUND`, `UNAVAILABLE`, `UNREACHABLE`, `SLOW`) |
 
 Clouds: `aws://` (implemented), `gcp://` and `azure://` (**mocked**).
+
+## Alert metadata
+
+Alerts have `provider` (`aws`), `system` (generic system: `Watch`, `Trail`, `IAM`, `Storage`) and `sys` (Cloud specific name of the system), 
+`region` and `account` (if defined), `id`, `resource`, `status`, `title`, `count` and system specific attributes. 
+`sys` can be used in `desc` template: `{sys}: {title}`.
+
+Every Alert also has:
+
+- `ref` - http link to open the finding in the Cloud console (if the Cloud has one)
+- `tx_hash` - unique id of the event/entity assigned by the Cloud provider. It is NOT `eid` (unique per Detector + finding) and not `id` (finding id, may include state/time).
+
+| `system` | `tx_hash` AWS                      | `ref` AWS                                  |
+|----------|------------------------------------|--------------------------------------------|
+| `Trail`  | CloudTrail `EventId`               | CloudTrail event page (`#/events/<EventId>`) |
+| `Watch`  | alarm ARN                          | CloudWatch alarm page                      |
+| `IAM`    | user ARN (root: `...:root`)        | IAM user security credentials              |
+| `Storage`| bucket ARN `arn:aws:s3:::<bucket>` | S3 bucket page                             |
+
+If the Cloud does not provide the id, `tx_hash` is the finding `id`. GCP and Azure (mocked) do not set `ref`.
+
+| `system` | `sys` AWS  | `sys` GCP (mocked) | `sys` Azure (mocked) |
+|----------|------------|--------------------|----------------------|
+| `Watch`  | `CloudWatch` | `Cloud Monitoring` | `Azure Monitor`    |
+| `Trail`  | `CloudTrail` | `Cloud Audit Logs` | `Activity Log`     |
+| `IAM`    | `IAM`        | `Cloud IAM`        | `Entra ID`         |
+| `Storage`| `S3`         | `Cloud Storage`    | `Blob Storage`     |
 
 ## Configuration
 
@@ -19,7 +46,8 @@ Clouds: `aws://` (implemented), `gcp://` and `azure://` (**mocked**).
 | `cron`      | `10 min`                 | Check interval                                                           |
 | `system`    | `Watch`                  | Comma-separated: `Watch`, `Trail`, `IAM`, `Storage` (aliases: `CloudWatch`, `CloudTrail`, `S3`) |
 | `condition` | `> 0`                    | Condition on the number of findings (per system) to generate Alerts      |
-| `new_only`  | `true`                   | Alert once on every new finding (a resolved finding alerts again if it returns) |
+| `track_new`  | `true`                   | Alert once on every new finding (a resolved finding alerts again if it returns) |
+| `track_event` | `false`                | `Trail`: Alerts for ALL CloudTrail events including read-only (`Get*`, `List*`, ...) with `INFO` severity (default: write events only) |
 | `timeout`   | `60000`                  | Cloud API timeout, ms                                                    |
 | `desc`      | `{system}: {title}{err}` | Description template (any Alert metadata can be used: `{alarm}`, `{state}`, `{user}`, ...) |
 | `track_err`, `err_always` | `true`     | Alert on Cloud errors                                                    |
@@ -66,6 +94,8 @@ aws://localhost:5000?region=us-east-1&ssl=false                  custom endpoint
 Notes:
 - CloudTrail events are delayed by several minutes: use `window` of 30-60 minutes. 
   Global services (IAM, STS, ...) events are looked up in `us-east-1` (override with `trail_region`).
+- By default only write events generate Alerts (severity `HIGH` for security sensitive ones, `MEDIUM` for others). Read-only events (`Get*`, `List*`, `Describe*`, ...) 
+  are skipped (log: `Trail: events=73, alerts=0`). Detector config `"track_event": true` generates Alerts for them with `INFO` severity (`CloudAWS.DEF_TRAIL_EVENT_SEV`). Use `events=` and `source=` to limit the volume: max 200 events are looked up per source.
 - Required permissions: `cloudwatch:DescribeAlarms`, `cloudtrail:LookupEvents`, `iam:GenerateCredentialReport`, `iam:GetCredentialReport`, `s3:ListAllMyBuckets`, `s3:ListBucket`
 
 ### AWS credentials and refresh
@@ -191,7 +221,7 @@ CLOUD_MOCK_KEEP=true sbt "sentry_cloud/testOnly *CloudAWSMockSpec"   # terminal 
 
 By default tests delete their alarms/users/buckets at the end (they live for milliseconds), so a running Sentinel never sees them.
 `CLOUD_MOCK_KEEP=true` keeps them. Sentinel checks on its cron (`1 min`, also the minimum), 
-and prints every finding once (`new_only`): Alerts appear as `Event(DetectorCloud,...)` on stdout within a minute.
+and prints every finding once (`track_new`): Alerts appear as `Event(DetectorCloud,...)` on stdout within a minute.
 
 ### AWS mock
 

@@ -24,8 +24,9 @@ object DetectorCloud {
   val DEF_SYSTEM = "Watch"                  // comma-separated list: Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)
   val DEF_CONDITION = "> 0"                 // condition on number of (new) findings
   val DEF_DESC = "{system}: {title}{err}"
-  val DEF_NEW_ONLY = true                   // alert only on new findings
+  val DEF_TRACK_NEW = true                   // alert only on new findings
   val DEF_TIMEOUT = 60000L                  // ms
+  val DEF_TRACK_EVENT = false               // Trail: Alerts for ALL CloudTrail events, including read-only (Get*, List*, ...), with INFO severity
 
   val DEF_TRACK_ERR = true
   val DEF_TRACK_ERR_ALWAYS = true
@@ -40,8 +41,8 @@ object DetectorCloud {
   }
 
   /** Select findings to alert on: only new ones (not seen in the previous check) or all */
-  def selectNew(alerts: Seq[CloudAlert], seen: Set[String], newOnly: Boolean): Seq[CloudAlert] = {
-    if (newOnly) alerts.filterNot(a => seen.contains(a.id)) else alerts
+  def selectNew(alerts: Seq[CloudAlert], seen: Set[String], trackNew: Boolean): Seq[CloudAlert] = {
+    if (trackNew) alerts.filterNot(a => seen.contains(a.id)) else alerts
   }
 }
 
@@ -56,7 +57,8 @@ object DetectorCloud {
  *   cron      - check interval
  *   system    - systems to monitor (comma-separated): Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)
  *   condition - condition on number of findings to generate Alerts
- *   new_only  - alert only once on every new finding
+ *   track_new  - alert only once on every new finding
+ *   track_event - Trail: Alerts for all CloudTrail events including read-only ones (INFO severity). Default: false
  */
 class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
@@ -125,8 +127,9 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
     rx.set("cloud", cloud)
 
     rx.set("condition", DetectorConfig.getString(conf, "condition", DetectorCloud.DEF_CONDITION))
-    rx.set("new_only", DetectorConfig.getBoolean(conf, "new_only", DetectorCloud.DEF_NEW_ONLY))
+    rx.set("track_new", DetectorConfig.getBoolean(conf, "track_new", DetectorCloud.DEF_TRACK_NEW))
     rx.set("timeout", DetectorConfig.getLong(conf, "timeout", DetectorCloud.DEF_TIMEOUT))
+    rx.set("track_event", DetectorConfig.getBoolean(conf, "track_event", DetectorCloud.DEF_TRACK_EVENT))
 
     log.info(s"${rx.getExtId()}: ${cloud}: systems=${systems}")
 
@@ -162,9 +165,10 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
 
     val systems = rx.get("system").asInstanceOf[Option[Seq[String]]].getOrElse(Seq.empty)
     val timeout = rx.get("timeout").asInstanceOf[Option[Long]].getOrElse(DetectorCloud.DEF_TIMEOUT)
+    val trackEvent = rx.get("track_event").asInstanceOf[Option[Boolean]].getOrElse(DetectorCloud.DEF_TRACK_EVENT)
 
     val results: Future[Seq[(String, Try[Seq[CloudAlert]])]] = Future.traverse(systems) { system =>
-      val f = Try(cloud.check(system)) match {
+      val f = Try(cloud.check(system, trackEvent)) match {
         case Success(f) => f
         case Failure(e) => Future.failed(e)
       }
@@ -180,17 +184,17 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
 
         case (system, Failure(e)) =>
           log.warn(s"${rx.getExtId()}: ${cloud.provider}: ${system}: ${e.getMessage}")
-          errorEvents(rx, cloud.provider, system, Option(e.getMessage).getOrElse(e.getClass.getSimpleName), accountMeta(cloud))
+          errorEvents(rx, cloud.provider, system, Option(e.getMessage).getOrElse(e.getClass.getSimpleName), accountMeta(cloud) + ("sys" -> cloud.sys(system)))
       }
     }
   }
 
   def processAlerts(rx: SentryRun0, cloud: Cloud, system: String, alerts: Seq[CloudAlert]): Seq[Event] = {
-    val newOnly = rx.get("new_only").asInstanceOf[Option[Boolean]].getOrElse(DetectorCloud.DEF_NEW_ONLY)
+    val trackNew = rx.get("track_new").asInstanceOf[Option[Boolean]].getOrElse(DetectorCloud.DEF_TRACK_NEW)
     val seenKey = s"seen_${system}"
     val seen = rx.get(seenKey).asInstanceOf[Option[Set[String]]].getOrElse(Set.empty)
 
-    val selected = DetectorCloud.selectNew(alerts, seen, newOnly)
+    val selected = DetectorCloud.selectNew(alerts, seen, trackNew)
     
     // remember only current findings: resolved findings can alert again if they come back
     rx.set(seenKey, alerts.map(_.id).toSet)
@@ -210,10 +214,13 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
         tx = None,
         monitoredAddr = None,
         conf = Some(rx.getConf()),
-        meta = a.meta ++ accountMeta(cloud) ++ Map(
+        meta = a.meta ++ accountMeta(cloud) ++ (if (a.ref.nonEmpty) Map("ref" -> a.ref) else Map.empty[String, String]) ++ Map(
           "provider" -> cloud.provider,
           "system" -> a.system,
+          "sys" -> cloud.sys(a.system),
           "id" -> a.id,
+          // unique id of the event/entity assigned by the Cloud provider (not `eid`): Trail: EventId
+          "tx_hash" -> (if (a.uid.nonEmpty) a.uid else a.id),
           "resource" -> a.resource,
           "status" -> a.status,
           "title" -> a.title,

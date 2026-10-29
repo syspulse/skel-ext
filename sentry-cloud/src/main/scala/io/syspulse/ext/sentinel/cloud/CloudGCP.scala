@@ -12,6 +12,14 @@ class CloudGCP(uri0: String) extends CloudMocked(uri0) {
 
   def provider: String = "gcp"
 
+  override def sys(system: String): String = system match {
+    case Cloud.SYSTEM_WATCH => "Cloud Monitoring"
+    case Cloud.SYSTEM_TRAIL => "Cloud Audit Logs"
+    case Cloud.SYSTEM_IAM => "Cloud IAM"
+    case Cloud.SYSTEM_STORAGE => "Cloud Storage"
+    case s => s
+  }
+
   protected def sample(system: String): Seq[CloudAlert] = {
     val project = uri.param("project", "mock-project")
     val ts = System.currentTimeMillis()

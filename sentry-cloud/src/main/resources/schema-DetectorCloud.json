@@ -5,7 +5,7 @@
   "faq": [
     {
       "name": "How does it work",
-      "value": "Detector periodically queries Cloud provider API and generates Alerts for problems found: \n\n- `Watch` (CloudWatch): alarms (VPC, EC2, EKS and other services health)\n- `Trail` (CloudTrail): management events (IAM changes, security groups, bucket policies, ...)\n- `IAM`: insecure IAM configuration (root access keys, missing MFA, old access keys)\n- `Storage` (S3): buckets availability\n\nAWS is supported. GCP and Azure are **mocked** for now."
+      "value": "Detector periodically queries Cloud provider API and generates Alerts for problems found: \n\n- `Watch` (CloudWatch): alarms (VPC, EC2, EKS and other services health)\n- `Trail` (CloudTrail): management events (IAM changes, security groups, bucket policies, ...). Only write events by default: `track_event` adds all other events, including read-only (`Get*`, `List*`, ...), with `INFO` severity\n- `IAM`: insecure IAM configuration (root access keys, missing MFA, old access keys)\n- `Storage` (S3): buckets availability\n\nAWS is supported. GCP and Azure are **mocked** for now."
     },
     {
       "name": "Cron",
@@ -13,7 +13,7 @@
     },
     {
       "name": "URI",
-      "value": "Cloud URI: `aws://`, `gcp://`, `azure://`\n\nFormat: `cloud://ACCESS_KEY:ACCESS_SECRET[:SESSION_TOKEN]@[host]?param=value&param=value`\n\nIf credentials are not specified, they are read from environment variables `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`, `AWS_REGION` (`GCP_`, `AZURE_` for other clouds). Region and account: parameters `region=` and `account=` or environment variables `AWS_REGION`, `AWS_ACCOUNT` (`GCP_REGION`, `GCP_ACCOUNT`, `AZURE_REGION`, `AZURE_ACCOUNT`), parameters have priority. Region and account are added to every Alert.\n\nExamples:\n\n`aws://?region=eu-west-1&account=123456789012`\n\n`aws://AKIA...:SECRET@?region=eu-west-1`\n\n`aws://?region=eu-west-1&states=ALARM,INSUFFICIENT_DATA&namespace=AWS/EC2,AWS/EKS` (Watch)\n\n`aws://?source=iam.amazonaws.com&events=CreateUser,DeleteUser&window=60` (Trail)\n\n`aws://?max_key_age=90` (IAM)\n\n`aws://?buckets=my-bucket,my-bucket-2&latency=3000`"
+      "value": "Cloud URI: `aws://`, `gcp://`, `azure://`\n\nFormat: `cloud://ACCESS_KEY:ACCESS_SECRET[:SESSION_TOKEN]@[host]?param=value&param=value`\n\nIf credentials are not specified, they are read from environment variables `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`, `AWS_REGION` (`GCP_`, `AZURE_` for other clouds). Region and account: parameters `region=` and `account=` or environment variables `AWS_REGION`, `AWS_ACCOUNT` (`GCP_REGION`, `GCP_ACCOUNT`, `AZURE_REGION`, `AZURE_ACCOUNT`), parameters have priority. Region and account are added to every Alert. Alerts also have `system` (generic: `Watch`, `Trail`, `IAM`, `Storage`) and `sys` (Cloud specific name, e.g. `CloudWatch`, `CloudTrail`, `IAM`, `S3` for AWS) metadata. `ref` is a link to open the finding in the Cloud console, `tx_hash` is the unique id of the event/entity assigned by the Cloud provider (Trail: EventId, Watch: alarm ARN, IAM: user ARN, Storage: bucket ARN).\n\nExamples:\n\n`aws://?region=eu-west-1&account=123456789012`\n\n`aws://AKIA...:SECRET@?region=eu-west-1`\n\n`aws://?region=eu-west-1&states=ALARM,INSUFFICIENT_DATA&namespace=AWS/EC2,AWS/EKS` (Watch)\n\n`aws://?source=iam.amazonaws.com&events=CreateUser,DeleteUser&window=60` (Trail)\n\n`aws://?max_key_age=90` (IAM)\n\n`aws://?buckets=my-bucket,my-bucket-2&latency=3000`"
     },
     {
       "name": "Credentials refresh",
@@ -28,8 +28,12 @@
       "value": "Condition on the number of findings (per system) to generate Alerts. Default is `> 0`. Refer to [Condition](https://docs.extractor.live/common-configurations#condition-threshold) for more details"
     },
     {
-      "name": "New only",
+      "name": "Track New",
       "value": "Alert only once on every new finding. If disabled, all active findings are reported on every check"
+    },
+    {
+      "name": "Track Events",
+      "value": "`Trail` only. By default Alerts are generated only for write (mutating) CloudTrail events: `HIGH` severity for security sensitive ones, `MEDIUM` for others. If enabled, Alerts are also generated for read-only events (`Get*`, `List*`, `Describe*`, ...) with `INFO` severity. Use `source` and `events` URI parameters to limit the volume"
     },
     {
       "name": "Timeout",
@@ -70,10 +74,16 @@
         "title": "Condition",
         "type": "string"
       },
-      "new_only": {
+      "track_new": {
         "default": true,
         "description": "Alert only on new findings",
-        "title": "New only",
+        "title": "Track New",
+        "type": "boolean"
+      },
+      "track_event": {
+        "default": false,
+        "description": "Trail: generate Alerts for all CloudTrail events, including read-only (Get*, List*, ...), with INFO severity",
+        "title": "Track Events",
         "type": "boolean"
       },
       "timeout": {
@@ -115,7 +125,7 @@
   "tags": ["SECURITY", "COMPLIANCE", "alpha", "web2"],
   "title": "Cloud Monitor",
   "uiSchema": {
-    "ui:order": ["uri", "system", "condition", "new_only", "track_err", "err_always", "timeout", "desc", "cron", "severity"]
+    "ui:order": ["uri", "system", "condition", "track_new", "track_event", "track_err", "err_always", "timeout", "desc", "cron", "severity"]
   },
   "updatedAt": 1793000000000,
   "version": "0.0.1"

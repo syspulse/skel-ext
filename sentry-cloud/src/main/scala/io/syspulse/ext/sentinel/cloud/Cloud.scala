@@ -17,6 +17,9 @@ import com.typesafe.scalalogging.Logger
  * @param title    human readable summary
  * @param ts       time of the finding (epoch millis), 0 if unknown
  * @param meta     additional metadata for the Alert
+ * @param ref      http link to open the finding in the Cloud console (empty if there is no link)
+ * @param uid      unique identifier of the event/entity assigned by the Cloud provider (Trail: EventId, Watch: alarm ARN, IAM: user ARN, Storage: bucket ARN).
+ *                 It is NOT the same as `id` (finding id, includes state) or Alert `eid` (unique per Detector + finding). Empty if unknown
  */
 case class CloudAlert(
   system: String,
@@ -26,7 +29,9 @@ case class CloudAlert(
   sev: Double,
   title: String,
   ts: Long = 0L,
-  meta: Map[String, String] = Map.empty
+  meta: Map[String, String] = Map.empty,
+  ref: String = "",
+  uid: String = ""
 )
 
 /**
@@ -41,22 +46,32 @@ trait Cloud {
   def uri: CloudURI
   def provider: String
 
+  /** 
+   * Cloud specific name of the generic system (it is added to Alerts as `sys`): 
+   * Trail -> CloudTrail (AWS), Watch -> CloudWatch (AWS), Storage -> S3 (AWS), ...
+   * Unknown systems are returned as is
+   */
+  def sys(system: String): String = system
+
   /** Monitoring alarms (CloudWatch): VPC, EC2, EKS, ... health */
   def checkWatch(): Future[Seq[CloudAlert]]
 
   /** Identity and Access Management configuration alerts */
   def checkIAM(): Future[Seq[CloudAlert]]
 
-  /** Audit events (CloudTrail) */
-  def checkTrail(): Future[Seq[CloudAlert]]
+  /** 
+   * Audit events (CloudTrail)
+   * @param trackEvent Alerts for ALL events including read-only (Get*, List*, ...) with INFO severity. By default only write events 
+   */
+  def checkTrail(trackEvent: Boolean = false): Future[Seq[CloudAlert]]
 
   /** Storage (S3) availability */
   def checkStorage(): Future[Seq[CloudAlert]]
 
-  def check(system: String): Future[Seq[CloudAlert]] = Cloud.system(system) match {
+  def check(system: String, trackEvent: Boolean = false): Future[Seq[CloudAlert]] = Cloud.system(system) match {
     case Some(Cloud.SYSTEM_WATCH) => checkWatch()
     case Some(Cloud.SYSTEM_IAM) => checkIAM()
-    case Some(Cloud.SYSTEM_TRAIL) => checkTrail()
+    case Some(Cloud.SYSTEM_TRAIL) => checkTrail(trackEvent)
     case Some(Cloud.SYSTEM_STORAGE) => checkStorage()
     case _ => Future.failed(new IllegalArgumentException(s"unknown system: '${system}'"))
   }
@@ -120,7 +135,7 @@ abstract class CloudMocked(uri0: String) extends Cloud {
 
   def checkWatch(): Future[Seq[CloudAlert]] = mocked(Cloud.SYSTEM_WATCH)
   def checkIAM(): Future[Seq[CloudAlert]] = mocked(Cloud.SYSTEM_IAM)
-  def checkTrail(): Future[Seq[CloudAlert]] = mocked(Cloud.SYSTEM_TRAIL)
+  def checkTrail(trackEvent: Boolean): Future[Seq[CloudAlert]] = mocked(Cloud.SYSTEM_TRAIL)
   def checkStorage(): Future[Seq[CloudAlert]] = mocked(Cloud.SYSTEM_STORAGE)
 
   override def toString = s"${this.getClass.getSimpleName}(${uri})"

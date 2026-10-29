@@ -127,6 +127,16 @@ class CloudAWSSpec extends AnyFlatSpec with Matchers {
     CloudAWS.parseCredentialReport(HEADER, NOW) shouldBe empty
   }
 
+  "CloudAWS.sys" should "return AWS names of the systems" in {
+    val c = new CloudAWS("aws://?region=eu-west-1")
+    c.sys(Cloud.SYSTEM_WATCH) shouldBe "CloudWatch"
+    c.sys(Cloud.SYSTEM_TRAIL) shouldBe "CloudTrail"
+    c.sys(Cloud.SYSTEM_STORAGE) shouldBe "S3"
+    c.sys(Cloud.SYSTEM_IAM) shouldBe "IAM"
+    c.sys("Unknown") shouldBe "Unknown"
+    c.close()
+  }
+
   // ---- IAM events ----
   "CloudAWS.classifyTrailEvent" should "ignore read-only events" in {
     CloudAWS.classifyTrailEvent("GetUser") shouldBe None
@@ -135,6 +145,29 @@ class CloudAWSSpec extends AnyFlatSpec with Matchers {
     // ReadOnly attribute has priority
     CloudAWS.classifyTrailEvent("CreateUser", Some("true")) shouldBe None
     CloudAWS.classifyTrailEvent("ConsoleLogin", Some("false")) shouldBe Some(Severity.MEDIUM)
+  }
+
+  it should "generate INFO Alerts for read-only events if enabled" in {
+    CloudAWS.DEF_TRAIL_EVENT_SEV shouldBe Severity.INFO
+    CloudAWS.classifyTrailEvent("GetUser", None, trackEvent = true) shouldBe Some(Severity.INFO)
+    CloudAWS.classifyTrailEvent("CreateUser", Some("true"), trackEvent = true) shouldBe Some(Severity.INFO)
+    // mutating events are not affected
+    CloudAWS.classifyTrailEvent("CreateUser", Some("false"), trackEvent = true) shouldBe Some(Severity.HIGH)
+    CloudAWS.classifyTrailEvent("TagUser", None, trackEvent = true) shouldBe Some(Severity.MEDIUM)
+  }
+
+  it should "map read-only CloudTrail event only if enabled" in {
+    val e = new TrailEvent()
+      .withEventId("ev-1").withEventName("ListUsers").withEventSource("iam.amazonaws.com")
+      .withUsername("alice").withReadOnly("true").withEventTime(new Date(1700000000000L))
+
+    CloudAWS.fromTrailEvent(e) shouldBe None
+
+    val a = CloudAWS.fromTrailEvent(e, trackEvent = true).get
+    a.id shouldBe "trail:ev-1"
+    a.status shouldBe "ListUsers"
+    a.sev shouldBe Severity.INFO
+    a.title shouldBe "iam ListUsers by 'alice'"
   }
 
   it should "classify high risk and other mutating events" in {
@@ -175,6 +208,20 @@ class CloudAWSSpec extends AnyFlatSpec with Matchers {
     c.meta("error_code") shouldBe "AccessDenied"
   }
 
+  it should "set provider EventId and console link" in {
+    val e = new TrailEvent().withEventId("cc53bf42-5646-451a-88fe-39a8cbe48c1d").withEventName("CreateUser").withEventSource("iam.amazonaws.com")
+      .withUsername("admin").withReadOnly("false")
+
+    // region of the lookup is used if event does not have it
+    val a = CloudAWS.fromTrailEvent(e, region = "us-east-1").get
+    a.uid shouldBe "cc53bf42-5646-451a-88fe-39a8cbe48c1d"
+    a.ref shouldBe "https://us-east-1.console.aws.amazon.com/cloudtrail/home?region=us-east-1#/events/cc53bf42-5646-451a-88fe-39a8cbe48c1d"
+
+    // region of the event has priority
+    val b = CloudAWS.fromTrailEvent(e.withCloudTrailEvent("""{"awsRegion":"eu-west-1"}"""), region = "us-east-1").get
+    b.ref shouldBe "https://eu-west-1.console.aws.amazon.com/cloudtrail/home?region=eu-west-1#/events/cc53bf42-5646-451a-88fe-39a8cbe48c1d"
+  }
+
   it should "skip read-only events" in {
     CloudAWS.fromTrailEvent(new TrailEvent().withEventId("e-2").withEventName("ListUsers")) shouldBe None
   }
@@ -187,6 +234,24 @@ class CloudAWSSpec extends AnyFlatSpec with Matchers {
     CloudAWS.statusS3(ex(503)) shouldBe ("UNAVAILABLE", Severity.CRITICAL)
     CloudAWS.statusS3(ex(400)) shouldBe ("ERROR", Severity.HIGH)
     CloudAWS.statusS3(new SdkClientException("no network")) shouldBe ("UNREACHABLE", Severity.CRITICAL)
+  }
+
+  "CloudAWS refs" should "build console links and ids" in {
+    val alarm = CloudAWS.fromAlarm(new MetricAlarm().withAlarmName("cpu high").withAlarmArn("arn:aws:cloudwatch:eu-west-1:123456789012:alarm:cpu high").withStateValue("ALARM"))
+    alarm.uid shouldBe "arn:aws:cloudwatch:eu-west-1:123456789012:alarm:cpu high"
+    alarm.ref shouldBe "https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#alarmsV2:alarm/cpu%20high"
+
+    // no ARN: region from the Cloud
+    CloudAWS.fromAlarm(new MetricAlarm().withAlarmName("a1").withStateValue("ALARM"), "eu-central-1").ref shouldBe 
+      "https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1#alarmsV2:alarm/a1"
+
+    val s3 = CloudAWS.alertS3("bucket-1", "NOT_FOUND", Severity.HIGH, "not found", 12L)
+    s3.uid shouldBe "arn:aws:s3:::bucket-1"
+    s3.ref shouldBe "https://s3.console.aws.amazon.com/s3/buckets/bucket-1"
+
+    CloudAWS.refIAM("alice") shouldBe "https://console.aws.amazon.com/iam/home#/users/details/alice?section=security_credentials"
+    CloudAWS.refIAM(CloudAWS.ROOT_ACCOUNT) shouldBe "https://console.aws.amazon.com/iam/home#/security_credentials"
+    CloudAWS.refTrail("", "eu-west-1") shouldBe ""
   }
 
   "CloudAWS.alertS3" should "create alert" in {
