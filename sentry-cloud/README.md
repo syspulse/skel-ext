@@ -37,7 +37,13 @@ Defaults are in `DetectorCloud` object (`DEF_*`). `schema-DetectorCloud.json` mu
 - Credentials which are not in URI are read from environment. Prefix depends on the cloud (`AWS_`, `GCP_`, `AZURE_`):
   `<PREFIX>ACCESS_KEY`, `<PREFIX>ACCESS_SECRET`, `<PREFIX>SESSION_TOKEN`, `<PREFIX>REGION`.
   AWS standard variables are also supported: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_DEFAULT_REGION`.
+  Key and secret are always taken as a **pair** of one scheme (`AWS_ACCESS_KEY` + `AWS_ACCESS_SECRET` or `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`), never mixed.
+  If both pairs are defined (e.g. `AWS_ACCESS_KEY=test` left from the mock and real keys from SSO), the standard `AWS_ACCESS_KEY_ID` pair is used when 
+  `AWS_SESSION_TOKEN` is defined (the token is issued only with it), otherwise `AWS_ACCESS_KEY` pair is used. Detector logs names (not values) of the variables in use.
   If nothing is found, AWS default credentials chain is used (`~/.aws`, instance profile).
+- Region and account: `region=` and `account=` parameters, or `<PREFIX>REGION` and `<PREFIX>ACCOUNT` environment variables 
+  (`AWS_REGION`, `AWS_ACCOUNT`, `GCP_REGION`, `GCP_ACCOUNT`, `AZURE_REGION`, `AZURE_ACCOUNT`). Parameters have priority. 
+  They are added to every Alert (`region`, `account` metadata). `AWS_DEFAULT_REGION` is also supported.
 - `{VAR}` is expanded in credentials: `aws://{MY_KEY}:{MY_SECRET}@?region=eu-west-1`
 - **Never put real credentials into configuration files**: use environment variables.
 
@@ -62,6 +68,59 @@ Notes:
   Global services (IAM, STS, ...) events are looked up in `us-east-1` (override with `trail_region`).
 - Required permissions: `cloudwatch:DescribeAlarms`, `cloudtrail:LookupEvents`, `iam:GenerateCredentialReport`, `iam:GetCredentialReport`, `s3:ListAllMyBuckets`, `s3:ListBucket`
 
+### AWS credentials and refresh
+
+Temporary credentials (`SESSION_TOKEN`, SSO) **expire**. A running Detector cannot see environment changes 
+and does not re-read the URI, so **a static `SESSION_TOKEN` (in URI or in environment) is never refreshed**
+(Detector logs a warning if it is used). Use a source which is refreshed.
+
+Credentials source (first match wins):
+
+| # | Source | URI | Refreshed |
+|---|--------|-----|-----------|
+| 1 | Keys in URI | `aws://KEY:SECRET[:TOKEN]@` | only without `TOKEN` |
+| 2 | Profile of shared credentials file | `aws://?profile=sentry[&profile_file=/path/credentials]` | yes |
+| 3 | Keys from environment | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`[, `AWS_SESSION_TOKEN`] | only without `AWS_SESSION_TOKEN` |
+| 4 | AWS default chain (nothing specified) | `aws://?region=eu-west-1` | yes |
+
+**`aws://` with environment variables**: 
+
+- `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY` + `AWS_SESSION_TOKEN`: all are used as is. Token expires and is NOT refreshed.
+- `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY` only (long-lived IAM user keys): the Cloud **requests the session token itself** 
+  (STS `GetSessionToken`) and renews it before it expires. Disable with `sts=false` (keys are used as is).
+  Keys of a URI follow the same rule. A token is never mixed from a different source (URI keys do not get `AWS_SESSION_TOKEN` from environment).
+  `GetSessionToken` cannot be called with temporary credentials, so it is used only for long-lived keys.
+
+`role_arn` can be added to any of them: the base credentials are used only to call STS `AssumeRole`, 
+and the role credentials are refreshed automatically before they expire (`external_id`, `role_session`, `role_duration` in seconds, default 3600 are optional):
+
+```
+aws://?region=eu-west-1&role_arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc
+```
+
+Recommended:
+
+- **Production (ECS, EKS, EC2)**: no credentials in config. Use IAM role of the task/pod (IRSA)/instance and `aws://?region=eu-west-1`. 
+  Default chain gets and refreshes credentials from the metadata service / web identity token.
+  To access another account add `role_arn`.
+- **Outside AWS**: long-lived key of a dedicated IAM user (or on-premise host) in environment variables + `role_arn` 
+  (long-lived key is used only to assume the role).
+- **Developer machine (SSO)**: `profile` with `credential_process`. AWS SDK v1 does not understand SSO profiles (and cannot parse 
+  `Expiration` with `+00:00` offset returned by AWS CLI), but it runs `credential_process` and calls it again when credentials 
+  are about to expire. `bin/aws-credential-process.sh` does it:
+  ```ini
+  # ~/.aws/credentials
+  [sentry]
+  credential_process = /path/to/sentry-cloud/bin/aws-credential-process.sh haas-dev
+  ```
+  ```
+  aws://?region=eu-west-1&profile=sentry
+  ```
+  SSO session itself must be valid (`aws sso login --profile haas-dev`): when it expires, Detector reports an error (`track_err`) 
+  and recovers after login, no restart is needed.
+
+Note: `credential_process` must be in the shared *credentials* file (`~/.aws/credentials` or `profile_file`), not in `~/.aws/config`.
+
 ### GCP, Azure (mocked)
 
 ```
@@ -84,6 +143,10 @@ source /tmp/env.dev
 
 # CloudWatch alarms of EC2, EKS, VPC
 ../sentinel.sh --conf=conf/detector-DetectorCloud-AWS-Watch-1.conf
+
+# Refreshable credentials: assume role (AWS_ROLE_ARN) or profile (SSO, credential_process)
+AWS_ROLE_ARN=arn:aws:iam::123456789012:role/Sentry ../sentinel.sh --conf=conf/detector-DetectorCloud-AWS-Role-1.conf
+../sentinel.sh --conf=conf/detector-DetectorCloud-AWS-Profile-1.conf
 
 # CloudTrail: IAM changes
 ../sentinel.sh --conf=conf/detector-DetectorCloud-AWS-Trail-1.conf

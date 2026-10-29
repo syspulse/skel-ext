@@ -104,6 +104,54 @@ class CloudAWSMockSpec extends AnyFlatSpec with Matchers with DetectorCloudFixtu
     }
   }
 
+  it should "request SESSION_TOKEN for keys without token" in {
+    requireMock()
+
+    class TestAWS(u: String) extends io.syspulse.ext.sentinel.cloud.CloudAWS(u) {
+      def creds = credentials
+    }
+
+    val c = new TestAWS(uri(""))
+    try {
+      c.auth shouldBe "uri+sts"
+      val cred = c.creds.getCredentials
+      cred shouldBe a [com.amazonaws.auth.AWSSessionCredentials]
+      cred.asInstanceOf[com.amazonaws.auth.AWSSessionCredentials].getSessionToken should not be empty
+      // keys are temporary, not the ones from URI
+      cred.getAWSAccessKeyId should not be "test"
+    } finally c.close()
+
+    // disabled: keys are used as is
+    val c2 = new TestAWS(uri("sts=false"))
+    try {
+      c2.auth shouldBe "uri"
+      c2.creds.getCredentials.getAWSAccessKeyId shouldBe "test"
+    } finally c2.close()
+  }
+
+  it should "detect CloudWatch alarm with assumed role (refreshable credentials)" in {
+    requireMock()
+
+    val cw = cloudwatch
+    val name = s"it-role-${uid}"
+    try {
+      cw.putMetricAlarm(new PutMetricAlarmRequest()
+        .withAlarmName(name).withNamespace("AWS/EC2").withMetricName("StatusCheckFailed").withStatistic("Maximum")
+        .withPeriod(60).withEvaluationPeriods(1).withThreshold(0.0).withComparisonOperator("GreaterThanThreshold"))
+      cw.setAlarmState(new SetAlarmStateRequest().withAlarmName(name).withStateValue("ALARM").withStateReason("role"))
+
+      // base credentials (mock) assume the role through STS (mock). Credentials are refreshed by AWS SDK
+      val (detector, conf, rx, r) = start(s"""{ "cron": "1 min", "uri": "${uri(s"alarm_prefix=${name}&role_arn=arn:aws:iam::123456789012:role/Sentry&external_id=ext-1")}", "system": "Watch" }""")
+      r shouldBe SentryRun.SENTRY_RUNNING
+
+      val events = detector.onCron(rx, 0L)
+      events should have size 1
+      events.head.metadata("alarm") shouldBe name
+    } finally {
+      if (!keep) cw.deleteAlarms(new DeleteAlarmsRequest().withAlarmNames(name))
+    }
+  }
+
   it should "filter CloudWatch alarms by namespace and state" in {
     requireMock()
 

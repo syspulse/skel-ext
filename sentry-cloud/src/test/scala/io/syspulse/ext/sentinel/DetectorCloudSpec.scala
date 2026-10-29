@@ -53,6 +53,18 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     rx.get("cloud").get.toString should not include "SECRET"
   }
 
+  it should "add region and account to Alerts" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?project=p1&region=europe-west1&account=acc-1&mock=alarm", "system": "Watch" }""")
+    r shouldBe SentryRun.SENTRY_RUNNING
+
+    val events = detector.onCron(rx, 0L)
+    events should not be empty
+    events.foreach { e =>
+      e.metadata("region") shouldBe "europe-west1"
+      e.metadata("account") shouldBe "acc-1"
+    }
+  }
+
   it should "use default uri and system" in {
     val (detector, conf, rx, r) = start("""{ "cron": "1 min" }""")
     r shouldBe SentryRun.SENTRY_RUNNING
@@ -100,6 +112,32 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     detector.onCron(rx, 0L) should have size 1
     detector.onCron(rx, 0L) shouldBe empty
     detector.onCron(rx, 0L) shouldBe empty
+  }
+
+  it should "generate idempotent eid" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "new_only": false }""")
+    val e1 = detector.onCron(rx, 0L)
+    val e2 = detector.onCron(rx, 0L)
+    e1 should have size 4
+    // same alerts have the same eid
+    e1.map(_.eid) shouldBe e2.map(_.eid)
+    // different alerts have different eid
+    e1.map(_.eid).toSet should have size 4
+    e1.foreach(e => e.eid shouldBe detector.eid(rx, CloudAlert(e.metadata("system"), e.metadata("id"), "", "", 0.0, "")))
+
+    // the same configuration in another Detector instance 
+    val (detector2, conf2, rx2, r2) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "new_only": false }""")
+    detector2.onCron(rx2, 0L).map(_.eid) shouldBe e1.map(_.eid)
+  }
+
+  it should "generate idempotent eid after finding is resolved and appears again" in {
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "IAM" }""")
+    val e1 = detector.onCron(rx, 0L)
+    detector.onCron(rx, 0L) shouldBe empty
+    // resolved
+    rx.set("seen_IAM", Set.empty[String])
+    val e2 = detector.onCron(rx, 0L)
+    e2.map(_.eid) shouldBe e1.map(_.eid)
   }
 
   it should "alert on every check if new_only is disabled" in {

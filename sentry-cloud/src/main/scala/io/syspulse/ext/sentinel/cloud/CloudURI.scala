@@ -26,10 +26,11 @@ import io.syspulse.skel.util.Util
   - '@' is REQUIRED when credentials are specified in URI (otherwise ACCESS_KEY:ACCESS_SECRET cannot be distinguished from host:port)
   - Credentials which are not specified in URI are taken from environment variables. 
     Prefix of the variable is defined by the cloud: aws:// -> AWS_, gcp:// -> GCP_, azure:// -> AZURE_
-      <PREFIX>ACCESS_KEY, <PREFIX>ACCESS_SECRET, <PREFIX>SESSION_TOKEN, <PREFIX>REGION
+      <PREFIX>ACCESS_KEY, <PREFIX>ACCESS_SECRET, <PREFIX>SESSION_TOKEN, <PREFIX>REGION, <PREFIX>ACCOUNT
   - Credential components can be url-encoded (%2F, %2B ...) 
   - Parameters (`?param=value&param=value`) are available as `params`. 
-    Well-known parameters: `region`, `ssl` (default `true`, used with custom host)
+    Well-known parameters: `region`, `account` (override <PREFIX>REGION, <PREFIX>ACCOUNT), `ssl` (default `true`, used with custom host)
+    Credentials refresh (AWS): `profile`, `profile_file`, `role_arn`, `external_id`, `role_session`, `role_duration`
 */
 case class CloudURI(uri: String, env: Map[String, String] = sys.env) {
 
@@ -44,13 +45,35 @@ case class CloudURI(uri: String, env: Map[String, String] = sys.env) {
   def params: Map[String, String] = _params
 
   // credentials: URI first, then environment
-  def accessKey: Option[String] = _key.orElse(envFirst(envNames("ACCESS_KEY")))
-  def accessSecret: Option[String] = _secret.orElse(envFirst(envNames("ACCESS_SECRET")))
+  def accessKey: Option[String] = _key.orElse(envPair.map(_.key)).orElse(envFirst(envNames("ACCESS_KEY")))
+  def accessSecret: Option[String] = _secret.orElse(envPair.map(_.secret)).orElse(envFirst(envNames("ACCESS_SECRET")))
   def sessionToken: Option[String] = _token.orElse(envFirst(envNames("SESSION_TOKEN")))
 
+  // URI parameter first, then environment: AWS_REGION (AWS_DEFAULT_REGION), GCP_REGION, AZURE_REGION
   def region: Option[String] = _params.get("region").filter(_.nonEmpty).orElse(envFirst(envNames("REGION")))
 
+  // Cloud account (AWS account id, GCP account/project, Azure subscription): `account=` parameter, then environment: AWS_ACCOUNT, GCP_ACCOUNT, AZURE_ACCOUNT
+  def account: Option[String] = _params.get("account").filter(_.nonEmpty).orElse(envFirst(envNames("ACCOUNT")))
+
   def hasCredentials: Boolean = accessKey.isDefined && accessSecret.isDefined
+
+  /** Credentials explicitly specified in the URI itself (not from environment) */
+  def hasUriCredentials: Boolean = _key.isDefined && _secret.isDefined
+
+  /** Session token explicitly specified in the URI (never mixed with key/secret from environment) */
+  def uriSessionToken: Option[String] = _token
+
+  /** Credentials from environment only (static, never refreshed by the process) */
+  def hasEnvCredentials: Boolean = envPair.isDefined
+
+  /** Names of environment variables which are used for key and secret (for logs). Never values */
+  def envCredentialsNames: Option[String] = envPair.map(p => s"${p.keyName},${p.secretName}")
+
+  /** Named profile from shared credentials file (refreshable): ?profile=dev */
+  def profile: Option[String] = _params.get("profile").filter(_.nonEmpty)
+
+  /** Role to assume (credentials are refreshed automatically): ?role_arn=arn:aws:iam::123456789012:role/Name */
+  def roleArn: Option[String] = _params.get("role_arn").filter(_.nonEmpty)
 
   /** Endpoint URL if custom host is specified in URI */
   def endpoint: Option[String] = _host.map { h =>
@@ -63,6 +86,27 @@ case class CloudURI(uri: String, env: Map[String, String] = sys.env) {
 
   def paramList(name: String): Seq[String] =
     _params.get(name).map(_.split(",").iterator.map(_.trim).filter(_.nonEmpty).toSeq).getOrElse(Seq.empty)
+
+  private case class EnvPair(keyName: String, secretName: String, key: String, secret: String)
+
+  /**
+   * Key and secret from environment are always taken as a PAIR from the same naming scheme (never key from one scheme and secret from another):
+   *   `AWS_ACCESS_KEY` + `AWS_ACCESS_SECRET` (cloud prefix) or `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY` (standard AWS)
+   * 
+   * Both schemes may be present at once (e.g. dummy `AWS_ACCESS_KEY=test` for mock and real keys from `aws configure export-credentials`).
+   * Session token (AWS_SESSION_TOKEN) is issued only together with the standard AWS keys: if it is defined, standard keys have priority.
+   * Otherwise cloud prefix has priority
+   */
+  private lazy val envPair: Option[EnvPair] = {
+    val prefixed = (prefix + "ACCESS_KEY", prefix + "ACCESS_SECRET")
+    val standard = if (_cloud == "aws") Seq(("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY")) else Seq.empty
+    val hasToken = envFirst(Seq(prefix + "SESSION_TOKEN")).isDefined
+    val schemes = if (hasToken) standard :+ prefixed else prefixed +: standard
+
+    schemes.iterator.flatMap { case (kn, sn) =>
+      for { k <- envFirst(Seq(kn)); s <- envFirst(Seq(sn)) } yield EnvPair(kn, sn, k, s)
+    }.nextOption()
+  }
 
   // Standard AWS variable names are also supported for convenience
   private def envNames(suffix: String): Seq[String] = {
@@ -80,9 +124,10 @@ case class CloudURI(uri: String, env: Map[String, String] = sys.env) {
 
   // never leak credentials into logs
   override def toString: String = {
-    val cred = accessKey.map { k =>
-      val sec = if (accessSecret.isDefined) ":***" else ""
-      val tok = if (sessionToken.isDefined) ":***" else ""
+    // only credentials specified in URI itself (those from environment are not part of URI)
+    val cred = _key.map { k =>
+      val sec = if (_secret.isDefined) ":***" else ""
+      val tok = if (_token.isDefined) ":***" else ""
       s"${k.take(4)}***${sec}${tok}@"
     }.getOrElse("")
     val q = if (_params.isEmpty) "" else "?" + _params.map { case (k, v) => s"${k}=${v}" }.mkString("&")

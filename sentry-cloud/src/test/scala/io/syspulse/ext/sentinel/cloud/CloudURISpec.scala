@@ -85,6 +85,72 @@ class CloudURISpec extends AnyFlatSpec with Matchers {
     CloudURI("azure://", env).prefix shouldBe "AZURE_"
   }
 
+  it should "read region and account from environment (AWS_, GCP_, AZURE_)" in {
+    val env = Map(
+      "AWS_REGION" -> "eu-central-1", "AWS_ACCOUNT" -> "123456789012",
+      "GCP_REGION" -> "europe-west1", "GCP_ACCOUNT" -> "gcp-account",
+      "AZURE_REGION" -> "westeurope", "AZURE_ACCOUNT" -> "az-account"
+    )
+    val aws = CloudURI("aws://", env)
+    aws.region shouldBe Some("eu-central-1")
+    aws.account shouldBe Some("123456789012")
+
+    val gcp = CloudURI("gcp://", env)
+    gcp.region shouldBe Some("europe-west1")
+    gcp.account shouldBe Some("gcp-account")
+
+    val az = CloudURI("azure://", env)
+    az.region shouldBe Some("westeurope")
+    az.account shouldBe Some("az-account")
+  }
+
+  it should "prefer region and account parameters over environment" in {
+    val env = Map("AWS_REGION" -> "eu-central-1", "AWS_ACCOUNT" -> "111111111111", "GCP_ACCOUNT" -> "gcp-env")
+    val aws = CloudURI("aws://?region=us-west-2&account=222222222222", env)
+    aws.region shouldBe Some("us-west-2")
+    aws.account shouldBe Some("222222222222")
+
+    CloudURI("gcp://?account=gcp-uri", env).account shouldBe Some("gcp-uri")
+    // other cloud variables are not used
+    CloudURI("azure://", env).account shouldBe None
+    CloudURI("aws://?account=", env).account shouldBe Some("111111111111")
+  }
+
+  it should "support AWS_DEFAULT_REGION" in {
+    CloudURI("aws://", Map("AWS_DEFAULT_REGION" -> "ap-south-1")).region shouldBe Some("ap-south-1")
+    CloudURI("aws://", Map("AWS_DEFAULT_REGION" -> "ap-south-1", "AWS_REGION" -> "eu-west-1")).region shouldBe Some("eu-west-1")
+  }
+
+  it should "have no region and account by default" in {
+    val u = CloudURI("gcp://", envEmpty)
+    u.region shouldBe None
+    u.account shouldBe None
+  }
+
+  it should "use environment keys as a pair from the same naming scheme" in {
+    // mock leftovers (AWS_ACCESS_KEY=test) and real credentials (AWS_ACCESS_KEY_ID + AWS_SESSION_TOKEN) at the same time:
+    // session token belongs to standard keys
+    val both = Map(
+      "AWS_ACCESS_KEY" -> "test", "AWS_ACCESS_SECRET" -> "test",
+      "AWS_ACCESS_KEY_ID" -> "ASIAREAL", "AWS_SECRET_ACCESS_KEY" -> "REALSECRET", "AWS_SESSION_TOKEN" -> "REALTOKEN")
+    val u = CloudURI("aws://", both)
+    u.accessKey shouldBe Some("ASIAREAL")
+    u.accessSecret shouldBe Some("REALSECRET")
+    u.sessionToken shouldBe Some("REALTOKEN")
+    u.envCredentialsNames shouldBe Some("AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY")
+
+    // no session token: cloud prefix has priority
+    val u2 = CloudURI("aws://", both - "AWS_SESSION_TOKEN")
+    u2.accessKey shouldBe Some("test")
+    u2.accessSecret shouldBe Some("test")
+    u2.envCredentialsNames shouldBe Some("AWS_ACCESS_KEY,AWS_ACCESS_SECRET")
+
+    // incomplete pair is skipped: key is never mixed with a secret of another scheme
+    val u3 = CloudURI("aws://", Map("AWS_ACCESS_KEY" -> "test", "AWS_ACCESS_KEY_ID" -> "ASIAREAL", "AWS_SECRET_ACCESS_KEY" -> "REALSECRET"))
+    u3.accessKey shouldBe Some("ASIAREAL")
+    u3.accessSecret shouldBe Some("REALSECRET")
+  }
+
   it should "prefer URI over environment" in {
     val env = Map("AWS_ACCESS_KEY" -> "ENVKEY", "AWS_ACCESS_SECRET" -> "ENVSECRET", "AWS_REGION" -> "eu-central-1")
     val u = CloudURI("aws://URIKEY:URISECRET@?region=us-west-2", env)

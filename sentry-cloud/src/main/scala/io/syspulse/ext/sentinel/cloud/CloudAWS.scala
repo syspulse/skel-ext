@@ -11,7 +11,9 @@ import scala.util.{Try, Success, Failure}
 import spray.json._
 
 import com.amazonaws.AmazonServiceException
-import com.amazonaws.auth.{AWSCredentialsProvider, AWSStaticCredentialsProvider, BasicAWSCredentials, BasicSessionCredentials, DefaultAWSCredentialsProviderChain}
+import com.amazonaws.auth.{STSSessionCredentialsProvider, AWSCredentialsProvider, AWSStaticCredentialsProvider, BasicAWSCredentials, BasicSessionCredentials, DefaultAWSCredentialsProviderChain, STSAssumeRoleSessionCredentialsProvider}
+import com.amazonaws.auth.profile.{ProfileCredentialsProvider, ProfilesConfigFile}
+import com.amazonaws.services.securitytoken.{AWSSecurityTokenService, AWSSecurityTokenServiceClientBuilder}
 import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration
 
 import com.amazonaws.services.cloudwatch.{AmazonCloudWatch, AmazonCloudWatchClientBuilder}
@@ -29,6 +31,49 @@ import com.amazonaws.services.s3.model.HeadBucketRequest
 import io.hacken.ext.core.Severity
 
 object CloudAWS {
+  // Credentials
+  val DEF_ROLE_SESSION = "sentry-cloud"
+  val DEF_ROLE_DURATION = 3600                // seconds. Credentials are refreshed automatically before expiration
+
+  val AUTH_URI = "uri"                        // static keys in URI
+  val AUTH_PROFILE = "profile"                // shared credentials file profile (refreshed)
+  val AUTH_ENV = "env"                        // static keys from environment
+  val AUTH_DEFAULT = "default"                // AWS default chain (refreshed): web identity, container, EC2 instance profile ...
+
+  /** Base source of credentials: URI keys > profile > environment keys > default chain */
+  def authBase(uri: CloudURI): String =
+    if (uri.hasUriCredentials) AUTH_URI
+    else if (uri.profile.isDefined) AUTH_PROFILE
+    else if (uri.hasEnvCredentials) AUTH_ENV
+    else AUTH_DEFAULT
+
+  /** Session token which came together with static keys (same source). Such credentials EXPIRE and cannot be refreshed */
+  def staticToken(uri: CloudURI): Option[String] = authBase(uri) match {
+    case AUTH_URI => uri.uriSessionToken
+    case AUTH_ENV => uri.sessionToken
+    case _ => None
+  }
+
+  /** 
+   * Long-lived keys (URI or environment) without SESSION_TOKEN: session token is requested from STS (GetSessionToken) 
+   * and refreshed automatically before it expires. Disable with `sts=false`. 
+   * Not needed with `role_arn`: keys are used to assume the role
+   */
+  def requestsToken(uri: CloudURI): Boolean = 
+    (authBase(uri) == AUTH_URI || authBase(uri) == AUTH_ENV) && 
+    staticToken(uri).isEmpty && 
+    uri.roleArn.isEmpty && 
+    !uri.param("sts", "true").equalsIgnoreCase("false")
+
+  /** Description of authentication (for logs and tests). No secrets */
+  def authName(uri: CloudURI): String = {
+    val base = authBase(uri) + (if (requestsToken(uri)) "+sts" else "")
+    uri.roleArn.map(_ => s"role(${base})").getOrElse(base)
+  }
+
+  /** Static SESSION_TOKEN is used: credentials expire and cannot be refreshed */
+  def isStatic(uri: CloudURI): Boolean = staticToken(uri).isDefined
+
   // Watch (CloudWatch)
   val DEF_STATES = "ALARM"                    // alarm states to report: ALARM,INSUFFICIENT_DATA
   val DEF_ALARM_PREFIX = ""                   // alarm name prefix filter
@@ -267,10 +312,75 @@ class CloudAWS(uri0: String) extends Cloud {
 
   override def toString = s"CloudAWS(${uri})"
 
-  protected def credentials: AWSCredentialsProvider = (uri.accessKey, uri.accessSecret, uri.sessionToken) match {
-    case (Some(k), Some(s), Some(t)) => new AWSStaticCredentialsProvider(new BasicSessionCredentials(k, s, t))
-    case (Some(k), Some(s), None) => new AWSStaticCredentialsProvider(new BasicAWSCredentials(k, s))
+  /** How credentials are obtained, e.g. `profile`, `role(default)`. Never contains secrets */
+  def auth: String = authName(uri)
+
+  private val stsClients = new java.util.concurrent.CopyOnWriteArrayList[AWSSecurityTokenService]()
+
+  // STS client must use the same endpoint (mock) or region as the other clients
+  private def stsClient(creds: AWSCredentialsProvider): AWSSecurityTokenService = {
+    val sts = AWSSecurityTokenServiceClientBuilder.standard().withCredentials(creds)
+    val c = (endpointConfig(uri.region) match {
+      case Some(ep) => sts.withEndpointConfiguration(ep)
+      case None => uri.region.map(r => sts.withRegion(r)).getOrElse(sts)
+    }).build()
+    stsClients.add(c)
+    c
+  }
+
+  private val sessions = new java.util.concurrent.CopyOnWriteArrayList[STSSessionCredentialsProvider]()
+
+  // key/secret and token must come from the same source (URI keys never get a token from environment)
+  private def staticCredentials: AWSCredentialsProvider = (uri.accessKey, uri.accessSecret, staticToken(uri)) match {
+    case (Some(k), Some(s), Some(t)) =>
+      log.warn(s"${uri}: static SESSION_TOKEN is used: credentials will EXPIRE and are NOT refreshed. Remove AWS_SESSION_TOKEN (it will be requested and refreshed), use `profile`, `role_arn` or default credentials chain")
+      new AWSStaticCredentialsProvider(new BasicSessionCredentials(k, s, t))
+    case (Some(k), Some(s), None) => 
+      val keys = new AWSStaticCredentialsProvider(new BasicAWSCredentials(k, s))
+      if (requestsToken(uri)) {
+        // no SESSION_TOKEN: request it with long-lived keys, SDK refreshes it before expiration
+        val p = new STSSessionCredentialsProvider(stsClient(keys))
+        sessions.add(p)
+        p
+      } else keys
     case _ => DefaultAWSCredentialsProviderChain.getInstance()
+  }
+
+  // Credentials from the base source (everything except static keys is refreshed by AWS SDK)
+  private def baseCredentials: AWSCredentialsProvider = authBase(uri) match {
+    case AUTH_URI | AUTH_ENV => staticCredentials
+
+    // shared credentials file: re-read periodically (rotated keys, credential_process, role_arn + source_profile)
+    case AUTH_PROFILE =>
+      val name = uri.profile.get
+      uri.param("profile_file") match {
+        case "" => new ProfileCredentialsProvider(name)
+        case file => new ProfileCredentialsProvider(new ProfilesConfigFile(file), name)
+      }
+
+    // env, system properties, profile, web identity (IRSA), container (ECS), instance profile (EC2)
+    case _ => DefaultAWSCredentialsProviderChain.getInstance()
+  }
+
+  private val stsList = new java.util.concurrent.CopyOnWriteArrayList[STSAssumeRoleSessionCredentialsProvider]()
+
+  // ONE provider shared by all clients: it caches and refreshes credentials 
+  protected lazy val credentials: AWSCredentialsProvider = {
+    val base = baseCredentials
+    log.info(s"${uri}: credentials: ${auth}" + uri.envCredentialsNames.filter(_ => authBase(uri) == AUTH_ENV).map(n => s" (environment: ${n})").getOrElse(""))
+    uri.roleArn match {
+      case Some(arn) =>
+        val b = new STSAssumeRoleSessionCredentialsProvider.Builder(arn, uri.param("role_session", DEF_ROLE_SESSION))
+          .withRoleSessionDurationSeconds(uri.param("role_duration", DEF_ROLE_DURATION.toString).toInt)
+        Option(uri.param("external_id")).filter(_.nonEmpty).foreach(id => b.withExternalId(id))
+
+        b.withStsClient(stsClient(base))
+
+        val p = b.build()
+        stsList.add(p)
+        p
+      case None => base
+    }
   }
 
   private def endpointConfig(region: Option[String]): Option[EndpointConfiguration] =
@@ -327,6 +437,12 @@ class CloudAWS(uri0: String) extends Cloud {
     trails.values().asScala.foreach(c => Try(c.shutdown()))
     trails.clear()
     s3.close()
+    stsList.asScala.foreach(p => Try(p.close()))
+    stsList.clear()
+    sessions.asScala.foreach(p => Try(p.close()))
+    sessions.clear()
+    stsClients.asScala.foreach(c => Try(c.shutdown()))
+    stsClients.clear()
   }
 
   // ----- Watch (CloudWatch) --------------------------------------------------------------------------------------

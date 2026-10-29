@@ -5,6 +5,7 @@ import scala.concurrent.duration._
 import scala.util.{Try, Success, Failure}
 
 import io.syspulse.skel.plugin.{Plugin, PluginDescriptor}
+import io.syspulse.skel.util.Util
 
 import io.hacken.ext.core.Severity
 import io.hacken.ext.core.Event
@@ -60,6 +61,12 @@ object DetectorCloud {
 class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
+
+  /** 
+   * Idempotent event id: the same finding of the same Detector always has the same eid.
+   * (finding id is stable between checks: alarm + state + update time, IAM user + check, CloudTrail event id, bucket + status)
+   */
+  def eid(rx: SentryRun0, a: CloudAlert): String = Util.sha256(s"${rx.getExtId('_')}_${a.system}_${a.id}")
 
   override def getSettings(rx: SentryRun0): Map[String, Any] = {
     rx.getConfig().env match {
@@ -173,7 +180,7 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
 
         case (system, Failure(e)) =>
           log.warn(s"${rx.getExtId()}: ${cloud.provider}: ${system}: ${e.getMessage}")
-          errorEvents(rx, cloud.provider, system, Option(e.getMessage).getOrElse(e.getClass.getSimpleName))
+          errorEvents(rx, cloud.provider, system, Option(e.getMessage).getOrElse(e.getClass.getSimpleName), accountMeta(cloud))
       }
     }
   }
@@ -203,7 +210,7 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
         tx = None,
         monitoredAddr = None,
         conf = Some(rx.getConf()),
-        meta = a.meta ++ Map(
+        meta = a.meta ++ accountMeta(cloud) ++ Map(
           "provider" -> cloud.provider,
           "system" -> a.system,
           "id" -> a.id,
@@ -214,19 +221,24 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
           "desc" -> desc
         ),
         detectorTs = if (a.ts > 0L) Some(a.ts.toString) else None,
+        eid0 = Some(eid(rx, a)),
         sev = Some(a.sev)
       )
     }
   }
 
-  def errorEvents(rx: SentryRun0, provider: String, system: String, err: String): Seq[Event] = {
+  // region and account (from URI or environment) are added to every Alert
+  def accountMeta(cloud: Cloud): Map[String, String] =
+    cloud.uri.region.map("region" -> _).toMap ++ cloud.uri.account.map("account" -> _).toMap
+
+  def errorEvents(rx: SentryRun0, provider: String, system: String, err: String, extra: Map[String, String] = Map.empty): Seq[Event] = {
     val desc = rx.get("desc").asInstanceOf[Option[String]].getOrElse(DetectorCloud.DEF_DESC)
     error(rx,
       None, None, Some(rx.getConf()),
       desc,
       err,
       DetectorCloud.DEF_SEV_ERR,
-      Map("provider" -> provider, "system" -> system, "title" -> "Check failed"),
+      extra ++ Map("provider" -> provider, "system" -> system, "title" -> "Check failed"),
       DetectorCloud.DEF_TRACK_ERR,
       DetectorCloud.DEF_TRACK_ERR_ALWAYS
     )

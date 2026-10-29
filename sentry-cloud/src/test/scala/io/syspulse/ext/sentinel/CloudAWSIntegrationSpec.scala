@@ -64,7 +64,48 @@ class CloudAWSIntegrationSpec extends AnyFlatSpec with Matchers with DetectorClo
     }
   }
 
-  "DetectorCloud (AWS)" should "detect CloudWatch alarm" in {
+  // AWS SSO profile (~/.aws/config) through `credential_process` (bin/aws-credential-process.sh): credentials are requested from AWS CLI by SDK itself.
+  //   aws sso login --profile haas-dev
+  //   CLOUD_AWS_IT=true CLOUD_AWS_SSO_PROFILE=haas-dev sbt "sentry_cloud/testOnly *CloudAWSIntegrationSpec"
+  "DetectorCloud (AWS)" should "access AWS with refreshable credentials from SSO profile" in {
+    assume(sys.env.get("CLOUD_AWS_IT").exists(_.equalsIgnoreCase("true")) && sys.env.contains("CLOUD_AWS_SSO_PROFILE"),
+      "set CLOUD_AWS_IT=true and CLOUD_AWS_SSO_PROFILE=<sso profile>")
+    val sso = sys.env("CLOUD_AWS_SSO_PROFILE")
+    // tests may run from the root or from the module directory
+    val script = Seq("bin/aws-credential-process.sh", "sentry-cloud/bin/aws-credential-process.sh").map(new java.io.File(_)).find(_.exists()).get
+
+    val file = java.nio.file.Files.createTempFile("sentry-cloud-credentials", "")
+    try {
+      java.nio.file.Files.writeString(file, s"[sentry]\ncredential_process = ${script.getAbsolutePath} ${sso}\n")
+
+      // no keys in environment are used: they are ignored because `profile` has priority
+      val cloud = new io.syspulse.ext.sentinel.cloud.CloudAWS(s"aws://?region=${REGION}&profile=sentry&profile_file=${file}")
+      try {
+        cloud.auth shouldBe "profile"
+        val alarms = scala.concurrent.Await.result(cloud.checkWatch(), scala.concurrent.duration.Duration(60, "sec"))
+        info(s"alarms: ${alarms.size}")
+      } finally {
+        cloud.close()
+      }
+    } finally {
+      java.nio.file.Files.deleteIfExists(file)
+    }
+  }
+
+  // credentials come from environment, even if mock variables (AWS_ACCESS_KEY=test) are also defined 
+  it should "query CloudTrail with credentials from environment" in {
+    requireAws()
+
+    val cloud = new io.syspulse.ext.sentinel.cloud.CloudAWS(uri("source=iam.amazonaws.com&window=60"))
+    try {
+      val events = scala.concurrent.Await.result(cloud.checkTrail(), scala.concurrent.duration.Duration(60, "sec"))
+      info(s"auth=${cloud.auth}, events: ${events.size}")
+    } finally {
+      cloud.close()
+    }
+  }
+
+  it should "detect CloudWatch alarm" in {
     requireAws()
 
     val cw = cloudwatch
