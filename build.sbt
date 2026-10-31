@@ -334,6 +334,7 @@ lazy val root = (project in file("."))
     // sentry_kuba,
     sentry_bubbles,
     sentry_feed,
+    sentry_cloud,
     // sentry_audit,
     // sentry_workflow,
   )
@@ -490,6 +491,35 @@ lazy val sentry_bubbles = (project in file("sentry-bubbles"))
 
       libOsLib,
       libRequests,
+
+      libSkelTest % "test",
+      libScalaTest % "test"
+    ),
+  )
+
+lazy val sentry_cloud = (project in file("sentry-cloud"))
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(DockerPlugin)
+  .enablePlugins(AshScriptPlugin)
+  .settings (
+    sharedConfig,
+    sharedConfigAssembly,
+    sharedConfigDocker,
+    dockerBuildxSettings,
+
+    appDockerConfig("sentry-cloud","io.hacken.ext.sentinel.App",Seq("detector-bundle.conf","application-dev.conf")),
+
+    libraryDependencies ++= Seq(
+      libExtCore,
+      libExtSentinel,
+      libSkelCore,
+      libSkelDsl,
+
+      libOsLib,
+      libRequests,
+
+      // AWS SDK (CloudWatch, IAM, CloudTrail, S3)
+      libAWSJavaSDK,
 
       libSkelTest % "test",
       libScalaTest % "test"

@@ -19,7 +19,7 @@ import com.typesafe.scalalogging.Logger
  * @param meta     additional metadata for the Alert
  * @param ref      http link to open the finding in the Cloud console (empty if there is no link)
  * @param uid      unique identifier of the event/entity assigned by the Cloud provider (Trail: EventId, Watch: alarm ARN, IAM: user ARN, Storage: bucket ARN).
- *                 It is NOT the same as `id` (finding id, includes state) or Alert `eid` (unique per Detector + finding). Empty if unknown
+ *                 Alert `tx_hash`. It is NOT the same as `id` (internal finding id, includes state: used only for `new` tracking and `eid`) or Alert `eid` (unique per Detector + finding). Empty if unknown
  */
 case class CloudAlert(
   system: String,
@@ -87,20 +87,26 @@ object Cloud {
 
   val SYSTEMS = Seq(SYSTEM_WATCH, SYSTEM_IAM, SYSTEM_TRAIL, SYSTEM_STORAGE)
 
-  /** Normalize system name (case insensitive, with aliases) */
-  def system(name: String): Option[String] = name.trim.toLowerCase match {
-    case "watch" | "cloudwatch" | "monitoring" | "cw" => Some(SYSTEM_WATCH)
-    case "iam" | "identity" => Some(SYSTEM_IAM)
-    case "trail" | "cloudtrail" | "audit" => Some(SYSTEM_TRAIL)
-    case "storage" | "s3" => Some(SYSTEM_STORAGE)
+  /** 
+   * Normalize system name (case insensitive, with aliases). 
+   * Accepts generic names (`Watch`, `Trail`, ...) and Cloud specific ones (`CloudWatch`, `CloudTrail`, `S3`, `Cloud Monitoring`, `Azure Monitor`, ...)
+   */
+  def system(name: String): Option[String] = name.trim.toLowerCase.replaceAll("\\s+", " ") match {
+    case "watch" | "cloudwatch" | "cloud watch" | "monitoring" | "cloud monitoring" | "azure monitor" | "cw" => Some(SYSTEM_WATCH)
+    case "iam" | "identity" | "cloud iam" | "entra id" | "entraid" => Some(SYSTEM_IAM)
+    case "trail" | "cloudtrail" | "cloud trail" | "audit" | "cloud audit logs" | "cloud audit log" | "activity log" | "activitylog" => Some(SYSTEM_TRAIL)
+    case "storage" | "s3" | "cloud storage" | "blob storage" | "blobstorage" => Some(SYSTEM_STORAGE)
     case _ => None
   }
 
-  /** Create Cloud from URI: aws://, gcp://, azure:// */
-  def apply(uri: String): Cloud = {
+  /** 
+   * Create Cloud from URI: aws://, gcp://, azure:// 
+   * @param auth AuthURI (secret://, env://, profile://, role://). It has a preference over credentials in `uri`. Supported by AWS (GCP and Azure are mocked)
+   */
+  def apply(uri: String, auth: Option[String] = None): Cloud = {
     val cloud = CloudURI(uri).cloud
     cloud match {
-      case "aws" => new CloudAWS(uri)
+      case "aws" => new CloudAWS(uri, auth)
       case "gcp" => new CloudGCP(uri)
       case "azure" => new CloudAzure(uri)
       case _ => throw new IllegalArgumentException(s"unsupported cloud uri: '${cloud}' (expected: aws://, gcp://, azure://)")

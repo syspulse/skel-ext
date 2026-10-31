@@ -129,6 +129,34 @@ class CloudAWSMockSpec extends AnyFlatSpec with Matchers with DetectorCloudFixtu
     } finally c2.close()
   }
 
+  it should "detect CloudWatch alarm with auth (secret://) which overrides credentials of uri" in {
+    requireMock()
+
+    val cw = cloudwatch
+    val name = s"it-auth-${uid}"
+    try {
+      cw.putMetricAlarm(new PutMetricAlarmRequest()
+        .withAlarmName(name).withNamespace("AWS/EC2").withMetricName("StatusCheckFailed").withStatistic("Maximum")
+        .withPeriod(60).withEvaluationPeriods(1).withThreshold(0.0).withComparisonOperator("GreaterThanThreshold"))
+      cw.setAlarmState(new SetAlarmStateRequest().withAlarmName(name).withStateValue("ALARM").withStateReason("auth"))
+
+      // uri has keys, auth has other keys + role: auth is used (session token is requested from STS, role is assumed)
+      val host = MOCK_URL.replaceFirst("^https?://", "")
+      val u = s"aws://uri-key:uri-secret@${host}?region=${REGION}&ssl=${MOCK_URL.startsWith("https")}&alarm_prefix=${name}"
+      for (auth <- Seq("secret://test:test", "secret://test:test?arn=arn:aws:iam::123456789012:role/Sentry&external_id=ext-1")) {
+        val (detector, conf, rx, r) = start(s"""{ "cron": "1 min", "uri": "${u}", "auth": "${auth}", "system": "Watch" }""")
+        r shouldBe SentryRun.SENTRY_RUNNING
+        rx.get("cloud").get.asInstanceOf[io.syspulse.ext.sentinel.cloud.CloudAWS].auth should (startWith ("secret") or startWith ("role(secret"))
+
+        val events = detector.onCron(rx, 0L)
+        withClue(auth) { events should have size 1 }
+        events.head.metadata("alarm") shouldBe name
+      }
+    } finally {
+      if (!keep) cw.deleteAlarms(new DeleteAlarmsRequest().withAlarmNames(name))
+    }
+  }
+
   it should "detect CloudWatch alarm with assumed role (refreshable credentials)" in {
     requireMock()
 

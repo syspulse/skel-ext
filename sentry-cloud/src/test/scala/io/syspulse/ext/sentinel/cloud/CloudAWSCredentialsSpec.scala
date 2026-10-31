@@ -7,6 +7,8 @@ import java.time.Instant
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
+import io.syspulse.ext.sentinel.cloud.auth.Auth
+
 /**
  * Credentials selection and refresh. No network and no AWS account are required.
  */
@@ -163,5 +165,43 @@ class CloudAWSCredentialsSpec extends AnyFlatSpec with Matchers {
         cloud.close()
       }
     }
+  }
+
+  class TestAuthAWS(uri: String, auth: Option[String]) extends CloudAWS(uri, auth) {
+    def creds = credentials
+  }
+
+  it should "use credentials of `auth` profile:// (credential_process) instead of credentials of uri" in {
+    assume(Files.isExecutable(Paths.get("/bin/bash")), "bash is required")
+
+    withProfile(expireSec = 3600) { (file, dir) =>
+      // keys of uri are ignored: auth has a preference
+      val cloud = new TestAuthAWS("aws://URIKEY:URISECRET:URITOKEN@?region=eu-west-1", Some(s"profile://${file}?profile=dev"))
+      try {
+        cloud.auth shouldBe AUTH_PROFILE
+        cloud.authSpec shouldBe Auth.Profile("dev", Some(file.toString))
+        val c = cloud.creds.getCredentials
+        c.getAWSAccessKeyId should startWith("AKIATEST")
+        c.getAWSAccessKeyId should not be "URIKEY"
+      } finally {
+        cloud.close()
+      }
+    }
+  }
+
+  it should "use credentials of `auth` env:// and secret://" in {
+    val e = new TestAuthAWS("aws://URIKEY:URISECRET:URITOKEN@?region=eu-west-1", Some("secret://AUTHKEY:AUTHSECRET:AUTHTOKEN"))
+    try {
+      e.auth shouldBe "secret"
+      e.authSpec.isStatic shouldBe true
+      val c = e.creds.getCredentials.asInstanceOf[com.amazonaws.auth.AWSSessionCredentials]
+      c.getAWSAccessKeyId shouldBe "AUTHKEY"
+      c.getSessionToken shouldBe "AUTHTOKEN"
+    } finally e.close()
+  }
+
+  it should "fail to create Cloud with invalid `auth`" in {
+    intercept[IllegalArgumentException] { new CloudAWS("aws://?region=eu-west-1", Some("ftp://x")) }
+    intercept[IllegalArgumentException] { Cloud("aws://?region=eu-west-1", Some("secret://onlykey")) }
   }
 }

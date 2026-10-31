@@ -1,0 +1,170 @@
+{
+  "author": "Hacken",
+  "createdAt": 1793000000000,
+  "description": "AWS Cloud Monitor",
+  "faq": [
+    {
+      "name": "How does it work",
+      "value": "Detector periodically queries AWS API and generates Alerts for problems found:\n\n- `CloudWatch`: alarms (VPC, EC2, EKS and other services health)\n- `CloudTrail`: management events (IAM changes, security groups, bucket policies, ...). Only write events by default: `track_event` adds all other events, including read-only (`Get*`, `List*`, ...), with `INFO` severity\n- `IAM`: insecure IAM configuration (root access keys, missing MFA, old access keys)\n- `S3`: buckets availability"
+    },
+    {
+      "name": "Cron",
+      "value": "Cron interval to check Cloud. Refer to [Cron](https://docs.extractor.live/common-configurations#cron) for more details"
+    },
+    {
+      "name": "URI",
+      "value": "AWS URI: `aws://[ACCESS_KEY:ACCESS_SECRET[:SESSION_TOKEN]@][host]?param=value`\n\nCredentials which are not in URI are read from environment (`AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`, `AWS_REGION`, `AWS_ACCOUNT`) or AWS default credentials chain. Prefer `auth` for authentication.\n\nExamples:\n\n`aws://?region=eu-west-1&account=123456789012`\n\n`aws://?region=eu-west-1&states=ALARM,INSUFFICIENT_DATA&namespace=AWS/EC2,AWS/EKS` (CloudWatch)\n\n`aws://?source=iam.amazonaws.com&events=CreateUser,DeleteUser&window=60` (CloudTrail)\n\n`aws://?max_key_age=90` (IAM)\n\n`aws://?buckets=my-bucket,my-bucket-2&latency=3000` (S3)\n\nAlerts have `system` (generic: `Watch`, `Trail`, `IAM`, `Storage`), `sys` (AWS name: `CloudWatch`, `CloudTrail`, `IAM`, `S3`), `ref` (console link), `tx_hash` (CloudTrail EventId, alarm ARN, user ARN, bucket ARN)."
+    },
+    {
+      "name": "Auth",
+      "value": "Optional authentication URI. It has a **preference** over credentials in `uri` (keys, `profile`, `role_arn`): if `auth` is specified they are ignored. `region`, `account` and custom host are still taken from `uri`.\n\nSyntax: `scheme://body?param=value&param=value`\n\n- `secret://<ACCESS_KEY_ID>:<SECRET_ACCESS_KEY>[:SESSION_TOKEN]` - static keys. `SESSION_TOKEN` is optional: if it is not specified, it is requested from the Cloud (AWS STS) and refreshed automatically. Never put real keys into the configuration: use `secret://{AWS_ACCESS_KEY}:{AWS_ACCESS_SECRET}` to take them from environment\n- `env://[$ACCESS_KEY_ID]:[$SECRET_ACCESS_KEY]:[$SESSION_TOKEN]` - names of the environment variables (`$` is optional). Omitted names are default (`AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`). `SESSION_TOKEN` is never taken from the default variable if key or secret names are custom\n- `profile://[file]` - profile from the credentials file (default: `~/.aws/credentials`), profile name: `?profile=name`, `AWS_PROFILE` or `default`. The profile can use `credential_process` (SSO): credentials are refreshed automatically\n- `role://` - IAM role of the environment (ECS task, EKS pod, EC2 instance profile, web identity): credentials are refreshed automatically\n\nParameters (any scheme): `arn` (assume the role, credentials are refreshed automatically), `external_id`, `session`, `duration` (seconds), `sts=false` (do not request `SESSION_TOKEN`)\n\nExamples:\n\n`role://`\n\n`role://?arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc`\n\n`env://`\n\n`env://$MY_KEY:$MY_SECRET`\n\n`profile://?profile=sentry`\n\n`profile:///etc/sentry/credentials?profile=sentry`\n\n`secret://{AWS_ACCESS_KEY}:{AWS_ACCESS_SECRET}`"
+    },
+    {
+      "name": "Credentials refresh",
+      "value": "Temporary credentials (`SESSION_TOKEN`, SSO) **expire** and a static `SESSION_TOKEN` is never refreshed while Detector is running. Credentials sources (in order of priority):\n\n1. Keys in URI (`aws://KEY:SECRET[:TOKEN]@`)\n2. `profile=NAME` - profile from shared credentials file (`~/.aws/credentials` or `profile_file=/path`). Profile can use `credential_process` (SSO, Vault, any external refresher), which is called again when credentials expire\n3. Environment keys `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`/`AWS_SESSION_TOKEN`\n4. AWS default chain (nothing specified): IAM role for ECS/EKS (IRSA)/EC2 - **recommended for production**, refreshed automatically\n\nIf keys (URI or environment) are specified **without** `SESSION_TOKEN`, the session token is requested from STS (`GetSessionToken`) and renewed automatically (disable with `sts=false`). If `SESSION_TOKEN` is specified it is used as is and **expires**.\n\nAdd `role_arn=ARN` (optionally `external_id`, `role_session`, `role_duration` seconds) to assume a role: credentials are refreshed automatically before expiration.\n\nExamples:\n\n`aws://?region=eu-west-1` (IAM role of the host/pod)\n\n`aws://?region=eu-west-1&role_arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc`\n\n`aws://?region=eu-west-1&profile=sentry`"
+    },
+    {
+      "name": "System",
+      "value": "AWS system to monitor: `CloudWatch`, `CloudTrail`, `IAM`, `S3`"
+    },
+    {
+      "name": "Condition",
+      "value": "Condition on the number of findings (per system) to generate Alerts. Default is `> 0`. Refer to [Condition](https://docs.extractor.live/common-configurations#condition-threshold) for more details"
+    },
+    {
+      "name": "Track New",
+      "value": "Alert only once on every new finding. If disabled, all active findings are reported on every check"
+    },
+    {
+      "name": "Track Events",
+      "value": "`Trail` only. By default Alerts are generated only for write (mutating) CloudTrail events: `HIGH` severity for security sensitive ones, `MEDIUM` for others. If enabled, Alerts are also generated for read-only events (`Get*`, `List*`, `Describe*`, ...) with `INFO` severity. Use `source` and `events` URI parameters to limit the volume"
+    },
+    {
+      "name": "Timeout",
+      "value": "Max time (milliseconds) to wait for Cloud API"
+    },
+    {
+      "name": "Track Error",
+      "value": "Track and alert on Errors (Cloud access errors, invalid credentials)"
+    }
+  ],
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+  "id": 450,
+  "name": "DetectorCloudAWS",
+  "networkTags": [],
+  "schema": {
+    "properties": {
+      "uri": {
+        "default": "aws://",
+        "description": "Cloud URI",
+        "title": "URI",
+        "type": "string"
+      },
+      "auth": {
+        "default": "",
+        "description": "Authentication URI",
+        "title": "Auth",
+        "type": "string"
+      },
+      "cron": {
+        "default": "10 min",
+        "description": "Cron expression",
+        "title": "Cron",
+        "type": "string"
+      },
+      "system": {
+        "default": "CloudWatch",
+        "description": "System to monitor",
+        "title": "System",
+        "type": "string",
+        "enum": [
+          "CloudWatch",
+          "CloudTrail",
+          "IAM",
+          "S3"
+        ]
+      },
+      "condition": {
+        "default": "> 0",
+        "description": "Condition on the number of findings",
+        "title": "Condition",
+        "type": "string"
+      },
+      "track_new": {
+        "default": true,
+        "description": "Alert only on new findings",
+        "title": "Track New",
+        "type": "boolean"
+      },
+      "track_event": {
+        "default": false,
+        "description": "Alert on all Trail events (including read-only)",
+        "title": "Track Events",
+        "type": "boolean"
+      },
+      "timeout": {
+        "default": 60000,
+        "description": "Cloud API timeout (ms)",
+        "title": "Timeout",
+        "type": "number"
+      },
+      "desc": {
+        "default": "{system}: {title}{err}",
+        "description": "Description template",
+        "title": "Description",
+        "type": "string"
+      },
+      "severity": {
+        "default": -1,
+        "description": "Severity",
+        "title": "Severity",
+        "type": "number"
+      },
+      "track_err": {
+        "default": true,
+        "description": "Track Errors",
+        "title": "Track Errors",
+        "type": "boolean"
+      },
+      "err_always": {
+        "default": true,
+        "description": "Always alert on Errors",
+        "title": "Track Errors (always)",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "uri",
+      "cron",
+      "system"
+    ],
+    "title": "Schema",
+    "type": "object"
+  },
+  "status": "ACTIVE",
+  "tags": [
+    "SECURITY",
+    "COMPLIANCE",
+    "alpha",
+    "web2"
+  ],
+  "title": "AWS Cloud Monitor",
+  "uiSchema": {
+    "ui:order": [
+      "uri",
+      "auth",
+      "system",
+      "condition",
+      "track_new",
+      "track_event",
+      "track_err",
+      "err_always",
+      "timeout",
+      "desc",
+      "cron",
+      "severity"
+    ]
+  },
+  "updatedAt": 1793000000000,
+  "version": "0.0.1"
+}

@@ -97,7 +97,7 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "gcp://?mock=ok", "system": "Trail" }""")
     rx.set("cloud", new Stub)
 
-    val events = detector.onCron(rx, 0L).sortBy(_.metadata("id"))
+    val events = detector.onCron(rx, 0L).sortBy(_.metadata("tx_hash"))
     events should have size 2
     events(0).metadata("ref") shouldBe "https://console/ev-1"
     events(0).metadata("tx_hash") shouldBe "ev-1"
@@ -106,6 +106,48 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     events(1).metadata("tx_hash") shouldBe "trail:ev-2"
     // eid is not the provider id
     events(0).eid should not be "ev-1"
+    events.foreach(_.metadata.get("id") shouldBe None)
+  }
+
+  it should "create Cloud with auth which overrides credentials of uri" in {
+    import io.syspulse.ext.sentinel.cloud.CloudAWS
+
+    val (detector, conf, rx, r) = start("""{ "cron": "1 min", "uri": "aws://URIKEY:URISECRET:URITOKEN@?region=eu-west-1", "system": "Watch", "auth": "secret://AUTHKEY:AUTHSECRET" }""")
+    r shouldBe SentryRun.SENTRY_RUNNING
+    val cloud = rx.get("cloud").get.asInstanceOf[CloudAWS]
+    cloud.auth shouldBe "secret+sts"
+    cloud.uri.region shouldBe Some("eu-west-1")
+    cloud.toString should not include "AUTHSECRET"
+    cloud.toString should not include "URISECRET"
+
+    // without auth: credentials of uri
+    val (d2, c2, rx2, r2) = start("""{ "cron": "1 min", "uri": "aws://URIKEY:URISECRET:URITOKEN@?region=eu-west-1", "system": "Watch" }""")
+    rx2.get("cloud").get.asInstanceOf[CloudAWS].auth shouldBe "uri"
+
+    // empty auth is ignored
+    val (d3, c3, rx3, r3) = start("""{ "cron": "1 min", "uri": "aws://URIKEY:URISECRET@?region=eu-west-1", "system": "Watch", "auth": "" }""")
+    r3 shouldBe SentryRun.SENTRY_RUNNING
+    rx3.get("cloud").get.asInstanceOf[CloudAWS].auth shouldBe "uri+sts"
+  }
+
+  it should "support auth types" in {
+    for ((auth, name) <- Seq(
+      "role://" -> "role",
+      "profile://?profile=sentry" -> "profile",
+      "secret://K:S:T" -> "secret",
+      "secret://K:S?arn=arn:aws:iam::123456789012:role/Sentry" -> "role(secret)"
+    )) {
+      val (detector, conf, rx, r) = start(s"""{ "cron": "1 min", "uri": "aws://?region=eu-west-1", "system": "Watch", "auth": "${auth}" }""")
+      r shouldBe SentryRun.SENTRY_RUNNING
+      rx.get("cloud").get.asInstanceOf[io.syspulse.ext.sentinel.cloud.CloudAWS].auth shouldBe name
+    }
+  }
+
+  it should "not start with invalid auth" in {
+    for (auth <- Seq("ftp://host", "not-a-uri", "secret://onlykey", "env://$UNDEFINED_VAR_1:$UNDEFINED_VAR_2")) {
+      val (detector, conf, rx, r) = start(s"""{ "cron": "1 min", "uri": "aws://?region=eu-west-1", "system": "Watch", "auth": "${auth}" }""")
+      withClue(auth) { r shouldBe SentryRun.SENTRY_STOPPED }
+    }
   }
 
   it should "track_event is disabled by default" in {
@@ -198,7 +240,7 @@ class DetectorCloudSpec extends AnyFlatSpec with Matchers with DetectorCloudFixt
     e1.map(_.eid) shouldBe e2.map(_.eid)
     // different alerts have different eid
     e1.map(_.eid).toSet should have size 4
-    e1.foreach(e => e.eid shouldBe detector.eid(rx, CloudAlert(e.metadata("system"), e.metadata("id"), "", "", 0.0, "")))
+    e1.foreach(e => e.eid shouldBe detector.eid(rx, CloudAlert(e.metadata("system"), e.metadata("tx_hash"), "", "", 0.0, "")))
 
     // the same configuration in another Detector instance 
     val (detector2, conf2, rx2, r2) = start("""{ "cron": "1 min", "uri": "gcp://?mock=alarm", "system": "Watch,Trail,IAM,Storage", "track_new": false }""")

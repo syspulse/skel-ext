@@ -21,6 +21,7 @@ import io.syspulse.ext.sentinel.cloud.{Cloud, CloudAlert}
 object DetectorCloud {
   val DEF_CRON = "10 min"
   val DEF_URI = "aws://"
+  val DEF_AUTH = ""                         // optional AuthURI: secret://, env://, profile://, role:// (has a preference over credentials in `uri`)
   val DEF_SYSTEM = "Watch"                  // comma-separated list: Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)
   val DEF_CONDITION = "> 0"                 // condition on number of (new) findings
   val DEF_DESC = "{system}: {title}{err}"
@@ -54,6 +55,7 @@ object DetectorCloud {
  * 
  * Configuration:
  *   uri       - Cloud URI: aws://, gcp://, azure:// (see CloudURI)
+ *   auth      - optional AuthURI: secret://, env://, profile://, role:// (see AuthURI). It has a preference over credentials in `uri`
  *   cron      - check interval
  *   system    - systems to monitor (comma-separated): Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)
  *   condition - condition on number of findings to generate Alerts
@@ -63,6 +65,27 @@ object DetectorCloud {
 class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
   override def did = pd.name
   override def toString = s"${this.getClass.getSimpleName}(${did})"
+
+  /** Cloud scheme of the specialized Detector (`aws`, `gcp`, `azure`). Empty: any cloud */
+  protected def cloudScheme: String = ""
+  /** Default Cloud URI if it is not specified in the configuration */
+  protected def defUri: String = DetectorCloud.DEF_URI
+  /** Default system if it is not specified in the configuration */
+  protected def defSystem: String = DetectorCloud.DEF_SYSTEM
+
+  /** 
+   * URI of the Cloud. Specialized Detectors force their scheme (`aws://`, `gcp://`, `azure://`):
+   * empty URI -> default, URI without scheme -> scheme is added, URI of another cloud -> scheme is replaced
+   */
+  protected def ensureUri(uri0: String): String = {
+    val scheme = cloudScheme
+    val u = Option(uri0).map(_.trim).filter(_.nonEmpty).getOrElse(defUri)
+    if (scheme.isEmpty) return u
+    val i = u.indexOf("://")
+    if (i < 0) s"${scheme}://${u}"
+    else if (!u.substring(0, i).equalsIgnoreCase(scheme)) s"${scheme}://${u.substring(i + 3)}"
+    else u
+  }
 
   /** 
    * Idempotent event id: the same finding of the same Detector always has the same eid.
@@ -104,7 +127,7 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
     rx.set("track_err", DetectorConfig.getBoolean(conf, "track_err", DetectorCloud.DEF_TRACK_ERR))
     rx.set("err_always", DetectorConfig.getBoolean(conf, "err_always", DetectorCloud.DEF_TRACK_ERR_ALWAYS))
 
-    val (systems, invalid) = DetectorCloud.parseSystems(DetectorConfig.getString(conf, "system", DetectorCloud.DEF_SYSTEM))
+    val (systems, invalid) = DetectorCloud.parseSystems(DetectorConfig.getString(conf, "system", defSystem))
     if (invalid.nonEmpty || systems.isEmpty) {
       val err = if (invalid.nonEmpty) s"Invalid system: ${invalid.mkString(",")} (supported: ${Cloud.SYSTEMS.mkString(",")})" else "System undefined"
       log.warn(s"${rx.getExtId()}: ${err}")
@@ -114,8 +137,10 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
     rx.set("system", systems)
 
     // new Cloud is created on every update
-    val uri = DetectorConfig.getString(conf, "uri", DetectorCloud.DEF_URI)
-    val cloud = Try(Cloud(uri)) match {
+    val uri = ensureUri(DetectorConfig.getString(conf, "uri", defUri))
+    // `auth` has a preference over credentials in `uri`
+    val auth = Option(DetectorConfig.getString(conf, "auth", DetectorCloud.DEF_AUTH)).map(_.trim).filter(_.nonEmpty)
+    val cloud = Try(Cloud(uri, auth)) match {
       case Success(cloud) => cloud
       case Failure(e) =>
         log.warn(s"${rx.getExtId()}: failed to create Cloud: ${e.getMessage}")
@@ -218,8 +243,8 @@ class DetectorCloud(pd: PluginDescriptor) extends Sentry0 with Plugin {
           "provider" -> cloud.provider,
           "system" -> a.system,
           "sys" -> cloud.sys(a.system),
-          "id" -> a.id,
-          // unique id of the event/entity assigned by the Cloud provider (not `eid`): Trail: EventId
+          // unique id of the event/entity assigned by the Cloud provider: Trail: EventId. 
+          // Uniqueness of the Alert is `eid`. If Cloud does not provide the id, finding id is used
           "tx_hash" -> (if (a.uid.nonEmpty) a.uid else a.id),
           "resource" -> a.resource,
           "status" -> a.status,

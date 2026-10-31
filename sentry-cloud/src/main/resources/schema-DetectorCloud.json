@@ -16,6 +16,10 @@
       "value": "Cloud URI: `aws://`, `gcp://`, `azure://`\n\nFormat: `cloud://ACCESS_KEY:ACCESS_SECRET[:SESSION_TOKEN]@[host]?param=value&param=value`\n\nIf credentials are not specified, they are read from environment variables `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`, `AWS_REGION` (`GCP_`, `AZURE_` for other clouds). Region and account: parameters `region=` and `account=` or environment variables `AWS_REGION`, `AWS_ACCOUNT` (`GCP_REGION`, `GCP_ACCOUNT`, `AZURE_REGION`, `AZURE_ACCOUNT`), parameters have priority. Region and account are added to every Alert. Alerts also have `system` (generic: `Watch`, `Trail`, `IAM`, `Storage`) and `sys` (Cloud specific name, e.g. `CloudWatch`, `CloudTrail`, `IAM`, `S3` for AWS) metadata. `ref` is a link to open the finding in the Cloud console, `tx_hash` is the unique id of the event/entity assigned by the Cloud provider (Trail: EventId, Watch: alarm ARN, IAM: user ARN, Storage: bucket ARN).\n\nExamples:\n\n`aws://?region=eu-west-1&account=123456789012`\n\n`aws://AKIA...:SECRET@?region=eu-west-1`\n\n`aws://?region=eu-west-1&states=ALARM,INSUFFICIENT_DATA&namespace=AWS/EC2,AWS/EKS` (Watch)\n\n`aws://?source=iam.amazonaws.com&events=CreateUser,DeleteUser&window=60` (Trail)\n\n`aws://?max_key_age=90` (IAM)\n\n`aws://?buckets=my-bucket,my-bucket-2&latency=3000`"
     },
     {
+      "name": "Auth",
+      "value": "Optional authentication URI. It has a **preference** over credentials in `uri` (keys, `profile`, `role_arn`): if `auth` is specified they are ignored. `region`, `account` and custom host are still taken from `uri`.\n\nSyntax: `scheme://body?param=value&param=value`\n\n- `secret://<ACCESS_KEY_ID>:<SECRET_ACCESS_KEY>[:SESSION_TOKEN]` - static keys. `SESSION_TOKEN` is optional: if it is not specified, it is requested from the Cloud (AWS STS) and refreshed automatically. Never put real keys into the configuration: use `secret://{AWS_ACCESS_KEY}:{AWS_ACCESS_SECRET}` to take them from environment\n- `env://[$ACCESS_KEY_ID]:[$SECRET_ACCESS_KEY]:[$SESSION_TOKEN]` - names of the environment variables (`$` is optional). Omitted names are default (`AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`). `SESSION_TOKEN` is never taken from the default variable if key or secret names are custom\n- `profile://[file]` - profile from the credentials file (default: `~/.aws/credentials`), profile name: `?profile=name`, `AWS_PROFILE` or `default`. The profile can use `credential_process` (SSO): credentials are refreshed automatically\n- `role://` - IAM role of the environment (ECS task, EKS pod, EC2 instance profile, web identity): credentials are refreshed automatically\n\nParameters (any scheme): `arn` (assume the role, credentials are refreshed automatically), `external_id`, `session`, `duration` (seconds), `sts=false` (do not request `SESSION_TOKEN`)\n\nExamples:\n\n`role://`\n\n`role://?arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc`\n\n`env://`\n\n`env://$MY_KEY:$MY_SECRET`\n\n`profile://?profile=sentry`\n\n`profile:///etc/sentry/credentials?profile=sentry`\n\n`secret://{AWS_ACCESS_KEY}:{AWS_ACCESS_SECRET}`"
+    },
+    {
       "name": "Credentials refresh",
       "value": "Temporary credentials (`SESSION_TOKEN`, SSO) **expire** and a static `SESSION_TOKEN` is never refreshed while Detector is running. Credentials sources (in order of priority):\n\n1. Keys in URI (`aws://KEY:SECRET[:TOKEN]@`)\n2. `profile=NAME` - profile from shared credentials file (`~/.aws/credentials` or `profile_file=/path`). Profile can use `credential_process` (SSO, Vault, any external refresher), which is called again when credentials expire\n3. Environment keys `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`/`AWS_SESSION_TOKEN`\n4. AWS default chain (nothing specified): IAM role for ECS/EKS (IRSA)/EC2 - **recommended for production**, refreshed automatically\n\nIf keys (URI or environment) are specified **without** `SESSION_TOKEN`, the session token is requested from STS (`GetSessionToken`) and renewed automatically (disable with `sts=false`). If `SESSION_TOKEN` is specified it is used as is and **expires**.\n\nAdd `role_arn=ARN` (optionally `external_id`, `role_session`, `role_duration` seconds) to assume a role: credentials are refreshed automatically before expiration.\n\nExamples:\n\n`aws://?region=eu-west-1` (IAM role of the host/pod)\n\n`aws://?region=eu-west-1&role_arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc`\n\n`aws://?region=eu-west-1&profile=sentry`"
     },
@@ -52,8 +56,14 @@
     "properties": {
       "uri": {
         "default": "aws://",
-        "description": "Cloud URI: aws://, gcp://, azure://",
+        "description": "Cloud URI",
         "title": "URI",
+        "type": "string"
+      },
+      "auth": {
+        "default": "",
+        "description": "Authentication URI",
+        "title": "Auth",
         "type": "string"
       },
       "cron": {
@@ -64,7 +74,7 @@
       },
       "system": {
         "default": "Watch",
-        "description": "Cloud systems to monitor (comma-separated): Watch (CloudWatch), Trail (CloudTrail), IAM, Storage (S3)",
+        "description": "Systems to monitor",
         "title": "System",
         "type": "string"
       },
@@ -82,7 +92,7 @@
       },
       "track_event": {
         "default": false,
-        "description": "Trail: generate Alerts for all CloudTrail events, including read-only (Get*, List*, ...), with INFO severity",
+        "description": "Alert on all Trail events (including read-only)",
         "title": "Track Events",
         "type": "boolean"
       },
@@ -94,7 +104,7 @@
       },
       "desc": {
         "default": "{system}: {title}{err}",
-        "description": "Description Template",
+        "description": "Description template",
         "title": "Description",
         "type": "string"
       },
@@ -117,15 +127,37 @@
         "type": "boolean"
       }
     },
-    "required": ["uri", "cron", "system"],
+    "required": [
+      "uri",
+      "cron",
+      "system"
+    ],
     "title": "Schema",
     "type": "object"
   },
   "status": "ACTIVE",
-  "tags": ["SECURITY", "COMPLIANCE", "alpha", "web2"],
+  "tags": [
+    "SECURITY",
+    "COMPLIANCE",
+    "alpha",
+    "web2"
+  ],
   "title": "Cloud Monitor",
   "uiSchema": {
-    "ui:order": ["uri", "system", "condition", "track_new", "track_event", "track_err", "err_always", "timeout", "desc", "cron", "severity"]
+    "ui:order": [
+      "uri",
+      "auth",
+      "system",
+      "condition",
+      "track_new",
+      "track_event",
+      "track_err",
+      "err_always",
+      "timeout",
+      "desc",
+      "cron",
+      "severity"
+    ]
   },
   "updatedAt": 1793000000000,
   "version": "0.0.1"

@@ -8,10 +8,10 @@ import io.hacken.ext.sentinel.SentryRun
 import io.hacken.ext.sentinel.Config
 import io.syspulse.skel.plugin.PluginDescriptor
 
-/** Creates DetectorCloud from DetectorConfig (as Sentinel does) */
+/** Creates DetectorCloud (or a specialized Detector) from DetectorConfig (as Sentinel does) */
 trait DetectorCloudFixture {
 
-  def createRun(confJson: String): (DetectorCloud, DetectorConfig, SentryRun0) = {
+  def createRun(confJson: String, detector: DetectorCloud = new DetectorCloud(PluginDescriptor("DetectorCloud", "1.0.0", "DetectorCloud"))): (DetectorCloud, DetectorConfig, SentryRun0) = {
     val conf = DetectorConfig(
       id = 1,
       createdAt = System.currentTimeMillis(),
@@ -30,26 +30,23 @@ trait DetectorCloudFixture {
         name = "Cloud"
       ),
       schema = None,
-      name = "DetectorCloud",
+      name = detector.did,
       source = "test",
       tags = Seq.empty,
       config = Some(confJson.parseJson.asJsObject),
       destinations = Seq.empty
     )
 
-    val pd = PluginDescriptor("DetectorCloud", "1.0.0", "DetectorCloud")
-    val detector = new DetectorCloud(pd)
-
     val rx = new SentryRun(detector, conf, new Config { override val env: String = "test" }, None)
     (detector, conf, rx)
   }
 
   /** onInit + onStart. Returns status of onStart */
-  def start(confJson: String) = {
-    val (detector, conf, rx) = createRun(confJson)
-    val r0 = detector.onInit(rx, conf)
+  def start(confJson: String, detector: DetectorCloud = new DetectorCloud(PluginDescriptor("DetectorCloud", "1.0.0", "DetectorCloud"))) = {
+    val (d, conf, rx) = createRun(confJson, detector)
+    val r0 = d.onInit(rx, conf)
     assert(r0 == SentryRun.SENTRY_INIT)
-    val r = detector.onStart(rx, conf)
-    (detector, conf, rx, r)
+    val r = d.onStart(rx, conf)
+    (d, conf, rx, r)
   }
 }

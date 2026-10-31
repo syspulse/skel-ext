@@ -79,7 +79,7 @@ class CloudAWSIntegrationSpec extends AnyFlatSpec with Matchers with DetectorClo
       java.nio.file.Files.writeString(file, s"[sentry]\ncredential_process = ${script.getAbsolutePath} ${sso}\n")
 
       // no keys in environment are used: they are ignored because `profile` has priority
-      val cloud = new io.syspulse.ext.sentinel.cloud.CloudAWS(s"aws://?region=${REGION}&profile=sentry&profile_file=${file}")
+      val cloud = new io.syspulse.ext.sentinel.cloud.CloudAWS(s"aws://?region=${REGION}", Some(s"profile://${file}?profile=sentry"))
       try {
         cloud.auth shouldBe "profile"
         val alarms = scala.concurrent.Await.result(cloud.checkWatch(), scala.concurrent.duration.Duration(60, "sec"))

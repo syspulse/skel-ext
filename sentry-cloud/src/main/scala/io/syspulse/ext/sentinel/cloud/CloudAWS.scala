@@ -29,6 +29,7 @@ import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 import com.amazonaws.services.s3.model.HeadBucketRequest
 
 import io.hacken.ext.core.Severity
+import io.syspulse.ext.sentinel.cloud.auth.{Auth, AuthURI}
 
 object CloudAWS {
   /** AWS names of the systems */
@@ -39,26 +40,25 @@ object CloudAWS {
     Cloud.SYSTEM_STORAGE -> "S3"
   )
 
-  // Credentials
-  val DEF_ROLE_SESSION = "sentry-cloud"
-  val DEF_ROLE_DURATION = 3600                // seconds. Credentials are refreshed automatically before expiration
+  // Credentials (see cloud.auth.Auth)
+  val DEF_ROLE_SESSION = Auth.DEF_ROLE_SESSION
+  val DEF_ROLE_DURATION = Auth.DEF_ROLE_DURATION
 
-  val AUTH_URI = "uri"                        // static keys in URI
+  val AUTH_URI = Auth.SOURCE_URI              // static keys in URI
   val AUTH_PROFILE = "profile"                // shared credentials file profile (refreshed)
-  val AUTH_ENV = "env"                        // static keys from environment
+  val AUTH_ENV = Auth.SOURCE_ENV              // static keys from environment
   val AUTH_DEFAULT = "default"                // AWS default chain (refreshed): web identity, container, EC2 instance profile ...
 
-  /** Base source of credentials: URI keys > profile > environment keys > default chain */
-  def authBase(uri: CloudURI): String =
-    if (uri.hasUriCredentials) AUTH_URI
-    else if (uri.profile.isDefined) AUTH_PROFILE
-    else if (uri.hasEnvCredentials) AUTH_ENV
-    else AUTH_DEFAULT
+  /** Base source of credentials (from URI only): URI keys > profile > environment keys > default chain */
+  def authBase(uri: CloudURI): String = Auth.resolve(uri, None).base match {
+    case s: Auth.Static => s.source
+    case _: Auth.Profile => AUTH_PROFILE
+    case _ => AUTH_DEFAULT
+  }
 
   /** Session token which came together with static keys (same source). Such credentials EXPIRE and cannot be refreshed */
-  def staticToken(uri: CloudURI): Option[String] = authBase(uri) match {
-    case AUTH_URI => uri.uriSessionToken
-    case AUTH_ENV => uri.sessionToken
+  def staticToken(uri: CloudURI): Option[String] = Auth.resolve(uri, None).base match {
+    case s: Auth.Static => s.token
     case _ => None
   }
 
@@ -67,20 +67,16 @@ object CloudAWS {
    * and refreshed automatically before it expires. Disable with `sts=false`. 
    * Not needed with `role_arn`: keys are used to assume the role
    */
-  def requestsToken(uri: CloudURI): Boolean = 
-    (authBase(uri) == AUTH_URI || authBase(uri) == AUTH_ENV) && 
-    staticToken(uri).isEmpty && 
-    uri.roleArn.isEmpty && 
-    !uri.param("sts", "true").equalsIgnoreCase("false")
-
-  /** Description of authentication (for logs and tests). No secrets */
-  def authName(uri: CloudURI): String = {
-    val base = authBase(uri) + (if (requestsToken(uri)) "+sts" else "")
-    uri.roleArn.map(_ => s"role(${base})").getOrElse(base)
+  def requestsToken(uri: CloudURI): Boolean = Auth.resolve(uri, None).base match {
+    case s: Auth.Static => s.requestToken
+    case _ => false
   }
 
+  /** Description of authentication (for logs and tests). No secrets */
+  def authName(uri: CloudURI): String = Auth.resolve(uri, None).name
+
   /** Static SESSION_TOKEN is used: credentials expire and cannot be refreshed */
-  def isStatic(uri: CloudURI): Boolean = staticToken(uri).isDefined
+  def isStatic(uri: CloudURI): Boolean = Auth.resolve(uri, None).isStatic
 
   // Watch (CloudWatch)
   val DEF_STATES = "ALARM"                    // alarm states to report: ALARM,INSUFFICIENT_DATA
@@ -342,11 +338,15 @@ object CloudAWS {
  * 
  * Custom endpoint (host in URI) is used for all services: LocalStack, moto: aws://localhost:4566?region=us-east-1&ssl=false
  */
-class CloudAWS(uri0: String) extends Cloud {
+class CloudAWS(uri0: String, auth0: Option[String] = None) extends Cloud {
   import CloudAWS._
 
   val uri = CloudURI(uri0)
   def provider: String = "aws"
+
+  /** Authentication (`auth`) has a preference over credentials in `uri`. Invalid `auth` fails immediately */
+  val authUri: Option[AuthURI] = auth0.map(_.trim).filter(_.nonEmpty).map(a => AuthURI(a))
+  val authSpec: Auth = Auth.resolve(uri, authUri)
 
   override def sys(system: String): String = SYS.getOrElse(system, system)
 
@@ -355,7 +355,7 @@ class CloudAWS(uri0: String) extends Cloud {
   override def toString = s"CloudAWS(${uri})"
 
   /** How credentials are obtained, e.g. `profile`, `role(default)`. Never contains secrets */
-  def auth: String = authName(uri)
+  def auth: String = authSpec.name
 
   private val stsClients = new java.util.concurrent.CopyOnWriteArrayList[AWSSecurityTokenService]()
 
@@ -371,58 +371,54 @@ class CloudAWS(uri0: String) extends Cloud {
   }
 
   private val sessions = new java.util.concurrent.CopyOnWriteArrayList[STSSessionCredentialsProvider]()
+  private val stsList = new java.util.concurrent.CopyOnWriteArrayList[STSAssumeRoleSessionCredentialsProvider]()
 
-  // key/secret and token must come from the same source (URI keys never get a token from environment)
-  private def staticCredentials: AWSCredentialsProvider = (uri.accessKey, uri.accessSecret, staticToken(uri)) match {
-    case (Some(k), Some(s), Some(t)) =>
-      log.warn(s"${uri}: static SESSION_TOKEN is used: credentials will EXPIRE and are NOT refreshed. Remove AWS_SESSION_TOKEN (it will be requested and refreshed), use `profile`, `role_arn` or default credentials chain")
+  // Everything except static keys is refreshed by AWS SDK
+  private def credentialsFor(a: Auth): AWSCredentialsProvider = a match {
+    case Auth.Static(k, s, Some(t), _, _, _) =>
+      log.warn(s"${uri}: static SESSION_TOKEN is used: credentials will EXPIRE and are NOT refreshed. Do not specify SESSION_TOKEN (it will be requested and refreshed), use `profile`, `role` or default credentials chain")
       new AWSStaticCredentialsProvider(new BasicSessionCredentials(k, s, t))
-    case (Some(k), Some(s), None) => 
+
+    case Auth.Static(k, s, None, _, request, _) => 
       val keys = new AWSStaticCredentialsProvider(new BasicAWSCredentials(k, s))
-      if (requestsToken(uri)) {
+      if (request) {
         // no SESSION_TOKEN: request it with long-lived keys, SDK refreshes it before expiration
         val p = new STSSessionCredentialsProvider(stsClient(keys))
         sessions.add(p)
         p
       } else keys
-    case _ => DefaultAWSCredentialsProviderChain.getInstance()
-  }
-
-  // Credentials from the base source (everything except static keys is refreshed by AWS SDK)
-  private def baseCredentials: AWSCredentialsProvider = authBase(uri) match {
-    case AUTH_URI | AUTH_ENV => staticCredentials
 
     // shared credentials file: re-read periodically (rotated keys, credential_process, role_arn + source_profile)
-    case AUTH_PROFILE =>
-      val name = uri.profile.get
-      uri.param("profile_file") match {
-        case "" => new ProfileCredentialsProvider(name)
-        case file => new ProfileCredentialsProvider(new ProfilesConfigFile(file), name)
+    case Auth.Profile(name, file) =>
+      file match {
+        case None => new ProfileCredentialsProvider(name)
+        case Some(f) => new ProfileCredentialsProvider(new ProfilesConfigFile(f), name)
       }
 
     // env, system properties, profile, web identity (IRSA), container (ECS), instance profile (EC2)
-    case _ => DefaultAWSCredentialsProviderChain.getInstance()
-  }
+    case _: Auth.Default => DefaultAWSCredentialsProviderChain.getInstance()
 
-  private val stsList = new java.util.concurrent.CopyOnWriteArrayList[STSAssumeRoleSessionCredentialsProvider]()
+    case r: Auth.Role =>
+      val b = new STSAssumeRoleSessionCredentialsProvider.Builder(r.arn, r.session).withRoleSessionDurationSeconds(r.duration)
+      r.externalId.foreach(id => b.withExternalId(id))
+
+      // STS client (it carries credentials of the underlying source) must use the same endpoint (mock) or region as the other clients
+      b.withStsClient(stsClient(credentialsFor(r.underlying)))
+
+      val p = b.build()
+      stsList.add(p)
+      p
+  }
 
   // ONE provider shared by all clients: it caches and refreshes credentials 
   protected lazy val credentials: AWSCredentialsProvider = {
-    val base = baseCredentials
-    log.info(s"${uri}: credentials: ${auth}" + uri.envCredentialsNames.filter(_ => authBase(uri) == AUTH_ENV).map(n => s" (environment: ${n})").getOrElse(""))
-    uri.roleArn match {
-      case Some(arn) =>
-        val b = new STSAssumeRoleSessionCredentialsProvider.Builder(arn, uri.param("role_session", DEF_ROLE_SESSION))
-          .withRoleSessionDurationSeconds(uri.param("role_duration", DEF_ROLE_DURATION.toString).toInt)
-        Option(uri.param("external_id")).filter(_.nonEmpty).foreach(id => b.withExternalId(id))
-
-        b.withStsClient(stsClient(base))
-
-        val p = b.build()
-        stsList.add(p)
-        p
-      case None => base
+    val p = credentialsFor(authSpec)
+    val src = authSpec.base match {
+      case s: Auth.Static if s.detail.nonEmpty => s" (${s.source}: ${s.detail})"
+      case _ => ""
     }
+    log.info(s"${uri}: credentials: ${auth}${src}" + authUri.map(a => s", auth=${a}").getOrElse(""))
+    p
   }
 
   private def endpointConfig(region: Option[String]): Option[EndpointConfiguration] =

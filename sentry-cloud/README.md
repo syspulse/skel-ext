@@ -14,13 +14,13 @@ Clouds: `aws://` (implemented), `gcp://` and `azure://` (**mocked**).
 ## Alert metadata
 
 Alerts have `provider` (`aws`), `system` (generic system: `Watch`, `Trail`, `IAM`, `Storage`) and `sys` (Cloud specific name of the system), 
-`region` and `account` (if defined), `id`, `resource`, `status`, `title`, `count` and system specific attributes. 
+`region` and `account` (if defined), `tx_hash`, `ref`, `resource`, `status`, `title`, `count` and system specific attributes. 
 `sys` can be used in `desc` template: `{sys}: {title}`.
 
 Every Alert also has:
 
 - `ref` - http link to open the finding in the Cloud console (if the Cloud has one)
-- `tx_hash` - unique id of the event/entity assigned by the Cloud provider. It is NOT `eid` (unique per Detector + finding) and not `id` (finding id, may include state/time).
+- `tx_hash` - unique id of the event/entity assigned by the Cloud provider. Uniqueness of the Alert is `eid` (Detector + finding): there is no other `id` attribute.
 
 | `system` | `tx_hash` AWS                      | `ref` AWS                                  |
 |----------|------------------------------------|--------------------------------------------|
@@ -29,7 +29,7 @@ Every Alert also has:
 | `IAM`    | user ARN (root: `...:root`)        | IAM user security credentials              |
 | `Storage`| bucket ARN `arn:aws:s3:::<bucket>` | S3 bucket page                             |
 
-If the Cloud does not provide the id, `tx_hash` is the finding `id`. GCP and Azure (mocked) do not set `ref`.
+If the Cloud does not provide the id, `tx_hash` is the internal finding id. GCP and Azure (mocked) do not set `ref`.
 
 | `system` | `sys` AWS  | `sys` GCP (mocked) | `sys` Azure (mocked) |
 |----------|------------|--------------------|----------------------|
@@ -38,11 +38,23 @@ If the Cloud does not provide the id, `tx_hash` is the finding `id`. GCP and Azu
 | `IAM`    | `IAM`        | `Cloud IAM`        | `Entra ID`         |
 | `Storage`| `S3`         | `Cloud Storage`    | `Blob Storage`     |
 
+## Detectors
+
+| Detector | Schema | URI | Systems (combobox) |
+|----------|--------|-----|--------------------|
+| `DetectorCloud` | `schema-DetectorCloud.json` | any (`aws://`, `gcp://`, `azure://`) | free text: `Watch`, `Trail`, `IAM`, `Storage` (aliases accepted) |
+| `DetectorCloudAWS` | `schema-DetectorCloudAWS.json` | `aws://` | `CloudWatch`, `CloudTrail`, `IAM`, `S3` |
+| `DetectorCloudGCP` | `schema-DetectorCloudGCP.json` | `gcp://` | `Cloud Monitoring`, `Cloud Audit Logs`, `Cloud IAM`, `Cloud Storage` (**mocked**) |
+| `DetectorCloudAzure` | `schema-DetectorCloudAzure.json` | `azure://` | `Azure Monitor`, `Activity Log`, `Entra ID`, `Blob Storage` (**mocked**) |
+
+Cloud specific Detectors are extensions of `DetectorCloud`. Schema field `description` is terse: details are in FAQ.
+
 ## Configuration
 
 | Parameter   | Default                  | Description                                                              |
 |-------------|--------------------------|--------------------------------------------------------------------------|
 | `uri`       | `aws://`                 | Cloud URI (see below)                                                    |
+| `auth`      | (empty)                  | Optional AuthURI: `secret://`, `env://`, `profile://`, `role://` (see [Auth](#auth)). Has a preference over credentials in `uri` |
 | `cron`      | `10 min`                 | Check interval                                                           |
 | `system`    | `Watch`                  | Comma-separated: `Watch`, `Trail`, `IAM`, `Storage` (aliases: `CloudWatch`, `CloudTrail`, `S3`) |
 | `condition` | `> 0`                    | Condition on the number of findings (per system) to generate Alerts      |
@@ -151,6 +163,41 @@ Recommended:
 
 Note: `credential_process` must be in the shared *credentials* file (`~/.aws/credentials` or `profile_file`), not in `~/.aws/config`.
 
+### Auth
+
+`auth` is an optional AuthURI (package `cloud.auth`). If it is specified, it **overrides** credentials in `uri` 
+(keys, `profile`, `profile_file`, `role_arn`, `external_id`, `sts`) and environment keys. `region`, `account` and the custom host are still taken from `uri`.
+
+```
+<scheme>://<body>?param=value&param=value
+```
+
+| AuthURI | Description | Refreshed |
+|---------|-------------|-----------|
+| `secret://<ACCESS_KEY_ID>:<SECRET_ACCESS_KEY>[:SESSION_TOKEN]` | Static keys. Without `SESSION_TOKEN` it is requested (STS `GetSessionToken`) | token is requested: yes, given token: no |
+| `env://[$ACCESS_KEY_ID]:[$SECRET_ACCESS_KEY]:[$SESSION_TOKEN]` | Names of environment variables. Omitted name: default (`AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET`, `AWS_SESSION_TOKEN`) | same as `secret://` |
+| `profile://[file]` | Profile of the credentials file (default `~/.aws/credentials`). Name: `?profile=`, `AWS_PROFILE` or `default` | yes |
+| `role://` | IAM role of the environment: ECS task, EKS pod (IRSA), EC2 instance profile (AWS default chain) | yes |
+
+Parameters (any scheme): `arn` (assume the role with these credentials, refreshed automatically), `external_id`, `session`, `duration` (seconds, default 3600), `sts=false` (do not request `SESSION_TOKEN`).
+
+```
+secret://{AWS_ACCESS_KEY}:{AWS_ACCESS_SECRET}                    keys from environment (expanded)
+env://                                                           default environment variables
+env://$MY_KEY:$MY_SECRET                                         custom variables
+env://::$MY_TOKEN                                                default key and secret, custom SESSION_TOKEN variable
+profile://?profile=sentry                                        ~/.aws/credentials
+profile:///etc/sentry/credentials?profile=sentry                 credentials file
+role://                                                          IAM role of the pod/task/instance
+role://?arn=arn:aws:iam::123456789012:role/Sentry&external_id=abc    assume the role
+```
+
+Notes:
+- `SESSION_TOKEN` of the default variable belongs to the default keys: with custom `$KEY`/`$SECRET` names it is never taken from a default variable (only from the custom third name).
+- Invalid `auth` (unknown scheme, `secret://` without secret, undefined environment variable) stops the Detector with an error Alert.
+- Never put real keys in configuration files: use `env://` or `{VAR}` expansion in `secret://`. Detector configuration is a part of Alerts.
+- GCP and Azure (mocked) ignore `auth`.
+
 ### GCP, Azure (mocked)
 
 ```
@@ -183,6 +230,11 @@ AWS_ROLE_ARN=arn:aws:iam::123456789012:role/Sentry ../sentinel.sh --conf=conf/de
 
 # IAM credential report and S3 availability
 ../sentinel.sh --conf=conf/detector-DetectorCloud-AWS-2.conf
+
+# Cloud specific Detectors (system is a combobox)
+../sentinel.sh --conf=conf/detector-DetectorCloudAWS-1.conf
+../sentinel.sh --conf=conf/detector-DetectorCloudGCP-1.conf
+../sentinel.sh --conf=conf/detector-DetectorCloudAzure-1.conf
 
 # GCP (mocked), no credentials
 ../sentinel.sh --conf=conf/detector-DetectorCloud-Mock-1.conf
